@@ -1,0 +1,121 @@
+* {
+    z-index: 100;
+}
+
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.30);
+}
+
+#container {
+
+    $width: 300px;
+    $height: 300px;
+
+    font-family: 'Roboto';
+
+    //z-index: 101;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -($width/2) - 50px;
+    margin-left: -($height/2);
+    width: $width;
+    //height: $height;
+    border: 1px solid #666;
+    border-radius: 3%;
+    background-color: white;
+
+    h1 {
+        margin-top: 30px;
+        display: block;
+        position: relative;
+
+        text-align: center;
+        font-weight: bold;
+        font-size: 25px;
+        //top: 20px;
+        //background-color: #FFF;
+    }
+
+    input {
+        display: block;
+        width: 80%;
+        font-size: medium;
+        padding: 5px;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid #777;
+        margin: 30px auto;
+        text-align: center;
+    }
+
+    
+    .ng-valid:not(form) {
+        border-bottom: 2px solid #283 !important;
+    }
+
+    // .ng-invalid:not(form) {
+    //     &.ng-touched {
+    //         border-bottom: 2px solid #823 !important;
+    //     }
+    // }
+
+    .input-error {
+        border-bottom: 2px solid #823;
+    }
+
+    button {
+        display: block;
+        margin: 20px auto;
+        background-color: #DDD;
+        border: 1px solid #555;
+        border-radius: 5%;
+
+        font-size: 14px;
+        padding: 10px 25px;
+    }
+
+    #errorbar {
+        display: flex;
+        //background-color: #ff9c9c;
+        border: 3px solid white;
+        //width: 100%;
+        height: 25px;
+        align-items: center;
+        
+        p::before {
+            content: "⚠";
+            display: block;
+            float: left;
+            margin: 0 7px 0 0;
+            font-size: 25px;
+        }
+        p {
+            //display: table-cell;
+            //vertical-align: middle;
+
+            line-height: 1em;
+            color: #e81414;
+            font-weight: bold;
+            font-family: Arial;
+            margin: auto;
+            font-size: 13px;
+            
+        }
+    }
+
+    p {
+        margin-top: 25px;
+        font-size: 14px;
+        text-align: center;
+
+        a {
+            text-decoration: none;
+        }
+    }
+}
