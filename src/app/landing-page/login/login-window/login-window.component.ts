@@ -3,7 +3,7 @@ import { LoginModel } from './../login-model/login-model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-login-window',
+  selector: 'svr-login-window',
   templateUrl: './login-window.component.html',
   styleUrls: ['./login-window.component.scss']
 })
@@ -39,15 +39,12 @@ export class LoginWindowComponent implements OnInit {
         },
         (err) => {
           this.errorOccurred = true;
-          this.errorMessage = 'Wystąpił błąd :(';
+          this.errorMessage = `Wystąpił błąd: ${err}`;
         }
       );
-
-      // console.log(`login:\t\t${this.loginModel.login}\npassword:\t${this.loginModel.password}`);
     } else {
       this.errorOccurred = true;
       this.errorMessage = 'Wpisz login i hasło!';
     }
   }
-
 }
