@@ -1,35 +1,19 @@
-<div class = "background" >
-    <div class = "container">
-        <h1>Log In</h1>
-        <form #loginForm = "ngForm">
-
-            <input
-                class = "login"
-                type="text"
-                placeholder="username"
-                required
-                [(ngModel)] = "loginModel.login"
-                name = "login"
-                #loginInput = "ngModel"
-                [class.input-error] = "(!loginInput.touched && errorOccurred) || (loginInput.invalid && loginInput.touched)"
-            />
-
-            <input
-                class = "password"
-                type="password"
-                placeholder="password"
-                required
-                [(ngModel)] = "loginModel.password"
-                name = "password"
-                #passwordInput = "ngModel"
-                [class.input-error] = "(!passwordInput.touched && errorOccurred) || (passwordInput.invalid && passwordInput.touched)"
-            />
-
-            <button (click) = "loginSubmit()" type = "submit">Log in</button>
+<div>
+    <div class="background"></div>
+    <div class="login-form">
+        <h1>LOGIN</h1>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <mat-form-field>
+                <input matInput formControlName="email" placeholder="Email" class="login-input">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput [type]="'password'" formControlName="password" placeholder="Password"
+                    class="password-input">
+            </mat-form-field>
+            <button type="submit" mat-flat-button [disabled]="!this.loginForm.valid">Log in</button>
+            <div class="info">
+                <p> Forgot password?<a href="#">  Click here</a></p>
+            </div>
         </form>
-        <div class = "errorbar" *ngIf="errorOccurred" >
-            <p [innerHTML] = "errorMessage"></p>
-        </div>
-        <p>Forgot password? <a href="#">(Click here)</a></p>
     </div>
 </div>

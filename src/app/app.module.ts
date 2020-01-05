@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './landing-page/login/login.module';
 import { NavBarComponent } from './landing-page/nav-bar/nav-bar.component';
-import {RegisterModule} from './landing-page/register/register.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import {RegisterModule} from './landing-page/register/register.module';
     BrowserModule,
     AppRoutingModule,
     LoginModule,
-    RegisterModule
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
