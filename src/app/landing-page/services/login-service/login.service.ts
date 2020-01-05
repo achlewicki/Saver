@@ -1,4 +1,3 @@
-import { LoginModel } from './../../login/login-model/login-model';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 
@@ -6,7 +5,7 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class LoginService {
-
+  /*
   private users: LoginModel[] = [
     {
       login: 'test',
@@ -23,4 +22,5 @@ export class LoginService {
   public verifyUser(user: LoginModel): Observable<LoginModel> {
     return of(this.users.find((e) => JSON.stringify(e) === JSON.stringify(user)));
   }
+  */
 }
