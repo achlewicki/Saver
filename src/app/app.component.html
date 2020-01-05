@@ -1,1 +1,5 @@
-<svr-login-window></svr-login-window>
+<svr-nav-bar #child></svr-nav-bar>
+<svr-login-window *ngIf="child.logInClicked"></svr-login-window>
+<!--app-nav-bar zakrywa pole-->
+<br><br><br>
+<br><br>
