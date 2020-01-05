@@ -1,0 +1,78 @@
+<div class="container">
+  <h1>Sign In</h1>
+  <form>
+    <label>
+      <input
+        class="email"
+        type="text"
+        placeholder="email"
+        required
+        [(ngModel)]="registerModel.email"
+        name="email"
+        #emailInput="ngModel"
+        />
+    </label>
+
+    <label>
+      <input
+        class="password"
+        type="text"
+        placeholder="password"
+        required
+        [(ngModel)]="registerModel.password"
+        name="password"
+        #passwordInput="ngModel"
+      />
+    </label>
+
+    <label>
+      <input
+        class="firstName"
+        type="text"
+        placeholder="firstName"
+        required
+        [(ngModel)]="registerModel.firstName"
+        name="firstName"
+        #firstNameInput="ngModel"
+      />
+    </label>
+
+    <label>
+      <input
+        class="lastName"
+        type="text"
+        placeholder="lastName"
+        required
+        [(ngModel)]="registerModel.lastName"
+        name="firstName"
+        #lastNameInput="ngModel"
+      />
+    </label>
+
+    <label>
+      <input
+        class="birthDate"
+        type="date"
+        placeholder="birthDate"
+        required
+        [(ngModel)]="registerModel.birthDate"
+        name="birthDate"
+        #birthDateInput="ngModel"
+      />
+    </label>
+
+    <label>
+      <input
+        class="sex"
+        type="text"
+        placeholder="sex"
+        required
+        [(ngModel)]="registerModel.sex"
+        name="sex"
+        #sexInput="ngModel"
+      />
+    </label>
+
+    <button (click) = "registerSubmit()" type = "submit">Sign in</button>
+  </form>
+</div>

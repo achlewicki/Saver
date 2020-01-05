@@ -1,26 +1,20 @@
 import { LoginService } from './../../services/login-service/login.service';
 import { LoginModel } from './../login-model/login-model';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'svr-login-window',
   templateUrl: './login-window.component.html',
   styleUrls: ['./login-window.component.scss']
 })
-export class LoginWindowComponent implements OnInit {
-
-  protected loginModel: LoginModel = new LoginModel();
+export class LoginWindowComponent {
+  protected loginModel: LoginModel;
   protected errorOccurred: boolean;
   protected errorMessage: string;
 
-  constructor(
-    private loginService: LoginService
-  ) {
+  constructor(private readonly loginService: LoginService) {
     this.errorOccurred = false;
    }
-
-  ngOnInit() {
-  }
 
   public loginSubmit() {
     if (this.loginModel.login && this.loginModel.password) {

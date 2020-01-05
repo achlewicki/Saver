@@ -2,7 +2,7 @@
     z-index: 100;
 }
 
-#background {
+.background {
     position: fixed;
     top: 0;
     left: 0;
@@ -11,12 +11,12 @@
     background-color: rgba(0, 0, 0, 0.30);
 }
 
-#container {
+.container {
 
     $width: 300px;
     $height: 300px;
 
-    font-family: 'Roboto';
+  font-family: 'Roboto', serif;
 
     //z-index: 101;
     position: fixed;
@@ -80,7 +80,7 @@
         padding: 10px 25px;
     }
 
-    #errorbar {
+    .errorbar {
         display: flex;
         //background-color: #ff9c9c;
         border: 3px solid white;

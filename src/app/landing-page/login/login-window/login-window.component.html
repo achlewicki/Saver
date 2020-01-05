@@ -1,12 +1,12 @@
-<div id = "background" >
-    <div id = "container">
-        <h1>Login</h1>
+<div class = "background" >
+    <div class = "container">
+        <h1>Log In</h1>
         <form #loginForm = "ngForm">
 
-            <input 
-                id = "login" 
-                type="text" 
-                placeholder="username" 
+            <input
+                class = "login"
+                type="text"
+                placeholder="username"
                 required
                 [(ngModel)] = "loginModel.login"
                 name = "login"
@@ -15,9 +15,9 @@
             />
 
             <input
-                id = "password" 
-                type="password" 
-                placeholder="password" 
+                class = "password"
+                type="password"
+                placeholder="password"
                 required
                 [(ngModel)] = "loginModel.password"
                 name = "password"
@@ -27,7 +27,7 @@
 
             <button (click) = "loginSubmit()" type = "submit">Log in</button>
         </form>
-        <div id = "errorbar" *ngIf="errorOccurred" >
+        <div class = "errorbar" *ngIf="errorOccurred" >
             <p [innerHTML] = "errorMessage"></p>
         </div>
         <p>Forgot password? <a href="#">(Click here)</a></p>
