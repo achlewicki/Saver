@@ -25,7 +25,7 @@ export class RegisterWindowComponent {
 
   passwordFormControl = new FormControl('', [
     Validators.required,
-  ])
+  ]);
 
 
   matcher = new MyErrorStateMatcher();
