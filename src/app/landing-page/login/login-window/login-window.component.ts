@@ -21,7 +21,7 @@ export class LoginWindowComponent {
     this.ss = ss;
    }
 
-  private onCloseLogInClicked(){
+  private onCloseLogInClicked() {
     this.ss.change();
   }
 
