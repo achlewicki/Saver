@@ -1,6 +1,6 @@
-import { LoginService } from './../../services/login-service/login.service';
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { SharedService} from '../../shared.service';
 
 
 @Component({
@@ -8,22 +8,27 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   templateUrl: './login-window.component.html',
   styleUrls: ['./login-window.component.scss']
 })
-export class LoginWindowComponent implements OnInit {
-  protected loginForm: FormGroup;
+export class LoginWindowComponent {
 
-  constructor(
-    private readonly fb: FormBuilder
-  ) {
+  protected loginForm: FormGroup;
+  protected ss;
+
+  constructor(private readonly fb: FormBuilder, ss: SharedService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
+    this.ss = ss;
    }
 
-  ngOnInit() {
+  private onCloseLogInClicked(){
+    this.ss.change();
   }
+
+
 
   protected onSubmit(): void {
     console.log(this.loginForm.value);
   }
+
 }
