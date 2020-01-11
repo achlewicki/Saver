@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { SharedService} from '../../shared.service';
+import { SharedService} from '../../services/shared.service';
 
 
 @Component({
