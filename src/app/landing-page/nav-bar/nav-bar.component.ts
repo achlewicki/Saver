@@ -1,28 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import {AppComponent} from '../../app.component';
-
-import {SharedService} from '../services/shared.service';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'svr-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit {
-  protected logInClicked;
+export class NavBarComponent{
+  protected logInClicked: boolean;
   protected registerClicked;
-  public subscription;
-  public ss;
 
-  constructor(ss: SharedService) {
+  constructor() {
     this.logInClicked = false;
     this.registerClicked = false;
-    this.ss = ss;
-  }
-
-  ngOnInit() {
-    this.subscription = this.ss.getEmittedValue()
-      .subscribe(item => this.logInClicked = item);
   }
 
   onLogInClick() {

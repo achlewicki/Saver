@@ -5,15 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NavBarModule } from '../nav-bar/nav-bar.module';
-
 
 @NgModule({
   declarations: [
     LoginWindowComponent
     ],
   imports: [
-    NavBarModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,

@@ -1,7 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { SharedService} from '../../services/shared.service';
-
 
 @Component({
   selector: 'svr-login-window',
@@ -9,24 +7,21 @@ import { SharedService} from '../../services/shared.service';
   styleUrls: ['./login-window.component.scss']
 })
 export class LoginWindowComponent {
-
+  @Output() fire: EventEmitter<any> = new EventEmitter();
   protected loginForm: FormGroup;
-  protected ss;
 
-  constructor(private readonly fb: FormBuilder, ss: SharedService) {
+  constructor(private readonly fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
-    this.ss = ss;
    }
 
   private onCloseLogInClicked() {
-    this.ss.change();
+    this.fire.emit(false);
   }
 
   protected onSubmit(): void {
     console.log(this.loginForm.value);
   }
-
 }
