@@ -25,8 +25,6 @@ export class LoginWindowComponent {
     this.ss.change();
   }
 
-
-
   protected onSubmit(): void {
     console.log(this.loginForm.value);
   }

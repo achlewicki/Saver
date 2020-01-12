@@ -15,29 +15,21 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./register-window.component.scss']
 })
 export class RegisterWindowComponent {
-  protected registerForm: FormGroup;
-
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-    Validators.email,
-  ]);
-
-  passwordFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
+  protected registerForm;
 
   matcher = new MyErrorStateMatcher();
 
   constructor(private readonly fb: FormBuilder) {
     this.registerForm = this.fb.group({
-      email: ['', this.emailFormControl],
-      password: ['', this.passwordFormControl]
+      email: ['', [Validators.required,
+        Validators.email]],
+      password: ['', [Validators.required]],
+      password2: ['', [Validators.required]]
     });
   }
 
   onSubmit() {
     console.log(this.registerForm.value);
+    console.log(this.registerForm.get('email').value);
   }
 }
