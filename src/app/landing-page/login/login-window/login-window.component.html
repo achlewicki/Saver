@@ -3,7 +3,7 @@
   <div class="login-form-window">
     <span class="triangle"> </span>
     <span class="triangle-second"> </span>
-    <button mat-icon-button class="close-button">X</button>
+    <button mat-icon-button class="close-button" (click)="onCloseLogInClicked()">X</button>
     <div class="login-form">
       <h1>LOGIN</h1>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">

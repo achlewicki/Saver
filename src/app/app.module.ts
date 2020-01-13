@@ -12,15 +12,14 @@ import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavBarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
     RegisterModule,
     NavBarModule,
     BrowserAnimationsModule
