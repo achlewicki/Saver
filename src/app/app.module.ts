@@ -7,16 +7,20 @@ import { LoginModule } from './landing-page/login/login.module';
 import { RegisterModule} from './landing-page/register/register.module';
 import { NavBarModule } from './landing-page/nav-bar/nav-bar.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LoginModule,
+    BrowserAnimationsModule,
+    HttpClientModule
     RegisterModule,
     NavBarModule,
     BrowserAnimationsModule

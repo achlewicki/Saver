@@ -1,26 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class LoginService {
-  /*
-  private users: LoginModel[] = [
-    {
-      login: 'test',
-      password: 'test'
-    },
-    {
-      login: 'user',
-      password: '123'
-    }
-  ];
 
-  constructor() { }
+  private loginURL: string;
+  httpHeader = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
-  public verifyUser(user: LoginModel): Observable<LoginModel> {
-    return of(this.users.find((e) => JSON.stringify(e) === JSON.stringify(user)));
+  constructor(
+    private readonly http: HttpClient
+  ) {
+    this.loginURL = 'http://localhost:3000/login';
   }
-  */
+
+  verifyUser(user: LoginModel): Observable<{ status: string, jwt?: string}> {
+    return this.http.post<{ status: string, jwt?: string}>(this.loginURL, user, this.httpHeader)
+    .pipe(
+
+    );
+  }
+
+}
+
+export interface LoginModel {
+  email: string;
+  password: string;
 }
