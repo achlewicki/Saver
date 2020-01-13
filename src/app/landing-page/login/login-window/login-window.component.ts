@@ -1,3 +1,4 @@
+import { LoginModel } from './../../services/login-service/login.service';
 import { LoginService } from './../../services/login-service/login.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -12,7 +13,8 @@ export class LoginWindowComponent implements OnInit {
   protected loginForm: FormGroup;
 
   constructor(
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly loginService: LoginService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -24,6 +26,25 @@ export class LoginWindowComponent implements OnInit {
   }
 
   protected onSubmit(): void {
-    console.log(this.loginForm.value);
+    const user: LoginModel = {
+      email: this.loginForm.value.email,
+      password: this.loginForm.value.password
+    };
+    this.loginService.verifyUser(user)
+    .subscribe({
+      next: x => {
+        console.log(`Odebrano wiadomość z /login: \n ${JSON.stringify(x)}`);
+        switch (x.status) {
+          case 'Password or email is incorrect':
+          case 'Login successful':
+            alert(x.status);
+            break;
+          default:
+            alert('Nieznany status ;(');
+        }
+      },
+      error: x => console.log(`Wystąpił błąd z /login: ${JSON.stringify(x)}`),
+      complete: () => console.log(`Ukończono połączenie z /login`)
+    });
   }
 }
