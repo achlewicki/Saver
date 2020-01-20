@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #0d3a8b;
+
 }
 
 li, a, button{
@@ -20,6 +20,9 @@ header{
   justify-content: space-between;
   align-items: center;
   padding: 5px 10%;
+  background: rgb(21,64,212);
+  background: linear-gradient(180deg, rgba(21,64,212,1) 0%, rgba(0,202,255,1) 100%);
+  box-shadow: 0px 4px 5px 0px rgba(0,0,0,0.4);
 }
 
 .logo{

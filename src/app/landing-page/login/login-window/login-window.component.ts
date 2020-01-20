@@ -1,6 +1,6 @@
 import { LoginModel } from './../../services/login-service/login.service';
 import { LoginService } from './../../services/login-service/login.service';
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 
@@ -9,7 +9,8 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
   templateUrl: './login-window.component.html',
   styleUrls: ['./login-window.component.scss']
 })
-export class LoginWindowComponent implements OnInit {
+export class LoginWindowComponent {
+  @Output() fire: EventEmitter<any> = new EventEmitter();
   protected loginForm: FormGroup;
 
   constructor(
@@ -22,7 +23,8 @@ export class LoginWindowComponent implements OnInit {
     });
    }
 
-  ngOnInit() {
+  private onCloseLogInClicked() {
+    this.fire.emit(false);
   }
 
   protected onSubmit(): void {
