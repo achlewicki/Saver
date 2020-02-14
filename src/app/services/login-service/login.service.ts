@@ -1,3 +1,5 @@
+import { Config } from '#config/config';
+import { LoginModel } from '#models/login.model';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -16,20 +18,13 @@ export class LoginService {
   constructor(
     private readonly http: HttpClient
   ) {
-    this.loginURL = 'http://localhost:3000/login';
+    this.loginURL = Config.backendUrl + '/login';
   }
 
-  verifyUser(user: LoginModel): Observable<{ status: string, jwt?: string}> {
-    return this.http.post<{ status: string, jwt?: string}>(this.loginURL, user, this.httpHeader)
-    .pipe(
+  verifyUser(user: LoginModel): Observable<{ status: string, jwt?: string }> {
+    return this.http.post<{ status: string, jwt?: string }>(this.loginURL, user, this.httpHeader)
+      .pipe(
 
-    );
+      );
   }
-
-
-}
-
-export interface LoginModel {
-  email: string;
-  password: string;
 }

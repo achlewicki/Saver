@@ -1,8 +1,8 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavBarComponent } from './nav-bar.component';
-import { LoginWindowComponent } from '../login/login-window/login-window.component';
-import { LoginModule} from '../login/login.module';
+import { LoginModule } from '../login/login.module';
 
 
 @NgModule({
@@ -11,10 +11,11 @@ import { LoginModule} from '../login/login.module';
     // LoginWindowComponent
   ],
   imports: [
+    RouterModule,
     CommonModule,
     LoginModule
   ],
-  exports:[
+  exports: [
     NavBarComponent
     // LoginWindowComponent
   ]
