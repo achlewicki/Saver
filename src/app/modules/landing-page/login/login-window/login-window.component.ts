@@ -1,7 +1,7 @@
 import { LoginModel } from '#models/login.model';
 import { LoginService } from '#services/login-service/login.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 
@@ -12,7 +12,8 @@ import { Router } from '@angular/router';
 })
 
 export class LoginWindowComponent {
-  @Output() closing: EventEmitter<any> = new EventEmitter();
+  @Output()
+  public closing: EventEmitter<boolean> = new EventEmitter();
   protected loginForm: FormGroup;
 
   constructor(
@@ -26,7 +27,7 @@ export class LoginWindowComponent {
     });
   }
 
-  private onCloseLogInClicked() {
+  protected onCloseLogInClicked(): void {
     this.closing.emit(false);
   }
 
