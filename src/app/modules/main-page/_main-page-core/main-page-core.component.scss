@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  position: fixed;
+  top: 0;
+  left: 0;
+  grid-template:
+    "nav header"50px "nav view"auto / max-content auto;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
+  grid-area: header;
+  border-bottom: 1px solid grey;
+}
+
+.nav-bar {
+  grid-area: nav;
+  border-right: 1px solid grey;
+}
+
+.view-section {
+  grid-area: view;
+  overflow: auto;
+}
