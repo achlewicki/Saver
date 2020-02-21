@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+  height: 100%;
+}
+
+.left-side,
+.right-side {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
+.button {
+  height: 40px;
+  width: 40px;
+  word-wrap: break-word;
+  border: none;
+  outline: none;
+  background-color: none;
+  background-color: #c9f7f7;
+}
+
+.button:hover {
+  background-color: #98e2e2;
+}
+
+.left-side {
+
+  * {
+    margin-left: 30px;
+  }
+
+}
+
+
+.right-side {
+
+  * {
+    margin-right: 30px;
+  }
+
+}
