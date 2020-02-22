@@ -1,13 +1,22 @@
+@import '../_nav-bar/nav-bar.component.scss';
+
 .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5px;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
+
   height: 100%;
+  width: 100%;
+  display: grid;
+
+  grid-template-rows: 100%;
+  grid-template-columns: $nav-max-width auto max-content;
+  grid-template-areas: "left title right";
 }
 
 .left-side,
-.right-side {
+.right-side,
+.account-view-title {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -30,6 +39,8 @@
 
 .left-side {
 
+  grid-area: left;
+
   * {
     margin-left: 30px;
   }
@@ -39,8 +50,42 @@
 
 .right-side {
 
+  grid-area: right;
+
   * {
     margin-right: 30px;
   }
+
+}
+
+.account-view-title {
+  grid-area: title;
+
+  .title-component {
+    display: flex;
+    height: 55%;
+    margin: 0 5px;
+    align-items: center;
+  }
+
+  .account-color {
+    margin: 0 5px;
+    padding: 0;
+    width: 3px;
+    background-color: red;
+  }
+
+  .account-name {}
+
+  .divider {
+    margin-left: 20px;
+    color: grey;
+  }
+
+  .account-view {
+    font-size: small;
+    color: grey;
+  }
+
 
 }
