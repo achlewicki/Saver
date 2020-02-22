@@ -11,6 +11,8 @@ import { OperationsComponent } from './operations/operations.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
+import { MatButtonModule } from '@angular/material/button';
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -22,6 +24,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     UserProfileComponent
   ],
   imports: [
+    MatButtonModule,
     CommonModule,
     MainPageRoutingModule
   ]

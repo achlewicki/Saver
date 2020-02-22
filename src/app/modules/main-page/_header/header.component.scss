@@ -47,7 +47,6 @@
 
 }
 
-
 .right-side {
 
   grid-area: right;
@@ -64,7 +63,7 @@
   .title-component {
     display: flex;
     height: 55%;
-    margin: 0 5px;
+    padding: 5px;
     align-items: center;
   }
 
@@ -75,10 +74,11 @@
     background-color: red;
   }
 
-  .account-name {}
+  .account-name-button {
+    //border-left: 5px solid red;
+  }
 
   .divider {
-    margin-left: 20px;
     color: grey;
   }
 

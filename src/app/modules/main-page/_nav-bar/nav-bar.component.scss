@@ -2,6 +2,7 @@ $nav-max-width: 250px;
 
 .nav-container {
   height: 100%;
+  width: $nav-max-width;
   position: relative;
 }
 
@@ -22,7 +23,7 @@ $nav-max-width: 250px;
   background-color: #add8e6;
 
   ul {
-    width: $nav-max-width;
+    width: 100%;
     padding: 20px 0;
 
     li {
