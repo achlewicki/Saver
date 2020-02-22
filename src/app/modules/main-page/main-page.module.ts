@@ -7,13 +7,19 @@ import { MainPageCoreComponent } from './_main-page-core/main-page-core.componen
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { NavBarComponent } from './_nav-bar/nav-bar.component';
 import { HeaderComponent } from './_header/header.component';
+import { OperationsComponent } from './operations/operations.component';
+import { AccountsComponent } from './accounts/accounts.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     MainPageCoreComponent,
     NavBarComponent,
-    HeaderComponent
+    HeaderComponent,
+    OperationsComponent,
+    AccountsComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,
