@@ -14,19 +14,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent
+        component: DashboardComponent,
+        data: { viewname: 'dashboard' }
       },
       {
         path: 'operations',
-        component: OperationsComponent
+        component: OperationsComponent,
+        data: { viewname: 'operations' }
       },
       {
         path: 'accounts',
-        component: AccountsComponent
+        component: AccountsComponent,
+        data: { viewname: 'accounts' }
       },
       {
         path: 'profile',
-        component: UserProfileComponent
+        component: UserProfileComponent,
+        data: { viewname: 'profile' }
       }
     ]
   }

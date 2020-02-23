@@ -1,13 +1,13 @@
 <div class="container">
   <div class="left-side">
-    <button class="menu-button button">hamburger</button>
+    <button class="menu-button button" (click)="toggleNavBar()">hamburger</button>
     <img alt="SaveIt" src="assets/images/logo.png" class="logo">
   </div>
   <div class="account-view-title">
     <span class="title-component account-color"></span>
     <button mat-button class="account-name-button">ACCOUNT-NAME</button>
     <span class="title-component divider">/</span>
-    <span class="title-component account-view">DASHBOARD</span>
+    <span class="title-component account-view" [innerHTML] = 'title'></span>
 
   </div>
   <div class="right-side">

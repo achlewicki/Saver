@@ -1,4 +1,7 @@
+import { ActivatedRoute } from '@angular/router';
+import { HeaderService } from '#services/header-service/header.service';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'svr-operations',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OperationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private hservice: HeaderService,
+    private route: ActivatedRoute
+  ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.route.data
+      .pipe(map(data => data.viewname))
+      .subscribe((x) => this.hservice.viewTitle.next(x));
   }
 
 }

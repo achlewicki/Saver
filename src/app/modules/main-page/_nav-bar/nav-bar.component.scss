@@ -2,8 +2,15 @@ $nav-max-width: 250px;
 
 .nav-container {
   height: 100%;
-  width: $nav-max-width;
   position: relative;
+}
+
+.wide-nav {
+  width: $nav-max-width;
+}
+
+.short-nav {
+  width: 80px;
 }
 
 .user-section {
