@@ -14,7 +14,6 @@ export class LandingNavBarComponent {
 
   onLogInClick(): void {
     this.logInClicked = !this.logInClicked;
-    console.log(this.logInClicked);
   }
 
 }

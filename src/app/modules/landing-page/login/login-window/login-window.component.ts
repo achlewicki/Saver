@@ -15,6 +15,9 @@ export class LoginWindowComponent {
   @Output()
   public closing: EventEmitter<boolean> = new EventEmitter();
   protected loginForm: FormGroup;
+  protected loginError: boolean;
+  protected loginChceckPending: boolean;
+  protected errorInfo: string;
 
   constructor(
     private readonly fb: FormBuilder,
@@ -25,6 +28,8 @@ export class LoginWindowComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]]
     });
+    this.loginError = false;
+    this.loginChceckPending = false;
   }
 
   protected onCloseLogInClicked(): void {
@@ -36,23 +41,19 @@ export class LoginWindowComponent {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
     };
+    this.loginChceckPending = true;
     this.loginService.verifyUser(user)
-      .subscribe({
-        next: x => {
-          console.log(`Odebrano wiadomość z /login: \n ${JSON.stringify(x)}`);
-          switch (x.status) {
-            case 'Password or email is incorrect':
-            case 'Login successful':
-              // alert(x.status);
-              this.closing.emit(false);
-              this.router.navigateByUrl('/main');
-              break;
-            default:
-              alert('Nieznany status ;(');
-          }
+      .subscribe(
+        (response) => {
+          localStorage.setItem('token', response.token);
+          console.log(localStorage.getItem('token'));
+          this.loginChceckPending = false;
+          this.errorInfo = '';
         },
-        error: x => console.log(`Wystąpił błąd z /login: ${JSON.stringify(x)}`),
-        complete: () => console.log(`Ukończono połączenie z /login`)
-      });
+        (error) => {
+          this.loginError = true;
+          this.errorInfo = error;
+          this.loginChceckPending = false;
+        });
   }
 }

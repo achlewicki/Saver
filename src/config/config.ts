@@ -1,3 +1,3 @@
 export class Config {
-    static backendUrl: string = 'http://localhost:3000';
+    static backendUrl = 'http://localhost:3000';
 }
