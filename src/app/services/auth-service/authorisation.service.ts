@@ -1,4 +1,4 @@
-import { Config } from '#config/config';
+import { config } from '#config/config';
 import { LoginModel } from '#models/login.model';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
@@ -12,6 +12,7 @@ import { catchError } from 'rxjs/operators';
 export class AuthorisationService {
 
   private loginURL: string;
+  private tokenAuthorisationURL: string;
   private httpHeader = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -19,17 +20,29 @@ export class AuthorisationService {
   constructor(
     private readonly http: HttpClient
   ) {
-    this.loginURL = Config.backendUrl + '/login';
+    this.loginURL = config.backendUrl + '/login';
+    // TODO
+    this.tokenAuthorisationURL = config.backendUrl + '/auth';
   }
 
-  public verifyUser(user: LoginModel): Observable<LoginResponse> {
+  public login(user: LoginModel): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.loginURL, user, this.httpHeader)
       .pipe(
-        catchError(this.handleError)
+        catchError(this.handleLoginError)
       );
   }
 
-  private handleError(error: HttpErrorResponse) {
+  public verifyToken(token: string): Observable<boolean> {
+    // TODO
+    return this.http.post<boolean>(this.tokenAuthorisationURL, token, this.httpHeader);
+  }
+
+  public logout(): void {
+    // TODO
+    localStorage.removeItem('token');
+  }
+
+  private handleLoginError(error: HttpErrorResponse) {
     let message: string;
     if (error.error instanceof ErrorEvent) {
       message = 'Błąd połączenia z serwerem';

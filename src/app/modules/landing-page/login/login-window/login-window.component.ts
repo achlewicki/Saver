@@ -42,13 +42,14 @@ export class LoginWindowComponent {
       password: this.loginForm.value.password
     };
     this.loginChceckPending = true;
-    this.loginService.verifyUser(user)
+    this.loginService.login(user)
       .subscribe(
         (response) => {
           localStorage.setItem('token', response.token);
           console.log(localStorage.getItem('token'));
           this.loginChceckPending = false;
           this.errorInfo = '';
+          this.router.navigateByUrl('/main');
         },
         (error) => {
           this.loginError = true;

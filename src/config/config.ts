@@ -1,3 +1,4 @@
-export class Config {
-    static backendUrl = 'http://localhost:3000';
-}
+export const config = {
+  backendUrl: 'http://localhost:3000',
+  skipAuth: true
+};
