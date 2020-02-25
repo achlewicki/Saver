@@ -1,5 +1,5 @@
 import { LoginModel } from '#models/login.model';
-import { LoginService } from '#services/login-service/login.service';
+import { AuthorisationService } from '#services/auth-service/authorisation.service';
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -21,7 +21,7 @@ export class LoginWindowComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly loginService: LoginService,
+    private readonly loginService: AuthorisationService,
     private readonly router: Router
   ) {
     this.loginForm = this.fb.group({

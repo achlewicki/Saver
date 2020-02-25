@@ -9,7 +9,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 
-export class LoginService {
+export class AuthorisationService {
 
   private loginURL: string;
   private httpHeader = {
