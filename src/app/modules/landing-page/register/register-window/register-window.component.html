@@ -1,46 +1,58 @@
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 <div class="container">
-  <p>Sign In</p>
+  <p class="title">Sign Up</p>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <input matInput class="email-input"  placeholder="Email"
              formControlName="email"
              [errorStateMatcher]="matcher" />
-      <mat-hint>Please enter an email</mat-hint>
+
+      <mat-hint>Podaj email</mat-hint>
+
       <mat-error *ngIf="this.registerForm.get('email').hasError('email') && !this.registerForm.get('email').hasError('required')">
-        Please enter a valid email address
+        Podaj swój email
       </mat-error>
+
       <mat-error *ngIf="this.registerForm.get('email').hasError('required')">
-        Email is <strong>required</strong>
+        Email jest <strong>wymagany</strong>
       </mat-error>
     </mat-form-field><br>
+
     <mat-form-field>
-      <input matInput class="password-input" [type]="'password'" placeholder="Password"
+      <input matInput class="password-input" [type]="'password'" placeholder="Hasło"
              formControlName="password"
              [errorStateMatcher]="matcher" />
-      <mat-hint>Please enter a password</mat-hint>
-<!--      <mat-error *ngIf="passwordFormControl.hasError('password')">-->
-<!--        Password must-->
-<!--      </mat-error>-->
-      <mat-error *ngIf="!this.registerForm.get('password').hasError('required')">
-        Password is <strong>required</strong>
+      <mat-hint>Podaj hasło</mat-hint>
+
+      <mat-error *ngIf="this.registerForm.get('password').hasError('required')">
+        Hasło jest <strong>wymagane</strong>
+      </mat-error>
+
+      <mat-error *ngIf="this.registerForm.get('password').hasError('pattern') && !this.registerForm.get('password').hasError('required')">
+        Wymagane jest <strong>silne</strong> hasło (min. 8 znaków, w tym co najmniej jedna litera mała, duża, liczba i znak specjalny)
       </mat-error>
     </mat-form-field><br>
+
     <mat-form-field>
-      <input matInput class="password-input"  [type]="'password'"  placeholder="Password"
-      formControlName="password2"
-      [errorStateMatcher]="matcher" />
-      <mat-hint>Please enter a password again</mat-hint>
-<!--      <mat-error *ngIf="passwordFormControl.hasError('password')">-->
-<!--        Password must-->
-<!--      </mat-error>-->
-<!--      <mat-error *ngIf="passwordFormControl.hasError('equal')">-->
-<!--        Password must-->
-<!--      </mat-error>-->
-      <mat-error *ngIf="!this.registerForm.get('password').hasError('required')">
-        Password is <strong>required</strong>
+      <input matInput class="password-input"  [type]="'password'"  placeholder="Hasło" formControlName="password2"
+      [errorStateMatcher]="matcher"/>
+
+      <mat-hint>Podaj hasło ponownie</mat-hint>
+
+      <mat-error *ngIf="this.registerForm.get('password').hasError('required')">
+        Ponowne wpisanie hasła jest <strong>wymagane</strong>
+      </mat-error>
+
+      <mat-error *ngIf="!checkPasswords()">
+        Hasła <strong>muszą</strong> być <strong>takie same</strong>
       </mat-error>
     </mat-form-field><br>
+
     <button mat-raised-button type="submit" [disabled]="!this.registerForm.valid">Sign in</button>
+
+    <div class="error-info">
+      {{ this.errorInfo }}
+    </div>
+
   </form>
 </div>

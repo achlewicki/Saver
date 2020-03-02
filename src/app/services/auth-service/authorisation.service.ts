@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import {RegisterModel} from '#models/register.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { catchError } from 'rxjs/operators';
 export class AuthorisationService {
 
   private loginURL: string;
+  private registerURL: string;
   private tokenAuthorisationURL: string;
   private httpHeader = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -21,6 +23,7 @@ export class AuthorisationService {
     private readonly http: HttpClient
   ) {
     this.loginURL = config.backendUrl + '/login';
+    this.registerURL = config.backendUrl + '/register';
     // TODO
     this.tokenAuthorisationURL = config.backendUrl + '/auth';
   }
@@ -29,6 +32,13 @@ export class AuthorisationService {
     return this.http.post<LoginResponse>(this.loginURL, user, this.httpHeader)
       .pipe(
         catchError(this.handleLoginError)
+      );
+  }
+
+  public register(newUser: RegisterModel): Observable<any> {
+    return this.http.post<any>(this.registerURL, newUser, this.httpHeader)
+      .pipe(
+        catchError(this.handleRegisterError)
       );
   }
 
@@ -59,9 +69,36 @@ export class AuthorisationService {
     }
     return throwError(message);
   }
+
+  private handleRegisterError(error: HttpErrorResponse) {
+    let message: string;
+    if (error.error instanceof ErrorEvent) {
+      message = 'Błąd połączenia z serwerem';
+      console.error('Client error: ' + error.error.message);
+    } else {
+      console.error('Server error response');
+      console.error(error);
+
+      if (error.status === 400 || error.status === 401) {
+        message = 'Podany mail jest już zarejestrowany';
+      } else {
+        message = 'Nieznany błąd serwera';
+      }
+    }
+    return throwError(message);
+  }
 }
 
+
+
 interface LoginResponse {
+  user: {
+    id: number
+  };
+  token: string;
+}
+
+interface RegisterResponse {
   user: {
     id: number
   };
