@@ -4,17 +4,19 @@ import { RegisterWindowComponent } from './register-window/register-window.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
   declarations: [RegisterWindowComponent],
-  imports: [
-    CommonModule,
-    FormsModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule
-  ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        MatCheckboxModule
+    ],
   exports: [
     RegisterWindowComponent
   ]

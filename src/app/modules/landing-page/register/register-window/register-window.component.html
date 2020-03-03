@@ -1,13 +1,13 @@
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
 <div class="container">
-  <p class="title">Sign Up</p>
+  <p class="title">Rejestracja</p>
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <input matInput class="email-input"  placeholder="Email"
              formControlName="email"
              [errorStateMatcher]="matcher" />
 
-      <mat-hint>Podaj email</mat-hint>
+<!--      <mat-hint>Podaj email</mat-hint>-->
 
       <mat-error *ngIf="this.registerForm.get('email').hasError('email') && !this.registerForm.get('email').hasError('required')">
         Podaj swój email
@@ -22,7 +22,7 @@
       <input matInput class="password-input" [type]="'password'" placeholder="Hasło"
              formControlName="password"
              [errorStateMatcher]="matcher" />
-      <mat-hint>Podaj hasło</mat-hint>
+<!--      <mat-hint>Podaj hasło</mat-hint>-->
 
       <mat-error *ngIf="this.registerForm.get('password').hasError('required')">
         Hasło jest <strong>wymagane</strong>
@@ -34,25 +34,29 @@
     </mat-form-field><br>
 
     <mat-form-field>
-      <input matInput class="password-input"  [type]="'password'"  placeholder="Hasło" formControlName="password2"
+      <input matInput class="password-input"  [type]="'password'"  placeholder="Ponownie Hasło" formControlName="password2"
       [errorStateMatcher]="matcher"/>
 
-      <mat-hint>Podaj hasło ponownie</mat-hint>
+<!--      <mat-hint>Podaj hasło ponownie</mat-hint>-->
 
-      <mat-error *ngIf="this.registerForm.get('password').hasError('required')">
+      <mat-error *ngIf="this.registerForm.get('password2').hasError('required')">
         Ponowne wpisanie hasła jest <strong>wymagane</strong>
       </mat-error>
 
-      <mat-error *ngIf="!checkPasswords()">
+      <mat-error *ngIf="this.registerForm.hasError('notSame')">
         Hasła <strong>muszą</strong> być <strong>takie same</strong>
       </mat-error>
     </mat-form-field><br>
 
-    <button mat-raised-button type="submit" [disabled]="!this.registerForm.valid">Sign in</button>
+    <mat-checkbox>Akceptuję <a src="">Regulamin</a></mat-checkbox><br>
+
+    <button  mat-raised-button class="register-button" type="submit" [disabled]="!this.registerForm.valid">Zarejestruj</button>
 
     <div class="error-info">
       {{ this.errorInfo }}
-    </div>
+    </div><br>
+
+    <button  mat-raised-button class="login-button" type="submit">Mam już Konto</button>
 
   </form>
 </div>

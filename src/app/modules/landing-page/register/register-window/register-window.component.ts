@@ -21,8 +21,6 @@ export class RegisterWindowComponent {
   protected registerForm: FormGroup;
   protected registerError: boolean;
   protected errorInfo: string;
-  private passwordToCheck: string;
-  private passwordToCheck2: string;
 
   matcher = new MyErrorStateMatcher();
 
@@ -33,16 +31,13 @@ export class RegisterWindowComponent {
   ) {
     this.registerForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[#$@$!%*?&])[A-Za-z0-9\d$#@$!%*?&].{8,}')]],
+      password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[#$@$!%*?&])[A-Za-z0-9\d$#@$!%*?&].{7,}')]],
       password2: ['', [Validators.required]]
-    });
+    }, {validator: this.checkPasswords });
     this.registerError = false;
   }
 
   protected onSubmit(): void {
-    this.passwordToCheck = this.registerForm.value.password;
-    this.passwordToCheck2 = this.registerForm.value.password2;
-
     const newUser: RegisterModel = {
       email: this.registerForm.value.email,
       password: this.registerForm.value.password
@@ -60,10 +55,14 @@ export class RegisterWindowComponent {
           this.errorInfo = error;
           console.log(this.errorInfo);
         });
+    this.checkMessage();
   }
 
-  private checkPasswords(): boolean {
-    if (this.registerForm.value.password === this.registerForm.value.password2) return true;
-    else return false;
+  private checkPasswords(group: FormGroup) {
+    return group.get('password').value === group.get('password2').value ? {notSame: false} : { notSame: true };
+  }
+
+  private checkMessage(){
+    if(this.errorInfo === 'Nieprawidłowy login lub hasło') this.errorInfo = 'Podany email jest już zarejestrowany';
   }
 }

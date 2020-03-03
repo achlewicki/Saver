@@ -31,14 +31,14 @@ export class AuthorisationService {
   public login(user: LoginModel): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.loginURL, user, this.httpHeader)
       .pipe(
-        catchError(this.handleLoginError)
+        catchError(this.handleLoginOrRegistrationError)
       );
   }
 
   public register(newUser: RegisterModel): Observable<any> {
     return this.http.post<any>(this.registerURL, newUser, this.httpHeader)
       .pipe(
-        catchError(this.handleRegisterError)
+        catchError(this.handleLoginOrRegistrationError)
       );
   }
 
@@ -52,7 +52,7 @@ export class AuthorisationService {
     localStorage.removeItem('token');
   }
 
-  private handleLoginError(error: HttpErrorResponse) {
+  private handleLoginOrRegistrationError(error: HttpErrorResponse) {
     let message: string;
     if (error.error instanceof ErrorEvent) {
       message = 'Błąd połączenia z serwerem';
@@ -69,27 +69,7 @@ export class AuthorisationService {
     }
     return throwError(message);
   }
-
-  private handleRegisterError(error: HttpErrorResponse) {
-    let message: string;
-    if (error.error instanceof ErrorEvent) {
-      message = 'Błąd połączenia z serwerem';
-      console.error('Client error: ' + error.error.message);
-    } else {
-      console.error('Server error response');
-      console.error(error);
-
-      if (error.status === 400 || error.status === 401) {
-        message = 'Podany mail jest już zarejestrowany';
-      } else {
-        message = 'Nieznany błąd serwera';
-      }
-    }
-    return throwError(message);
-  }
 }
-
-
 
 interface LoginResponse {
   user: {
@@ -98,9 +78,9 @@ interface LoginResponse {
   token: string;
 }
 
-interface RegisterResponse {
-  user: {
-    id: number
-  };
-  token: string;
-}
+// interface RegisterResponse {
+//   user: {
+//     id: number
+//   };
+//   token: string;
+// }
