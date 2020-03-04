@@ -1,4 +1,4 @@
 export const config = {
-  backendUrl: 'http://localhost:3000',
-  skipAuth: true
+    backendUrl: 'http://localhost:3000',
+    skipAuth: true
 };
