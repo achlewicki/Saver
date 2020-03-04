@@ -1,11 +1,90 @@
-div {
-  margin-top: 100px;
-  height: 1200px;
+.container, .app-container{
+  margin: 150px 10% 0 10%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  //border: solid 3px black;
+  //width: 1200px;
+}
+.main-logo{
+  margin-right: 100px;
+}
 
-  h1 {
-    margin-top: 70px;
-    text-align: center;
-  }
+.main-content{
+  margin-left: 20px;
+  width: 500px;
+  font-family: 'Lato', sans-serif;
+}
+
+.title-content{
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.text-content{
+  margin-bottom: 20px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.register-button{
+  background-color: #E8EFFF;
+  color: black;
+  border: solid 2px lightgray;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  //margin-left: 50px;
+  text-align: center;
+  width: 220px;
+  box-shadow: none;
+  //z-index: 1;
+}
+
+@keyframes register-button {
+  from {border-color: lightgray;}
+  to {border-color: #264cff;}
+}
+
+.register-button:hover{
+  animation-name: register-button;
+  animation-duration: 0.7s;
+  border-color: #264cff;
+  //z-index: 1;
+}
+
+.header{
+  background-color: #4568d0;
+  margin-top: 15%;
+  height: 700px;
+  transform: rotate(-5deg);
+  transform-origin: bottom left;
+  width: 130%;
+  margin-left: -20%;
+}
+
+.app-container{
+  transform: rotate(5deg);
+  margin-left: 20%;
+  width: auto;
+  //border: solid 3px black
+}
+.app-content{
+  margin-top: 200px;
+  margin-left: 150px;
+  //transform: rotate(5deg);
+  width: 400px;
+}
+
+.app-screenshots{
+  //transform: rotate(5deg);
+  margin-top: 200px;
+  margin-left: 150px;
+}
+
+.ss{
+  margin-right: 10px;
 }
 
 footer {

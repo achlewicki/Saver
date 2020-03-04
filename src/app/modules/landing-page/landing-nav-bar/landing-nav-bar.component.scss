@@ -1,6 +1,4 @@
-* {
-  box-sizing: border-box;
-}
+
 
 li,
 a,
@@ -13,6 +11,8 @@ button {
 }
 
 header {
+  box-sizing: border-box;
+  z-index: 10;
   display: flex;
   position: fixed;
   top: 0;
