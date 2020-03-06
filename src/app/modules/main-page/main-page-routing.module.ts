@@ -5,6 +5,7 @@ import { MainPageCoreComponent } from './_main-page-core/main-page-core.componen
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {CategoriesComponent} from '#modules/main-page/categories/categories/categories.component';
 
 
 const routes: Routes = [
@@ -31,6 +32,11 @@ const routes: Routes = [
         path: 'profile',
         component: UserProfileComponent,
         data: { viewname: 'profile' }
+      },
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        data: { viewname: 'categories' }
       }
     ]
   }

@@ -3,6 +3,7 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 import { OperationsModule } from './operations/operations.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AccountsModule } from './accounts/accounts.module';
+import { CategoriesModule } from '#modules/main-page/categories/categories.module';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -27,7 +28,8 @@ import { MatButtonModule } from '@angular/material/button';
     AccountsModule,
     DashboardModule,
     OperationsModule,
-    UserProfileModule
+    UserProfileModule,
+    CategoriesModule
   ]
 })
 export class MainPageModule { }
