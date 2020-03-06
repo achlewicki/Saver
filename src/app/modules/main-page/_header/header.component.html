@@ -7,12 +7,12 @@
     <span class="title-component account-color"></span>
     <button mat-button class="account-name-button">ACCOUNT-NAME</button>
     <span class="title-component divider">/</span>
-    <span class="title-component account-view" [innerHTML] = 'title'></span>
+    <span class="title-component account-view" [innerHTML]='title'></span>
 
   </div>
   <div class="right-side">
     <button class="button">coś jeszcze?</button>
     <button class="notification-button button">dzwoneczek</button>
-    <button class="logout-button button">logout</button>
+    <button class="logout-button button" (click)="logout()">logout</button>
   </div>
 </div>

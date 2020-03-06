@@ -21,8 +21,7 @@ export class AuthorisationService {
     private readonly http: HttpClient
   ) {
     this.loginURL = config.backendUrl + '/login';
-    // TODO
-    this.tokenAuthorisationURL = config.backendUrl + '/auth';
+    this.tokenAuthorisationURL = config.backendUrl + '/auth/verify-token';
   }
 
   public login(user: LoginModel): Observable<LoginResponse> {
@@ -32,14 +31,20 @@ export class AuthorisationService {
       );
   }
 
-  public verifyToken(token: string): Observable<boolean> {
-    // TODO
-    return this.http.post<boolean>(this.tokenAuthorisationURL, token, this.httpHeader);
+  public async verifyToken(token: string): Promise<boolean> {
+    try {
+      const result = await this.http.post<boolean>(this.tokenAuthorisationURL + '/' + localStorage.getItem('token'), token)
+        .toPromise()
+        .then((res) => res);
+      return new Promise((res) => res(result));
+    } catch (error) {
+      return new Promise((res) => res(false));
+    }
   }
 
   public logout(): void {
-    // TODO
     localStorage.removeItem('token');
+    localStorage.removeItem('user.id');
   }
 
   private handleLoginError(error: HttpErrorResponse) {

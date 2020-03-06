@@ -46,7 +46,7 @@ export class LoginWindowComponent {
       .subscribe(
         (response) => {
           localStorage.setItem('token', response.token);
-          console.log(localStorage.getItem('token'));
+          localStorage.setItem('user.id', response.user.id.toString());
           this.loginChceckPending = false;
           this.errorInfo = '';
           this.router.navigateByUrl('/main');
