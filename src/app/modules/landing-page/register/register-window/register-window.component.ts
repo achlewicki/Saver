@@ -59,7 +59,7 @@ export class RegisterWindowComponent {
   }
 
   private checkPasswords(group: FormGroup) {
-    return group.get('password').value === group.get('password2').value ? {notSame: false} : { notSame: true };
+    return group.get('password').value === group.get('password2').value ? null : { notSame: true };
   }
 
   private checkMessage(){
