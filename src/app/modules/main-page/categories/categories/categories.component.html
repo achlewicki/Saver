@@ -12,7 +12,7 @@
              type="image"
              fxLayout
              src="assets/images/option_icon.png"
-             (click)="openDialog()"
+             (click)="this.setCurrentId(category.id)"
       ></p>
 
     <div class="subcategories-container"
@@ -37,9 +37,6 @@
       <div class="subcategory" fxFlex>
 
       </div>
-
-
-
     </div>
   </div>
 </div>
