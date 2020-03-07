@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CategoriesComponent} from './categories/categories.component';
-// import {FlexModule} from '@angular/flex-layout';
+import {FlexModule} from '@angular/flex-layout';
 
 
 
@@ -10,8 +10,8 @@ import {CategoriesComponent} from './categories/categories.component';
     CategoriesComponent
   ],
   imports: [
-    CommonModule
-    // FlexModule
+    CommonModule,
+    FlexModule
   ],
   exports: [
     CategoriesComponent

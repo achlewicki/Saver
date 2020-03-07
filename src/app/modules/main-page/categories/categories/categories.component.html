@@ -2,8 +2,44 @@
       fxLayout
       fxLayout.xs="column"
       fxLayoutAlign="center"
-      fxLayoutGap="10px">
-  <div class="item item-1" fxFlex="15%"> Item 1</div>
-  <div class="item item-2" fxFlex="20%"> Item 2</div>
-  <div class="item item-3" fxFlex>Item 3</div>
+      >
+  <div class="category-container"
+       [style.background-color]="category.color"
+       *ngFor="let category of Categories">
+    <p class="category-name" fxLayoutAlign="center">{{category.name}}
+      <input alt="options"
+             class="option-button"
+             type="image"
+             fxLayout
+             src="assets/images/option_icon.png"
+             (click)="openDialog()"
+      ></p>
+
+    <div class="subcategories-container"
+         fxLayout
+         fxLayoutAlign="center"
+         fxLayoutGap="5px">
+      <div class="subcategory" fxFlex>
+
+      </div>
+      <div class="subcategory" fxFlex>
+
+      </div>
+      <div class="subcategory" fxFlex>
+
+      </div>
+      <div class="subcategory" fxFlex>
+
+      </div>
+      <div class="subcategory" fxFlex>
+
+      </div>
+      <div class="subcategory" fxFlex>
+
+      </div>
+
+
+
+    </div>
+  </div>
 </div>
