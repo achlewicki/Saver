@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import {CategoriesComponent} from './categories/categories.component';
 import {FlexModule} from '@angular/flex-layout';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
+import {RouterModule} from '@angular/router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 
@@ -13,7 +15,8 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
   ],
   imports: [
     CommonModule,
-    FlexModule
+    FlexModule,
+    RouterModule
   ],
   exports: [
     CategoriesComponent

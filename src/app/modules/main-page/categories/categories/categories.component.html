@@ -2,6 +2,8 @@
       fxLayout
       fxLayout.xs="column"
       fxLayoutAlign="center"
+     *ngIf="this.currentPage==='categories'"
+     [@inOutAnimation]
       >
   <div class="category-container"
        [style.background-color]="category.color"
@@ -11,9 +13,9 @@
              class="option-button"
              type="image"
              fxLayout
-             src="assets/images/option_icon.png"
-             (click)="this.setCurrentId(category.id)"
-      ></p>
+              src="assets/images/option_icon.png" alt="options"
+             (click)="this.setCurrentId(category.id)">
+      </p>
 
     <div class="subcategories-container"
          fxLayout
@@ -39,4 +41,14 @@
       </div>
     </div>
   </div>
+</div>
+<div class="container"
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     *ngIf="this.currentPage==='selectedCategory'"
+     [@inOutAnimation]
+>
+  SELECT CATEGORY
+  <button (click)="this.currentPage='categories'">Click ME</button>
 </div>
