@@ -1,4 +1,9 @@
+import {SubCategoryModel} from '#models/subcategory.model';
+
 export interface CategoryModel {
-  email: string;
-  password: string;
+  id: number;
+  title: string;
+  color: string;
+  limit: number;
+  subcategories: SubCategoryModel[];
 }

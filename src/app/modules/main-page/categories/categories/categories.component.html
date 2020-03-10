@@ -5,42 +5,51 @@
      *ngIf="this.currentPage==='categories'"
      [@inOutAnimation]
       >
-  <div class="category-container"
-       [style.background-color]="category.color"
-       *ngFor="let category of Categories">
-    <p class="category-name" fxLayoutAlign="center">{{category.name}}
-      <input alt="options"
-             class="option-button"
-             type="image"
-             fxLayout
-              src="assets/images/option_icon.png" alt="options"
-             (click)="this.setCurrentId(category.id)">
-      </p>
+  <div class="control-panel">
+    <div class="add-category"></div>
+    <div class="search-category">
+<!--      <form class="container" [formGroup]="categoriesControl">-->
+        <mat-form-field class="example-full-width">
+          <input type="text"
+                 placeholder="Pick one"
+                 aria-label="Number"
+                 matInput
+                 [formControl]="this.categoriesControl"
+                 [matAutocomplete]="auto"
+                 >
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+<!--      </form>-->
 
-    <div class="subcategories-container"
-         fxLayout
-         fxLayoutAlign="center"
-         fxLayoutGap="5px">
-      <div class="subcategory" fxFlex>
-
-      </div>
-      <div class="subcategory" fxFlex>
-
-      </div>
-      <div class="subcategory" fxFlex>
-
-      </div>
-      <div class="subcategory" fxFlex>
-
-      </div>
-      <div class="subcategory" fxFlex>
-
-      </div>
-      <div class="subcategory" fxFlex>
-
-      </div>
     </div>
   </div>
+  <ng-container *ngFor="let category of this.mainCategories">
+    <div class="category-container"
+         [style.background-color]="category.color"
+         *ngIf="isContaing(category.title)"
+         >
+      <p class="category-name" fxLayoutAlign="center">{{category.title}}
+        <input alt="options"
+               class="option-button"
+               type="image"
+               fxLayout
+
+                src="assets/images/option_icon.png" alt="options"
+               (click)="this.setCurrentId(category.id)">
+        </p>
+      <div class="subcategories-container"
+           fxLayout
+           fxLayoutAlign="center">
+        <div class="subcategory" *ngFor="let subcategory of category.subcategories" fxFlex>
+          {{ subcategory.title }}
+        </div>
+      </div>
+    </div>
+  </ng-container>
 </div>
 <div class="container"
      fxLayout

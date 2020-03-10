@@ -5,6 +5,10 @@ import {FlexModule} from '@angular/flex-layout';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatFormFieldModule} from '@angular/material';
+import {MatInputModule} from '@angular/material';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -16,7 +20,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   imports: [
     CommonModule,
     FlexModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    MatInputModule
   ],
   exports: [
     CategoriesComponent

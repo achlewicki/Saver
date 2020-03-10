@@ -23,36 +23,41 @@ export class AuthorisationService {
     private readonly http: HttpClient
   ) {
     this.loginURL = config.backendUrl + '/login';
+    this.tokenAuthorisationURL = config.backendUrl + '/auth/verify-token';
     this.registerURL = config.backendUrl + '/register';
-    // TODO
-    this.tokenAuthorisationURL = config.backendUrl + '/auth';
   }
 
   public login(user: LoginModel): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.loginURL, user, this.httpHeader)
       .pipe(
-        catchError(this.handleLoginOrRegistrationError)
+        catchError(this.handleLoginError)
       );
   }
 
   public register(newUser: RegisterModel): Observable<any> {
     return this.http.post<any>(this.registerURL, newUser, this.httpHeader)
       .pipe(
-        catchError(this.handleLoginOrRegistrationError)
+        catchError(this.handleLoginError)
       );
   }
 
-  public verifyToken(token: string): Observable<boolean> {
-    // TODO
-    return this.http.post<boolean>(this.tokenAuthorisationURL, token, this.httpHeader);
+  public async verifyToken(token: string): Promise<boolean> {
+    try {
+      const result = await this.http.post<boolean>(this.tokenAuthorisationURL + '/' + localStorage.getItem('token'), token)
+        .toPromise()
+        .then((res) => res);
+      return new Promise((res) => res(result));
+    } catch (error) {
+      return new Promise((res) => res(false));
+    }
   }
 
   public logout(): void {
-    // TODO
     localStorage.removeItem('token');
+    localStorage.removeItem('user.id');
   }
 
-  private handleLoginOrRegistrationError(error: HttpErrorResponse) {
+  private handleLoginError(error: HttpErrorResponse) {
     let message: string;
     if (error.error instanceof ErrorEvent) {
       message = 'Błąd połączenia z serwerem';
@@ -77,10 +82,3 @@ interface LoginResponse {
   };
   token: string;
 }
-
-// interface RegisterResponse {
-//   user: {
-//     id: number
-//   };
-//   token: string;
-// }

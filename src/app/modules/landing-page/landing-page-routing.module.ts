@@ -1,3 +1,4 @@
+import { LoginWindowComponent } from './login/login-window/login-window.component';
 import { LandingPageCoreComponent } from './_landing-page-core/landing-page-core.component';
 import { RegisterWindowComponent } from '#modules/landing-page/register/register-window/register-window.component';
 import { ContentComponent } from '#modules/landing-page/content/content.component';
@@ -17,6 +18,10 @@ const routes: Routes = [
             {
                 path: 'register',
                 component: RegisterWindowComponent
+            },
+            {
+                path: 'login',
+                component: LoginWindowComponent
             }
         ]
     }
