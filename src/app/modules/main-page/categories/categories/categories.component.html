@@ -6,10 +6,17 @@
      [@inOutAnimation]
       >
   <div class="control-panel">
-    <div class="add-category"></div>
+    <input class="add-category"
+            type="image" (click)="this.addCategoryPanel = !this.addCategoryPanel">
+    <div *ngIf="this.addCategoryPanel" class="add-category-form">
+      <input class="new-category-title" [(ngModel)]="this.newCategoryTitle">
+      <input [(ngModel)]="this.newCategoryColor">
+      <input type="number" [(ngModel)]="this.newCategoryLimit">
+      <button (click)="addCategory()">Dodaj kategorie</button>
+    </div>
     <div class="search-category">
 <!--      <form class="container" [formGroup]="categoriesControl">-->
-        <mat-form-field class="example-full-width">
+        <mat-form-field>
           <input type="text"
                  placeholder="Pick one"
                  aria-label="Number"
@@ -27,7 +34,7 @@
 
     </div>
   </div>
-  <ng-container *ngFor="let category of this.mainCategories">
+  <ng-container *ngFor="let category of this.categoriesList; let i = index">
     <div class="category-container"
          [style.background-color]="category.color"
          *ngIf="isContaing(category.title)"
@@ -39,7 +46,7 @@
                fxLayout
 
                 src="assets/images/option_icon.png" alt="options"
-               (click)="this.setCurrentId(category.id)">
+               (click)="this.setActiveCategory(i, category)">
         </p>
       <div class="subcategories-container"
            fxLayout
@@ -51,13 +58,43 @@
     </div>
   </ng-container>
 </div>
+
 <div class="container"
      fxLayout
      fxLayout.xs="column"
-     fxLayoutAlign="center"
+
      *ngIf="this.currentPage==='selectedCategory'"
      [@inOutAnimation]
 >
+  <div class="category-part"
+      fxFlex="100%"
+      fxLayoutAlign="center">
+    <input class="category-input" [(ngModel)]="this.activeCategory.title">
+    <input class="category-input" [(ngModel)]="this.activeCategory.limit">
+    <input class="category-input" [(ngModel)]="this.activeCategory.color">
+    <button type="submit" class="update-category" (click)="updateCategory()">Potwierdź</button>
+    <button type="submit" class="delete-category" (click)="deleteCategory()">Usuń Kategorię</button>
+  </div>
+
+  <div class="subcategory-part"
+       fxFlex="100%"
+       fxLayoutAlign="center"
+       *ngFor="let subcategory of this.activeCategory.subcategories; let i = index">
+    <input class="subcategory-input" [(ngModel)]="subcategory.title">
+    <input class="subcategory-input" [(ngModel)]="subcategory.color">
+    <button type="submit" class="update-category" (click)="updateSubcategory(subcategory, i)">Potwierdź</button>
+    <button type="submit" class="delete-category" (click)="deleteSubcategory(subcategory, i)">Usuń Subkategorię</button>
+<!--    <button type="submit" class="confirm-new-subcategory-title" (click)="updateSubcategoryTitle(subcategory)">Potwierdź</button>-->
+  </div>
+  <div class="add-subcategory" fxFlex="100%" fxLayoutAlign="center">
+    <input [(ngModel)]="this.newSubcategoryTitle">
+    <input [(ngModel)]="this.newSubcategoryColor">
+    <button type="submit" (click)="addSubcategory()">Dodaj</button>
+  </div>
+  <div class="exit"
+        fxFlex="100%"
+       fxLayoutAlign="center">
   SELECT CATEGORY
   <button (click)="this.currentPage='categories'">Click ME</button>
+  </div>
 </div>

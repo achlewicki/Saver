@@ -3,26 +3,15 @@ import { HeaderService } from '#services/header-service/header.service';
 import { ActivatedRoute } from '@angular/router';
 import {map, startWith} from 'rxjs/operators';
 import {animate, style, transition, trigger} from '@angular/animations';
-import { CategoriesService} from '#services/categories-service/categories.service';
-import {LoginModel} from '#models/login.model';
+import { CategoryService} from '#services/category-service/category.service';
 import {CategoryModel} from '#models/category.model';
-import {FormControl, FormGroup} from '@angular/forms';
-import {Observable} from 'rxjs';
+import {FormControl} from '@angular/forms';
+import {Observable, of} from 'rxjs';
+import {SubcategoryModel} from '#models/subcategory.model';
+import {SubcategoryService} from '#services/subcategory-service/subcategory.service';
+import {SubcategoryAddModel} from '#models/subcategoryAdd.model';
+import {CategoryAddModel} from '#models/categoryAdd.model';
 
-export const Categories = [
-  {id: 1, name: 'Category 1', color: 'red', visible: true},
-  {id: 2, name: 'Category 2', color: 'purple', visible: true},
-  {id: 3, name: 'Category 3', color: 'orange', visible: true},
-  {id: 4, name: 'Category 1', color: 'darkblue', visible: true},
-  {id: 5, name: 'Category 2', color: 'pink', visible: true},
-  {id: 6, name: 'Category 3', color: 'cyan', visible: true},
-  {id: 7, name: 'Category 1', color: 'yellow', visible: false},
-  {id: 8, name: 'Category 2', color: 'grey', visible: false},
-  {id: 9, name: 'Category 3', color: 'brown', visible: true},
-  {id: 10, name: 'Category 1', color: 'green', visible: true},
-  {id: 11, name: 'Category 2', color: 'lightblue', visible: true},
-  {id: 12, name: 'Category 3', color: 'gold', visible: true},
-];
 
 // @ts-ignore
 @Component({
@@ -56,29 +45,42 @@ export const Categories = [
 
 export class CategoriesComponent implements OnInit {
 
-  // protected mainCategories = Categories;
-  protected mainCategories: CategoryModel[] = [];
+  protected categoriesList: CategoryModel[] = [];
+  private activeCategory: CategoryModel;
   protected categoriesControl = new FormControl();
-  private currentId: number;
+  private currentIndex: number;
   private currentPage: string;
   private errorInfo: string;
   protected filteredOptions: Observable<string[]>;
   private options: string[] = [];
   protected visibleCategory: string[] = [];
+  protected subcategoryAdd: SubcategoryAddModel;
+  protected newSubcategory: SubcategoryModel;
+  protected categoryAdd: CategoryAddModel;
+  private addCategoryPanel: boolean;
+  protected newCategoryTitle: string;
+  protected newCategoryColor: string;
+  protected newCategoryLimit: number;
+  protected newSubcategoryTitle: string;
+  protected newSubcategoryColor: string;
 
   constructor(
     private hservice: HeaderService,
     private route: ActivatedRoute,
-    private categoriesService: CategoriesService
+    private categoryService: CategoryService,
+    private subcategoryService: SubcategoryService
   ) {
       this.currentPage = 'categories';
+      this.addCategoryPanel = false;
+      this.newCategoryTitle = '';
 
-      this.categoriesService.getAllCategories().subscribe(
+
+      this.categoryService.getAllCategories().subscribe(
         (response) => {
           // console.log(response);
-          this.mainCategories = response;
+          this.categoriesList = response;
           // console.log(this.mainCategories);
-          this.mainCategories.forEach((value) => {
+          this.categoriesList.forEach((value) => {
             this.options.push(value.title);
             console.log(value.title);
           });
@@ -88,8 +90,6 @@ export class CategoriesComponent implements OnInit {
 
       console.log(this.options);
     }
-
-
 
     ngOnInit(): void {
     this.route.data
@@ -104,10 +104,8 @@ export class CategoriesComponent implements OnInit {
 
     this.filteredOptions.subscribe(response => {
       this.visibleCategory = response;
-      console.log(this.visibleCategory);
+      // console.log(this.visibleCategory);
     });
-
-
   }
 
   private _filter(value: string): string[] {
@@ -115,19 +113,92 @@ export class CategoriesComponent implements OnInit {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  private setCurrentId(id: number){
-    this.currentId = id;
+  private setActiveCategory(index: number, category: CategoryModel){
+    this.currentIndex = index;
     this.currentPage = 'selectedCategory';
+    this.activeCategory = category;
   }
 
   protected isContaing(title: string): boolean{
     return this.visibleCategory.find(value => value === title) ? true : false ;
   }
 
+  protected updateSubcategory(subcategory: SubcategoryModel, index: number) {
+    console.log(this.categoriesList[this.currentIndex].subcategories[index]);
+    this.subcategoryService.updateSubcategory(subcategory).subscribe();
+    // console.log(subcategory.title);
+  }
+
+  protected updateCategory() {
+    this.categoryService.updateCategory(this.activeCategory).
+    subscribe((response: CategoryModel) => {
+        this.categoriesList[this.currentIndex] = response;
+      }
+    );
+
+    this.visibleCategory[this.currentIndex] = this.options[this.currentIndex] = this.categoriesList[this.currentIndex].title;
+    // console.log(this.categoriesList);
+  }
+
+  protected addSubcategory() {
+    this.subcategoryAdd = {
+      title: this.newSubcategoryTitle,
+      color: this.newSubcategoryColor
+    };
+
+    this.newSubcategoryTitle = '';
+    this.newSubcategoryColor = '';
+
+    this.subcategoryService.addSubcategory(this.subcategoryAdd, this.activeCategory).subscribe(
+      (value: SubcategoryModel) => {
+        if(!this.activeCategory.subcategories) this.activeCategory.subcategories = [];
+        this.activeCategory[this.currentIndex].subcategories.push(value);
+        this.categoriesList[this.currentIndex].subcategories.push(value);
+      }
+    );
+  }
+
+  protected addCategory() {
+    this.categoryAdd = {
+      title: this.newCategoryTitle,
+      color: this.newCategoryColor,
+      limit: this.newCategoryLimit
+    };
+
+    this.newCategoryTitle = '';
+    this.newCategoryColor = '';
+    this.newCategoryLimit = null;
+
+    this.categoryService.addCategory(this.categoryAdd).subscribe(
+      (value: CategoryModel) => {
+        this.categoriesList.push(value);
+        this.options.push(value.title);
+        this.visibleCategory.push(value.title);
+      }
+    );
+  }
+
+  protected deleteSubcategory(subcategory: SubcategoryModel, index: number) {
+    this.subcategoryService.deleteSubcategory(subcategory).subscribe();
+    this.categoriesList[this.currentIndex].subcategories.splice(index, 1);
+    this.activeCategory[this.currentIndex].subcategories.splice(index, 1);
+    console.log(subcategory.title);
+  }
+
+  protected deleteCategory() {
+    this.activeCategory.subcategories.forEach((value, index) => {
+      this.deleteSubcategory(value, index);
+    });
+
+    this.categoryService.deleteCategory(this.activeCategory).subscribe();
+
+    this.visibleCategory.splice(this.currentIndex, 1);
+    this.options.splice(this.currentIndex, 1);
+    this.categoriesList.splice(this.currentIndex, 1);
+    console.log(this.errorInfo);
+  }
 
   protected onSubmit(): void {
 
   }
 }
-
-

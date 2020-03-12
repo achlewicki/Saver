@@ -7,7 +7,7 @@ import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
@@ -17,16 +17,17 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     CategoriesComponent,
     EditCategoryComponent
   ],
-  imports: [
-    CommonModule,
-    FlexModule,
-    RouterModule,
-    MatFormFieldModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatInputModule
-  ],
+    imports: [
+        CommonModule,
+        FlexModule,
+        RouterModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        FormsModule
+    ],
   exports: [
     CategoriesComponent
   ]

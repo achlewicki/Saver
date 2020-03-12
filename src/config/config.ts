@@ -3,8 +3,8 @@ export const config = {
     skipAuth: true,
     adminAccount: {
         user: {
-            id: '3'
+            id: '8'
         },
-        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6eyJpZCI6M30sImlhdCI6MTU4MzUxODg4OSwiZXhwIjoxNTg0MTIzNjg5fQ.tQB96_rm-ZU2nwepbiHD6gbw4I19z6tq4poQ8Amt9LA'
+        token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6eyJpZCI6OCwiZW1haWwiOiJmb3JjZV92aXBlckBnbWFpbC5jb20iLCJmaXJzdE5hbWUiOm51bGwsImxhc3ROYW1lIjpudWxsLCJiaXJ0aERhdGUiOm51bGwsInNleCI6bnVsbCwicmVnaXN0ZXJEYXRlIjoiMjAyMC0wMy0xMVQxODo1NDoyMS43NTJaIiwibGV2ZWwiOjEsImV4cGVyaWVuY2UiOjEwMCwiaXNBY3RpdmUiOmZhbHNlLCJpc1ByZW1pdW0iOmZhbHNlfSwiaWF0IjoxNTgzOTUzMDY1LCJleHAiOjE1ODQ1NTc4NjV9.44dTeixid7GgfTfpjlL0CNYaI98J9mB0r036-5-WK9A'
     }
 };
