@@ -1,0 +1,31 @@
+<div class="nav-container" [ngClass]="isWide ? 'wide-nav' : 'short-nav'">
+  <div class="user-section">
+    <p>AVATAR</p>
+    <p>EMAIL?</p>
+    <p>lvl</p>
+  </div>
+  <div class="nav-list">
+    <ul>
+      <a routerLink="/main">
+        <li> DASHBOARD </li>
+      </a>
+      <a routerLink="/main/operations">
+        <li> OPERATIONS </li>
+      </a>
+      <a routerLink="/main/accounts">
+        <li> ACCOUNTS (TEMP) </li>
+      </a>
+      <a routerLink="/main">
+        <li> CATEGORIES </li>
+      </a>
+      <a routerLink="/main">
+        <li> ACHIEVEMENTS </li>
+      </a>
+    </ul>
+  </div>
+  <div class="bottom-section">
+    <a routerLink="/main/profile">
+      USER-SETTINGS
+    </a>
+  </div>
+</div>

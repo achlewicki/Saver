@@ -1,5 +1,5 @@
 <div>
-  <div class="background"></div>
+  <!-- <div class="background" (click)="onCloseLogInClicked()"></div> -->
   <div class="login-form-window">
     <span class="triangle"> </span>
     <span class="triangle-second"> </span>
@@ -7,16 +7,29 @@
     <div class="login-form">
       <h1>LOGIN</h1>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
         <mat-form-field>
           <input matInput formControlName="email" placeholder="Email" class="login-input">
         </mat-form-field>
+
         <mat-form-field>
           <input matInput [type]="'password'" formControlName="password" placeholder="Password" class="password-input">
         </mat-form-field>
-        <button type="submit" mat-flat-button [disabled]="!this.loginForm.valid">Log in</button>
-        <div class="info">
+
+        <button type="submit" mat-flat-button [disabled]="!this.loginForm.valid || this.loginChceckPending">
+          <mat-progress-spinner *ngIf="this.loginChceckPending" [mode]="'indeterminate'" [diameter]="20"
+            class="spinner"></mat-progress-spinner>
+          <p *ngIf="!this.loginChceckPending">Log in</p>
+        </button>
+
+        <div class="error-info">
+          {{ this.errorInfo }}
+        </div>
+
+        <div class="forgot-password-label">
           <p> Forgot password?<a href="#"> Click here</a></p>
         </div>
+
       </form>
     </div>
   </div>

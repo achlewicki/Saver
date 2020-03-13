@@ -1,5 +1,8 @@
+import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
+import { AccountsComponent } from './accounts/accounts/accounts.component';
+import { OperationsComponent } from './operations/operations/operations.component';
 import { MainPageCoreComponent } from './_main-page-core/main-page-core.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -11,7 +14,23 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent
+        component: DashboardComponent,
+        data: { viewname: 'dashboard' }
+      },
+      {
+        path: 'operations',
+        component: OperationsComponent,
+        data: { viewname: 'operations' }
+      },
+      {
+        path: 'accounts',
+        component: AccountsComponent,
+        data: { viewname: 'accounts' }
+      },
+      {
+        path: 'profile',
+        component: UserProfileComponent,
+        data: { viewname: 'profile' }
       }
     ]
   }
