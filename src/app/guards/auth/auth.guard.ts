@@ -58,6 +58,8 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       return verificationResult;
     } catch (error) {
       console.error(error);
+      localStorage.removeItem('token');
+      localStorage.removeItem('user.id');
       redirect();
       return false;
     }
