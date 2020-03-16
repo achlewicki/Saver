@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CategoriesComponent} from './categories/categories.component';
-import {FlexModule} from '@angular/flex-layout';
-import { EditCategoryComponent } from './edit-category/edit-category.component';
+import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
+import {MatButtonModule} from '@angular/material/button';
+
 import {RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatFormFieldModule} from '@angular/material';
+import {MatDividerModule, MatFormFieldModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {EditCategoryComponent} from '#modules/main-page/categories/categories/edit-category/edit-category.component';
 
 
 
@@ -19,17 +21,20 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
   ],
     imports: [
         CommonModule,
-        FlexModule,
+        FlexLayoutModule,
         RouterModule,
         MatFormFieldModule,
         MatAutocompleteModule,
         ReactiveFormsModule,
         MatAutocompleteModule,
         MatInputModule,
-        FormsModule
+        FormsModule,
+        MatDividerModule,
+        MatButtonModule
     ],
   exports: [
-    CategoriesComponent
+    CategoriesComponent,
+    FlexLayoutModule
   ]
 })
 export class CategoriesModule { }

@@ -1,0 +1,107 @@
+<div class="container"
+     fxLayout="column"
+     [formGroup]="editingForm" *ngIf="this.category"
+>
+  <div class="category-part"
+       fxFlex="100%"
+       fxLayoutAlign="center">
+
+      <mat-form-field>
+      <input matInput
+             class="category-input"
+             formControlName="categoryTitle"
+             [errorStateMatcher]="matcher">
+      <mat-error *ngIf="this.editingForm.get('categoryTitle').hasError('required')">
+        Nazwa Kategorii nie może być pusta.
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+      <input matInput
+             class="category-input"
+             formControlName="categoryColor"
+             [errorStateMatcher]="matcher">
+      <mat-error class="font-12" *ngIf="this.editingForm.get('categoryColor').hasError('required')">
+        Kolor Kategorii nie może być pusty.
+      </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+      <input matInput
+             class="category-input"
+             formControlName="categoryLimit"
+             [errorStateMatcher]="matcher">
+      <mat-error class="font-12" *ngIf="this.editingForm.get('categoryLimit').hasError('required')">
+        Limit Kategorii nie może być pusty.
+      </mat-error>
+
+<!--      <mat-error class="font-12" *ngIf="this.editingForm.get('categoryTitle').hasError('pattern')">-->
+<!--        Limit Kategorii musi być <strong>liczbą</strong> dodatnią-->
+<!--      </mat-error>-->
+      </mat-form-field>
+
+    <button mat-button type="submit" class="update-category" (click)="updateCategory()">Potwierdź</button>
+    <button routerLink="/main/categories" mat-button type="submit" class="delete-category" (click)="deleteCategory()">
+      Usuń Kategorię
+    </button>
+  </div>
+
+  <div class="subcategory-part"
+       fxFlex="100%"
+       fxLayoutAlign="center"
+       formArrayName="subcategories"
+       *ngFor="let subcategory of this.editingForm.get('subcategories').controls; let i = index">
+    <div [formGroupName]="i">
+    <mat-form-field>
+      <input matInput
+             class="subcategory-input"
+             formControlName="title"
+             [errorStateMatcher]="matcher">
+<!--      <mat-error class="font-12" *ngIf="this.editingForm.get('subcategories').hasError('required')">-->
+<!--        Nazwa Subkategorii nie może być pusta-->
+<!--      </mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             class="subcategory-input"
+             formControlName="color"
+             [errorStateMatcher]="matcher">
+<!--      <mat-error class="font-12" *ngIf="this.editingForm.get('subcategories').hasError('required')">-->
+<!--        Kolor Subkategorii nie może być pusty-->
+<!--      </mat-error>-->
+    </mat-form-field>
+
+    <button mat-button type="submit" class="update-category" (click)="updateSubcategory(subcategory.value, i)">Potwierdź</button>
+    <button mat-button type="submit" class="delete-category" (click)="deleteSubcategory(subcategory.value, i)">Usuń Subkategorię</button>
+    </div>
+  </div>
+
+  <div class="add-subcategory"
+       fxLayout
+       fxFlex="100%"
+       fxLayoutAlign="center"
+       [formGroup]="addingForm">
+    <mat-form-field>
+      <input matInput
+             formControlName="newSubcategoryTitle"
+             [errorStateMatcher]="matcher">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput
+             formControlName="newSubcategoryColor"
+             [errorStateMatcher]="matcher">
+    </mat-form-field>
+
+    <button mat-button type="submit" (click)="addSubcategory()">Dodaj</button>
+  </div>
+
+  <div class="exit"
+       fxFlex="100%"
+       fxLayoutAlign="center">
+    <a routerLink="/main/categories"><button mat-button>Powrót</button></a>
+  </div>
+</div>
+
+

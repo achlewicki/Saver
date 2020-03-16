@@ -14,6 +14,7 @@ import { MainPageCoreComponent } from './_main-page-core/main-page-core.componen
 import { HeaderComponent } from './_header/header.component';
 
 import { MatButtonModule } from '@angular/material/button';
+import {FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatButtonModule } from '@angular/material/button';
     DashboardModule,
     OperationsModule,
     UserProfileModule,
-    CategoriesModule
+    CategoriesModule,
+    FlexModule
   ]
 })
 export class MainPageModule { }

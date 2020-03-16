@@ -1,57 +1,68 @@
 <div class="container"
       fxLayout
       fxLayout.xs="column"
-      fxLayoutAlign="center"
-     *ngIf="this.currentPage==='categories'"
-     [@inOutAnimation]
-      >
-  <div class="control-panel">
-    <input class="add-category"
-            type="image" (click)="this.addCategoryPanel = !this.addCategoryPanel">
+      fxLayoutAlign="center">
+  <h1 fxFlex="100%"
+      fxLayoutAlign="center">Twoje kategorie</h1>
+  <div class="control-panel"
+        fxFlex="100%"
+       fxLayoutAlign="center">
+    <button mat-raised-button
+           class="add-category"
+           type="image"
+           src=""
+           fxLayoutAlign="center"
+            (click)="this.addCategoryPanel = !this.addCategoryPanel">Dodaj Kategorię</button>
+
     <div *ngIf="this.addCategoryPanel" class="add-category-form">
       <input class="new-category-title" [(ngModel)]="this.newCategoryTitle">
+
       <input [(ngModel)]="this.newCategoryColor">
+
       <input type="number" [(ngModel)]="this.newCategoryLimit">
+
       <button (click)="addCategory()">Dodaj kategorie</button>
     </div>
-    <div class="search-category">
-<!--      <form class="container" [formGroup]="categoriesControl">-->
-        <mat-form-field>
-          <input type="text"
-                 placeholder="Pick one"
-                 aria-label="Number"
-                 matInput
-                 [formControl]="this.categoriesControl"
-                 [matAutocomplete]="auto"
-                 >
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
-<!--      </form>-->
 
+    <div class="search-category">
+      <mat-form-field>
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Number"
+               matInput
+               [formControl]="this.categoriesControl"
+               [matAutocomplete]="auto">
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
     </div>
   </div>
+
   <ng-container *ngFor="let category of this.categoriesList; let i = index">
     <div class="category-container"
-         [style.background-color]="category.color"
-         *ngIf="isContaing(category.title)"
-         >
+         [ngStyle]="{'border': '4px solid ' + category.color}"
+         *ngIf="isContaing(category.title)">
       <p class="category-name" fxLayoutAlign="center">{{category.title}}
-        <input alt="options"
-               class="option-button"
-               type="image"
-               fxLayout
-
-                src="assets/images/option_icon.png" alt="options"
-               (click)="this.setActiveCategory(i, category)">
+        <a class="option-button" [routerLink]="['/main/categories/edit-category', category.id]">
+          <input alt="options"
+            class="option-button"
+            type="image"
+            fxLayout
+            src="assets/images/option_icon.png" alt="options">
+        </a>
         </p>
+
       <div class="subcategories-container"
            fxLayout
            fxLayoutAlign="center">
-        <div class="subcategory" *ngFor="let subcategory of category.subcategories" fxFlex>
+        <div class="subcategory"
+             *ngFor="let subcategory of category.subcategories"
+             [ngStyle]="{'background-color': subcategory.color}"
+             fxLayoutAlign="center">
           {{ subcategory.title }}
         </div>
       </div>
@@ -59,42 +70,4 @@
   </ng-container>
 </div>
 
-<div class="container"
-     fxLayout
-     fxLayout.xs="column"
 
-     *ngIf="this.currentPage==='selectedCategory'"
-     [@inOutAnimation]
->
-  <div class="category-part"
-      fxFlex="100%"
-      fxLayoutAlign="center">
-    <input class="category-input" [(ngModel)]="this.activeCategory.title">
-    <input class="category-input" [(ngModel)]="this.activeCategory.limit">
-    <input class="category-input" [(ngModel)]="this.activeCategory.color">
-    <button type="submit" class="update-category" (click)="updateCategory()">Potwierdź</button>
-    <button type="submit" class="delete-category" (click)="deleteCategory()">Usuń Kategorię</button>
-  </div>
-
-  <div class="subcategory-part"
-       fxFlex="100%"
-       fxLayoutAlign="center"
-       *ngFor="let subcategory of this.activeCategory.subcategories; let i = index">
-    <input class="subcategory-input" [(ngModel)]="subcategory.title">
-    <input class="subcategory-input" [(ngModel)]="subcategory.color">
-    <button type="submit" class="update-category" (click)="updateSubcategory(subcategory, i)">Potwierdź</button>
-    <button type="submit" class="delete-category" (click)="deleteSubcategory(subcategory, i)">Usuń Subkategorię</button>
-<!--    <button type="submit" class="confirm-new-subcategory-title" (click)="updateSubcategoryTitle(subcategory)">Potwierdź</button>-->
-  </div>
-  <div class="add-subcategory" fxFlex="100%" fxLayoutAlign="center">
-    <input [(ngModel)]="this.newSubcategoryTitle">
-    <input [(ngModel)]="this.newSubcategoryColor">
-    <button type="submit" (click)="addSubcategory()">Dodaj</button>
-  </div>
-  <div class="exit"
-        fxFlex="100%"
-       fxLayoutAlign="center">
-  SELECT CATEGORY
-  <button (click)="this.currentPage='categories'">Click ME</button>
-  </div>
-</div>

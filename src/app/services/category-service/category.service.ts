@@ -15,6 +15,7 @@ import {CategoryAddModel} from '#models/categoryAdd.model';
 
 export class CategoryService {
   private allCategoriesURL: string;
+  private categoryURL: string;
   private addCategoryURL: string;
   private deleteCategoryURL: string;
   private updateCategoryURL: string;
@@ -34,6 +35,11 @@ export class CategoryService {
       // .pipe(
       //   catchError(this.handleError))
       ;
+  }
+
+  public getCategoryInfo(categoryId: number): Observable<CategoryModel[]> {
+    this.categoryURL = config.backendUrl + '/subcategory/all-by-category/' + categoryId;
+    return this.http.get<CategoryModel[]>(this.categoryURL, this.httpHeader);
   }
 
   public updateCategory(category: CategoryModel): Observable<CategoryModel> {

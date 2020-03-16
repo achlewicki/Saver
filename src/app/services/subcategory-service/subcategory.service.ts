@@ -14,7 +14,7 @@ export class SubcategoryService {
   private addSubcategoryURL: string;
   private deleteSubcategoryURL: string;
   private updateSubcategoryURL: string;
-  private tokenAuthorisationURL: string;
+  // private tokenAuthorisationURL: string;
   private httpHeader = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };

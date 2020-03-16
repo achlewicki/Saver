@@ -6,7 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CategoriesComponent} from '#modules/main-page/categories/categories/categories.component';
-import {EditCategoryComponent} from '#modules/main-page/categories/edit-category/edit-category.component';
+import {EditCategoryComponent} from '#modules/main-page/categories/categories/edit-category/edit-category.component';
 
 
 const routes: Routes = [
@@ -38,13 +38,11 @@ const routes: Routes = [
         path: 'categories',
         component: CategoriesComponent,
         data: { viewname: 'categories' },
-        children: [
-          {
-            path: 'edit-category',
-            component: EditCategoryComponent,
-            data: { viewname: 'edit-category' }
-          }
-        ]
+      },
+      {
+        path: 'categories/edit-category/:id',
+        component: EditCategoryComponent,
+        data: { viewname: 'edit-category'}
       }
     ]
   }

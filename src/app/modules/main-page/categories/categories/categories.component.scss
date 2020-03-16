@@ -27,11 +27,12 @@
 }
 
 .subcategory{
-  background-color: blue;
-  height: 5px;
-  min-width: 90px;
-  max-width: 100px;
+  height: auto;
+  max-width: 200px;
+  padding: 2px 4px 2px 4px;
   margin-bottom: 5px;
+  margin-right: 30px;
+  border-radius: 5px;
 }
 
 .category-name{
@@ -45,14 +46,4 @@
   margin-right: 10px;
   margin-left: auto;
   margin-top: 5px;
-}
-
-.category-part{
-  margin-bottom: 10px;
-  font-size: 32px;
-}
-
-.subcategory-part{
-  margin-bottom: 5px;
-  font-size: 24px;
 }
