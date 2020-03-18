@@ -1,0 +1,38 @@
+.container {
+  margin: 40px 5%;
+  display: flex;
+  flex-direction: column;
+}
+
+.view-title {
+  margin: 20px 0;
+}
+
+.view-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-button {
+  align-self: flex-end;
+  margin: 10px 0;
+  width: max-content;
+  border: 1px solid lightgrey;
+}
+
+.sort-select {
+  align-self: flex-end;
+  width: 200px;
+  margin: 10px 0;
+  padding: 7px;
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: 3px;
+}
+
+.no-operations-info {
+  text-align: center;
+
+  * {
+    margin: 15px;
+  }
+}

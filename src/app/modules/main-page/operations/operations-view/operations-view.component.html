@@ -1,0 +1,35 @@
+<div class="container">
+  <h1 class="view-title">
+    TRANSAKCJE
+  </h1>
+  <div class="view-content" *ngIf="this.operations">
+    <button mat-button class="filter-button" (click)="this.toogleFiltersWindow()">{{ this.filtersButtonText }}</button>
+    <svr-operation-filters *ngIf="this.showFilters" [(filters)]="this.filters"></svr-operation-filters>
+    <mat-select [(value)]='this.sortSelectValue' class="sort-select" (selectionChange)="reSort()">
+      <mat-option value="newest">
+        najnowsze
+      </mat-option>
+      <mat-option value="oldest">
+        najstarsze
+      </mat-option>
+      <mat-option value="highestValue">
+        największa wartość
+      </mat-option>
+      <mat-option value="lowestValue">
+        najmniejsza wartość
+      </mat-option>
+    </mat-select>
+
+    <div *ngIf="this.showGrouped">
+      <svr-operations-group *ngFor="let group of groupedOperations" [group]="group"></svr-operations-group>
+    </div>
+    <div *ngIf="!this.showGrouped">
+      <svr-operation *ngFor="let operation of operations" [operation]="operation"></svr-operation>
+    </div>
+
+  </div>
+  <div class="no-operations-info view-content" *ngIf="!this.operations">
+    <h2>Wystąpił błąd</h2>
+    {{ this.errorInfo }}
+  </div>
+</div>

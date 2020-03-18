@@ -5,5 +5,5 @@ export interface CategoryModel {
   title: string;
   color: string;
   limit: number;
-  subcategories: SubcategoryModel[];
+  subcategories?: SubcategoryModel[];
 }

@@ -1,0 +1,143 @@
+.container {
+  border: 1px solid rgb(220, 220, 220);
+  border-radius: 5px;
+  //border-top: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  width: 100%;
+  min-width: 415px;
+  margin: 10px 0;
+}
+
+.main-box {
+  width: 100%;
+  height: 90px;
+  display: grid;
+
+  grid-template-columns: auto max-content 140px 70px;
+  grid-template-areas: "title icons value button";
+
+  justify-items: center;
+  align-items: center;
+
+  .title {
+    grid-area: title;
+    justify-self: stretch;
+    align-self: stretch;
+
+    //min-width: 120px;
+    margin: 10px 15px;
+
+    display: grid;
+    grid-template-rows: max-content auto max-content;
+    grid-template-areas: "header""none""date";
+
+    h1 {
+      grid-area: header;
+      font-size: 20px;
+      font-weight: 400;
+    }
+
+    p {
+      grid-area: date;
+      font-size: 12px;
+      font-weight: 300;
+    }
+  }
+
+  .icons {
+    grid-area: icons;
+    padding: 15px;
+  }
+
+  .value {
+    grid-area: value;
+    justify-self: right;
+    font-size: 18px;
+    padding: 15px;
+  }
+
+  .details-button {
+    grid-area: button;
+  }
+}
+
+.main-box:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+.details-box {
+  background-color: rgb(250, 250, 250);
+  padding: 20px;
+
+  display: grid;
+  grid-template-columns: auto max-content;
+
+  .description {
+
+    display: flex;
+    flex-direction: column;
+
+    .description-header {}
+
+    .description-content {}
+  }
+
+  .category {
+    margin-top: 10px;
+
+
+    .category-header {}
+
+    .main-category-title {}
+
+    .sub-category {
+      display: block;
+      margin-top: 3px;
+      margin-left: 5px;
+
+      .sub-category-name {
+        display: inline-block;
+        position: relative;
+        left: 2px;
+        top: 5px;
+      }
+    }
+
+    .category-title {
+      font-size: 14px;
+      font-weight: 400;
+    }
+  }
+
+  .other-detail {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+
+    * {
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .guaranty {}
+
+    .file {
+      font-weight: 500;
+      color: rgb(102, 102, 102);
+      margin-bottom: 20px;
+    }
+  }
+
+  .small-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+    margin-bottom: 15px;
+
+  }
+
+  .content {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+}
