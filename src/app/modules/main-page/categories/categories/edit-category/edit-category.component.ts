@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {SubcategoryModel} from '#models/subcategory.model';
 import {CategoryModel} from '#models/category.model';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -15,10 +15,10 @@ import {MyErrorStateMatcher} from '#modules/landing-page/register/register-windo
   styleUrls: ['./edit-category.component.scss']
 })
 export class EditCategoryComponent {
-  protected categoryId: number;
-  protected editingForm: FormGroup;
-  protected addingForm: FormGroup;
-  protected category: CategoryModel;
+  private categoryId: number;
+  private editingForm: FormGroup;
+  private addingForm: FormGroup;
+  private category: CategoryModel;
   private matcher = new MyErrorStateMatcher();
 
   constructor(
@@ -47,11 +47,12 @@ export class EditCategoryComponent {
           const items = this.editingForm.get('subcategories') as FormArray;
           items.push(this.createItem(value1));
         });
+        console.log(this.editingForm.get('subcategories'));
       }
     );
   }
 
-  protected createItem(subcategory: SubcategoryModel): FormGroup {
+  private createItem(subcategory: SubcategoryModel): FormGroup {
     return this.fb.group({
       id: subcategory.id,
       title: [subcategory.title, [Validators.required]],
@@ -59,7 +60,7 @@ export class EditCategoryComponent {
     });
   }
 
-  protected updateSubcategory(subcategory: SubcategoryModel, index: number) {
+  private updateSubcategory(subcategory: SubcategoryModel, index: number) {
     const updateSubcategory: SubcategoryModel = {
       id: subcategory.id,
       title: this.editingForm.value.subcategories[index].title,
@@ -68,7 +69,7 @@ export class EditCategoryComponent {
     this.subcategoryService.updateSubcategory(updateSubcategory).subscribe();
   }
 
-  protected updateCategory() {
+  private updateCategory() {
     const updateCategory: CategoryModel = {
       id: this.category.id,
       title: this.editingForm.value.categoryTitle,
@@ -80,7 +81,7 @@ export class EditCategoryComponent {
     this.categoryService.updateCategory(updateCategory).subscribe();
   }
 
-  protected addSubcategory() {
+  private addSubcategory() {
     const newSubcategory: SubcategoryAddModel = {
       title: this.addingForm.value.newSubcategoryTitle,
       color: this.addingForm.value.newSubcategoryColor
@@ -104,13 +105,13 @@ export class EditCategoryComponent {
     );
   }
 
-  protected deleteSubcategory(subcategory: SubcategoryModel, index: number) {
+  private deleteSubcategory(subcategory: SubcategoryModel, index: number) {
     this.subcategoryService.deleteSubcategory(subcategory).subscribe();
     const items = this.editingForm.get('subcategories') as FormArray;
     items.removeAt(index);
   }
 
-  protected deleteCategory() {
+  private deleteCategory() {
     this.category.subcategories.forEach((value, index) => {
       this.deleteSubcategory(value, index);
     });

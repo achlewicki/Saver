@@ -15,16 +15,16 @@ import {CategoryAddModel} from '#models/categoryAdd.model';
 })
 
 export class CategoriesComponent implements OnInit {
-  protected categoriesList: CategoryModel[] = [];
-  protected categoriesControl = new FormControl();
-  protected filteredOptions: Observable<string[]>;
+  private categoriesList: CategoryModel[] = [];
+  private categoriesControl = new FormControl();
+  private filteredOptions: Observable<string[]>;
   private options: string[] = [];
-  protected visibleCategory: string[] = [];
-  protected categoryAdd: CategoryAddModel;
+  private visibleCategory: string[] = [];
+  private categoryAdd: CategoryAddModel;
   private addCategoryPanel: boolean;
-  protected newCategoryTitle: string;
-  protected newCategoryColor: string;
-  protected newCategoryLimit: number;
+  private newCategoryTitle: string;
+  private newCategoryColor: string;
+  private newCategoryLimit: number;
 
   constructor(
     private readonly hservice: HeaderService,
@@ -68,11 +68,11 @@ export class CategoriesComponent implements OnInit {
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
   }
 
-  protected isContaing(title: string): boolean {
+  private isContaing(title: string): boolean {
     return this.visibleCategory.find(value => value === title) ? true : false ;
   }
 
-  protected addCategory() {
+  private addCategory() {
     this.categoryAdd = {
       title: this.newCategoryTitle,
       color: this.newCategoryColor,

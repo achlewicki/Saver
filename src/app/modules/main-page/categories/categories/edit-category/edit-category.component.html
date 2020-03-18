@@ -57,9 +57,9 @@
              class="subcategory-input"
              formControlName="title"
              [errorStateMatcher]="matcher">
-<!--      <mat-error class="font-12" *ngIf="this.editingForm.get('subcategories').hasError('required')">-->
-<!--        Nazwa Subkategorii nie może być pusta-->
-<!--      </mat-error>-->
+      <mat-error class="font-12" *ngIf="this.editingForm.get('subcategories').controls[i].controls.title.hasError('required')">
+        Nazwa Subkategorii nie może być pusta
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -67,9 +67,9 @@
              class="subcategory-input"
              formControlName="color"
              [errorStateMatcher]="matcher">
-<!--      <mat-error class="font-12" *ngIf="this.editingForm.get('subcategories').hasError('required')">-->
-<!--        Kolor Subkategorii nie może być pusty-->
-<!--      </mat-error>-->
+      <mat-error class="font-12" *ngIf="this.editingForm.get('subcategories').controls[i].controls.color.hasError('required')">
+        Kolor Subkategorii nie może być pusty
+      </mat-error>
     </mat-form-field>
 
     <button mat-button type="submit" class="update-category" (click)="updateSubcategory(subcategory.value, i)">Potwierdź</button>

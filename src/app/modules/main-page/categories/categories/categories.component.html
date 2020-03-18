@@ -12,6 +12,7 @@
            type="image"
            src=""
            fxLayoutAlign="center"
+            *ngIf="!this.addCategoryPanel"
             (click)="this.addCategoryPanel = !this.addCategoryPanel">Dodaj Kategorię</button>
 
     <div *ngIf="this.addCategoryPanel" class="add-category-form">
@@ -21,7 +22,7 @@
 
       <input type="number" [(ngModel)]="this.newCategoryLimit">
 
-      <button (click)="addCategory()">Dodaj kategorie</button>
+      <button (click)="(addCategory()) && (this.addCategoryPanel = !this.addCategoryPanel)">Dodaj kategorie</button>
     </div>
 
     <div class="search-category">
