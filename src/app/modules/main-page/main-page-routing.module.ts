@@ -1,6 +1,6 @@
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 import { AccountsComponent } from './accounts/accounts/accounts.component';
-import { OperationsComponent } from './operations/operations/operations.component';
+import { OperationsViewComponent } from './operations/operations-view/operations-view.component';
 import { MainPageCoreComponent } from './_main-page-core/main-page-core.component';
 import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
@@ -19,7 +19,7 @@ const routes: Routes = [
       },
       {
         path: 'operations',
-        component: OperationsComponent,
+        component: OperationsViewComponent,
         data: { viewname: 'operations' }
       },
       {
