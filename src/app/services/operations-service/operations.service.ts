@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 import { config } from '#config/config';
 import { OperationModel } from '#models/operations.model';
-import { Subcategory } from '#models/subcategory.model';
+import { SubcategoryModel } from '#models/subcategory.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +43,5 @@ export interface OperationResult {
   date: string;
   intoAccount: boolean;
   guarantyDays: number;
-  subcategory: Subcategory;
+  subcategory: SubcategoryModel;
 }

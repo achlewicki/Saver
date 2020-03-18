@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
+import {RegisterModel} from '#models/register.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import { catchError } from 'rxjs/operators';
 export class AuthorisationService {
 
   private loginURL: string;
+  private registerURL: string;
   private tokenAuthorisationURL: string;
   private httpHeader = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -22,10 +24,18 @@ export class AuthorisationService {
   ) {
     this.loginURL = config.backendUrl + '/login';
     this.tokenAuthorisationURL = config.backendUrl + '/auth/verify-token';
+    this.registerURL = config.backendUrl + '/register';
   }
 
   public login(user: LoginModel): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.loginURL, user, this.httpHeader)
+      .pipe(
+        catchError(this.handleLoginError)
+      );
+  }
+
+  public register(newUser: RegisterModel): Observable<any> {
+    return this.http.post<any>(this.registerURL, newUser, this.httpHeader)
       .pipe(
         catchError(this.handleLoginError)
       );

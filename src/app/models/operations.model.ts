@@ -1,4 +1,4 @@
-import { Subcategory } from './subcategory.model';
+import { SubcategoryModel } from './subcategory.model';
 
 export interface OperationModel {
     title: string;
@@ -8,7 +8,7 @@ export interface OperationModel {
     date: Date;
     intoAccount: boolean;
     guarantyDays: number;
-    subcategory?: Subcategory;
+    subcategory?: SubcategoryModel;
 }
 
 export interface GroupedOperations {

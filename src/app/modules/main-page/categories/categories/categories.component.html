@@ -1,0 +1,74 @@
+<div class="container"
+      fxLayout
+      fxLayout.xs="column"
+      fxLayoutAlign="center">
+  <h1 fxFlex="100%"
+      fxLayoutAlign="center">Twoje kategorie</h1>
+  <div class="control-panel"
+        fxFlex="100%"
+       fxLayoutAlign="center">
+    <button mat-raised-button
+           class="add-category"
+           type="image"
+           src=""
+           fxLayoutAlign="center"
+            *ngIf="!this.addCategoryPanel"
+            (click)="this.addCategoryPanel = !this.addCategoryPanel">Dodaj Kategorię</button>
+
+    <div *ngIf="this.addCategoryPanel" class="add-category-form">
+      <input class="new-category-title" [(ngModel)]="this.newCategoryTitle">
+
+      <input [(ngModel)]="this.newCategoryColor">
+
+      <input type="number" [(ngModel)]="this.newCategoryLimit">
+
+      <button (click)="(addCategory()) && (this.addCategoryPanel = !this.addCategoryPanel)">Dodaj kategorie</button>
+    </div>
+
+    <div class="search-category">
+      <mat-form-field>
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Number"
+               matInput
+               [formControl]="this.categoriesControl"
+               [matAutocomplete]="auto">
+
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <ng-container *ngFor="let category of this.categoriesList; let i = index">
+    <div class="category-container"
+         [ngStyle]="{'border': '4px solid ' + category.color}"
+         *ngIf="isContaing(category.title)">
+      <p class="category-name" fxLayoutAlign="center">{{category.title}}
+        <a class="option-button" [routerLink]="['/main/categories/edit-category', category.id]">
+          <input alt="options"
+            class="option-button"
+            type="image"
+            fxLayout
+            src="assets/images/option_icon.png" alt="options">
+        </a>
+        </p>
+
+      <div class="subcategories-container"
+           fxLayout
+           fxLayoutAlign="center">
+        <div class="subcategory"
+             *ngFor="let subcategory of category.subcategories"
+             [ngStyle]="{'background-color': subcategory.color}"
+             fxLayoutAlign="center">
+          {{ subcategory.title }}
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+

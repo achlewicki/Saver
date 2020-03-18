@@ -1,8 +1,8 @@
-import { Category } from './category.model';
+import {CategoryModel} from '#models/category.model';
 
-export interface Subcategory {
-    id: number;
-    title: string;
-    color: string;
-    category?: Category;
+export interface SubcategoryModel {
+  id: number;
+  title: string;
+  color: string;
+  category?: CategoryModel;
 }

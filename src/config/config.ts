@@ -1,6 +1,6 @@
 export const config = {
     backendUrl: 'http://localhost:3000',
-    skipAuth: true,
+    skipAuth: false,
     adminAccount: {
         user: {
             id: '3'

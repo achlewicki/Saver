@@ -1,0 +1,30 @@
+.container{
+  margin-top: 20px;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.category-part{
+  min-width: 500px;
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+.subcategory-part{
+  min-width: 400px;
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+
+mat-form-field{
+  margin-right: 100px;
+}
+
+.category-input{
+  min-width: 300px;
+}
+
+.font-12{
+  font-size: 12px;
+}
