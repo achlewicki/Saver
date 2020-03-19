@@ -11,28 +11,31 @@
 
 .category-container{
   border-radius: 10px;
-  min-height: 100px;
-  min-width: 300px;
-  max-width: 600px;
+  height: 100px;
+  width: 400px;
   margin-bottom: 20px;
   margin-right: 10px;
+  flex-wrap: wrap;
+  background: white;
 }
 
 .subcategories-container{
   margin-top: 10px;
-  min-width: 30px;
   height: auto;
-  max-width: 450px;
   flex-wrap: wrap;
+  padding-left: 20px;
+  padding-right: 0;
 }
 
 .subcategory{
   height: auto;
-  max-width: 200px;
   padding: 2px 4px 2px 4px;
   margin-bottom: 5px;
-  margin-right: 30px;
+  margin-right: 20px;
   border-radius: 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .category-name{

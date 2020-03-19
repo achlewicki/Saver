@@ -63,6 +63,7 @@
         <div class="subcategory"
              *ngFor="let subcategory of category.subcategories"
              [ngStyle]="{'background-color': subcategory.color}"
+             fxFlex="17%"
              fxLayoutAlign="center">
           {{ subcategory.title }}
         </div>
