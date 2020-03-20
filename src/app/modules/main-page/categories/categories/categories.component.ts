@@ -34,6 +34,11 @@ export class CategoriesComponent implements OnInit {
       this.addCategoryPanel = false;
       this.newCategoryTitle = '';
 
+
+
+    }
+
+    ngOnInit(): void {
       this.categoryService.getAllCategories().subscribe(
         (response) => {
           this.categoriesList = response;
@@ -45,9 +50,6 @@ export class CategoriesComponent implements OnInit {
         }
       );
 
-    }
-
-    ngOnInit(): void {
     this.route.data
       .pipe(map(data => data.viewname))
       .subscribe((x) => this.hservice.viewTitle.next(x));
@@ -85,6 +87,7 @@ export class CategoriesComponent implements OnInit {
 
     this.categoryService.addCategory(this.categoryAdd).subscribe(
       (value: CategoryModel) => {
+        if(!this.categoriesList) this.categoriesList = [];
         this.categoriesList.push(value);
         this.options.push(value.title);
         this.visibleCategory.push(value.title);

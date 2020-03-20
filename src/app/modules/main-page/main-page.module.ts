@@ -11,6 +11,7 @@ import { HeaderComponent } from './_header/header.component';
 import { MatButtonModule } from '@angular/material/button';
 import {FlexModule} from '@angular/flex-layout';
 import {CategoriesModule} from '#modules/main-page/categories/categories.module';
+import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {CategoriesModule} from '#modules/main-page/categories/categories.module'
     OperationsModule,
     UserProfileModule,
     CategoriesModule,
-    FlexModule
+    FlexModule,
+    AchievementsModule
   ]
 })
 export class MainPageModule { }

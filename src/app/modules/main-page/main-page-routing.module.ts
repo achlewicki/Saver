@@ -7,6 +7,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CategoriesComponent} from '#modules/main-page/categories/categories/categories.component';
 import {EditCategoryComponent} from '#modules/main-page/categories/categories/edit-category/edit-category.component';
+import {AchievementsViewComponent} from '#modules/main-page/achievements/achievements-view/achievements-view.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,11 @@ const routes: Routes = [
         path: 'categories/edit-category/:id',
         component: EditCategoryComponent,
         data: { viewname: 'edit-category'}
+      },
+      {
+        path: 'achievements',
+        component: AchievementsViewComponent,
+        data: { viewname: 'achievements'}
       }
     ]
   }
