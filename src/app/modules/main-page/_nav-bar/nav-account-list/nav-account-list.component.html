@@ -1,0 +1,21 @@
+<div class="account-selection">
+  <div [ngClass]="expanded ? 'selection-button-active' : 'selection-button-no-active'" [ngStyle]="{'background-color': this.account.color }"(click)="onAccountSelectionClick()">
+    <span class="account-icon" [ngClass]="expanded ? 'account-icon-expanded' : 'account-icon-short'">
+        <fa-icon icon="home"></fa-icon>
+    </span>
+    <p *ngIf="expanded">{{ this.account.name }}
+      <span class="dropdown-icon">
+        <fa-icon icon="chevron-down" *ngIf="expanded"></fa-icon>
+      </span>
+    </p>
+  </div>
+  <div class="account-selection-list" *ngIf="accountSelectionClicked && expanded">
+    <svr-nav-account-item *ngFor="let account of accounts" [account]="account"></svr-nav-account-item>
+    <p class="manageAccounts">Zarządzaj kontami</p>
+
+    <!--<div class="error-info">
+      {{ this.errorInfo }}
+    </div>-->
+  </div>
+</div>
+

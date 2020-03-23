@@ -1,7 +1,6 @@
 import { OperationModel, GroupedOperations } from '#models/operations.model';
 import { OperationsService } from '#services/operations-service/operations.service';
 import { ActivatedRoute } from '@angular/router';
-import { HeaderService } from '#services/header-service/header.service';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { OperationFilters } from '#models/operations-filters.model';
@@ -30,8 +29,6 @@ export class OperationsViewComponent implements OnInit {
   protected filtersButtonText: string;
 
   constructor(
-    private readonly hservice: HeaderService,
-    private readonly route: ActivatedRoute,
     private readonly operationsService: OperationsService
   ) {
     this.groupedOperations = [];
@@ -51,10 +48,6 @@ export class OperationsViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.data
-      .pipe(map(data => data.viewname))
-      .subscribe((x) => this.hservice.viewTitle.next(x));
-
     this.operationsService.getOperationsByAccount(this.accountId).subscribe(
       result => {
         this.allOperations = result;

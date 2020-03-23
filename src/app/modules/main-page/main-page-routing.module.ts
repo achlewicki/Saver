@@ -1,3 +1,4 @@
+import { AccountResolverService } from './../../services/resolvers/account-resolver/account-resolver.service';
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 import { AccountsComponent } from './accounts/accounts/accounts.component';
 import { OperationsViewComponent } from './operations/operations-view/operations-view.component';
@@ -13,6 +14,9 @@ const routes: Routes = [
   {
     path: '',
     component: MainPageCoreComponent,
+    resolve: {
+      account: AccountResolverService
+    },
     children: [
       {
         path: '',

@@ -1,4 +1,4 @@
-import { HeaderService } from '#services/header-service/header.service';
+import { MainPageService } from '#services/main-page-service/main-page.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -11,14 +11,15 @@ import { map } from 'rxjs/operators';
 export class DashboardComponent implements OnInit {
 
   constructor(
-    private hservice: HeaderService,
-    private route: ActivatedRoute
+    private mpservice: MainPageService
   ) { }
 
   ngOnInit(): void {
-    this.route.data
-      .pipe(map(data => data.viewname))
-      .subscribe((x) => this.hservice.viewTitle.next(x));
+    this.mpservice.activeView.next({
+      name: 'dashboard',
+      title: 'Tablica',
+      icon: 'clipboard'
+    });
   }
 
 }

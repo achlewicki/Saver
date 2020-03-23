@@ -1,12 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import { HeaderService } from '#services/header-service/header.service';
-import { ActivatedRoute } from '@angular/router';
-import {map, startWith} from 'rxjs/operators';
-import { CategoryService} from '#services/category-service/category.service';
-import {CategoryModel} from '#models/category.model';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {CategoryAddModel} from '#models/categoryAdd.model';
+import { Component, OnInit } from '@angular/core';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+import { map, startWith } from 'rxjs/operators';
+import { CategoryService } from '#services/category-service/category.service';
+import { CategoryModel } from '#models/category.model';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { CategoryAddModel } from '#models/categoryAdd.model';
 
 @Component({
   selector: 'svr-categories',
@@ -27,36 +26,37 @@ export class CategoriesComponent implements OnInit {
   private newCategoryLimit: number;
 
   constructor(
-    private readonly hservice: HeaderService,
-    private readonly route: ActivatedRoute,
+    private readonly mpService: MainPageService,
     private readonly categoryService: CategoryService
   ) {
-      this.addCategoryPanel = false;
-      this.newCategoryTitle = '';
+    this.addCategoryPanel = false;
+    this.newCategoryTitle = '';
 
-      this.categoryService.getAllCategories().subscribe(
-        (response) => {
-          this.categoriesList = response;
-          this.categoriesList.forEach((value) => {
-            this.options.push(value.title);
-          });
-          this.visibleCategory = this.options;
-          console.log(this.categoriesList);
-        }
-      );
+    this.categoryService.getAllCategories().subscribe(
+      (response) => {
+        this.categoriesList = response;
+        this.categoriesList.forEach((value) => {
+          this.options.push(value.title);
+        });
+        this.visibleCategory = this.options;
+        console.log(this.categoriesList);
+      }
+    );
 
-    }
+  }
 
-    ngOnInit(): void {
-    this.route.data
-      .pipe(map(data => data.viewname))
-      .subscribe((x) => this.hservice.viewTitle.next(x));
+  ngOnInit(): void {
+    this.mpService.activeView.next({
+      name: 'categories',
+      title: 'Kategorie',
+      icon: 'clipboard'
+    });
 
     this.filteredOptions = this.categoriesControl.valueChanges
-        .pipe(
-          startWith(''),
-          map(value => this._filter(value))
-        );
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
 
     this.filteredOptions.subscribe(response => {
       this.visibleCategory = response;
@@ -69,7 +69,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   private isContaing(title: string): boolean {
-    return this.visibleCategory.find(value => value === title) ? true : false ;
+    return this.visibleCategory.find(value => value === title) ? true : false;
   }
 
   private addCategory() {
