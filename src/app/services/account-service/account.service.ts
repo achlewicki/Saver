@@ -27,14 +27,14 @@ export class AccountService {
   }
 
   public listAccounts(userId: number): Observable<AccountModel[]> {
-    return this.http.get<AccountModel[]>(this.listAccountURL + userId, this.httpHeader)
+    return this.http.get<AccountModel[]>(this.listAccountURL + userId, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } })
       .pipe(
         catchError(this.handleError)
       );
   }
 
   public getFirstAccount(userId: number): Observable<AccountModel> {
-    return this.http.get<AccountModel>(this.getFirstAccountURL + userId, { headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } })
+    return this.http.get<AccountModel>(this.getFirstAccountURL + userId, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } })
       .pipe(
         catchError(this.handleError)
       );

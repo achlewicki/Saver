@@ -1,12 +1,41 @@
 .container{
+  //background: red;
   margin-top: 20px;
   flex-wrap: wrap;
-  margin-left: 10px;
+  //margin-left: 10px;
   width: 100%;
+}
+
+.category-list {
+  //background: red;
+  //flex-wrap: wrap;
+}
+
+.test {
+  //background: yellow;
+}
+
+.title {
+  //background: green;
+  //padding-right: 870px;
+  //padding-top: 40px;
+  //padding-bottom: 20px;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.add-category-button {
+  margin-left: -690px;
+  display: flex;
 }
 
 .control-panel{
   width: 100%;
+  //background: blue;
+  text-align: right;
+  justify-self: right;
+  justify-items: right;
+  justify-content: right;
 }
 
 .category-container{

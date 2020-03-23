@@ -12,7 +12,7 @@ $account-selection-width: 175px;
 
 .selection-button-active {
   display: inline-flex;
-  width: $account-selection-width;
+  width: $account-selection-width + 25px;
   background: #7EBFFF;
   margin-top: 20px;
   cursor: pointer;
@@ -22,7 +22,7 @@ $account-selection-width: 175px;
   font-family: Roboto, monospace;
   box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.30);
   border-radius: 2px;
-  height: 20px;
+  height: 40px;
 }
 
 .selection-button-no-active {
@@ -61,13 +61,20 @@ $account-selection-width: 175px;
   color: white;
 }
 
+.account-name {
+  //display: flex;
+  width: 250px;
+  padding: 0px 20px;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
 .dropdown-icon {
-  //margin-left: 35px;
-  align-content: flex-end;
 }
 
 .account-icon-expanded {
-  margin-right: 35px;
+  //margin-right: 35px;
 }
 
 .account-icon-short {
