@@ -1,31 +1,13 @@
-<div class="nav-container" [ngClass]="isWide ? 'wide-nav' : 'short-nav'">
-  <div class="user-section">
-    <p>AVATAR</p>
-    <p>EMAIL?</p>
-    <p>lvl</p>
+<div class="nav-container" [ngClass]="isWide ? 'wide-nav' : 'short-nav'" fxLayout="column">
+  <div class="logo-container">
+    <img alt="SaveIt" src="assets/images/logo.svg" class="logo-image">
+    <p class="logo-text" *ngIf="isWide">Saver</p>
   </div>
-  <div class="nav-list">
-    <ul>
-      <a routerLink="/main">
-        <li> DASHBOARD </li>
-      </a>
-      <a routerLink="/main/operations">
-        <li> OPERATIONS </li>
-      </a>
-      <a routerLink="/main/accounts">
-        <li> ACCOUNTS (TEMP) </li>
-      </a>
-      <a routerLink="/main/categories">
-        <li> CATEGORIES </li>
-      </a>
-      <a routerLink="/main/achievements">
-        <li> ACHIEVEMENTS </li>
-      </a>
-    </ul>
-  </div>
+  <svr-nav-account-list [expanded]="isWide"></svr-nav-account-list>
+  <svr-nav-list [shortVersion]="isWide"></svr-nav-list>
   <div class="bottom-section">
-    <a routerLink="/main/profile">
-      USER-SETTINGS
-    </a>
+    <span class="arrow-icon" (click)="toggleNavWidth()">
+      <fa-icon icon="chevron-right" [rotate]="isWide? '180': '0'"></fa-icon>
+    </span>
   </div>
 </div>

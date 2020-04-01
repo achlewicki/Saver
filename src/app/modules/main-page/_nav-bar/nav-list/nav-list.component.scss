@@ -1,0 +1,33 @@
+@import '../nav-bar/nav-bar.component.scss';
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.list-element {
+  margin: 7px;
+}
+
+.list-element:hover,
+.active-element {
+  background-color: #2B94FB;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.10);
+}
+
+.list-element-icon {
+  width: 2em;
+  font-size: 28px;
+  text-align: center;
+  color: $font-color;
+  padding: 12px;
+}
+
+.list-element-name {
+  margin-left: 10px;
+  font-weight: 500;
+  color: $font-color;
+}

@@ -2,13 +2,15 @@
       fxLayout
       fxLayout.xs="column"
       fxLayoutAlign="center">
-  <h1 fxFlex="100%"
-      fxLayoutAlign="center">Twoje kategorie</h1>
+  <h1 class="title" fxFlex="100%"
+      fxLayoutAlign="left">KATEGORIE
+  </h1>
+
   <div class="control-panel"
         fxFlex="100%"
        fxLayoutAlign="center">
     <button mat-raised-button
-           class="add-category"
+           class="add-category-button"
            type="image"
            src=""
            fxLayoutAlign="center"
@@ -43,7 +45,8 @@
     </div>
   </div>
 
-  <ng-container *ngFor="let category of this.categoriesList; let i = index">
+
+  <div class="test" *ngFor="let category of this.categoriesList; let i = index">
     <div class="category-container"
          [ngStyle]="{'border': '4px solid ' + category.color}"
          *ngIf="isContaing(category.title)">
@@ -69,7 +72,9 @@
         </div>
       </div>
     </div>
-  </ng-container>
+  </div>
+
+
 </div>
 
 

@@ -1,12 +1,12 @@
-import {Component, OnInit} from '@angular/core';
-import { HeaderService } from '#services/header-service/header.service';
-import { ActivatedRoute } from '@angular/router';
-import {map, startWith} from 'rxjs/operators';
-import { CategoryService} from '#services/category-service/category.service';
-import {CategoryModel} from '#models/category.model';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {CategoryAddModel} from '#models/categoryAdd.model';
+import { Component, OnInit } from '@angular/core';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+import { map, startWith } from 'rxjs/operators';
+import { CategoryService } from '#services/category-service/category.service';
+import { CategoryModel } from '#models/category.model';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { CategoryAddModel } from '#models/categoryAdd.model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'svr-categories',
@@ -27,7 +27,7 @@ export class CategoriesComponent implements OnInit {
   private newCategoryLimit: number;
 
   constructor(
-    private readonly hservice: HeaderService,
+    private readonly mpService: MainPageService,
     private readonly route: ActivatedRoute,
     private readonly categoryService: CategoryService
   ) {
@@ -49,6 +49,15 @@ export class CategoriesComponent implements OnInit {
           console.log(this.categoriesList);
         }
       );
+
+  }
+
+  ngOnInit(): void {
+    this.mpService.activeView.next({
+      name: 'categories',
+      title: 'Kategorie',
+      icon: 'clipboard'
+    });
 
     this.route.data
       .pipe(map(data => data.viewname))

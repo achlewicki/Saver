@@ -1,0 +1,83 @@
+$account-selection-width: 175px;
+
+.account-selection {
+  display: table;
+  align-items: center;
+  align-content: center;
+  background: #0681f8;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.selection-button-active {
+  display: inline-flex;
+  width: $account-selection-width + 25px;
+  background: #7EBFFF;
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+  padding: 10px 30px;
+  font-family: Roboto, monospace;
+  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.30);
+  border-radius: 2px;
+  height: 40px;
+}
+
+.selection-button-no-active {
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  background: #7EBFFF;
+  margin-top: 20px;
+  cursor: pointer;
+  color: white;
+  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.30);
+  border-radius: 2px;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+}
+
+.account-selection-list {
+  background: #0681f8;
+  display: inline-block;
+  align-items: center;
+  align-content: center;
+  width: $account-selection-width + 60px;
+  padding-top: 10px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.10);
+  //border-radius: 2px 0 15px 15px;
+}
+
+.manageAccounts {
+  cursor: pointer;
+  text-align: right;
+  padding-top: 8px;
+  padding-right: 15px;
+  padding-bottom: 5px;
+  font-size: 12px;
+  color: white;
+}
+
+.account-name {
+  //display: flex;
+  width: 250px;
+  padding: 0px 20px;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+}
+
+.dropdown-icon {
+}
+
+.account-icon-expanded {
+  //margin-right: 35px;
+}
+
+.account-icon-short {
+
+}
+

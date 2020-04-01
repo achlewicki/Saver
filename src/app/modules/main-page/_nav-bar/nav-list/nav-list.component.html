@@ -1,0 +1,14 @@
+<div class="container" fxLayout="column">
+  <ul>
+    <ng-container *ngFor="let element of navElements">
+      <a [routerLink]="element.url">
+        <li class="list-element" fxLayout="row" [ngClass]="element.name === activeElementName? 'active-element' : ''">
+          <span class="list-element-icon" fxFlexAlign="center">
+            <fa-icon [icon]='element.icon'></fa-icon>
+          </span>
+          <p class="list-element-name" fxFlexAlign="center" *ngIf="shortVersion">{{ element.title }}</p>
+        </li>
+      </a>
+    </ng-container>
+  </ul>
+</div>

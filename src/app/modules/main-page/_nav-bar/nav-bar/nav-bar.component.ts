@@ -1,5 +1,6 @@
-import { HeaderService } from '#services/header-service/header.service';
 import { Component, OnInit } from '@angular/core';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+
 
 @Component({
   selector: 'svr-nav-bar',
@@ -8,13 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  protected isWide: boolean;
+  protected accountName: string;
+  protected isWide = true;
 
-  constructor(private hservice: HeaderService) { }
+  protected toggleNavWidth(): void {
+    this.isWide = !this.isWide;
+  }
+
+  constructor(private mpservice: MainPageService) {
+  }
 
   ngOnInit(): void {
-    this.hservice.wideNavBar.subscribe(
-      (status: boolean) => this.isWide = status
+    this.mpservice.activeAccount.subscribe(
+      (result) => this.accountName = result.name
     );
   }
 }
+
