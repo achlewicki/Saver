@@ -1,0 +1,71 @@
+$myWidth: var(--levelWidth);
+$animationTime: var(--animationTime);
+
+.level-number{
+  font-size: 28px;
+  color: white;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-family: 'Lato', sans-serif;
+  font-weight: bold;
+  //text-shadow: -1px 0 #00033F , 0 1px #00033F, 1px 0 #00033F, 0 -1px #00033F;
+  //border: solid red 2px;
+  border-radius: 100000px;
+  background-color: #0681f8;
+  margin-left: 10px;
+  margin-right: 10px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.level-container{
+  //border: solid red 2px;
+}
+
+.level-bar{
+  height: 29px;
+  line-height: 25px;
+  color: black;
+  min-width: 800px;
+  border-radius: 20px;
+  border: solid #373737 2px;
+  position: relative;
+  margin-top: 5px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+}
+
+.level-bar:after{
+  content: '';
+  background-color: #0681f8;
+  height: 25px;
+  transition: 0.8s;
+  display: block;
+  width: $myWidth;
+  animation: animate 1 $animationTime;
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.user-experience{
+  position: absolute;
+  text-align: center;
+  width: 100px !important;
+  left: calc(50% - 50px);
+  z-index: 3;
+  font-family: Roboto, sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+}
+
+@keyframes animate {
+  0%{
+    width: 0;
+  }
+
+  100%{
+    width: $myWidth;
+  }
+}
+
+

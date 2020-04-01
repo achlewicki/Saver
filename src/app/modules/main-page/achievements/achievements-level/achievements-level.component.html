@@ -1,6 +1,14 @@
-<div class="container"
-      fxLayoutAlign="center"
-      fxFlex="100%">
-  {{ this.user.level }} <br>
-  {{ this.user.experience }}
+<p class="label"
+   fxLayoutAlign="center"
+   fxFlex="100%">
+  Zdobyte doświadczenie
+</p>
+<div class="level-container"
+     fxFlex="100%"
+     fxLayoutAlign="center">
+  <p class="level-number">1</p>
+  <div class="level-bar" fxFlex="70%">
+    <p class="user-experience">{{this.user.experience}} / 500</p>
+  </div>
+  <p class="level-number">20</p>
 </div>

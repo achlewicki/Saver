@@ -1,3 +1,32 @@
 .container{
   flex-wrap: wrap;
 }
+
+svr-achievements-all, svr-achievements-last, svr-achievements-level{
+  flex-wrap: wrap;
+  background-color: white;
+  overflow: hidden;
+  height: auto;
+  margin: 30px 20px 40px 40px;
+  //width: auto;
+  //width: -moz-calc(100% - 70px);
+  //width: -webkit-calc(100% - 70px);
+  //width: calc(100% - 70px);
+  border-radius: 15px;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+  padding: 10px 10px 10px 10px;
+}
+
+svr-achievements-all{
+  padding-bottom: 40px;
+}
+
+
+.label{
+  font-family: 'Lato', sans-serif;
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  //margin-top: 8px;
+  //border: solid red 2px;
+}

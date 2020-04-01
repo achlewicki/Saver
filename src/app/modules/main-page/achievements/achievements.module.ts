@@ -5,6 +5,7 @@ import {AchievementsLevelComponent} from '#modules/main-page/achievements/achiev
 import {AchievementsLastComponent} from '#modules/main-page/achievements/achievements-last/achievements-last.component';
 import { AchievementsViewComponent } from './achievements-view/achievements-view.component';
 import {FlexModule} from '@angular/flex-layout';
+import {MatProgressBarModule} from '@angular/material';
 
 
 
@@ -15,9 +16,10 @@ import {FlexModule} from '@angular/flex-layout';
     AchievementsLastComponent,
     AchievementsViewComponent
   ],
-  imports: [
-    CommonModule,
-    FlexModule
-  ]
+    imports: [
+        CommonModule,
+        FlexModule,
+        MatProgressBarModule
+    ]
 })
 export class AchievementsModule { }

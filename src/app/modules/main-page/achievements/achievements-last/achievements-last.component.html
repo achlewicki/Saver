@@ -1,1 +1,17 @@
-<p>achievements-last works!</p>
+<p class="label"
+   fxFlex="100%"
+   fxLayoutAlign="center">
+  Twoje ostatnie osiągnięcia
+</p>
+<div class="achievement-container-last"
+    fxFlex="80%"
+     fxLayoutAlign="center"
+    *ngFor="let achievement of this.Achievements">
+  <img class="achievement-img-last" alt="{{achievement.title}}" src="{{achievement.img}}">
+  <div class="achievement-info" fxFlex="60%">
+    <p class="achievement-title-last" fxFlex="100%"><strong>Nazwa: </strong>{{achievement.title}}</p>
+    <p class="achievement-description-last" fxFlex="100%"><strong>Zdobyto za: </strong>{{achievement.description}}</p>
+    <p class="achievement-date-last" fxFlex="100%"><strong>Data: </strong>{{achievement.date}}</p>
+    <p class="achievement-percentage-last" fxFlex="100%"><strong>Procent: </strong>81.34%</p>
+  </div>
+</div>
