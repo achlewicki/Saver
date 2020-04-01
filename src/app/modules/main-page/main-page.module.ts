@@ -10,6 +10,7 @@ import { OperationsModule } from './operations/operations.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { CategoriesModule } from '#modules/main-page/categories/categories.module';
+import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
 
 import { HeaderComponent } from './_header/header.component';
 
@@ -33,6 +34,7 @@ import { MatIconModule } from '@angular/material';
     OperationsModule,
     UserProfileModule,
     CategoriesModule,
+    AchievementsModule,
     FontAwesomeModule,
     MatIconModule,
     FlexModule

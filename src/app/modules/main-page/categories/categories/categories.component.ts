@@ -38,30 +38,27 @@ export class CategoriesComponent implements OnInit {
 
     }
 
-    ngOnInit(): void {
-      this.categoryService.getAllCategories().subscribe(
-        (response) => {
-          this.categoriesList = response;
-          this.categoriesList.forEach((value) => {
-            this.options.push(value.title);
-          });
-          this.visibleCategory = this.options;
-          console.log(this.categoriesList);
-        }
-      );
-
-  }
-
   ngOnInit(): void {
+    this.categoryService.getAllCategories().subscribe(
+      (response) => {
+        this.categoriesList = response;
+        this.categoriesList.forEach((value) => {
+          this.options.push(value.title);
+        });
+        this.visibleCategory = this.options;
+        console.log(this.categoriesList);
+      }
+    );
+
     this.mpService.activeView.next({
       name: 'categories',
       title: 'Kategorie',
       icon: 'clipboard'
     });
-
-    this.route.data
-      .pipe(map(data => data.viewname))
-      .subscribe((x) => this.hservice.viewTitle.next(x));
+    //
+    // this.route.data
+    //   .pipe(map(data => data.viewname))
+    //   .subscribe((x) => this.hservice.viewTitle.next(x));
 
     this.filteredOptions = this.categoriesControl.valueChanges
         .pipe(
