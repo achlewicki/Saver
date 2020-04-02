@@ -1,0 +1,111 @@
+.fl-container {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.fl-header {
+  margin: 30px 0;
+
+  .logo-image {
+    width: 60px;
+  }
+
+  .logo-text {
+    margin-left: 15px;
+    font-size: 25px;
+    color: #444444;
+  }
+}
+
+.fl-footer {
+  border-top: 1px solid #e9e9e9;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  p {
+    color: #d3d3d3;
+    font-size: 14px;
+  }
+}
+
+.fl-stepper {
+  min-height: 750px;
+}
+
+.step-container {
+  margin: 50px 5%;
+}
+
+.step-footer {
+  margin: 50px 7% 20px 7%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.fl-text {
+  color: #333333;
+  font-size: 18px;
+  margin: 7px 0;
+}
+
+.fl-info {
+  display: flex;
+  margin: 1em 0;
+  color: #999999;
+  font-size: 12px;
+
+  fa-icon {
+    margin: 0 10px;
+  }
+}
+
+.fl-text-header {
+  margin: 20px 0;
+  font-size: 22px;
+  font-weight: normal;
+}
+
+.fl-header-logo {
+  font-size: 50px;
+  font-weight: bolder;
+  margin: 0 0 15px 0;
+}
+
+.step-1-container {}
+
+.step-2-container {
+  .fl-month-day-input {
+    margin: 20px 0;
+    width: 190px;
+  }
+}
+
+.step-4-container {}
+
+
+.fl-button-next {}
+
+.fl-button-previous {}
+
+.mat-form-field-no-border-hover {
+
+  ::ng-deep .mat-form-field-outline-end,
+  ::ng-deep .mat-form-field-outline-start {
+    border-width: 1px !important;
+    color: #e0e0e0 !important;
+  }
+}
+
+.mat-form-field-fixed-padding {
+  ::ng-deep .mat-form-field-infix {
+    padding: 1.1em 2px .8em 2px !important;
+    border: 0 !important;
+  }
+}
+
+.mat-step-no-hover {
+  ::ng-deep .mat-step-header {
+    background-color: transparent !important;
+  }
+}

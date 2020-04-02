@@ -38,12 +38,20 @@ $projekt-theme: mat-light-theme($projekt-primary, $projekt-accent, $projekt-warn
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
+// html,
+// body {
+//   height: 100%;
+// }
 
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.main-color {
+  color: #0681f8;
+}
+
+.main-bg-color {
+  background-color: #0681f8;
 }

@@ -36,11 +36,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
   canLoad(
     route: Route,
     segments: UrlSegment[]): Promise<boolean> {
-    return this.checkUser(route.path);
+    return this.checkUser('/' + segments.join('/'));
   }
 
-  private async checkUser(redirectUrl: string): Promise<boolean> {
-    const redirect = () => this.router.navigateByUrl('/login');
+  private async checkUser(redirectUrl?: string): Promise<boolean> {
+    const redirect = () => this.router.navigate(['/login'], { queryParams: { redirectUrl } });
     if (config.skipAuth) {
       localStorage.setItem('token', config.adminAccount.token);
       localStorage.setItem('user.id', config.adminAccount.user.id);
@@ -53,7 +53,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     }
 
     try {
-      const verificationResult = await this.authService.verifyToken(localStorage.getItem('token'));
+      const verificationResult = await this.authService.verifyToken(localStorage.getItem('token')).toPromise();
       if (!verificationResult) { redirect(); }
       return verificationResult;
     } catch (error) {

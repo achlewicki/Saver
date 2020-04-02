@@ -1,11 +1,10 @@
 <header>
-  <a routerLink="/home"> <img alt="SaveIt" src="assets/images/logo.png" class="logo"> </a>
+  <a routerLink="/home"><img alt="SaveIt" src="assets/images/logo.png" class="logo"></a>
   <nav>
     <ul class="buttons">
       <li class="navBarButton"><a routerLink="/home" routerLinkActive="active">Home</a></li>
-      <li class="navBarButton"><a (click)="onLogInClick()">Log In</a></li>
+      <li class="navBarButton"><a routerLink="/login">Log In</a></li>
       <li class="navBarButton"><a routerLink="/register" routerLinkActive="active">Sign Up</a></li>
     </ul>
   </nav>
 </header>
-<svr-login-window (closing)="logInClicked=($event)" *ngIf="logInClicked"></svr-login-window>

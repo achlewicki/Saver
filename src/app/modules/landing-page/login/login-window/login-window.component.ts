@@ -1,8 +1,8 @@
 import { LoginModel } from '#models/login.model';
 import { AuthorisationService } from '#services/auth-service/authorisation.service';
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -11,17 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-window.component.scss']
 })
 
-export class LoginWindowComponent {
-  @Output()
-  public closing: EventEmitter<boolean> = new EventEmitter();
+export class LoginWindowComponent implements OnInit {
   protected loginForm: FormGroup;
   protected loginError: boolean;
   protected loginChceckPending: boolean;
   protected errorInfo: string;
+  private redirectUrl: string;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly loginService: AuthorisationService,
+    private readonly route: ActivatedRoute,
     private readonly router: Router
   ) {
     this.loginForm = this.fb.group({
@@ -32,8 +32,9 @@ export class LoginWindowComponent {
     this.loginChceckPending = false;
   }
 
-  protected onCloseLogInClicked(): void {
-    this.closing.emit(false);
+  ngOnInit(): void {
+    this.redirectUrl = this.route.snapshot.queryParams.redirectUrl;
+    if (this.redirectUrl) { this.errorInfo = 'Musisz się zalogować'; }
   }
 
   protected onSubmit(): void {
@@ -49,9 +50,13 @@ export class LoginWindowComponent {
           localStorage.setItem('user.id', response.user.id.toString());
           this.loginChceckPending = false;
           this.errorInfo = '';
-          this.router.navigateByUrl('/main');
+          if (this.redirectUrl) {
+            this.router.navigateByUrl(this.redirectUrl);
+          } else {
+            this.router.navigateByUrl('/main');
+          }
         },
-        (error) => {
+        (error: string) => {
           this.loginError = true;
           this.errorInfo = error;
           this.loginChceckPending = false;

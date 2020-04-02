@@ -1,11 +1,9 @@
 <div>
-  <div class="background" (click)="onCloseLogInClicked()"></div>
   <div class="login-form-window">
-    <span class="triangle"> </span>
-    <span class="triangle-second"> </span>
-    <button mat-icon-button class="close-button" (click)="onCloseLogInClicked()">X</button>
+    <span class="triangle"></span>
+    <span class="triangle-second"></span>
     <div class="login-form">
-      <h1>LOGIN</h1>
+      <h1> LOGIN </h1>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
         <mat-form-field>

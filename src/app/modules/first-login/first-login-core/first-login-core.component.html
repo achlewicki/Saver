@@ -1,0 +1,93 @@
+<div class="fl-container ">
+
+  <header class="fl-header" fxLayout="row">
+    <img src="assets/images/logo.svg" class="logo-image" fxFlexAlign="center" />
+    <h1 fxFlexAlign="center" class="logo-text">Saver</h1>
+  </header>
+
+  <mat-horizontal-stepper labelPosition="bottom" linear disableRipple="true" class="fl-stepper mat-step-no-hover">
+    <!-- Step 1 - Welcome -->
+    <mat-step>
+      <ng-template matStepLabel>Witaj</ng-template>
+      <div class="step-container step-1-container">
+        <h1 class="fl-text-header" style="margin: 10px 0;">Witaj w</h1>
+        <h1 class="fl-header-logo main-color">SAVER</h1>
+        <p class="fl-text">Potrzebujemy jeszcze kilku informacji abyś mógł w pełni korzystać z aplikacji. </p>
+        <p class="fl-text">Zajmiemy Ci tylko minutkę :)</p>
+      </div>
+      <div class="step-footer">
+        <button mat-stroked-button disableRipple="true" class="fl-button-next" matStepperNext>Rozpocznij</button>
+      </div>
+    </mat-step>
+
+    <!-- Step 2 - Configuration -->
+    <mat-step>
+      <ng-template matStepLabel>Dane konfiguracyjne</ng-template>
+      <div class="step-container step-2-container">
+        <p class="fl-text">Wybierz dzień rozpoczynający miesiąc byśmy mogli przygotować dla Ciebie raporty</p>
+        <mat-form-field appearance="outline"
+          class="fl-month-day-input mat-form-field-no-border-hover mat-form-field-fixed-padding">
+          <input matInput type="number" min="1" max="29" #monthInput value='1'>
+          <mat-hint>Dzień miesiąca od {{monthInput.min}} do {{monthInput.max}}</mat-hint>
+        </mat-form-field>
+        <div class="fl-info">
+          <fa-icon icon="info-circle"></fa-icon>
+          <p>Wybierz dzień który będzie rozpoczynał naliczanie operacji na następny miesiąc.
+            Najwygodniej, jeśli będzie to dzień, w którym otrzymujesz wynagrodzienie aby równomiernie rozłożyć swoje
+            wydatki.</p>
+        </div>
+      </div>
+      <div class="step-footer">
+        <button mat-stroked-button disableRipple="true" class="fl-button-previous" matStepperPrevious>Wróć</button>
+        <button mat-stroked-button disableRipple="true" class="fl-button-next" matStepperNext>Dalej</button>
+      </div>
+    </mat-step>
+
+    <!-- Step 3 - Easy start -->
+    <mat-step optional>
+      <ng-template matStepLabel>Łatwy start</ng-template>
+      <div class="step-container step-3-container">
+        <h1 class="fl-text-header">Dodanie transakcji / konta ?</h1>
+      </div>
+      <div class="step-footer">
+        <button mat-stroked-button disableRipple="true" class="fl-button-previous" matStepperPrevious>Wróć</button>
+        <button mat-stroked-button disableRipple="true" class="fl-button-next" matStepperNext>Dalej</button>
+      </div>
+    </mat-step>
+
+    <!-- Step 4 - User data -->
+    <mat-step optional [stepControl]='userDataGroup | async'>
+      <ng-template matStepLabel>Dane użytkownika</ng-template>
+      <div class="step-container step-4-container">
+        <h1 class="fl-text-header">Spersonalizuj swój profil</h1>
+        <p class="fl-text">Możesz pominąć ten krok, a zmian dokonać później w zakładce profilu.</p>
+        <svr-user-data></svr-user-data>
+      </div>
+      <div class="step-footer">
+        <button mat-stroked-button disableRipple="true" class="fl-button-previous" matStepperPrevious>Wróć</button>
+        <button mat-stroked-button disableRipple="true" class="fl-button-next" matStepperNext>Dalej</button>
+      </div>
+    </mat-step>
+
+    <!-- Step 5 - Done -->
+    <mat-step>
+      <ng-template matStepLabel>Używaj Saver!</ng-template>
+      <div class="step-container step-5-container">
+        <h1 class="fl-text-header">Wszystko gotowe!</h1>
+        <p class="fl-text">Wszystko gotowe abyś mógł korzystać z aplikacji. Kliknij przycisk poniżej i obserwuj swój
+          budżet z SAVER.</p>
+      </div>
+      <div class="step-footer">
+        <button mat-stroked-button disableRipple="true" class="fl-button-previous" matStepperPrevious>Wróć</button>
+        <button mat-raised-button disableRipple="true" class="fl-button-next" color="primary">Przejdź do
+          aplikacji</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+  <footer class="fl-footer">
+    <p>Saver 2020 &copy;</p>
+    <p>Zespół programowania #1</p>
+  </footer>
+
+</div>
