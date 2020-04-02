@@ -48,7 +48,7 @@ export class NavListComponent {
       name: 'achievements',
       title: 'Osiągnięcia',
       icon: 'award',
-      url: '/main'
+      url: '/main/achievements'
     }
   ];
 
