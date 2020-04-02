@@ -1,10 +1,12 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+
 import { config } from '#config/config';
 import { LoginModel } from '#models/login.model';
-import { Injectable } from '@angular/core';
+import { RegisterModel } from '#models/register.model';
+
 import { Observable, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import {RegisterModel} from '#models/register.model';
 
 @Injectable({
   providedIn: 'root'
@@ -41,15 +43,8 @@ export class AuthorisationService {
       );
   }
 
-  public async verifyToken(token: string): Promise<boolean> {
-    try {
-      const result = await this.http.post<boolean>(this.tokenAuthorisationURL + '/' + localStorage.getItem('token'), token)
-        .toPromise()
-        .then((res) => res);
-      return new Promise((res) => res(result));
-    } catch (error) {
-      return new Promise((res) => res(false));
-    }
+  public verifyToken(token: string): Observable<boolean> {
+    return this.http.post<boolean>(this.tokenAuthorisationURL + '/' + localStorage.getItem('token'), token);
   }
 
   public logout(): void {

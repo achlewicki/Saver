@@ -1,0 +1,38 @@
+<form [formGroup]='fGroup'>
+  <div class="user-data-form" fxLayout="row" fxFlexAlign="flex-start">
+    <div class="user-data-box avatar-box">
+      <div class="avatar">
+      </div>
+      <button mat-stroked-button>Dodaj avatar</button>
+    </div>
+    <div class="user-data-box inputs-box">
+
+      <label>Twoje imię</label>
+      <mat-form-field appearance="outline" class="mat-form-field-fixed-padding">
+        <input matInput formControlName="firstname">
+      </mat-form-field>
+
+      <label>Twoje nazwisko</label>
+      <mat-form-field appearance="outline" class="mat-form-field-no-border-hover mat-form-field-fixed-padding">
+        <input matInput formControlName="secondname">
+      </mat-form-field>
+
+      <label>Twoja data urodzenia</label>
+      <mat-form-field appearance="outline" class="mat-form-field-no-border-hover mat-form-field-fixed-padding">
+        <input matInput formControlName="birthday" [matDatepicker]="birthdaypicker">
+        <mat-datepicker-toggle matSuffix [for]="birthdaypicker"></mat-datepicker-toggle>
+        <mat-datepicker #birthdaypicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-radio-group class="radio-group" formControlName="sex">
+        <mat-radio-button value="K">Kobieta</mat-radio-button>
+        <mat-radio-button value="M">Mężczyzna</mat-radio-button>
+      </mat-radio-group>
+    </div>
+  </div>
+</form>
+<div class="fl-info">
+  <fa-icon icon="info-circle"></fa-icon>
+  <p>Dane te będą wykorzystywane jedynie do personalizacji aplikacji oraz w celach statystycznych aby jak najlepiej
+    optymalizować jej działanie</p>
+</div>

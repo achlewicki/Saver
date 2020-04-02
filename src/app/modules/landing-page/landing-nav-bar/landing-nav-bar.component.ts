@@ -6,13 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./landing-nav-bar.component.scss']
 })
 export class LandingNavBarComponent {
-  protected logInClicked: boolean;
 
-  constructor() {
-    this.logInClicked = false;
-  }
-
-  onLogInClick(): void {
-    this.logInClicked = !this.logInClicked;
-  }
 }

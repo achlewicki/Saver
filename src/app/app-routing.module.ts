@@ -18,6 +18,10 @@ const routes: Routes = [
     canLoad: [AuthGuard]
   },
   {
+    path: 'first-login',
+    loadChildren: () => import('#modules/first-login/first-login.module').then(module => module.FirstLoginModule)
+  },
+  {
     path: '',
     loadChildren: () => import('#modules/landing-page/landing-page.module').then(module => module.LandingPageModule)
   },

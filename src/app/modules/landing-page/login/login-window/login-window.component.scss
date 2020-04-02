@@ -71,20 +71,6 @@ $secondary-color: #01ca94;
   top: 50%;
   left: 50%;
 
-  .close-button {
-    position: absolute;
-    top: 1px;
-    right: 1px;
-    color: #AAA;
-    font-weight: 400;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-
-    &:hover {
-      color: #000;
-    }
-  }
-
   .login-form {
     margin: 5px 0 10px auto;
     width: 70%;
