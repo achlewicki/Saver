@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="first-box">
+    <p class="title">Ustawienia użytkownika</p>
+    <p class="subtitle">Tutaj możesz zmienić adres e-mail, zaktualizować hasło lub zdeaktywować konto.</p>
+
+    <form (ngSubmit)="SubmitEmailChange()">
+    <div class="change-email-div">
+     <p class="input-title">ZMIANA ADRESU E-MAIL</p>
+     <input [formControl]="userEmail" class="email-input" type="email" placeholder="Adres E-mail">
+      <div class="email-button-div">
+        <button class="email-button" type="submit">ZMIEŃ</button>
+      </div>
+    </div>
+    </form>
+
+    <form (ngSubmit)="SubmitPasswordChange()">
+    <div class="old-password-div">
+      <p class="input-title">AKTUALNE HASŁO</p>
+      <input class="password-input" type="password" name="fname" placeholder="">
+    </div>
+
+    <div class="new-password-div">
+      <p class="password-input-title">NOWE HASŁO</p>
+      <input [formControl]="userNewPassword" class="new-password-input" type="password" placeholder="">
+    </div>
+
+    <div class="confirm-password-div">
+      <p class="password-input-title">POTWIERDŹ NOWE HASŁO</p>
+      <input [formControl]="userConfirmPassword" class="confirm-password-input" type="password" placeholder="">
+    </div>
+    <div class="password-button-div">
+      <button class="password-button" [disabled]="!userNewPassword.valid && !userConfirmPassword.valid" type="submit">ZMIEŃ</button>
+    </div>
+    </form>
+  </div>
+
+
+  <form (ngSubmit)="SubmitInfoChange()">
+  <div class="second-box">
+    <p class="title">Ustawienia profilu</p>
+    <p class="subtitle">Tutaj możesz zmienić lub uzupełnić szczegółowe informacje o sobie oraz zmienić avatar.</p>
+
+    <div class="change-avatar-div">
+      <p class="avatar-change-title">ZMIANA AVATARU</p>
+      <img class="avatar-image" src="./assets/images/profile_image.jpg" height="200" width="200">
+      <button class="avatar-button">DODAJ</button>
+    </div>
+
+
+    <div class="optional-info-div">
+      <p class="input-title">TWOJE IMIĘ</p>
+      <input [formControl]="userFirstName" class="first-name-input" type="text">
+      <p class="input-title">TWOJE NAZWISKO</p>
+      <input [formControl]="userLastName" class="last-name-input" type="text">
+      <p class="input-title">TWOJA PŁEĆ</p>
+      <label class="sex-label">
+        <input (click)="onFemaleSexClick()" class="sex-button" type="radio" name="gender" value="female">Kobieta
+      </label>
+      <label class="sex-label">
+        <input (click)="onMaleSexClick()" class="sex-button" type="radio" name="gender" value="male">Mężczyzna
+      </label>
+    </div>
+
+
+    <div class="optional-info-div-second">
+      <p class="input-title">DATA URODZENIA</p>
+      <mat-form-field class="date-picker">
+        <input [formControl]="userBirthDate" matInput [matDatepicker]="picker1">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <p class="input-title">TWÓJ NICKNAME</p>
+      <input [formControl]="userNickname" class="last-name-input" type="text">
+      <button type="submit" [disabled]="!userFirstName.valid" class="save-button">ZAPISZ</button>
+    </div>
+  </div>
+  </form>
+
+  <div class="third-box">
+    <p class="title">Ustawienia okres rozliczeniowego</p>
+    <p class="subtitle">Tutaj możesz zmienić daty graniczne dla okresu rozliczeniowego w którym chcesz się rozliczać.</p>
+  </div>
+</div>

@@ -23,18 +23,18 @@ export class AccountService {
   ) {
     this.listAccountURL = config.backendUrl + '/user/accounts/';
     this.getFirstAccountURL = config.backendUrl + '/user/get-one-acc/';
-    this.getAccountNameURL = config.backendUrl + '/account/info/' + this.accountId;
+    this.getAccountNameURL = config.backendUrl + '/account/info/' + localStorage.getItem('user.id');
   }
 
-  public listAccounts(userId: number): Observable<AccountModel[]> {
-    return this.http.get<AccountModel[]>(this.listAccountURL + userId, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } })
+  public listAccounts(userId: string): Observable<AccountModel[]> {
+    return this.http.get<AccountModel[]>(this.listAccountURL + userId)
       .pipe(
         catchError(this.handleError)
       );
   }
-
+// { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }
   public getFirstAccount(userId: number): Observable<AccountModel> {
-    return this.http.get<AccountModel>(this.getFirstAccountURL + userId, { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } })
+    return this.http.get<AccountModel>(this.getFirstAccountURL + userId)
       .pipe(
         catchError(this.handleError)
       );

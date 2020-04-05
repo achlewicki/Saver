@@ -1,7 +1,5 @@
 import { MainPageService } from '#services/main-page-service/main-page.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'svr-dashboard',

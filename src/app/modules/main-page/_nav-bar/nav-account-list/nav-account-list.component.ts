@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AccountModel } from '#models/account.model';
-import { AccountService } from '#services/account-service/account.service';
-import { MainPageService } from '#services/main-page-service/main-page.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AccountModel} from '#models/account.model';
+import {AccountService} from '#services/account-service/account.service';
+import {MainPageService} from '#services/main-page-service/main-page.service';
 
 @Component({
   selector: 'svr-nav-account-list',

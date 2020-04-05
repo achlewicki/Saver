@@ -1,5 +1,6 @@
 <div class="account-selection">
-  <div [ngClass]="expanded ? 'selection-button-active' : 'selection-button-no-active'" [ngStyle]="{'background-color': this.account.color }"(click)="onAccountSelectionClick()">
+  <div [ngClass]="expanded ? 'selection-button-active' : 'selection-button-no-active'" (click)="onAccountSelectionClick()">
+    <!--[ngStyle]="{'background-color': this.account.color }"-->
     <span class="account-icon" [ngClass]="expanded ? 'account-icon-expanded' : 'account-icon-short'">
         <fa-icon icon="home"></fa-icon>
     </span>

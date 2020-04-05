@@ -11,6 +11,10 @@ import {MatInputModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {EditCategoryComponent} from '#modules/main-page/categories/categories/edit-category/edit-category.component';
+import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {
+  faCog
+} from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -30,11 +34,16 @@ import {EditCategoryComponent} from '#modules/main-page/categories/categories/ed
         MatInputModule,
         FormsModule,
         MatDividerModule,
-        MatButtonModule
+        MatButtonModule,
+        FontAwesomeModule
     ],
   exports: [
     CategoriesComponent,
     FlexLayoutModule
   ]
 })
-export class CategoriesModule { }
+export class CategoriesModule {
+  constructor(faLibrary: FaIconLibrary) {
+    faLibrary.addIcons(faCog);
+  }
+}

@@ -3,6 +3,12 @@
   </div>
 
   <div class="right-side">
+    <p class="profile-name">Witaj, Krzysztof!</p>
+    <div class="button-outer-div">
+      <button class="avatar-button" (click)="userSettings()">
+        <img class="avatar-image" src="./assets/images/profile_image_small.jpg" height="40" width="40">
+      </button>
+    </div>
     <button class="button">
       <fa-icon [icon]="faEnvelope" size="lg"></fa-icon>
     </button>
@@ -10,7 +16,7 @@
       <fa-icon [icon]="faBell" size="lg"></fa-icon>
     </button>
     <button class="logout-button button">
-      <fa-icon [icon]="faSignOutAlt" size="lg"></fa-icon>
+      <fa-icon [icon]="faSignOutAlt" (click)="logout()" size="lg"></fa-icon>
     </button>
   </div>
 </div>

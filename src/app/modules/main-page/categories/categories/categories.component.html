@@ -1,21 +1,15 @@
 <div class="container"
-      fxLayout
-      fxLayout.xs="column"
-      fxLayoutAlign="center">
+     fxLayout
+     fxLayout.xs="column"
+     fxLayoutAlign="center">
   <h1 class="title" fxFlex="100%"
       fxLayoutAlign="left">KATEGORIE
   </h1>
 
   <div class="control-panel"
-        fxFlex="100%"
+       fxFlex="100%"
        fxLayoutAlign="center">
-    <button mat-raised-button
-           class="add-category-button"
-           type="image"
-           src=""
-           fxLayoutAlign="center"
-            *ngIf="!this.addCategoryPanel"
-            (click)="this.addCategoryPanel = !this.addCategoryPanel">Dodaj Kategorię</button>
+
 
     <div *ngIf="this.addCategoryPanel" class="add-category-form">
       <input class="new-category-title" [(ngModel)]="this.newCategoryTitle">
@@ -43,30 +37,41 @@
         </mat-autocomplete>
       </mat-form-field>
     </div>
+
+    <button mat-button
+            class="add-category-button"
+            type="image"
+            src=""
+
+            *ngIf="!this.addCategoryPanel"
+            (click)="this.addCategoryPanel = !this.addCategoryPanel">Dodaj Kategorię
+    </button>
+
   </div>
 
 
   <div class="test" *ngFor="let category of this.categoriesList; let i = index">
     <div class="category-container"
-         [ngStyle]="{'border': '4px solid ' + category.color}"
+         [ngStyle]="{'border-top': '8px solid ' + category.color}"
          *ngIf="isContaing(category.title)">
-      <p class="category-name" fxLayoutAlign="center">{{category.title}}
+      <p class="category-name" fxLayoutAlign="center">{{category.title.toUpperCase()}}
         <a class="option-button" [routerLink]="['/main/categories/edit-category', category.id]">
-          <input alt="options"
-            class="option-button"
-            type="image"
-            fxLayout
-            src="assets/images/option_icon.png" alt="options">
-        </a>
-        </p>
+          <fa-icon icon="cog" class="option-button" fxLayout size="1x"></fa-icon>
+          <!--<input alt="options"
+                 class="option-button"
+                 type="image"
+                 fxLayout
+                 src="assets/images/option_icon.png" alt="options">-->
 
+        </a>
+      </p>
       <div class="subcategories-container"
            fxLayout
            fxLayoutAlign="center">
         <div class="subcategory"
              *ngFor="let subcategory of category.subcategories"
-             [ngStyle]="{'background-color': subcategory.color}"
-             fxFlex="17%"
+             [ngStyle]="{'border': '1px solid ' + subcategory.color}"
+             fxFlex="21%"
              fxLayoutAlign="center">
           {{ subcategory.title }}
         </div>
@@ -74,7 +79,4 @@
     </div>
   </div>
 
-
 </div>
-
-

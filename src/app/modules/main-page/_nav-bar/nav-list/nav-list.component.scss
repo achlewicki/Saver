@@ -27,6 +27,7 @@ a {
 }
 
 .list-element-name {
+  overflow: hidden;
   margin-left: 10px;
   font-weight: 500;
   color: $font-color;

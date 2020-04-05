@@ -14,6 +14,7 @@ import { HeaderComponent } from './_header/header.component';
 import { AddOperationButtonComponent } from './add-operation-button/add-operation-button.component';
 
 import { FlexModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {dialogs, DialogsModule} from './_dialogs/dialogs.module';
@@ -21,7 +22,6 @@ import {dialogs, DialogsModule} from './_dialogs/dialogs.module';
 import {
   MatIconModule,
   MatDialogModule,
-  MatButtonModule,
 } from '@angular/material';
 import {CategoriesModule} from '#modules/main-page/categories/categories.module';
 import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
@@ -42,6 +42,7 @@ const appModules = [
   DialogsModule,
   AchievementsModule,
 ];
+
 
 @NgModule({
   declarations: [
