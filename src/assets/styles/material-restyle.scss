@@ -1,0 +1,105 @@
+@import 'app-colors';
+
+// App Label
+
+.app-input-label {
+  position: absolute;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+// Material Form Field Style
+
+mat-form-field {
+
+  margin-top: 1em;
+
+  // ::ng-deep .mat-form-field-prefix,
+  // ::ng-deep .mat-form-field-suffix {
+  //   color: #bbbbbb;
+  // }
+
+  .app-input-label {
+    top: -1em;
+    left: -5px;
+  }
+}
+
+.mat-ff-no-border-hover {
+
+  &.mat-focused,
+  ::ng-deep .mat-form-field-flex:hover {
+
+    ::ng-deep .mat-form-field-outline-end,
+    ::ng-deep .mat-form-field-outline-start {
+      border-width: 1px;
+      color: $inputs-basic-border-color;
+    }
+  }
+}
+
+.mat-ff-fixed-padding {
+  ::ng-deep .mat-form-field-infix {
+    padding: 1.1em 2px .8em 2px;
+    border: 0;
+  }
+
+  ::ng-deep .mat-form-field-prefix,
+  ::ng-deep .mat-form-field-suffix {
+    top: 0;
+  }
+
+  mat-select {
+    ::ng-deep .mat-select-arrow-wrapper {
+      display: block;
+    }
+  }
+}
+
+// Mat Select
+
+// .mat-select-wrapper {
+//   position: relative;
+//   margin: 1em 0;
+//   padding: .8em;
+//   border: 1px solid $inputs-basic-border-color;
+//   border-radius: 5px;
+
+//   .app-input-label {
+//     top: -1.5em;
+//     left: 6px;
+//   }
+// }
+
+
+// Mat Stepper
+
+.mat-step-no-hover {
+  ::ng-deep .mat-step-header {
+    background-color: transparent !important;
+  }
+}
+
+
+// HTML File input style ( Chrome only ) TODO?
+
+.app-file-input::-webkit-file-upload-button {
+  background-color: inherit;
+  border: 1px solid $inputs-basic-border-color;
+  border-radius: 5px;
+  padding: 1em;
+  cursor: pointer;
+  outline: none;
+}
+
+.app-file-input::-webkit-file-upload-button:hover {
+  background-color: #f0f0f0;
+}
+
+.app-file-input::-webkit-file-upload-button:focus {
+  outline: none;
+}
+
+.app-file-input:focus {
+  outline: none;
+}

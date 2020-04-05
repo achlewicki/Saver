@@ -1,16 +1,9 @@
 import { Component } from '@angular/core';
-import { RegisterModel} from '#models/register.model';
-import {FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material';
-import {AuthorisationService} from '#services/auth-service/authorisation.service';
+import { RegisterModel } from '#models/register.model';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthorisationService } from '#services/auth-service/authorisation.service';
 import { Router } from '@angular/router';
-
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
+import { BasicErrorStateMatcher } from '#modules/shared/error-matchers/basic.error-state-matcher';
 
 @Component({
   selector: 'svr-register-window',
@@ -22,7 +15,7 @@ export class RegisterWindowComponent {
   protected registerError: boolean;
   protected errorInfo: string;
 
-  matcher = new MyErrorStateMatcher();
+  matcher = new BasicErrorStateMatcher();
 
   constructor(
     private readonly fb: FormBuilder,
@@ -33,7 +26,7 @@ export class RegisterWindowComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[#$@$!%*?&])[A-Za-z0-9\d$#@$!%*?&].{7,}')]],
       password2: ['', [Validators.required]]
-    }, {validator: this.checkPasswords });
+    }, { validator: this.checkPasswords });
     this.registerError = false;
   }
 
@@ -62,7 +55,7 @@ export class RegisterWindowComponent {
     return group.get('password').value === group.get('password2').value ? null : { notSame: true };
   }
 
-  private checkMessage(){
-    if(this.errorInfo === 'Nieprawidłowy login lub hasło') this.errorInfo = 'Podany email jest już zarejestrowany';
+  private checkMessage() {
+    if (this.errorInfo === 'Nieprawidłowy login lub hasło') this.errorInfo = 'Podany email jest już zarejestrowany';
   }
 }

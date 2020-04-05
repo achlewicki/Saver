@@ -31,10 +31,7 @@ export class CategoryService {
   }
 
   public getAllCategories(): Observable<CategoryModel[]> {
-    return this.http.get<CategoryModel[]>(this.allCategoriesURL, this.httpHeader)
-      // .pipe(
-      //   catchError(this.handleError))
-      ;
+    return this.http.get<CategoryModel[]>(this.allCategoriesURL, this.httpHeader);
   }
 
   public getCategoryInfo(categoryId: number): Observable<CategoryModel[]> {

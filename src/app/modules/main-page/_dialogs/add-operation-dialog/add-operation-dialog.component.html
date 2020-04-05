@@ -1,0 +1,99 @@
+<div class="dialog-container" fxLayout="column" fxLayoutGap="30px">
+
+  <header fxLayout="row" fxLayoutGap="10px">
+    <fa-icon [icon]="plusIcon" class="plus-icon"></fa-icon>
+    <h1 class="h-30">Dodaj operację</h1>
+  </header>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" *ngIf="account">
+    <fa-icon [icon]="homeIcon" [style.color]="account.color"></fa-icon>
+    <h1 class="h-18">{{ account.name }}</h1>
+  </div>
+
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start stretch" fxLayoutGap="50px">
+
+    <div class="operation-form" fxLayout="column" fxLayoutGap="30px">
+      <form [formGroup]='fGroup' id="add-operation-form" (ngSubmit)="submit()">
+
+        <!-- Title / Value -->
+        <div gdColumns="auto 27%" gdGap="10px">
+          <mat-form-field appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover"
+            title="Tytuł transakcji">
+            <label class="app-input-label">Tytuł*</label>
+            <input matInput #title maxlength="150" formControlName="title" [errorStateMatcher]="errorMatcher">
+            <mat-hint align="end">{{title.value?.length || 0}}/150</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover"
+            title="Wartość transakcji">
+            <label class="app-input-label">Kwota*</label>
+            <input matInput formControlName="value" [errorStateMatcher]="errorMatcher">
+            <span matSuffix>PLN</span>
+          </mat-form-field>
+        </div>
+
+        <!-- Description -->
+        <div fxLayout="row">
+          <mat-form-field fxFill appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover"
+            title="Opis transakcji (opcjonalnie)">
+            <label class="app-input-label">Opis</label>
+            <textarea matInput class="description-textarea" #description formControlName="description"
+              [errorStateMatcher]="errorMatcher" maxlength="300"></textarea>
+            <mat-hint align="end">{{description.value?.length || 0}}/300</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- Category -->
+        <div fxLayout="row">
+          <mat-form-field fxFill appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover"
+            title="Kategoria transakcji">
+            <label class="app-input-label">Kategoria*</label>
+            <mat-select formControlName="subCategory">
+              <!-- <mat-option value="" selected>Bez kategorii</mat-option> -->
+              <mat-optgroup *ngFor="let category of categories | async" [label]="category.title"
+                [style.color]="category.color">
+                <mat-option *ngFor="let subcategory of category.subcategories" [value]="subcategory">
+                  <div class="subcategory-color" [style.background-color]="subcategory.color"></div>
+                  <p>{{ subcategory.title }}</p>
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- File / Guarranty -->
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+          <input type="file" class="app-file-input"
+            title="Plik przypięty do pliku (opcjonalnie). Maksymalny rozmiar pliku 5MB." formControlName="file">
+          <mat-form-field appearance="outline" class="guarranty-input mat-ff-fixed-padding mat-ff-no-border-hover"
+            title="Okres gwarancyjny do transakcji (opcjonalnie)">
+            <label class="app-input-label">Gwarancja</label>
+            <input matInput formControlName="guarranty">
+            <mat-hint align="start">w miesiącach</mat-hint>
+          </mat-form-field>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="helping-box main-color" fxLayout="column" fxLayoutGap="20px">
+      <div class="sketch-box">
+        TODO Schematy
+      </div>
+      <div class="last-operations-box">
+        TODO Ostatanie transakcje
+      </div>
+    </div>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="space-between end">
+    <a class="app-a t-13"> Transakcje cykliczne</a>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <mat-progress-spinner *ngIf="pendingAddOperation" [mode]="'indeterminate'" [diameter]="22"></mat-progress-spinner>
+      <button mat-flat-button color="accent" class="submit-button" type="submit" form="add-operation-form"
+        [disabled]="pendingAddOperation">Dodaj</button>
+    </div>
+  </div>
+
+  <fa-icon [icon]="closeIcon" class="close-button" (click)="closeDialog()"></fa-icon>
+</div>
