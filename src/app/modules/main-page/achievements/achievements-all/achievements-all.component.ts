@@ -1,31 +1,46 @@
 import { Component, OnInit } from '@angular/core';
+import {UserAchievementModel} from '#models/userAchievement.model';
+import {AchievementsService} from '#services/achievements-service/achievements.service';
+import * as moment from 'moment';
+import {AchievementModel} from '#models/achievement.model';
 
 @Component({
   selector: 'svr-achievements-all',
   templateUrl: './achievements-all.component.html',
   styleUrls: ['./achievements-all.component.scss', '../achievements-view/achievements-view.component.scss']
 })
+
 export class AchievementsAllComponent implements OnInit {
-  private counter: number;
-  // private showDescription: boolean;
   private activeIndex: number;
-  Achievements = [
-    {id: 0, title: 'Achievement 1', img: '/assets/achievements/saved', date: '21/04/2019', description: 'Now, Say my name dwd wqd wd w dw d wdw dwd wdwd w dw dw dwd wdw dw dw dw', earned: true},
-    {id: 1, title: 'Achievement 2', img: '/assets/achievements/level10', date: null, description: 'You are Heisenberg dwd wqd wd w dw d wdw dwd wdwd w dw dw dwd wdw dw dw dw', earned: false},
-    {id: 2, title: 'Achievement 3', img: '/assets/achievements/level2', date: '02/07/2019', description: 'You are goddamn right dwd wqd wd w dw d wdw dwd wdwd w dw dw dwd wdw dw dw dw', earned: true},
-    {id: 3, title: 'Achievement 4', img: '/assets/achievements/login', date: '15/10/2019', description: 'I am the one who knock yym dwd wqd wd w dw d wdw dwd wdwd w dw dw dwd wdw dw dw dw', earned: true},
-    {id: 4, title: 'Achievement 5', img: '/assets/achievements/hello', date: null, description: 'Yeah, science bitch! dwd wqd wd w dw d wdw dwd wdwd w dw dw dwd wdw dw dw dw', earned: false}
-  ];
+  private userAchievements: UserAchievementModel[];
+  private achievements: AchievementModel[];
+  // private moment: moment;
 
-  constructor() {
+  constructor(
+    private readonly achievementsService: AchievementsService
+  ) {
     this.activeIndex = null;
-    this.Achievements.forEach(value => {
-      if (value.earned) { value.img += '_got.svg'; } else { value.img += '.svg'; }
-    });
+    this.achievementsService.getAllUserAchievements(parseInt(localStorage.getItem('user.id'), 10)).subscribe(
+      (response: UserAchievementModel[]) => {
+        this.userAchievements = response;
+      }
+    );
   }
 
-
-  ngOnInit() {
+   ngOnInit() {
+    this.achievementsService.getAllAchievements().subscribe(
+      (response) => {
+        this.achievements = response;
+        this.achievements.forEach(value => {
+          if (!!this.userAchievements.find(value1 => value1.achievement.id === value.id)) {
+            value.src = '/assets/achievements/' + value.id.toString() + '_got.svg';
+          } else {
+            value.src = '/assets/achievements/' + value.id.toString() + '.svg';
+            value.date = null;
+          }
+        });
+        console.log(this.achievements);
+      }
+    );
   }
-
 }

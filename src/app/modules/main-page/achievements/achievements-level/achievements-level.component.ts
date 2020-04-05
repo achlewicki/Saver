@@ -17,14 +17,12 @@ export class AchievementsLevelComponent implements OnInit {
     this.achievementsService.getUserInfo(parseInt(localStorage.getItem('user.id'), 10)).subscribe(
       (value) => {
         this.user = value;
-        this.levelPercentage = value.experience / 200 * 100;
+        this.levelPercentage = value.experience / 500 * 100;
         document.documentElement.style.setProperty('--levelWidth', (this.levelPercentage.toString() + '%'));
         const animationTime = this.levelPercentage / 10;
         document.documentElement.style.setProperty('--animationTime', (animationTime.toString() + 's'));
-        console.log(this.user);
       }
     );
-
   }
 
   ngOnInit() {
