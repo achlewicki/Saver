@@ -1,0 +1,84 @@
+@import 'material-restyle';
+@import 'app-colors', 'app-text';
+
+.dialog-container {
+  display: block;
+  position: relative;
+  padding: 10px;
+}
+
+.plus-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: .15em solid $saver-secondary-color;
+  border-radius: 100%;
+
+  width: 1.5em;
+  height: 1.5em;
+
+  color: $saver-secondary-color;
+  text-align: center;
+  font-size: 25px;
+}
+
+.close-button {
+  position: absolute;
+  top: -22px;
+  right: -20px;
+
+  color: #4d4d4d;
+  font-size: 27px;
+  cursor: pointer;
+}
+
+.submit-button {
+  width: 90px;
+  height: 40px;
+}
+
+.operation-form {
+  min-width: 480px;
+
+  .description-textarea {
+    min-height: 100px;
+    max-height: 200px;
+  }
+
+  .guarranty-input {
+    width: 30%;
+  }
+}
+
+.subcategory-color {
+  border-radius: 100%;
+  width: 1.2em;
+  height: 1.2em;
+  margin: -2px 7px 0 0;
+}
+
+mat-option {
+  ::ng-deep .mat-option-text {
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+
+.helping-box {
+  .sketch-box {
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    min-width: 250px;
+    height: 250px;
+  }
+
+  .last-operations-box {
+    border: 1px solid #aaaaaa;
+    border-radius: 5px;
+    min-width: 250px;
+    height: 150px;
+  }
+}

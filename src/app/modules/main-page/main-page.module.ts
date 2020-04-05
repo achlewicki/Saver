@@ -9,33 +9,55 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 import { OperationsModule } from './operations/operations.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AccountsModule } from './accounts/accounts.module';
-import { CategoriesModule } from '#modules/main-page/categories/categories.module';
+import { CategoriesModule } from './categories/categories.module';
+import { DialogsModule } from './_dialogs/dialogs.module';
 
 import { HeaderComponent } from './_header/header.component';
+import { AddOperationButtonComponent } from './add-operation-button/add-operation-button.component';
 
 import { FlexModule } from '@angular/flex-layout';
-import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { MatIconModule } from '@angular/material';
+
+import { dialogs } from './_dialogs/dialogs.module';
+
+import {
+  MatIconModule,
+  MatDialogModule,
+  MatButtonModule,
+} from '@angular/material';
+
+const matModules = [
+  MatButtonModule,
+  MatIconModule,
+  MatDialogModule
+];
+
+const appModules = [
+  NavBarModule,
+  UserProfileModule,
+  OperationsModule,
+  DashboardModule,
+  AccountsModule,
+  CategoriesModule,
+  DialogsModule
+];
 
 @NgModule({
   declarations: [
     MainPageCoreComponent,
-    HeaderComponent
+    HeaderComponent,
+    AddOperationButtonComponent
   ],
   imports: [
     CommonModule,
     MainPageRoutingModule,
-    MatButtonModule,
-    NavBarModule,
-    AccountsModule,
-    DashboardModule,
-    OperationsModule,
-    UserProfileModule,
-    CategoriesModule,
     FontAwesomeModule,
-    MatIconModule,
-    FlexModule
+    FlexModule,
+    ...appModules,
+    ...matModules,
+  ],
+  entryComponents: [
+    ...dialogs
   ]
 })
 export class MainPageModule { }

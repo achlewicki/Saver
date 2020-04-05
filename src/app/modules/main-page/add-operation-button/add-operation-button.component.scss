@@ -1,0 +1,47 @@
+.add-button-box {
+  position: fixed;
+  right: 0;
+  bottom: 60px;
+
+  width: 130px;
+  height: 100px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+
+  .add-button {
+    right: -35px;
+  }
+}
+
+.add-button {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  background-color: #27ff9a;
+  transition: right .3s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  cursor: pointer;
+
+  fa-icon {
+    font-size: 2.2rem;
+    color: #e8e8e8;
+  }
+}
+
+.add-button-box:hover {
+  .add-button {
+    right: 50px;
+  }
+}
+
+.add-button:hover {
+  background-color: #0bf387;
+}

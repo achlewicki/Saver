@@ -1,13 +1,12 @@
-import {Component} from '@angular/core';
-import {SubcategoryModel} from '#models/subcategory.model';
-import {CategoryModel} from '#models/category.model';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {SubcategoryService} from '#services/subcategory-service/subcategory.service';
-import {CategoryService} from '#services/category-service/category.service';
-import {SubcategoryAddModel} from '#models/subcategoryAdd.model';
-import {ActivatedRoute} from '@angular/router';
-import {MyErrorStateMatcher} from '#modules/landing-page/register/register-window/register-window.component';
-
+import { Component } from '@angular/core';
+import { SubcategoryModel } from '#models/subcategory.model';
+import { CategoryModel } from '#models/category.model';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SubcategoryService } from '#services/subcategory-service/subcategory.service';
+import { CategoryService } from '#services/category-service/category.service';
+import { SubcategoryAddModel } from '#models/subcategoryAdd.model';
+import { ActivatedRoute } from '@angular/router';
+import { BasicErrorStateMatcher } from '#modules/shared/error-matchers/basic.error-state-matcher';
 
 @Component({
   selector: 'svr-edit-category',
@@ -19,7 +18,7 @@ export class EditCategoryComponent {
   private editingForm: FormGroup;
   private addingForm: FormGroup;
   private category: CategoryModel;
-  private matcher = new MyErrorStateMatcher();
+  private matcher = new BasicErrorStateMatcher();
 
   constructor(
     private readonly fb: FormBuilder,

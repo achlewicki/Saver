@@ -33,6 +33,11 @@ export class OperationsService {
         tap(a => console.log(a))
       );
   }
+
+  public addOperation(accountId: number, operation: OperationModel): Observable<OperationModel> {
+    const url = config.backendUrl + '/operation/add/' + localStorage.getItem('user.id') + '/' + operation.subcategory.id;
+    return this.http.post<OperationModel>(url, operation, this.httpHeader);
+  }
 }
 
 export interface OperationResult {
@@ -41,7 +46,8 @@ export interface OperationResult {
   type: number;
   value: number;
   date: string;
-  intoAccount: boolean;
+  intoAccount: string;
   guarantyDays: number;
+  distinction: string;
   subcategory: SubcategoryModel;
 }
