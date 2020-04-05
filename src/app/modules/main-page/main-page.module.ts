@@ -9,8 +9,6 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 import { OperationsModule } from './operations/operations.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AccountsModule } from './accounts/accounts.module';
-import { CategoriesModule } from './categories/categories.module';
-import { DialogsModule } from './_dialogs/dialogs.module';
 
 import { HeaderComponent } from './_header/header.component';
 import { AddOperationButtonComponent } from './add-operation-button/add-operation-button.component';
@@ -18,13 +16,15 @@ import { AddOperationButtonComponent } from './add-operation-button/add-operatio
 import { FlexModule } from '@angular/flex-layout';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { dialogs } from './_dialogs/dialogs.module';
+import {dialogs, DialogsModule} from './_dialogs/dialogs.module';
 
 import {
   MatIconModule,
   MatDialogModule,
   MatButtonModule,
 } from '@angular/material';
+import {CategoriesModule} from '#modules/main-page/categories/categories.module';
+import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
 
 const matModules = [
   MatButtonModule,
@@ -39,7 +39,8 @@ const appModules = [
   DashboardModule,
   AccountsModule,
   CategoriesModule,
-  DialogsModule
+  DialogsModule,
+  AchievementsModule,
 ];
 
 @NgModule({
@@ -51,6 +52,7 @@ const appModules = [
   imports: [
     CommonModule,
     MainPageRoutingModule,
+    MatButtonModule,
     FontAwesomeModule,
     FlexModule,
     ...appModules,

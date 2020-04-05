@@ -6,6 +6,7 @@ import { CategoryModel } from '#models/category.model';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CategoryAddModel } from '#models/categoryAdd.model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'svr-categories',
@@ -27,11 +28,17 @@ export class CategoriesComponent implements OnInit {
 
   constructor(
     private readonly mpService: MainPageService,
+    private readonly route: ActivatedRoute,
     private readonly categoryService: CategoryService
   ) {
-    this.addCategoryPanel = false;
-    this.newCategoryTitle = '';
+      this.addCategoryPanel = false;
+      this.newCategoryTitle = '';
 
+
+
+    }
+
+  ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe(
       (response) => {
         this.categoriesList = response;
@@ -43,20 +50,21 @@ export class CategoriesComponent implements OnInit {
       }
     );
 
-  }
-
-  ngOnInit(): void {
     this.mpService.activeView.next({
       name: 'categories',
       title: 'Kategorie',
       icon: 'clipboard'
     });
+    //
+    // this.route.data
+    //   .pipe(map(data => data.viewname))
+    //   .subscribe((x) => this.hservice.viewTitle.next(x));
 
     this.filteredOptions = this.categoriesControl.valueChanges
-      .pipe(
-        startWith(''),
-        map(value => this._filter(value))
-      );
+        .pipe(
+          startWith(''),
+          map(value => this._filter(value))
+        );
 
     this.filteredOptions.subscribe(response => {
       this.visibleCategory = response;
@@ -69,7 +77,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   private isContaing(title: string): boolean {
-    return this.visibleCategory.find(value => value === title) ? true : false;
+    return this.visibleCategory.find(value => value === title) ? true : false ;
   }
 
   private addCategory() {
@@ -85,6 +93,7 @@ export class CategoriesComponent implements OnInit {
 
     this.categoryService.addCategory(this.categoryAdd).subscribe(
       (value: CategoryModel) => {
+        if(!this.categoriesList) this.categoriesList = [];
         this.categoriesList.push(value);
         this.options.push(value.title);
         this.visibleCategory.push(value.title);

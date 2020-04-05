@@ -9,7 +9,7 @@ import { MainPageService } from '#services/main-page-service/main-page.service';
 })
 export class NavBarComponent implements OnInit {
 
-  protected accountName: string;
+  // protected accountName: string;
   protected isWide = true;
 
   protected toggleNavWidth(): void {
@@ -20,9 +20,9 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.mpservice.activeAccount.subscribe(
-      (result) => this.accountName = result.name
-    );
+    // this.mpservice.activeAccount.subscribe(
+    //   (result) => this.accountName = result.name
+    // );
   }
 }
 

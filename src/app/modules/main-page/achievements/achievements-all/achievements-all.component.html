@@ -1,0 +1,27 @@
+<p class="label"
+    fxFlex="100%"
+    fxLayoutAlign="center">Wszystkie osiągnięcia</p>
+<div class="achievement-container"
+     *ngFor="let achievement of this.achievements">
+  <img src="{{achievement.src}}"
+       alt="{{achievement.title}}"
+       class="achievement-image"
+       (mouseleave)="this.activeIndex = null"
+       (mouseover)="this.activeIndex = achievement.id">
+  <div class="description"
+       fxLayoutAlign="center"
+       *ngIf="this.activeIndex === achievement.id">
+    <p class="achievement-title">
+    <strong>Tytuł: </strong>{{achievement.title}}
+    </p>
+    <p *ngIf="achievement.date != null" class="achievement-date">
+      <strong>Data: </strong>{{this.moment(this.achievement.date).format('dd, DD.MM.YYYY HH:mm')}}
+    </p>
+    <p *ngIf="achievement.date == null" class="achievement-date">
+      <strong>Jeszcze nie zdobyto</strong>
+    </p>
+    <p class="achievement-description">
+      <strong>Opis: </strong>{{achievement.description}}
+    </p>
+  </div>
+</div>

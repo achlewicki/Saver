@@ -1,0 +1,38 @@
+.achievement-container{
+  margin-top: 10px;
+  //border: solid crimson 1px;
+  position: relative;
+}
+
+.achievement-image{
+  width: 200px;
+  height: 200px;
+  //border: solid red 1px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.description{
+  position: absolute;
+  top: 80%;
+  width: 120%;
+  left: -15%;
+  border-radius: 20px;
+  background-color: #00ab65;
+  //border: solid crimson 1px;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  z-index: 30;
+  flex-wrap: wrap;
+  animation: linear;
+}
+
+.achievement-title, .achievement-date, .achievement-description{
+  width: 100%;
+  text-align: center;
+}
+
+//.description:after{
+//  animation: animate 1 3s;
+//}
+
