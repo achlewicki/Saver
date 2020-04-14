@@ -9,6 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {CategoriesComponent} from '#modules/main-page/categories/categories/categories.component';
 import {EditCategoryComponent} from '#modules/main-page/categories/categories/edit-category/edit-category.component';
 import {AchievementsViewComponent} from '#modules/main-page/achievements/achievements-view/achievements-view.component';
+import {RaportViewComponent} from '#modules/main-page/raport/raport-view/raport-view.component';
 
 
 const routes: Routes = [
@@ -53,6 +54,11 @@ const routes: Routes = [
         path: 'achievements',
         component: AchievementsViewComponent,
         data: { viewname: 'achievements'}
+      },
+      {
+        path: 'raports',
+        component: RaportViewComponent,
+        data: { viewname: 'raports'}
       }
     ]
   }

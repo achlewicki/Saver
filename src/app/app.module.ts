@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { ChartsModule} from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -22,7 +22,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     FlexLayoutModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

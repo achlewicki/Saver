@@ -42,7 +42,7 @@ export class NavListComponent {
       name: 'raports',
       title: 'Raporty',
       icon: 'chart-bar',
-      url: '/main'
+      url: '/main/raports'
     },
     {
       name: 'achievements',

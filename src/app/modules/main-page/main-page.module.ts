@@ -25,6 +25,7 @@ import {
 } from '@angular/material';
 import {CategoriesModule} from '#modules/main-page/categories/categories.module';
 import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
+import {RaportModule} from '#modules/main-page/raport/raport.module';
 
 const matModules = [
   MatButtonModule,
@@ -41,6 +42,7 @@ const appModules = [
   CategoriesModule,
   DialogsModule,
   AchievementsModule,
+  RaportModule
 ];
 
 @NgModule({
