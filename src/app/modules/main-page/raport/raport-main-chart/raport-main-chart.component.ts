@@ -48,6 +48,7 @@ export class RaportMainChartComponent implements OnInit {
       easing: 'linear',
       duration: 2000
     },
+    showLines: false
   };
 
   private chartLabel: Label[] = [];

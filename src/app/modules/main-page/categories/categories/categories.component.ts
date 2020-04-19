@@ -5,8 +5,9 @@ import { CategoryService } from '#services/category-service/category.service';
 import { CategoryModel } from '#models/category.model';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { CategoryAddModel } from '#models/categoryAdd.model';
 import {ActivatedRoute} from '@angular/router';
+import {MatDialog} from '@angular/material';
+import {EditCategoryComponent} from '#modules/main-page/categories/edit-category/edit-category.component';
 
 @Component({
   selector: 'svr-categories',
@@ -20,23 +21,13 @@ export class CategoriesComponent implements OnInit {
   private filteredOptions: Observable<string[]>;
   private options: string[] = [];
   private visibleCategory: string[] = [];
-  private categoryAdd: CategoryAddModel;
-  private addCategoryPanel: boolean;
-  private newCategoryTitle: string;
-  private newCategoryColor: string;
-  private newCategoryLimit: number;
 
   constructor(
     private readonly mpService: MainPageService,
     private readonly route: ActivatedRoute,
-    private readonly categoryService: CategoryService
-  ) {
-      this.addCategoryPanel = false;
-      this.newCategoryTitle = '';
-
-
-
-    }
+    private readonly categoryService: CategoryService,
+    private readonly dialogs: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.categoryService.getAllCategories().subscribe(
@@ -46,7 +37,7 @@ export class CategoriesComponent implements OnInit {
           this.options.push(value.title);
         });
         this.visibleCategory = this.options;
-        console.log(this.categoriesList);
+        // console.log(this.categoriesList);
       }
     );
 
@@ -77,27 +68,63 @@ export class CategoriesComponent implements OnInit {
   }
 
   private isContaing(title: string): boolean {
-    return this.visibleCategory.find(value => value === title) ? true : false ;
+    return !!this.visibleCategory.find(value => value === title) ;
   }
 
-  private addCategory() {
-    this.categoryAdd = {
-      title: this.newCategoryTitle,
-      color: this.newCategoryColor,
-      limit: this.newCategoryLimit
-    };
+  private openEditCategoryDialog(id: number): void {
+    const categoriesTitle: string [] = [];
+    this.categoriesList.forEach(value => categoriesTitle.push(value.title));
+    categoriesTitle.splice(categoriesTitle.findIndex(value => value === this.categoriesList[id].title), 1);
+    const editDialog = this.dialogs.open(EditCategoryComponent, {
+      data: {
+        category: this.categoriesList[id],
+        operation: 'editing',
+        titles: categoriesTitle
+      },
+      hasBackdrop: true,
+      maxHeight: '850px',
+      disableClose: true // with false there are issues with update
+    });
 
-    this.newCategoryTitle = '';
-    this.newCategoryColor = '';
-    this.newCategoryLimit = null;
+    editDialog.afterClosed().subscribe(value => {
+      switch (value.operation) {
+        case 'update':
+          this.categoriesList.splice(id, 1, value.category);
+          console.log(this.categoriesList);
+          break;
 
-    this.categoryService.addCategory(this.categoryAdd).subscribe(
-      (value: CategoryModel) => {
-        if(!this.categoriesList) this.categoriesList = [];
-        this.categoriesList.push(value);
-        this.options.push(value.title);
-        this.visibleCategory.push(value.title);
+        case 'delete':
+          this.categoriesList.splice(id, 1);
+          break;
+
+        case 'cancel':
+          break;
       }
-    );
+      this.ngOnInit();
+    });
+  }
+
+  private addCategory(): void {
+    if (this.categoriesList.length <= 8) {
+      const newCategory: CategoryModel = {title: 'Nowa kategoria', color: 'blue', limit: 1000, subcategories: [] = []};
+      const categoriesTitle: string [] = [];
+      this.categoriesList.forEach(value => categoriesTitle.push(value.title));
+      const addDialog = this.dialogs.open(EditCategoryComponent, {
+        data: {
+          category: newCategory,
+          operation: 'adding',
+          titles: categoriesTitle
+        },
+        hasBackdrop: true,
+        maxHeight: '850px',
+        disableClose: true // with false there are issues with update
+      });
+
+      addDialog.afterClosed().subscribe(value => {
+        this.categoriesList.push(value.category);
+        console.log(this.categoriesList);
+        this.ngOnInit();
+      });
+    } else { alert('Osiągnięto limit możliwych do posiadania kategorii wynoszący 8.'); }
   }
 }

@@ -1,3 +1,5 @@
+@import 'app-colors', 'app-text';
+
 .container{
   //background: red;
   margin-top: 20px;
@@ -12,7 +14,10 @@
 }
 
 .test {
-  //background: yellow;
+  //display: block;
+  //width: 400px;
+  //flex-wrap: wrap;
+  //border: solid red 10px;
 }
 
 .title {
@@ -78,4 +83,8 @@
   margin-right: 10px;
   margin-left: auto;
   margin-top: 5px;
+}
+
+.add-category-button{
+  margin-left: 0;
 }

@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import {CategoriesComponent} from './categories/categories.component';
 import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
-
 import {RouterModule} from '@angular/router';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDividerModule, MatFormFieldModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {EditCategoryComponent} from '#modules/main-page/categories/categories/edit-category/edit-category.component';
+import {EditCategoryComponent} from '#modules/main-page/categories/edit-category/edit-category.component';
+import {ColorPickerModule} from 'ngx-color-picker';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 
 
@@ -30,7 +30,9 @@ import {EditCategoryComponent} from '#modules/main-page/categories/categories/ed
         MatInputModule,
         FormsModule,
         MatDividerModule,
-        MatButtonModule
+        MatButtonModule,
+        ColorPickerModule,
+        FontAwesomeModule
     ],
   exports: [
     CategoriesComponent,

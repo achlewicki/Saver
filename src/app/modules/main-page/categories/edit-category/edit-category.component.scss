@@ -1,0 +1,23 @@
+@import 'material-restyle';
+@import 'app-colors', 'app-text';
+.dialog-container{
+  margin-top: 20px;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.submit-button-category {
+  width: auto;
+  height: 40px;
+}
+
+.submit-button-subcategory {
+  width: auto;
+  height: 40px;
+}
+
+.subcategory-buttons{
+  padding-top: 15px;
+}
+

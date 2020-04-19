@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ChartsModule} from 'ng2-charts';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,7 +24,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FlexLayoutModule,
     AppRoutingModule,
     FontAwesomeModule,
-    ChartsModule
+    ChartsModule,
+    ColorPickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
