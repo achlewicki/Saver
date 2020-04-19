@@ -26,7 +26,7 @@ export class AccountService {
     this.getAccountNameURL = config.backendUrl + '/account/info/' + localStorage.getItem('user.id');
   }
 
-  public listAccounts(userId: string): Observable<AccountModel[]> {
+  public listAccounts(userId: number): Observable<AccountModel[]> {
     return this.http.get<AccountModel[]>(this.listAccountURL + userId)
       .pipe(
         catchError(this.handleError)
