@@ -9,11 +9,16 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 import { OperationsModule } from './operations/operations.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AccountsModule } from './accounts/accounts.module';
+import { CategoriesModule } from './categories/categories.module';
+import { DialogsModule } from './_dialogs/dialogs.module';
+import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
+import {RaportModule} from '#modules/main-page/raport/raport.module';
 
 import { HeaderComponent } from './_header/header.component';
 import { AddOperationButtonComponent } from './add-operation-button/add-operation-button.component';
 
 import { FlexModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {dialogs, DialogsModule} from './_dialogs/dialogs.module';
@@ -23,9 +28,7 @@ import {
   MatDialogModule,
   MatButtonModule,
 } from '@angular/material';
-import {CategoriesModule} from '#modules/main-page/categories/categories.module';
-import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
-import {RaportModule} from '#modules/main-page/raport/raport.module';
+
 
 const matModules = [
   MatButtonModule,

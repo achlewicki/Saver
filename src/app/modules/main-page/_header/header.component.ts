@@ -1,10 +1,10 @@
 import { Router } from '@angular/router';
 import { AuthorisationService } from '#services/auth-service/authorisation.service';
 import { MainPageService } from '#services/main-page-service/main-page.service';
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
-import { faEnvelope, faBell, faBars, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import {NavAccountListComponent} from '#modules/main-page/_nav-bar/nav-account-list/nav-account-list.component';
+import { faEnvelope, faBell, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 @Component({
   selector: 'svr-header',
@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   protected title: string;
   faEnvelope = faEnvelope;
   faBell = faBell;
-  faBars = faBars;
+  faUser = faUser;
   faSignOutAlt = faSignOutAlt;
 
   constructor(
@@ -33,5 +33,9 @@ export class HeaderComponent implements OnInit {
   protected logout(): void {
     this.authService.logout();
     this.router.navigateByUrl('/');
+  }
+
+  protected userSettings(): void {
+    this.router.navigateByUrl('/main/user-settings');
   }
 }

@@ -12,10 +12,12 @@ $nav-main-color: #0681f8;
 
 .wide-nav {
   width: $nav-max-width;
+  transition-duration: 0.4s;
 }
 
 .short-nav {
   width: 70px;
+  transition-duration: 0.4s;
 }
 
 .logo-container {

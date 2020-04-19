@@ -6,6 +6,8 @@ import { map } from 'rxjs/operators';
 import { OperationFilters } from '#models/operations-filters.model';
 
 import * as moment from 'moment';
+import {MainPageService} from '#services/main-page-service/main-page.service';
+import {icon} from '@fortawesome/fontawesome-svg-core';
 @Component({
   selector: 'svr-operations',
   templateUrl: './operations-view.component.html',
@@ -29,6 +31,7 @@ export class OperationsViewComponent implements OnInit {
   protected filtersButtonText: string;
 
   constructor(
+    private readonly mainPageService: MainPageService,
     private readonly operationsService: OperationsService
   ) {
     this.groupedOperations = [];
@@ -48,6 +51,11 @@ export class OperationsViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.mainPageService.activeView.next({
+        name: 'operations',
+        title: 'Operacje',
+        icon: 'clipboard'
+      });
     this.operationsService.getOperationsByAccount(this.accountId).subscribe(
       result => {
         this.allOperations = result;

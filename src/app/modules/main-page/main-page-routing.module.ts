@@ -7,8 +7,10 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {CategoriesComponent} from '#modules/main-page/categories/categories/categories.component';
-import {EditCategoryComponent} from '#modules/main-page/categories/edit-category/edit-category.component';
+import {EditCategoryComponent} from '#modules/main-page/categories/categories/edit-category/edit-category.component';
+import {UserSettingsComponent} from '#modules/main-page/user-settings/user-settings/user-settings.component';
 import {AchievementsViewComponent} from '#modules/main-page/achievements/achievements-view/achievements-view.component';
+import {EditCategoryComponent} from '#modules/main-page/categories/edit-category/edit-category.component';
 import {RaportViewComponent} from '#modules/main-page/raport/raport-view/raport-view.component';
 
 
