@@ -51,6 +51,11 @@ const routes: Routes = [
         data: { viewname: 'edit-category'}
       },
       {
+        path: 'user-settings',
+        component: UserSettingsComponent,
+        data: { viewname: 'user-settings'}
+      },
+      {
         path: 'achievements',
         component: AchievementsViewComponent,
         data: { viewname: 'achievements'}

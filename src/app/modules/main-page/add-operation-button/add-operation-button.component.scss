@@ -1,3 +1,5 @@
+@import 'app-colors', 'app-text';
+
 .add-button-box {
   position: fixed;
   right: 0;
@@ -21,7 +23,8 @@
   width: 70px;
   height: 70px;
   border-radius: 100%;
-  background-color: #27ff9a;
+  //background-color: #27ff9a;
+  background-color: #0681f8;
   transition: right .3s;
 
   display: flex;
@@ -43,5 +46,5 @@
 }
 
 .add-button:hover {
-  background-color: #0bf387;
+  background-color: #2B94FB;
 }

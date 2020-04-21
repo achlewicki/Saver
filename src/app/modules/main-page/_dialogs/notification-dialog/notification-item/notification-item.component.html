@@ -1,0 +1,7 @@
+<div class="notification" fxLayout="row" (click)="markNotificationAsRead()">
+  <fa-icon class="icon" [ngStyle]="{'background-color': ' ' + this.iconColor }" [icon]='iconName' size="2x" fxLayoutAlign="center center"></fa-icon>
+  <div fxLayout="column">
+    <p [ngClass]="notification.seen ? 'title-seen' : 'title-not-seen'">{{ notification.title }}</p>
+    <p [ngClass]="notification.seen ? 'description-seen' : 'description-not-seen'">{{ notification.description }}</p>
+  </div>
+</div>

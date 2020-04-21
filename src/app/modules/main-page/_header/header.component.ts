@@ -5,6 +5,10 @@ import {Component, Input, OnInit} from '@angular/core';
 
 import { faEnvelope, faBell, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
+import {MatDialog} from '@angular/material';
+import {UserInfoDialogComponent} from '#modules/main-page/_dialogs/user-info-dialog/user-info-dialog.component';
+import {NotificationDialogComponent} from '#modules/main-page/_dialogs/notification-dialog/notification-dialog.component'
+
 
 @Component({
   selector: 'svr-header',
@@ -16,13 +20,13 @@ export class HeaderComponent implements OnInit {
   protected title: string;
   faEnvelope = faEnvelope;
   faBell = faBell;
-  faUser = faUser;
   faSignOutAlt = faSignOutAlt;
 
   constructor(
     private mpservice: MainPageService,
     private readonly authService: AuthorisationService,
-    private router: Router
+    private router: Router,
+    private readonly dialogs: MatDialog
   ) {
   }
 
@@ -35,7 +39,29 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
-  protected userSettings(): void {
-    this.router.navigateByUrl('/main/user-settings');
+  protected openUserInfoDialog(): void {
+    this.dialogs.open(UserInfoDialogComponent, {
+      panelClass: 'custom-dialog-container',
+      hasBackdrop: true,
+      maxHeight: '850px',
+      // disableClose: true,
+      position: {
+        top: '65px',
+        right: '50px'
+      },
+    });
+  }
+
+  protected openNotificationDialog(): void {
+    this.dialogs.open(NotificationDialogComponent, {
+      panelClass: 'custom-dialog-container',
+      hasBackdrop: true,
+      maxHeight: '850px',
+      // disableClose: true,
+      position: {
+        top: '65px',
+        right: '50px'
+      },
+    });
   }
 }

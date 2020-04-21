@@ -25,6 +25,7 @@ import {
 } from '@angular/material';
 import {CategoriesModule} from '#modules/main-page/categories/categories.module';
 import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
+import {UserSettingsModule} from '#modules/main-page/user-settings/user-settings.module';
 
 const matModules = [
   MatButtonModule,
@@ -39,6 +40,7 @@ const appModules = [
   DashboardModule,
   AccountsModule,
   CategoriesModule,
+  UserSettingsModule,
   DialogsModule,
   AchievementsModule,
 ];

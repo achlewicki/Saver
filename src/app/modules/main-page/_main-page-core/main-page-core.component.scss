@@ -11,9 +11,10 @@
 
 .header {
   //box-shadow: 0 2px 20px -1px rgba(0,0,0,0.20);
-  box-shadow: 0 13px 30px 0 rgba(0, 0, 0, 0.10);
+  //box-shadow: 0 13px 30px 0 rgba(0, 0, 0, 0.10);
   z-index: 10;
   grid-area: header;
+  background: #ecf0f7;
 }
 
 .nav-bar {
@@ -31,7 +32,6 @@
   grid-area: view;
   overflow: auto;
   z-index: 8;
-  background: #ecf0f7;
 }
 
 // Scrollbar
