@@ -1,14 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-
-import { AddOperationDialogComponent } from './add-operation-dialog/add-operation-dialog.component';
-import { UserInfoDialogComponent } from './user-info-dialog/user-info-dialog.component';
-import { NotificationDialogComponent } from './notification-dialog/notification-dialog.component';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {
   MatInputModule,
@@ -18,7 +12,7 @@ import {
   MatSelectModule,
   MatProgressSpinnerModule
 } from '@angular/material';
-import { NotificationItemComponent } from './notification-dialog/notification-item/notification-item.component';
+
 import {
   faAward,
   faCalendarAlt,
@@ -30,6 +24,16 @@ import {
   faList, faMoneyBillWave
 } from '@fortawesome/free-solid-svg-icons';
 
+import { AppMessageDialogComponent } from './app-message-dialog/app-message-dialog.component';
+import { AddAccountDialogComponent } from './add-account-dialog/add-account-dialog.component';
+import { AddOperationDialogComponent } from './add-operation-dialog/add-operation-dialog.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { UserInfoDialogComponent } from './user-info-dialog/user-info-dialog.component';
+import { NotificationDialogComponent } from './notification-dialog/notification-dialog.component';
+import { NotificationItemComponent } from './notification-dialog/notification-item/notification-item.component';
+
+import { accountIconsPack } from './add-account-dialog/account-icons';
+import { ProcessDialogComponent } from './process-dialog/process-dialog.component';
 
 const matModules = [
   MatButtonModule,
@@ -42,6 +46,10 @@ const matModules = [
 
 export const dialogs = [
   AddOperationDialogComponent,
+  ConfirmDialogComponent,
+  AddAccountDialogComponent,
+  AppMessageDialogComponent,
+  ProcessDialogComponent,
   UserInfoDialogComponent,
   NotificationDialogComponent
 ];
@@ -59,11 +67,12 @@ export const dialogs = [
     ...matModules
   ],
   exports: [
-    ...dialogs,
+    ...dialogs
   ]
 })
 export class DialogsModule {
   constructor(faLibrary: FaIconLibrary) {
+    faLibrary.addIconPacks(accountIconsPack);
     faLibrary.addIcons(faClipboard, faExchangeAlt, faList, faCalendarAlt, faChartBar, faAward, faChevronRight, faChevronDown, faHome, faExclamation, faLevelUpAlt, faCoins);
   }
 }

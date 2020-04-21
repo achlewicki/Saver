@@ -1,3 +1,4 @@
+import { navElements } from './../nav-elements';
 import { MainPageService } from '#services/main-page-service/main-page.service';
 import { Component, Input } from '@angular/core';
 
@@ -12,45 +13,7 @@ export class NavListComponent {
   protected shortVersion: boolean;
 
   protected activeElementName: string;
-
-  protected navElements: NavElement[] = [
-    {
-      name: 'dashboard',
-      title: 'Tablica',
-      icon: 'clipboard',
-      url: '/main'
-    },
-    {
-      name: 'operations',
-      title: 'Transakcje',
-      icon: 'exchange-alt',
-      url: '/main/operations'
-    },
-    {
-      name: 'categories',
-      title: 'Kategorie',
-      icon: 'list',
-      url: '/main/categories'
-    },
-    {
-      name: 'calendar',
-      title: 'Kalendarz',
-      icon: 'calendar-alt',
-      url: '/main'
-    },
-    {
-      name: 'raports',
-      title: 'Raporty',
-      icon: 'chart-bar',
-      url: '/main/raports'
-    },
-    {
-      name: 'achievements',
-      title: 'Osiągnięcia',
-      icon: 'award',
-      url: '/main/achievements'
-    }
-  ];
+  protected navElements = navElements;
 
   constructor(private readonly mpService: MainPageService) {
     this.mpService.activeView.subscribe(view => this.setActiveElement(view.name));
@@ -61,11 +24,4 @@ export class NavListComponent {
     this.activeElementName = result ? result.name : '';
   }
 
-}
-
-interface NavElement {
-  name: string;
-  title: string;
-  icon: string;
-  url: string;
 }

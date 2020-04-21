@@ -1,0 +1,23 @@
+<div class="account-details-container app-box">
+  <div fxLayout="column" fxLayoutGap="50px">
+
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div class="account-title" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+        <fa-icon icon="home" [style.color]="account.color"></fa-icon>
+        <span class="h-18-b">{{ account.name }}</span>
+      </div>
+      <div class="option-buttons" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+        <button mat-stroked-button>
+          <fa-icon icon="pen"></fa-icon>
+        </button>
+        <button mat-stroked-button color="warn" (click)="deleteAccountProcess(account)">
+          <fa-icon icon="trash-alt"></fa-icon>
+        </button>
+      </div>
+    </div>
+
+    <svr-account-balance-details></svr-account-balance-details>
+
+    <svr-account-details-summary></svr-account-details-summary>
+  </div>
+</div>

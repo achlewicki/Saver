@@ -17,9 +17,9 @@ import {
   faChartBar,
   faAward,
   faChevronRight,
-  faChevronDown, faHome
+  faChevronDown,
+  faHome
 } from '@fortawesome/free-solid-svg-icons';
-
 
 
 @NgModule({

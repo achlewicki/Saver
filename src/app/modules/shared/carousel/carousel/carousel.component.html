@@ -1,0 +1,16 @@
+<div style="display: flex; justify-content: center; align-items: center;">
+  <button (click)="prev()" class="btn btn-prev" [disabled]="this.currentSlide === 0">
+    <fa-icon [icon]="arrow"></fa-icon>
+  </button>
+  <section class="carousel-wrapper">
+    <ul class="carousel-inner" #carousel>
+      <li *ngFor="let item of items">
+        <ng-container [ngTemplateOutlet]="item.templateRef"></ng-container>
+      </li>
+    </ul>
+  </section>
+  <button (click)="next()" class="btn btn-next"
+    [disabled]="this.currentSlide + this.numberOfItems === this.items.length">
+    <fa-icon [icon]="arrow"></fa-icon>
+  </button>
+</div>

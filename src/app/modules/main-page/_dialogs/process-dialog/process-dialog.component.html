@@ -1,0 +1,30 @@
+<div class="process-dialog-container" [ngSwitch]="state" fxLayout="column" fxLayoutGap="20px"
+  fxLayoutAlign="center center">
+
+  <ng-container *ngSwitchCase="'initialization'">
+    <fa-icon [icon]="questionIcon"></fa-icon>
+    <p class="h-18-b primary">{{ data.title }}</p>
+    <p class="t-15 secondary">{{ data.initializeMessage }}</p>
+    <div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="center center">
+      <button mat-stroked-button (click)="closeDialog(false)">Anuluj</button>
+      <button mat-flat-button color="primary" (click)="startProcess()">Kontynuuj</button>
+    </div>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'processing'">
+    <mat-progress-spinner [mode]="'indeterminate'" [diameter]="40"></mat-progress-spinner>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'failure'">
+    <fa-icon [icon]="failureIcon" class="failure circle-icon"></fa-icon>
+    <p class="h-18-b failure">{{ data.failureMessage }}</p>
+    <button mat-stroked-button (click)="closeDialog(false)">OK</button>
+  </ng-container>
+
+  <ng-container *ngSwitchCase="'success'">
+    <fa-icon [icon]="successIcon" class="success circle-icon"></fa-icon>
+    <p class="h-18-b success">{{ data.successMessage }}</p>
+    <button mat-stroked-button (click)="closeDialog(true)">OK</button>
+  </ng-container>
+
+</div>

@@ -1,0 +1,45 @@
+<div class="account-select-wrapper">
+  <div class=" account-select-container app-box" fxLayout="column">
+    <p class="t-15-b primary p-title"> Moje konta </p>
+    <div class="accounts-list" *ngIf="accounts; else loadingList">
+      <ng-container *ngFor="let account of accounts">
+        <div fxLayout="row" class="accounts-list-element" fxLayoutAlign="start center" (click)="selectAccount(account)">
+          <div class="icon-box">
+            <div class="icon" [style.color]="account.color">
+              <fa-icon icon="home"></fa-icon>
+            </div>
+            <div class="icon-background" [style.background-color]="account.color"></div>
+          </div>
+          <div fxLayout="column" fxFlex="auto" fxLayoutGap="5px">
+            <p class="account-name t-15-b primary">{{ account.name }}</p>
+            <p class="account-balance t-13 secondary">{{ account.balance }} PLN</p>
+          </div>
+        </div>
+      </ng-container>
+      <div fxLayout="row" class="accounts-list-element add-element" fxLayoutAlign="start center"
+        [ngClass]="addAccountDisabled ? 'disabled' : '' " (click)="addAccount()">
+        <div class=" icon-box">
+          <div class="icon">
+            <fa-icon icon="plus"></fa-icon>
+          </div>
+          <div class="icon-background"></div>
+        </div>
+        <div class="t-15 primary">
+          Dodaj konto
+        </div>
+      </div>
+    </div>
+    <ng-template #loadingList>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-progress-spinner [mode]="'indeterminate'" [diameter]="40"></mat-progress-spinner>
+      </div>
+    </ng-template>
+  </div>
+  <div class="available-accounts t-12 secondary">
+    <svr-tooltip>
+      <span class="t-12 primary">Ilość dostępnych kont zależy od poziomu twojego profilu.</span>
+      <p> <a class="app-a">Więcej o poziomach</a> </p>
+    </svr-tooltip>
+    <span> Możliwa ilość kont: {{ accounts?.length }} / 10 </span>
+  </div>
+</div>

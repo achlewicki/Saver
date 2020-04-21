@@ -1,0 +1,7 @@
+<div class="container">
+  <div fxLayout="row" fxLayoutGap="30px">
+    <svr-accounts-list [accounts]="accounts" (accountSelected)="selectedAccount = $event"></svr-accounts-list>
+    <svr-account-details [account]="selectedAccount" [canDelete]="canDelete || false" fxFlex="auto">
+    </svr-account-details>
+  </div>
+</div>

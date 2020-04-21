@@ -1,0 +1,39 @@
+<div class="container" fxLayout="column" fxLayoutGap="30px">
+  <h1 class="h-30">Dodaj konto</h1>
+  <form [formGroup]="fGroup" (ngSubmit)="submit()">
+    <div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="start center">
+      <div class="selected-icon" (click)="activateDropdown()" [ngClass]="dropdownActivated ? 'activated' : '' ">
+        <fa-icon [icon]="selectedIcon" fxFill></fa-icon>
+      </div>
+      <mat-form-field fxFlex="auto" appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover">
+        <label class="app-input-label">Nazwa konta:</label>
+        <input matInput #name maxlength="200" formControlName="name">
+        <mat-hint align="end">{{ name.value?.length || 0 }}/200</mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="icon-dropdown" *ngIf="dropdownActivated" fxLayout="row">
+      <div class="icons-box" fxFlex="auto" fxLayout="row wrap">
+        <ng-container *ngFor="let icon of iconslist">
+          <fa-icon [icon]="icon" (click)="selectIcon(icon)"></fa-icon>
+        </ng-container>
+      </div>
+      <div class="color-box" fxFlex="100px" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <p class="t-14">Kolor</p>
+        <div class="color-picker"></div>
+        <p class="color-value">{{ "#abc123" | uppercase  }}</p>
+      </div>
+    </div>
+    <mat-form-field fxFill appearance="outline" class="currency-input mat-ff-fixed-padding mat-ff-no-border-hover">
+      <label class="app-input-label">Waluta konta:</label>
+      <mat-select formControlName="currency">
+        <mat-option *ngFor="let currency of currencies$ | async" [value]="currency">
+          {{ currency.name + ' (' + currency.code + ')'}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+      <button mat-button (click)="closeDialog()" type="reset">Anuluj</button>
+      <button mat-flat-button type="submit" color="accent">Dodaj</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,59 @@
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.carousel-wrapper {
+  overflow: hidden;
+
+  @media (max-width: 769px) {
+    overflow-x: scroll;
+  }
+}
+
+.carousel-inner {
+  display: flex;
+}
+
+.btn {
+  border: none;
+  background: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  margin: 10px;
+  font-size: 25px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+
+  transition: transform .05s;
+}
+
+.btn[disabled] {
+  color: #e4e4e4;
+  transition: none;
+  cursor: default;
+
+  &.btn-next:hover {
+    transform: rotate(180deg);
+  }
+
+  &.btn-prev:hover {
+    transform: none;
+  }
+}
+
+.btn-next {
+  transform: rotate(180deg);
+}
+
+.btn-next:hover {
+  transform: translateX(5px) rotate(180deg);
+
+}
+
+.btn-prev:hover {
+  transform: translateX(-5px);
+}

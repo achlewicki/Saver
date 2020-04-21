@@ -1,0 +1,30 @@
+@import 'app-text', 'mixins';
+
+.summary-element-box {
+  width: 140px;
+  background-color: rgba(0, 0, 0, 0.02);
+  border-radius: 5px;
+  margin: 20px;
+  text-align: center;
+
+  :last-of-type,
+  :first-of-type {
+    margin: 20px 0;
+  }
+
+  .value {
+    display: inline-block;
+    margin: 20% 0;
+
+    @extend .h-28-b,
+    .primary;
+  }
+
+
+  .description {
+    @extend .t-12,
+    .primary;
+
+    margin: 10px;
+  }
+}

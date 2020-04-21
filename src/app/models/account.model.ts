@@ -1,7 +1,7 @@
 export interface AccountModel {
-  id: number;
+  id?: number;
   name: string;
   color: string;
-  budget: number;
-  balance: number;
+  budget?: number;
+  balance?: number;
 }

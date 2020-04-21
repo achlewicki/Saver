@@ -1,0 +1,31 @@
+.info-container {
+  display: inline-block;
+  position: relative;
+  margin: 3px;
+  padding: 2px;
+
+  &:hover,
+  .info-box:hover {
+    .info-box {
+      padding: 7px;
+      width: fit-content;
+      height: fit-content;
+    }
+  }
+}
+
+.info-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: left;
+
+  width: 0;
+  height: 0;
+
+  //transition: width 1s, height 1s;
+}

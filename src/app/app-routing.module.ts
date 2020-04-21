@@ -19,7 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'first-login',
-    loadChildren: () => import('#modules/first-login/first-login.module').then(module => module.FirstLoginModule)
+    loadChildren: () => import('#modules/first-login/first-login.module').then(module => module.FirstLoginModule),
+    canActivate: [AuthGuard]
   },
   {
     path: '',

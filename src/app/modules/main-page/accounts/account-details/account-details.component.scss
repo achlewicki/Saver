@@ -1,0 +1,103 @@
+@import 'app-text', 'app-colors', 'material-restyle', 'app-boxes';
+
+.account-details-container {
+  min-height: 200px;
+  padding: 30px 4%;
+  height: 2000px;
+}
+
+.account-title {
+  fa-icon {
+    font-size: 35px;
+  }
+}
+
+button {
+  &.mat-stroked-button {
+    min-width: fit-content;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+.account-name-box {
+  position: relative;
+  padding: 10px 15px;
+  border-radius: 3px;
+  width: min-content;
+  cursor: pointer;
+
+  .account-icon {
+    font-size: 40px;
+  }
+
+  .edit-icon {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 100%;
+
+    width: 2em;
+    height: 2em;
+
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: #dddddd;
+  }
+}
+
+.account-name-box:hover {
+  background-color: #eeeeee;
+
+  .edit-icon {
+    background-color: lightgrey;
+    color: #6d6d6d;
+  }
+}
+
+
+.details-box {
+  margin: 70px;
+
+  label {
+    @extend .t-14;
+    color: #818181;
+  }
+
+  p {
+    padding: 10px;
+    font-size: 22px;
+    font-weight: 500;
+  }
+}
+
+.outcome {
+  color: $outcome-color;
+}
+
+.income {
+  color: $income-color;
+}
+
+*/
