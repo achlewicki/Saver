@@ -1,82 +1,70 @@
 <div class="container"
-     fxLayout
-     fxLayout.xs="column"
-     fxLayoutAlign="center">
-  <h1 class="title" fxFlex="100%"
+      fxLayout="column">
+
+  <h1 class="title"
       fxLayoutAlign="left">KATEGORIE
   </h1>
 
-  <div class="control-panel"
-       fxFlex="100%"
+  <!-- Search Category -->
+  <div class="search-category"
        fxLayoutAlign="center">
-
-
-    <div *ngIf="this.addCategoryPanel" class="add-category-form">
-      <input class="new-category-title" [(ngModel)]="this.newCategoryTitle">
-
-      <input [(ngModel)]="this.newCategoryColor">
-
-      <input type="number" [(ngModel)]="this.newCategoryLimit">
-
-      <button (click)="(addCategory()) && (this.addCategoryPanel = !this.addCategoryPanel)">Dodaj kategorie</button>
-    </div>
-
-    <div class="search-category">
-      <mat-form-field>
-        <input type="text"
-               placeholder="Pick one"
-               aria-label="Number"
-               matInput
-               [formControl]="this.categoriesControl"
-               [matAutocomplete]="auto">
-
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </div>
-
-    <button mat-button
-            class="add-category-button"
-            type="image"
-            src=""
-
-            *ngIf="!this.addCategoryPanel"
-            (click)="this.addCategoryPanel = !this.addCategoryPanel">Dodaj Kategorię
-    </button>
-
+    <mat-form-field>
+      <input type="text"
+             placeholder="Pick one"
+             aria-label="Number"
+             matInput
+             [formControl]="this.categoriesControl"
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
   </div>
 
+  <!-- Categories View -->
+  <div fxLayoutAlign="center"
+        fxLayout="row wrap">
+    <div class="test"
+         fxLayoutAlign="center"
+         *ngFor="let category of this.categoriesList; let i = index">
+      <div class="category-container"
+           [ngStyle]="{'border': '4px solid ' + category.color}"
+           *ngIf="isContaing(category.title)">
+        <p class="category-name" fxLayoutAlign="center">{{category.title}}
+          <input alt="options"
+            class="option-button"
+            type="image"
+            (click)="openEditCategoryDialog(i)"
+            src="assets/images/option_icon.png" alt="options">
+          </p>
 
-  <div class="test" *ngFor="let category of this.categoriesList; let i = index">
-    <div class="category-container"
-         [ngStyle]="{'border-top': '8px solid ' + category.color}"
-         *ngIf="isContaing(category.title)">
-      <p class="category-name" fxLayoutAlign="center">{{category.title.toUpperCase()}}
-        <a class="option-button" [routerLink]="['/main/categories/edit-category', category.id]">
-          <fa-icon icon="cog" class="option-button" fxLayout size="1x"></fa-icon>
-          <!--<input alt="options"
-                 class="option-button"
-                 type="image"
-                 fxLayout
-                 src="assets/images/option_icon.png" alt="options">-->
-
-        </a>
-      </p>
-      <div class="subcategories-container"
-           fxLayout
-           fxLayoutAlign="center">
-        <div class="subcategory"
-             *ngFor="let subcategory of category.subcategories"
-             [ngStyle]="{'border': '1px solid ' + subcategory.color}"
-             fxFlex="21%"
+        <div class="subcategories-container"
+             fxLayout="row wrap"
              fxLayoutAlign="center">
-          {{ subcategory.title }}
+          <div class="subcategory"
+               *ngFor="let subcategory of category.subcategories"
+               [ngStyle]="{'background-color': subcategory.color}"
+               fxFlex="17%"
+               fxLayoutAlign="center">
+            {{ subcategory.title }}
+          </div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Add Button -->
+  <div fxFlex="100%"
+       fxLayoutAlign="center">
+    <button mat-flat-button
+            color="accent"
+            type="submit"
+            class="add-category-button"
+            (click)="addCategory()">Dodaj kategorie
+    </button>
+  </div>
 </div>
+
+

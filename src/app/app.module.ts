@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
+import { ChartsModule} from 'ng2-charts';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -24,7 +25,9 @@ import {UnauthorisedInterceptor} from './services/_helpers/interceptors/unauth.i
     HttpClientModule,
     FlexLayoutModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ChartsModule,
+    ColorPickerModule
   ],
   providers: [
     {
