@@ -12,8 +12,6 @@ import {EditCategoryComponent} from '#modules/main-page/categories/edit-category
 import {ColorPickerModule} from 'ngx-color-picker';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
-
-
 @NgModule({
   declarations: [
     CategoriesComponent,
