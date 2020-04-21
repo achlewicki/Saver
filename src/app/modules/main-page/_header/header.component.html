@@ -5,14 +5,14 @@
   <div class="right-side">
     <p class="profile-name">Witaj, Krzysztof!</p>
     <div class="button-outer-div">
-      <button class="avatar-button" (click)="userSettings()">
+      <button class="avatar-button" (click)="openUserInfoDialog()">
         <img class="avatar-image" src="./assets/images/profile_image_small.jpg" height="40" width="40">
       </button>
     </div>
     <button class="button">
       <fa-icon [icon]="faEnvelope" size="lg"></fa-icon>
     </button>
-    <button class="notification-button button">
+    <button class="notification-button button" (click)="openNotificationDialog()">
       <fa-icon [icon]="faBell" size="lg"></fa-icon>
     </button>
     <button class="logout-button button">

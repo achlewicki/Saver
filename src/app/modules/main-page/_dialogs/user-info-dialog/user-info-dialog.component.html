@@ -1,0 +1,48 @@
+<div class="dialog-container" fxLayout="column">
+
+  <div class="top-div" fxLayoutAlign="start center" fxLayout="row">
+    <div class="avatar-div">
+      <img class="avatar-image" src="./assets/images/profile_image.jpg" height="100" width="100">
+    </div>
+
+    <div class="user-info" fxLayout="column">
+      <p class="user-name">{{ userInfo?.firstName + ' ' + userInfo?.lastName }}</p>
+      <p class="user-register-date">{{ userInfo?.title }}</p>
+    </div>
+
+    <div class="settings-button">
+      <button class="button" (click)="openUserSettings()">Ustawienia
+        <fa-icon style="margin-left: 10px;" [icon]="settingIcon" size="lg"></fa-icon>
+      </button>
+    </div>
+  </div>
+
+  <div class="bottom-div" fxLayoutAlign="center" fxLayout="column">
+    <div class="box-container" fxLayout="row" fxLayoutAlign="stretch stretch">
+      <div class="info-box" fxLayoutAlign="center center" fxLayout="column">
+        <p class="box-value">13</p>
+        <p class="box-label">Achievements</p>
+      </div>
+      <div class="info-box" fxLayoutAlign="center center" fxLayout="column">
+        <p class="box-value">3</p>
+        <p class="box-label">Accounts</p>
+      </div>
+      <div class="info-box" fxLayoutAlign="center center" fxLayout="column">
+        <p class="box-value">254</p>
+        <p class="box-label">Operations</p>
+      </div>
+      <div class="info-box" fxLayoutAlign="center center" fxLayout="column">
+        <p class="box-value">7</p>
+        <p class="box-label">Events</p>
+      </div>
+    </div>
+
+    <div class="level-container"
+         fxFlex="100%"
+         fxLayoutAlign="center center">
+      <p class="level-number">{{ userInfo?.level }}</p>
+      <div class="level-bar" fxFlex="70%"></div>
+      <p class="level-number">{{ userInfo?.level + 1 }}</p>
+    </div>
+  </div>
+</div>

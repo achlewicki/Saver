@@ -12,11 +12,13 @@ import { AccountsModule } from './accounts/accounts.module';
 import { CategoriesModule } from './categories/categories.module';
 import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
 import {RaportModule} from '#modules/main-page/raport/raport.module';
+import {UserSettingsModule} from '#modules/main-page/user-settings/user-settings.module';
 
 import { HeaderComponent } from './_header/header.component';
 import { AddOperationButtonComponent } from './add-operation-button/add-operation-button.component';
 
 import { FlexModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import {dialogs, DialogsModule} from './_dialogs/dialogs.module';
@@ -26,7 +28,6 @@ import {
   MatDialogModule,
   MatButtonModule,
 } from '@angular/material';
-
 
 const matModules = [
   MatButtonModule,
@@ -41,10 +42,12 @@ const appModules = [
   DashboardModule,
   AccountsModule,
   CategoriesModule,
+  UserSettingsModule,
   DialogsModule,
   AchievementsModule,
   RaportModule
 ];
+
 
 @NgModule({
   declarations: [

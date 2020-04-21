@@ -16,7 +16,6 @@ export class NavAccountListComponent implements OnInit {
   protected errorInfo = 'test';
   protected accountSelectionClicked: boolean;
   protected accounts: AccountModel[];
-  protected accountName: string;
   protected account: AccountModel;
 
   constructor(

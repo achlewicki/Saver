@@ -21,20 +21,20 @@ export class AccountService {
   constructor(
     private readonly http: HttpClient
   ) {
-    this.listAccountURL = config.backendUrl + '/user/accounts/';
-    this.getFirstAccountURL = config.backendUrl + '/user/get-one-acc/';
+    this.listAccountURL = config.backendUrl + '/user/';
+    this.getFirstAccountURL = config.backendUrl + '/user/';
     this.getAccountNameURL = config.backendUrl + '/account/info/' + localStorage.getItem('user.id');
   }
 
   public listAccounts(userId: number): Observable<AccountModel[]> {
-    return this.http.get<AccountModel[]>(this.listAccountURL + userId)
+    return this.http.get<AccountModel[]>(this.listAccountURL + userId + '/accountlist')
       .pipe(
         catchError(this.handleError)
       );
   }
-// { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }
+
   public getFirstAccount(userId: number): Observable<AccountModel> {
-    return this.http.get<AccountModel>(this.getFirstAccountURL + userId)
+    return this.http.get<AccountModel>(this.getFirstAccountURL + userId + '/account')
       .pipe(
         catchError(this.handleError)
       );

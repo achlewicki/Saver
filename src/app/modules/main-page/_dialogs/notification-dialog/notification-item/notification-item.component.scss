@@ -1,0 +1,68 @@
+.notification {
+  height: 50px;
+  border-bottom: 1px solid #ecf0f7;
+  cursor: pointer;
+}
+
+.notification:hover {
+  background-color: #ecf0f7;
+}
+
+.title-not-seen {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 50px;
+  text-align: left;
+  justify-content: left;
+  align-items: center;
+  display: flex;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.description-not-seen {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  display: flex;
+  text-align: left;
+  justify-content: left;
+  align-items: center;
+}
+
+.title-seen {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 50px;
+  text-align: left;
+  justify-content: left;
+  align-items: center;
+  display: flex;
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.description-seen {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  display: flex;
+  text-align: left;
+  justify-content: left;
+  align-items: center;
+}
+
+
+.icon {
+  padding: 0 !important;
+  font-size: 10px;
+  height: 40px;
+  width: 40px !important;
+  margin: auto 10px auto 10px;
+  border-radius: 100px;
+  background-color: #0681f8;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  color: #ecf0f7;
+}
+
+
+

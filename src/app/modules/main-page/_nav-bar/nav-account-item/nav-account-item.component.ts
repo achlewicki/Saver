@@ -8,6 +8,7 @@ import {MainPageService} from '#services/main-page-service/main-page.service';
   styleUrls: ['./nav-account-item.component.scss']
 })
 export class NavAccountItemComponent implements OnInit {
+
   @Input()
   account: AccountModel;
 
