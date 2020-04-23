@@ -249,7 +249,15 @@
             color="primary"
             type="submit"
             class="submit-button-category"
-            (click)="closeDialog('close')">
+            (click)="closeDialog('close')"
+            *ngIf="!this.addingOperation">
+      Powrót</button>
+    <button mat-flat-button
+            color="primary"
+            type="submit"
+            class="submit-button-category"
+            *ngIf="this.addingOperation"
+            (click)="closeDialog('cancel')">
       Powrót</button>
   </div>
 </div>

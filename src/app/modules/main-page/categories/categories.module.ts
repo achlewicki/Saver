@@ -8,14 +8,11 @@ import {MatDividerModule, MatFormFieldModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
-import {EditCategoryComponent} from '#modules/main-page/categories/edit-category/edit-category.component';
-import {ColorPickerModule} from 'ngx-color-picker';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
-    CategoriesComponent,
-    EditCategoryComponent
+    CategoriesComponent
   ],
     imports: [
         CommonModule,
@@ -29,7 +26,6 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
         FormsModule,
         MatDividerModule,
         MatButtonModule,
-        ColorPickerModule,
         FontAwesomeModule
     ],
   exports: [

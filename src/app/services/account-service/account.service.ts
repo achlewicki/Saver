@@ -23,13 +23,13 @@ export class AccountService {
     private readonly http: HttpClient
   ) {
     this.createAccountURL = config.backendUrl + '/account/add/' + localStorage.getItem('user.id') + '/81';  // TEMP CURRENCY ID
-    this.listAccountURL = config.backendUrl + '/user/accounts/';
-    this.getFirstAccountURL = config.backendUrl + '/user/get-one-acc/';
+    this.listAccountURL = config.backendUrl + '/user/';
+    this.getFirstAccountURL = config.backendUrl + '/user/';
     this.getAccountNameURL = config.backendUrl + '/account/info/' + localStorage.getItem('user.id');
   }
 
   public listAccounts(userId: string): Observable<AccountModel[]> {
-    return this.http.get<AccountModel[]>(this.listAccountURL + userId)
+    return this.http.get<AccountModel[]>(this.listAccountURL + userId + '/accountlist')
       .pipe(
         catchError(this.handleError)
       );
@@ -37,7 +37,7 @@ export class AccountService {
 
   // { headers: { Authorization: 'Bearer ' + localStorage.getItem('token') } }
   public getFirstAccount(userId: number): Observable<AccountModel> {
-    return this.http.get<AccountModel>(this.getFirstAccountURL + userId)
+    return this.http.get<AccountModel>(this.getFirstAccountURL + userId + '/account')
       .pipe(
         catchError(this.handleError)
       );

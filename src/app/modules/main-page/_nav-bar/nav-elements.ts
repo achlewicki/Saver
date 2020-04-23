@@ -28,7 +28,7 @@ export const navElements: NavElement[] = [
         name: 'raports',
         title: 'Raporty',
         icon: 'chart-bar',
-        url: '/main'
+        url: '/main/raports'
     },
     {
         name: 'achievements',
