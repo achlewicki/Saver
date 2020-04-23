@@ -1,0 +1,6 @@
+<fa-icon [icon]='icon'></fa-icon>
+<p>{{ data.message }}</p>
+<div>
+  <button mat-stroked-button (click)="closeDialog(false)">{{ data.buttonsText.cancelText }}</button>
+  <button mat-raised-button color="primary" (click)="closeDialog(true)">{{ data.buttonsText.submitText }}</button>
+</div>

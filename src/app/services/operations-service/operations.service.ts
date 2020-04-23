@@ -23,14 +23,13 @@ export class OperationsService {
   public getOperationsByAccount(accountId: number): Observable<OperationModel[]> {
     return this.http.get<OperationResult[]>(config.backendUrl + '/operation/get-by-acc/' + accountId, this.httpHeader)
       .pipe(
-        map<OperationResult[], OperationModel[]>(x => {
-          return x.map<OperationModel>(item => ({
+        map<OperationResult[], OperationModel[]>(result => {
+          return result.map<OperationModel>(item => ({
             ...item,
             date: new Date(item.date)
           })
           );
-        }),
-        tap(a => console.log(a))
+        })
       );
   }
 

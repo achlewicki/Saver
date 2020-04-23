@@ -19,11 +19,24 @@
       "dom"
     ],
     "paths": {
-      "#modules/*": ["src/app/modules/*"],
-      "#models/*": ["src/app/models/*"],
-      "#services/*": ["src/app/services/*"],
-      "#shared/*": ["src/app/modules/shared/*"],
-      "#config/*": ["src/config/*"]
+      "#modules/*": [
+        "src/app/modules/*"
+      ],
+      "#models/*": [
+        "src/app/models/*"
+      ],
+      "#services/*": [
+        "src/app/services/*"
+      ],
+      "#shared/*": [
+        "src/app/modules/shared/*"
+      ],
+      "#config/*": [
+        "src/config/*"
+      ],
+      "#dialogs/*": [
+        "src/app/modules/main-page/_dialogs/*"
+      ]
     }
   },
   "angularCompilerOptions": {

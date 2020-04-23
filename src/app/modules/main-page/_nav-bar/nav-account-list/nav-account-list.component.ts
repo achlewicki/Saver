@@ -24,7 +24,7 @@ export class NavAccountListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.accountService.listAccounts(parseInt(localStorage.getItem('user.id'), 10))
+    this.accountService.listAccounts(localStorage.getItem('user.id'))
       .subscribe(
         (response) => {
           this.accounts = response;

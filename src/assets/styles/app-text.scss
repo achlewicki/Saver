@@ -1,37 +1,76 @@
+// App font styles
+
 // Headers
 
-.text-header {
-  font-weight: 500;
+/*
+  Avalible classes: 
+    .h-<font-size>    - normal header
+    .h-<font-size>-b  - bolder header
+
+*/
+
+@mixin header ($size) {
+  .h-#{$size} {
+    font-weight: 400;
+    font-size: #{$size}px;
+
+    &.primary {
+      color: rgba(10, 10, 10, 1);
+    }
+
+    &.secondary {
+      color: rgb(51, 51, 51);
+    }
+  }
+
+  .h-#{$size}-b {
+    @extend .h-#{$size};
+    font-weight: 500;
+  }
 }
 
-.h-30 {
-  @extend .text-header;
-  font-size: 30px;
-}
 
-.h-22 {
-  @extend .text-header;
-  font-size: 22px;
-  font-weight: 400;
-}
+@include header(32);
+@include header(30);
+@include header(28);
+@include header(22);
+@include header(18);
 
-.h-18 {
-  @extend .text-header;
-  font-size: 18px;
-  font-weight: 400;
-}
 
 // Text
 
-.text {
-  font-weight: 400;
+/*
+  Avalible classes: 
+    .t-<font-size>    - normal text
+    .t-<font-size>-b  - bolder text
+
+*/
+
+@mixin text ($size) {
+  .t-#{$size} {
+    font-weight: 400;
+    font-size: #{$size}px;
+
+    &.primary {
+      color: rgba(10, 10, 10, 1);
+    }
+
+    &.secondary {
+      color: rgb(100, 100, 100)
+    }
+  }
+
+  .t-#{$size}-b {
+    @extend .t-#{$size};
+    font-weight: 500;
+  }
 }
 
-.t-13 {
-  @extend .text;
-  font-size: 13px;
-}
-
+@include text(16);
+@include text(15);
+@include text(14);
+@include text(13);
+@include text(12);
 
 // Anchor
 
@@ -39,6 +78,7 @@
   position: relative;
   text-decoration: none;
   color: #184fb7;
+  margin-right: 1.5em;
 }
 
 .app-a::after {

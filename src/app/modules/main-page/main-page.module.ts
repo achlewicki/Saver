@@ -18,10 +18,9 @@ import { HeaderComponent } from './_header/header.component';
 import { AddOperationButtonComponent } from './add-operation-button/add-operation-button.component';
 
 import { FlexModule } from '@angular/flex-layout';
-
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import {dialogs, DialogsModule} from './_dialogs/dialogs.module';
+import { dialogs, DialogsModule } from './_dialogs/dialogs.module';
 
 import {
   MatIconModule,
