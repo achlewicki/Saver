@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
 import {ActivatedRoute} from '@angular/router';
 import {MatDialog} from '@angular/material';
-import {EditCategoryComponent} from '#modules/main-page/categories/edit-category/edit-category.component';
+import {EditCategoryComponent} from '#dialogs/edit-category/edit-category.component';
 
 @Component({
   selector: 'svr-categories',
@@ -121,7 +121,7 @@ export class CategoriesComponent implements OnInit {
       });
 
       addDialog.afterClosed().subscribe(value => {
-        this.categoriesList.push(value.category);
+        if (value.operation === 'close') {this.categoriesList.push(value.category); }
         console.log(this.categoriesList);
         this.ngOnInit();
       });

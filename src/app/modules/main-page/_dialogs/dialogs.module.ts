@@ -34,6 +34,8 @@ import { NotificationItemComponent } from './notification-dialog/notification-it
 
 import { accountIconsPack } from './add-account-dialog/account-icons';
 import { ProcessDialogComponent } from './process-dialog/process-dialog.component';
+import {EditCategoryComponent} from './edit-category/edit-category.component';
+import {ColorPickerModule} from 'ngx-color-picker';
 
 const matModules = [
   MatButtonModule,
@@ -51,7 +53,8 @@ export const dialogs = [
   AppMessageDialogComponent,
   ProcessDialogComponent,
   UserInfoDialogComponent,
-  NotificationDialogComponent
+  NotificationDialogComponent,
+  EditCategoryComponent
 ];
 
 @NgModule({
@@ -64,6 +67,7 @@ export const dialogs = [
     ReactiveFormsModule,
     FlexLayoutModule,
     FontAwesomeModule,
+    ColorPickerModule,
     ...matModules
   ],
   exports: [

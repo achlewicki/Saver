@@ -1,5 +1,5 @@
-@import 'material-restyle';
-@import 'app-colors', 'app-text';
+@import 'src/assets/styles/material-restyle';
+@import 'src/assets/styles/app-colors', 'src/assets/styles/app-text';
 .dialog-container{
   margin-top: 20px;
   flex-wrap: wrap;

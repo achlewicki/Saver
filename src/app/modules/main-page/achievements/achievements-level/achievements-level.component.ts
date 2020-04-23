@@ -8,12 +8,16 @@ import {UserModel} from '#models/user.model';
   styleUrls: ['./achievements-level.component.scss', '../achievements-view/achievements-view.component.scss']
 })
 export class AchievementsLevelComponent implements OnInit {
-  private user: UserModel;
-  private levelPercentage: number;
+  protected user: UserModel;
+  protected levelPercentage: number;
 
   constructor(
     private readonly achievementsService: AchievementsService
   ) {
+
+  }
+
+  ngOnInit() {
     this.achievementsService.getUserInfo(parseInt(localStorage.getItem('user.id'), 10)).subscribe(
       (value) => {
         this.user = value;
@@ -23,9 +27,6 @@ export class AchievementsLevelComponent implements OnInit {
         document.documentElement.style.setProperty('--animationTime', (animationTime.toString() + 's'));
       }
     );
-  }
-
-  ngOnInit() {
   }
 
 }

@@ -5,10 +5,12 @@
 </p>
 <div class="level-container"
      fxFlex="100%"
-     fxLayoutAlign="center">
+     fxLayoutAlign="center"
+    *ngIf="this.user !== undefined; else loading">
   <p class="level-number">{{this.user.level}}</p>
   <div class="level-bar" fxFlex="70%">
     <p class="user-experience">{{this.user.experience}} / 500</p>
   </div>
   <p class="level-number">{{this.user.level + 1}}</p>
 </div>
+<ng-template #loading>Wczytywanie</ng-template>
