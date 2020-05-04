@@ -9,8 +9,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { CategoriesComponent } from '#modules/main-page/categories/categories/categories.component';
 import { UserSettingsComponent } from '#modules/main-page/user-settings/user-settings/user-settings.component';
 import { AchievementsViewComponent } from '#modules/main-page/achievements/achievements-view/achievements-view.component';
-import { EditCategoryComponent } from '#modules/main-page/_dialogs/edit-category/edit-category.component';
-import { ReportViewComponent } from '#modules/main-page/report/report-view/report-view.component';
+import { EditCategoryComponent } from '#modules/main-page/categories/edit-category/edit-category.component';
+import { RaportViewComponent } from '#modules/main-page/raport/raport-view/raport-view.component';
 
 
 const routes: Routes = [
@@ -51,7 +51,7 @@ const routes: Routes = [
       },
       {
         path: 'raports',
-        component: ReportViewComponent
+        component: RaportViewComponent
       }
     ]
   }
