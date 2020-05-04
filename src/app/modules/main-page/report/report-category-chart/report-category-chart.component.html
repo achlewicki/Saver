@@ -1,11 +1,13 @@
 <div style="display: block">
-  <canvas baseChart
+  <p *ngIf="this.noData">Brak danych do wyświetlenia z tego okresu</p>
+  <canvas *ngIf="!this.noData"
+          baseChart
           [datasets]="chartData"
           [labels]="chartLabel"
           [options]="chartOptions"
           [legend]="chartLegend"
           [chartType]="chartType"
+
   >
   </canvas>
 </div>
-

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RaportCategory2ChartComponent } from './raport-category2-chart.component';
+import { ReportCategory2ChartComponent } from './report-category2-chart.component';
 
 describe('RaportCategory2ChartComponent', () => {
-  let component: RaportCategory2ChartComponent;
-  let fixture: ComponentFixture<RaportCategory2ChartComponent>;
+  let component: ReportCategory2ChartComponent;
+  let fixture: ComponentFixture<ReportCategory2ChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RaportCategory2ChartComponent ]
+      declarations: [ ReportCategory2ChartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RaportCategory2ChartComponent);
+    fixture = TestBed.createComponent(ReportCategory2ChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

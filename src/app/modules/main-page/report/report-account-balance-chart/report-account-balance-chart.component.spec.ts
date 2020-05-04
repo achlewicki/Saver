@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RaportAccountBalanceChartComponent } from './raport-account-balance-chart.component';
+import { ReportAccountBalanceChartComponent } from './report-account-balance-chart.component';
 
 describe('RaportAccountBalanceChartComponent', () => {
-  let component: RaportAccountBalanceChartComponent;
-  let fixture: ComponentFixture<RaportAccountBalanceChartComponent>;
+  let component: ReportAccountBalanceChartComponent;
+  let fixture: ComponentFixture<ReportAccountBalanceChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RaportAccountBalanceChartComponent ]
+      declarations: [ ReportAccountBalanceChartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RaportAccountBalanceChartComponent);
+    fixture = TestBed.createComponent(ReportAccountBalanceChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

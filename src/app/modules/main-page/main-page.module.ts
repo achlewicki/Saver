@@ -11,7 +11,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { CategoriesModule } from './categories/categories.module';
 import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
-import {RaportModule} from '#modules/main-page/raport/raport.module';
+import {ReportModule} from '#modules/main-page/report/report.module';
 import {UserSettingsModule} from '#modules/main-page/user-settings/user-settings.module';
 
 import { HeaderComponent } from './_header/header.component';
@@ -44,7 +44,7 @@ const appModules = [
   UserSettingsModule,
   DialogsModule,
   AchievementsModule,
-  RaportModule
+  ReportModule
 ];
 
 

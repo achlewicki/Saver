@@ -12,7 +12,6 @@ import {AchievementModel} from '#models/achievement.model';
 
 export class AchievementsAllComponent implements OnInit {
   private activeIndex: number;
-  private userAchievements: UserAchievementModel[];
   private achievements: AchievementModel[];
   // private moment: moment;
 
@@ -22,12 +21,11 @@ export class AchievementsAllComponent implements OnInit {
     this.activeIndex = null;
     this.achievementsService.getAllUserAchievements(parseInt(localStorage.getItem('user.id'), 10)).subscribe(
       (response: UserAchievementModel[]) => {
-        this.userAchievements = response;
         this.achievementsService.getAllAchievements().subscribe(
           (response1) => {
             this.achievements = response1;
             this.achievements.forEach(value => {
-              if (!!this.userAchievements.find(value1 => value1.achievement.id === value.id)) {
+              if (!!response.find(value1 => value1.achievement.id === value.id)) {
                 value.src = '/assets/achievements/' + value.id.toString() + '_got.svg';
               } else {
                 value.src = '/assets/achievements/' + value.id.toString() + '.svg';
