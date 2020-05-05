@@ -168,13 +168,6 @@ export class EditCategoryComponent implements OnInit {
   }
 
   private deleteCategory() {
-    const len = this.category.subcategories.length;
-    if (len > 0) {
-      for (let i = 0; i < len; i++) {
-        this.deleteSubcategory(this.category.subcategories.pop(), undefined);
-      }
-    }
-
     this.categoryService.deleteCategory(this.category).subscribe();
     this.closeDialog('delete');
   }

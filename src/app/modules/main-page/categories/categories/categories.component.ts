@@ -87,19 +87,19 @@ export class CategoriesComponent implements OnInit {
     });
 
     editDialog.afterClosed().subscribe(value => {
-      switch (value.operation) {
-        case 'update':
-          this.categoriesList.splice(id, 1, value.category);
-          console.log(this.categoriesList);
-          break;
-
-        case 'delete':
-          this.categoriesList.splice(id, 1);
-          break;
-
-        case 'cancel':
-          break;
-      }
+      // switch (value.operation) {
+      //   case 'update':
+      //     this.categoriesList.splice(id, 1, value.category);
+      //     console.log(this.categoriesList);
+      //     break;
+      //
+      //   case 'delete':
+      //     this.categoriesList.splice(id, 1);
+      //     break;
+      //
+      //   case 'cancel':
+      //     break;
+      // }
       this.ngOnInit();
     });
   }

@@ -1,0 +1,30 @@
+<div fxLayout="column">
+  <div [formGroup]="dateForm">
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput formControlName="dateFrom" [matDatepicker]="dateFromPicker">
+      <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateFromPicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Choose a date</mat-label>
+      <input matInput formControlName="dateTo" [matDatepicker]="dateToPicker">
+      <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
+      <mat-datepicker #dateToPicker></mat-datepicker>
+    </mat-form-field>
+    <button mat-button (click)="setNewDateRange()">Ok</button>
+  </div>
+
+  <div fxLayout="column" fxFlex="100%" *ngIf="loaded">
+    <div fxLayout="row" fxLayout.lt-md="column">
+      <svr-raport-main-chart [data]="this.accountHistory"></svr-raport-main-chart>
+      <svr-raport-category-chart [data]="this.accountHistory"></svr-raport-category-chart>
+    </div>
+
+    <div fxLayout="row" fxLayout.lt-md="column">
+      <svr-raport-category2-chart [data]="this.accountHistory"></svr-raport-category2-chart>
+      <svr-raport-account-balance-chart [data]="this.accountHistory"></svr-raport-account-balance-chart>
+    </div>
+  </div>
+</div>
+

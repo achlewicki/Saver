@@ -13,6 +13,7 @@ import { PageNotFoundComponent } from '#shared/page-not-found/page-not-found.com
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthInterceptor } from './services/_helpers/interceptors/auth.interceptor';
 import { UnauthorisedInterceptor } from './services/_helpers/interceptors/unauth.interceptor';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { UnauthorisedInterceptor } from './services/_helpers/interceptors/unauth
     ColorPickerModule
   ],
   providers: [
+    DatePipe,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
