@@ -1,3 +1,36 @@
 <div class="container">
 
+  <mat-checkbox [(ngModel)]="opeartionTypes.regular">
+    Domyślne operacje
+  </mat-checkbox>
+  <mat-checkbox [(ngModel)]="opeartionTypes.cyclic">
+    Cykliczne operacje
+  </mat-checkbox>
+  <mat-checkbox [(ngModel)]="opeartionTypes.instalment">
+    Operacje ratalne
+  </mat-checkbox>
+  <br>
+  <mat-form-field appearance="outline" class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding">
+    <label class="app-input-label">Trwa od</label>
+    <input matInput readonly [matDatepicker]="dateFromPicker" (dateChange)="dateFrom = $event.value"
+      (dateInput)="dateFrom = $event.value" [max]="dateTo || null">
+    <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+    <mat-datepicker #dateFromPicker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding">
+    <label class="app-input-label">Trwa do</label>
+    <input matInput readonly [matDatepicker]="dateToPicker" (dateChange)="dateTo = $event.value"
+      (dateInput)="dateTo = $event.value" [min]="dateFrom || null">
+    <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
+    <mat-datepicker #dateToPicker></mat-datepicker>
+  </mat-form-field>
+
+  <!-- <ng-container *ngIf=" categories">
+    <svr-category-tree [categories]="categories" (markedSubcategoriesChange)="updateSubcategoryArray($event)">
+    </svr-category-tree>
+  </ng-container> -->
+
+  <button (click)="saveFilters()">ZAPISZ</button>
+
 </div>

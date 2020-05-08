@@ -1,3 +1,5 @@
+@import 'app-text';
+
 .info-container {
   display: inline-block;
   position: relative;
@@ -7,14 +9,21 @@
   &:hover,
   .info-box:hover {
     .info-box {
-      padding: 7px;
-      width: fit-content;
+      padding: 15px;
+      max-width: 250px;
       height: fit-content;
     }
   }
 }
 
 .info-box {
+
+  @extend .t-14,
+  .secondary;
+
+  display: flex;
+  flex-direction: column;
+
   position: absolute;
   top: 50%;
   left: 50%;
@@ -23,9 +32,20 @@
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   text-align: left;
+  line-height: 1.3em;
 
-  width: 0;
+  min-width: 200px;
+  max-width: 0;
   height: 0;
 
+  z-index: 1000;
+
   //transition: width 1s, height 1s;
+
+  ::ng-deep .app-a {
+    display: block;
+    font-size: 13px;
+    margin: .7em;
+    text-align: right;
+  }
 }

@@ -18,7 +18,7 @@
         <!-- Title / Value -->
         <div gdColumns="auto 27%" gdGap="10px">
           <mat-form-field appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover"
-            title="Tytuł transakcji" >
+            title="Tytuł transakcji">
             <label class="app-input-label">Tytuł*</label>
             <input matInput #title maxlength="150" formControlName="title" [errorStateMatcher]="errorMatcher">
             <mat-hint align="end">{{title.value?.length || 0}}/150</mat-hint>
@@ -48,7 +48,7 @@
             title="Kategoria transakcji">
             <label class="app-input-label">Kategoria*</label>
             <mat-select formControlName="subCategory">
-              <!-- <mat-option value="" selected>Bez kategorii</mat-option> -->
+              <mat-option value="emptySubcategory" selected>{{ emptySubcategory.title }}</mat-option>
               <mat-optgroup *ngFor="let category of categories | async" [label]="category.title"
                 [style.color]="category.color">
                 <mat-option *ngFor="let subcategory of category.subcategories" [value]="subcategory">

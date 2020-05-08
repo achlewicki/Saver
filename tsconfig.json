@@ -36,6 +36,9 @@
       ],
       "#dialogs/*": [
         "src/app/modules/main-page/_dialogs/*"
+      ],
+      "#utilities/*": [
+        "src/app/utilities/*"
       ]
     }
   },

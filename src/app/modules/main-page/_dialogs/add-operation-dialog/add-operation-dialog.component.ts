@@ -1,3 +1,4 @@
+import { SubcategoryModel } from '#models/subcategory.model';
 import { OperationModel } from '#models/operations.model';
 import { OperationsService } from '#services/operations-service/operations.service';
 import { AccountModel } from '#models/account.model';
@@ -29,6 +30,12 @@ export class AddOperationDialogComponent implements OnInit {
   protected account: AccountModel;
   protected pendingAddOperation: boolean;
 
+  protected emptySubcategory: SubcategoryModel = {
+    id: 0,
+    color: '',
+    title: 'Bez kategorii'
+  };
+
   constructor(
     private readonly dialogRef: MatDialogRef<AddOperationDialogComponent>,
     private readonly fb: FormBuilder,
@@ -46,6 +53,7 @@ export class AddOperationDialogComponent implements OnInit {
     });
 
     this.pendingAddOperation = false;
+
   }
 
   ngOnInit(): void {
@@ -70,7 +78,7 @@ export class AddOperationDialogComponent implements OnInit {
       this.fGroup.disable();
       this.pendingAddOperation = true;
 
-      const value = parseInt(this.fGroup.get('value').value, 10);
+      const value = parseFloat(this.fGroup.get('value').value);
       const operation: OperationModel = {
         title: this.fGroup.get('title').value,
         description: this.fGroup.get('description').value,
@@ -79,7 +87,8 @@ export class AddOperationDialogComponent implements OnInit {
         date: new Date(),
         intoAccount: 'YES',
         subcategory: this.fGroup.get('subCategory').value,
-        distinction: 'regular'
+        distinction: 'regular',
+        guarantyDays: parseInt(this.fGroup.get('guarranty').value, 10)
       };
       this.opService.addOperation(this.account.id, operation).subscribe(
         res => {

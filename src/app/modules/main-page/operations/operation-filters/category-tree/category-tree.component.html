@@ -1,0 +1,22 @@
+<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+
+  <!-- Category -->
+  <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding>
+    <button mat-icon-button matTreeNodeToggle>
+      <fa-icon [icon]="expandIcon" [ngClass]="treeControl.isExpanded(node)? 'icon-expanded' : '' "></fa-icon>
+    </button>
+    <mat-checkbox [checked]="allSubcategoriesSelected(node)" [indeterminate]="subcategoriesPartiallySelected(node)"
+      (change)="categorySelectionToggle(node)">
+      {{node.name}}
+    </mat-checkbox>
+  </mat-tree-node>
+
+  <!-- Subcategory -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <button mat-icon-button disabled></button>
+    <mat-checkbox [checked]="checkboxSelection.isSelected(node)" (change)="subcategorySelectionToggle(node)">
+      {{node.name}}
+    </mat-checkbox>
+  </mat-tree-node>
+
+</mat-tree>

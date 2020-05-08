@@ -1,7 +1,10 @@
 export interface OperationFilters {
-    dateFrom: Date;
-    dateTo: Date;
-    onlyCyclic: boolean;
-    haveFile: boolean;
-    haveGuaranty: boolean;
+    dateFrom?: Date;
+    dateTo?: Date;
+    type?: string[];
+    haveFile?: boolean;
+    haveGuaranty?: boolean;
+    categories?: number[];
+    incomes?: boolean;
+    outcomes?: boolean;
 }

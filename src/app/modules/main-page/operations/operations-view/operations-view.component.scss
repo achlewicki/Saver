@@ -1,3 +1,5 @@
+@import 'app-text', 'app-boxes';
+
 .container {
   margin: 40px 5%;
   display: flex;
@@ -20,6 +22,16 @@
   border: 1px solid lightgrey;
 }
 
+.operation-filters-box {
+  &.opened {
+    display: block;
+  }
+
+  &.closed {
+    display: none;
+  }
+}
+
 .sort-select {
   align-self: flex-end;
   width: 200px;
@@ -29,10 +41,34 @@
   border-radius: 3px;
 }
 
+.operation-labels {
+  margin: 5px 20px;
+  padding: 0 5px;
+
+  span {
+    @extend .t-12-b,
+    .secondary;
+  }
+}
+
 .no-operations-info {
   text-align: center;
 
   * {
     margin: 15px;
+  }
+}
+
+.bottom-block {
+  margin: 30px auto;
+  padding: 10px;
+  width: fit-content;
+}
+
+.more-operations-button {
+  cursor: pointer;
+
+  fa-icon {
+    margin: 10px;
   }
 }

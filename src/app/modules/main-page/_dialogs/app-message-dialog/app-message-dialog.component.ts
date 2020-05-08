@@ -16,8 +16,8 @@ export class AppMessageDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: AppMessageDialogData
   ) {
     switch (data.type) {
-      case AppMessageDialogType.SUCCESS: this.icon = faCheckCircle; break;
-      case AppMessageDialogType.FAILURE: this.icon = faTimesCircle; break;
+      case 'success': this.icon = faCheckCircle; break;
+      case 'failure': this.icon = faTimesCircle; break;
       default: this.icon = faInfoCircle; break;
     }
   }
@@ -32,16 +32,16 @@ export class AppMessageDialogData {
   public message: string;
 
   constructor(
+    public type: 'success' | 'failure' | 'info',
     message?: string,
     public tip?: string,
-    public type = AppMessageDialogType.INFO
   ) {
     if (!message) {
       switch (type) {
-        case AppMessageDialogType.SUCCESS:
+        case 'success':
           this.message = 'Operacja wykonana pomyślnie';
           break;
-        case AppMessageDialogType.FAILURE:
+        case 'failure':
           this.message = 'Coś poszło nie tak';
           break;
         default:
@@ -52,10 +52,4 @@ export class AppMessageDialogData {
       this.message = message;
     }
   }
-}
-
-export enum AppMessageDialogType {
-  SUCCESS = 'success',
-  FAILURE = 'failure',
-  INFO = 'info'
 }
