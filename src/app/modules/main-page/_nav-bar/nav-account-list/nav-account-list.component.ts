@@ -39,6 +39,5 @@ export class NavAccountListComponent implements OnInit {
 
   onAccountSelectionClick(): void {
     this.accountSelectionClicked = !this.accountSelectionClicked;
-    console.log(this.expanded);
   }
 }

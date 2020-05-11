@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="main-box" (click)="this.descriptionClick()">
     <div class="title">
       <h1>{{ this.operation.title }}</h1>
@@ -38,6 +38,101 @@
       <div class="file">
         PLIK
       </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container app-box">
+  <div class="main-box" fxLayout="row">
+    <div class="operation-date" fxFlex="140px">
+      <p class="date t-12-l">{{ operation.date | date:'EEE, dd MMM yyyy' }}</p>
+      <p class="hour t-14">{{ operation.date | date:'HH:mm' }}</p>
+    </div>
+    <div class="operation-title" fxFlex="auto">
+      <p class="title t-16 primary">{{ operation.title }}</p>
+    </div>
+    <div class="operation-category" fxFlex="12%">
+      <div class="category-chip">
+        <ng-container *ngIf="operation.subcategory.id !== 0">
+          <div class="chip-background" [style.background-color]="operation.subcategory.color"></div>
+          <div class="chip-text t-14">{{ operation.subcategory.title }}</div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="operation-extras" fxFlex="90px" fxLayoutGap="20px">
+      <fa-icon [icon]="fileIcon" class="t-16 secondary" *ngIf="operation.file"></fa-icon>
+      <fa-icon [icon]="guaranteeIcon" class="t-16 secondary" *ngIf="operation.guarantyDays"></fa-icon>
+    </div>
+    <div class="operation-value" fxFlex="11%">
+      <p class="value t-16-b" [ngClass]=" operation.type === 1 ? 'income' : 'outcome' ">
+        {{ operation.value | formatValue:operation.type }}
+      </p>
+    </div>
+    <div class="details-button" fxFlex="60px">
+      <div class="icon-box">
+        <fa-icon [icon]="dropIcon" (click)="descriptionClick()"></fa-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="details-box" [ngClass]="descriptionBoxVisible ? 'opened' : 'closed' ">
+    <div fxLayout="row">
+      <div class="description-icon" fxFlex="50px">
+        <fa-icon [icon]="descriptionIcon" *ngIf="operation.description"></fa-icon>
+      </div>
+      <div class="description-content" fxFlex="auto">
+        {{ operation.description || '' }}
+      </div>
+      <div class="category-wrapper" fxFlex="200px">
+        <div class="dotts-block" *ngIf="operation.subcategory.id !== 0">
+          <div class="category">
+            <div class="category-chip">
+              <div class="chip-background" [style.background-color]="operation.subcategory.category.color"></div>
+              <div class="chip-text t-14">{{ operation.subcategory.category.title }}</div>
+            </div>
+          </div>
+          <div class="subcategory">
+            <div class="category-chip">
+              <div class="chip-background" [style.background-color]="operation.subcategory.color"></div>
+              <div class="chip-text t-14">{{ operation.subcategory.title }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div fxFlex="22%" class="extras">
+        <div fxLayout="column" fxLayoutGap="20px">
+          <div class="file-box" *ngIf="operation.file">
+            <fa-icon [icon]="fileIcon" class="t-16 secondary"></fa-icon>
+            <span class="t-14 primary">obrazek.png</span>
+          </div>
+          <div class="guarantee-box" *ngIf="operation.guarantyDays !== 0">
+            <div>
+              <fa-icon [icon]="guaranteeIcon" class="t-16 secondary"></fa-icon>
+              <span class="t-14 primary">Gwarancja</span>
+            </div>
+            <p class="t-12 primary">
+              <span> {{ operation.guarantyDays }} </span>
+              <span> {{ operation.guarantyDays === 1 ? ' miesiąc ' : ' miesięcy ' }} </span>
+              <span>
+                (do
+                {{ expectedDate(operation.date, operation.guarantyDays) | date: 'dd.MM.yyyy' }}
+                )
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <ng-container *ngIf="operation.distinction === 'cyclic' ">
+        Transakcja cykliczna
+      </ng-container>
+      <ng-container *ngIf="operation.distinction === 'instalment' ">
+        Transakcja ratalna
+      </ng-container>
+      <!-- <ng-container *ngIf="operation.eventId">
+        Transakcja z wydarzenia
+      </ng-container> -->
     </div>
   </div>
 </div>

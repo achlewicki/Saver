@@ -4,6 +4,7 @@ import { ProcessDialogComponent, ProcessDialogData } from '#dialogs/process-dial
 import { MatDialog } from '@angular/material';
 import { AccountModel } from '#models/account.model';
 import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'svr-account-details',
@@ -27,14 +28,16 @@ export class AccountDetailsComponent {
 
     if (!this.canDelete) {
       const messageDialogData = new AppMessageDialogData(
+        'info',
         'Nie możesz usunąć ostatniego konta',
         'Musisz posiadać co najmniej jedno aktywne konto'
       );
-      this.dialogs.open(AppMessageDialogComponent, {
+      this.dialogs.open<AppMessageDialogComponent, AppMessageDialogData, void>(AppMessageDialogComponent, {
         data: messageDialogData
       });
       return;
     }
+    // const obs = new Observable(sub => { setTimeout(() => { sub.error(false); sub.complete(); }, 3000); });
 
     const processDialogData: ProcessDialogData = {
       title: 'Czy na pewno chcesz usunąć konto?',
@@ -43,7 +46,7 @@ export class AccountDetailsComponent {
       failureMessage: 'Wystąpił błąd podczas usuwania konta',
       process: this.accService.deleteAccount(account.id)
     };
-    const processDialog = this.dialogs.open(ProcessDialogComponent, {
+    const processDialog = this.dialogs.open<ProcessDialogComponent, ProcessDialogData, any | null>(ProcessDialogComponent, {
       data: processDialogData
     });
     processDialog.afterClosed().subscribe(

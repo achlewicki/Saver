@@ -1,0 +1,55 @@
+@import 'material-restyle', 'app-text', 'app-colors', 'app-boxes';
+
+.event-add-edit-container {
+  padding: 10px 30px 20px 5px;
+}
+
+mat-checkbox {
+  font-size: 12px;
+  margin: 3px;
+}
+
+form {
+  //width: 400px;
+  margin-left: 30px;
+}
+
+.color-picker-input {
+  outline: none;
+  border: 1px solid $inputs-basic-border-color;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 5px;
+}
+
+.color-picker-input:not([disabled]) {
+  cursor: pointer;
+}
+
+.dates {
+  mat-form-field {
+    width: 190px;
+  }
+}
+
+.description-textarea {
+  max-height: 300px;
+}
+
+.submit-button {
+  width: 100px;
+}
+
+.statusIcon {
+  font-size: 22px;
+
+}
+
+.successIcon {
+  color: $success-color;
+}
+
+.failIcon {
+  color: $failure-color;
+}

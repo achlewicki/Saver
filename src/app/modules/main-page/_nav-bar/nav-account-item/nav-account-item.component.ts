@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {AccountModel} from '#models/account.model';
-import {MainPageService} from '#services/main-page-service/main-page.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { AccountModel } from '#models/account.model';
+import { MainPageService } from '#services/main-page-service/main-page.service';
 
 @Component({
   selector: 'svr-nav-account-item',
@@ -20,7 +20,6 @@ export class NavAccountItemComponent implements OnInit {
   }
 
   onAccountClicked() {
-    console.log('selected');
     this.mpservice.activeAccount.next(this.account);
   }
 }

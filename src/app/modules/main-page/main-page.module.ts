@@ -13,6 +13,7 @@ import { CategoriesModule } from './categories/categories.module';
 import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
 import {ReportModule} from '#modules/main-page/report/report.module';
 import {UserSettingsModule} from '#modules/main-page/user-settings/user-settings.module';
+import { EventsModule } from './events/events.module';
 
 import { HeaderComponent } from './_header/header.component';
 import { AddOperationButtonComponent } from './add-operation-button/add-operation-button.component';
@@ -44,7 +45,8 @@ const appModules = [
   UserSettingsModule,
   DialogsModule,
   AchievementsModule,
-  ReportModule
+  ReportModule,
+  EventsModule
 ];
 
 

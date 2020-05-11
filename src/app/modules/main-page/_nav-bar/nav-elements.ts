@@ -22,7 +22,7 @@ export const navElements: NavElement[] = [
         name: 'calendar',
         title: 'Kalendarz',
         icon: 'calendar-alt',
-        url: '/main'
+        url: '/main/events'
     },
     {
         name: 'reports',

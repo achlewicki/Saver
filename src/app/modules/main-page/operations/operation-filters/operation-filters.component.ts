@@ -1,4 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { CategoryModel } from '#models/category.model';
+import { Observable } from 'rxjs';
+import { CategoryService } from '#services/category-service/category.service';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { OperationFilters } from '#models/operations-filters.model';
 
 @Component({
@@ -8,14 +11,52 @@ import { OperationFilters } from '#models/operations-filters.model';
 })
 export class OperationFiltersComponent implements OnInit {
 
-  @Input()
+  @Output()
+  public filtersConfirmed = new EventEmitter<OperationFilters>();
+
   protected filters: OperationFilters;
+  protected categories: CategoryModel[];
 
-  constructor() {
+  protected opeartionTypes: OperationTypesFilter;
+  protected dateTo: Date;
+  protected dateFrom: Date;
 
+  constructor(
+    private readonly categoryService: CategoryService
+  ) {
+    this.categoryService.getAllCategories().subscribe(
+      result => this.categories = result
+    );
   }
 
   ngOnInit(): void {
+    this.opeartionTypes = {
+      regular: true,
+      cyclic: true,
+      instalment: true
+    };
   }
 
+  updateSubcategoryArray(array: number[]) {
+    console.log(array);
+  }
+
+  protected saveFilters(): void {
+    const filters: OperationFilters = {
+      dateFrom: this.dateFrom,
+      dateTo: this.dateTo,
+      type: []
+    };
+    if (this.opeartionTypes.regular) { filters.type.push('regular'); }
+    if (this.opeartionTypes.cyclic) { filters.type.push('cyclic'); }
+    if (this.opeartionTypes.instalment) { filters.type.push('instalment'); }
+    console.log(filters);
+    this.filtersConfirmed.emit(filters);
+  }
+}
+
+interface OperationTypesFilter {
+  regular: boolean;
+  cyclic: boolean;
+  instalment: boolean;
 }

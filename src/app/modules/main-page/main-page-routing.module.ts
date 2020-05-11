@@ -10,6 +10,7 @@ import { CategoriesComponent } from '#modules/main-page/categories/categories/ca
 import { UserSettingsComponent } from '#modules/main-page/user-settings/user-settings/user-settings.component';
 import { AchievementsViewComponent } from '#modules/main-page/achievements/achievements-view/achievements-view.component';
 import { ReportViewComponent } from '#modules/main-page/report/report-view/report-view.component';
+import { EventsComponent } from './events/events.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,10 @@ const routes: Routes = [
       {
         path: 'reports',
         component: ReportViewComponent
+      },
+      {
+        path: 'events',
+        component: EventsComponent
       }
     ]
   }

@@ -3,33 +3,75 @@
     TRANSAKCJE
   </h1>
   <div class="view-content" *ngIf="this.operations">
-    <button mat-button class="filter-button" (click)="this.toogleFiltersWindow()">{{ this.filtersButtonText }}</button>
-    <svr-operation-filters *ngIf="this.showFilters" [(filters)]="this.filters"></svr-operation-filters>
-    <mat-select [(value)]='this.sortSelectValue' class="sort-select" (selectionChange)="reSort()">
-      <mat-option value="newest">
+    <button mat-button class="filter-button" (click)="this.toogleFiltersWindow()">
+      {{ showFilters ? 'Ukryj filtry' : 'Pokaż filtry' }}
+    </button>
+    <svr-operation-filters class="operation-filters-box" [ngClass]="showFilters ? 'opened' : 'closed' "
+      (filtersConfirmed)="applyFilters($event)">
+    </svr-operation-filters>
+    <mat-select [(value)]="sortType" (selectionChange)="reSortOperations()" class="sort-select">
+      <mat-option value="asc">
         najnowsze
       </mat-option>
-      <mat-option value="oldest">
+      <mat-option value="dsc">
         najstarsze
       </mat-option>
-      <mat-option value="highestValue">
+      <mat-option value="valdsc">
         największa wartość
       </mat-option>
-      <mat-option value="lowestValue">
+      <mat-option value="valasc">
         najmniejsza wartość
       </mat-option>
     </mat-select>
 
-    <div *ngIf="this.showGrouped">
+    <!-- <div *ngIf="this.showGrouped">
       <svr-operations-group *ngFor="let group of groupedOperations" [group]="group"></svr-operations-group>
-    </div>
-    <div *ngIf="!this.showGrouped">
+    </div> -->
+    <!-- <div *ngIf="!this.showGrouped">
       <svr-operation *ngFor="let operation of operations" [operation]="operation"></svr-operation>
+    </div> -->
+
+    <div class="operation-labels" fxLayout="row">
+      <div fxFlex="140px">
+        <span>Data</span>
+      </div>
+      <div fxFlex="auto">
+        <span>Tytuł</span>
+      </div>
+      <div fxFlex="12%" fxLayoutAlign="center">
+        <span>Kategoria</span>
+      </div>
+      <div fxFlex="90px" fxLayoutAlign="center">
+        <span>Dodatki</span>
+      </div>
+      <div fxFlex="11%" fxLayoutAlign="end">
+        <span>Wartość</span>
+      </div>
+      <div fxFlex="60px"></div>
     </div>
 
-  </div>
-  <div class="no-operations-info view-content" *ngIf="!this.operations">
-    <h2>Wystąpił błąd</h2>
-    {{ this.errorInfo }}
+    <svr-operation *ngFor="let operation of operations" [operation]="operation">
+    </svr-operation>
+
+    <div [ngSwitch]="viewState">
+      <div class="bottom-block">
+        <ng-container *ngSwitchCase="'ready'">
+          <div class="more-operations-button t-16-b secondary" (click)="fetchData()">
+            <fa-icon [icon]="dropIcon"></fa-icon>
+            <span>Więcej</span>
+          </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'loading'">
+          <mat-progress-spinner [mode]="'indeterminate'" [diameter]="26"></mat-progress-spinner>
+        </ng-container>
+        <ng-container *ngSwitchCase="'error'">
+          {{ this.errorInfo }}
+        </ng-container>
+        <ng-container *ngSwitchCase="'no-more'">
+          <span class="t-14-b secondary">To już wszystkie</span>
+        </ng-container>
+      </div>
+    </div>
+
   </div>
 </div>

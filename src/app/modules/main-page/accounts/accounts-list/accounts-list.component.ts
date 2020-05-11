@@ -29,7 +29,7 @@ export class AccountsListComponent {
   protected addAccount() {
     if (!this.addAccountDisabled) {
       this.dialogs.open(AddAccountDialogComponent, {
-        width: '500px'
+        minWidth: '560px'
       });
     }
   }

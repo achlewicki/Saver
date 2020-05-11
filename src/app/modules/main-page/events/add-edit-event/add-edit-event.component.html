@@ -1,0 +1,83 @@
+<div class="event-add-edit-container" fxLayout="column" fxLayoutGap="15px" fxLayoutAlign="center stretch">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-icon-button (click)="returnToDefaultView()">
+      <fa-icon [icon]="backIcon" class="h-22 secondary"></fa-icon>
+    </button>
+  </div>
+  <form [formGroup]="fGroup" (ngSubmit)="submit()" fxLayout="column" fxLayoutGap="20px">
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="start center">
+      <mat-form-field appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover" fxFlex="auto">
+        <label class="app-input-label">Tytuł</label>
+        <input #title formControlName="title" matInput maxlength="45">
+        <mat-hint align="end">{{title.value?.length || 0}}/45</mat-hint>
+      </mat-form-field>
+      <div fxFlex="10%">
+        <input readonly [disabled]="mode === 'edit' && event.predefined" class="color-picker-input"
+          [(colorPicker)]="color" [style.background]="color" [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'hex'">
+      </div>
+    </div>
+    <div>
+      <div class="dates" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+        <mat-form-field appearance="outline"
+          class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="1 1 auto">
+          <label class="app-input-label">Trwa od</label>
+          <input matInput readonly formControlName="dateFrom" [matDatepicker]="dateFromPicker"
+            (dateChange)="dateFrom = $event.value" (dateInput)="dateFrom = $event.value" [max]="dateTo || null">
+          <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dateFromPicker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline"
+          class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="1 1 auto">
+          <label class="app-input-label">Trwa do</label>
+          <input matInput readonly formControlName="dateTo" [matDatepicker]="dateToPicker"
+            (dateChange)="dateTo = $event.value" (dateInput)="dateTo = $event.value" [min]="dateFrom || null">
+          <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dateToPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <mat-checkbox formControlName="isRepeating">Powtarzaj co rok</mat-checkbox>
+    </div>
+
+    <mat-form-field fxFill appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover">
+      <label class="app-input-label">Opis</label>
+      <textarea matInput class="description-textarea" #description formControlName="description"
+        maxlength="500"></textarea>
+      <mat-hint align="end">{{description.value?.length || 0}}/500</mat-hint>
+    </mat-form-field>
+
+    <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center">
+      <div fxLayout="column" fxFlex="1 1 auto">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-checkbox formControlName="valueCheckbox">Przewidywany wydatek</mat-checkbox>
+          <svr-tooltip class="t-12 secondary">
+            Jeśli przypiszesz wartość dla wydarzenia zostanie ona uwzględniona przy tworzeniu przewidywanego raportu z
+            nadchodzącego miesiąca.
+          </svr-tooltip>
+        </div>
+        <mat-form-field appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover">
+          <input min="0" formControlName="value" matInput placeholder="Wartość" svrValueInput>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="column" fxFlex="1 1 auto">
+        <div fxLayout="row" fxLayoutAlign="start center">
+          <mat-checkbox formControlName="reminderCheckbox">Przypomnij o wydarzeniu</mat-checkbox>
+          <svr-tooltip class="t-12 secondary">
+            Jeśli chcesz otrzymać powiadomienie o nadchodzącym wydarzeniu zaznacz to pole i podaj liczbę dni.
+          </svr-tooltip>
+        </div>
+        <mat-form-field appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover">
+          <input type="number" min="0" max="1500" formControlName="remindDays" matInput placeholder="Dni przed">
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+      <fa-icon [icon]="successIcon" class="statusIcon successIcon" *ngIf="operationSuccess"></fa-icon>
+      <fa-icon [icon]="failIcon" class="statusIcon failIcon" *ngIf="operationFail"></fa-icon>
+      <mat-progress-spinner *ngIf="pendingOperation" [mode]="'indeterminate'" [diameter]="22"></mat-progress-spinner>
+      <button mat-flat-button color="accent" class="submit-button" type="submit" [disabled]="fGroup.disabled">
+        {{ mode === "add" ? 'Dodaj' : 'Zapisz' }}
+      </button>
+    </div>
+  </form>
+</div>

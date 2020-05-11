@@ -1,13 +1,12 @@
 import { OperationModel, GroupedOperations } from '#models/operations.model';
 import { OperationsService } from '#services/operations-service/operations.service';
-import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { OperationFilters } from '#models/operations-filters.model';
-
 import * as moment from 'moment';
-import {MainPageService} from '#services/main-page-service/main-page.service';
-import {icon} from '@fortawesome/fontawesome-svg-core';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+
+
 @Component({
   selector: 'svr-operations',
   templateUrl: './operations-view.component.html',
@@ -16,106 +15,84 @@ import {icon} from '@fortawesome/fontawesome-svg-core';
 export class OperationsViewComponent implements OnInit {
 
   private accountId: number;
+  private operationsFilters: OperationFilters = {};
 
-  private allOperations: OperationModel[];
   protected operations: OperationModel[];
-  protected groupedOperations: GroupedOperations[];
 
-  protected sortSelectValue: string;
   protected showGrouped: boolean;
 
   protected errorInfo: string;
 
-  protected filters: OperationFilters;
   protected showFilters: boolean;
-  protected filtersButtonText: string;
+  protected sortType: 'asc' | 'dsc' | 'valdsc' | 'valasc' = 'asc';
+
+  protected viewState: 'ready' | 'loading' | 'error' | 'no-more' = 'ready';
+
+  protected dropIcon = faChevronDown;
 
   constructor(
     private readonly mainPageService: MainPageService,
     private readonly operationsService: OperationsService
   ) {
-    this.groupedOperations = [];
-    this.accountId = 1;
-    this.sortSelectValue = 'newest';
     this.showGrouped = true;
     this.showFilters = false;
-    this.errorInfo = 'Nieznany błąd :(';
-    this.filtersButtonText = 'Pokaż filtry';
-    this.filters = {
-      dateFrom: new Date(0),
-      dateTo: new Date(),
-      onlyCyclic: false,
-      haveFile: true,
-      haveGuaranty: true
-    };
   }
 
   ngOnInit(): void {
     this.mainPageService.activeView.next({
-        name: 'operations',
-        title: 'Operacje',
-        icon: 'clipboard'
-      });
-    this.operationsService.getOperationsByAccount(this.accountId).subscribe(
+      name: 'operations',
+      title: 'Operacje',
+      icon: 'clipboard'
+    });
+    this.mainPageService.activeAccount.subscribe(
       result => {
-        this.allOperations = result;
-        this.reSort();
-      },
-      err => {
-        console.error(err);
-        this.errorInfo = err.error.message;
+        this.accountId = result.id;
+        this.refetchData();
       }
     );
-  }
-
-  protected reSort(): void {
-    this.operations = this.allOperations.filter((operation) => this.filtrOperations(operation));
-    this.operations = this.operations.sort((a: OperationModel, b: OperationModel) => this.sortOperations(a, b));
-    this.groupedOperations = [];
-    if (this.showGrouped) {
-      this.groupOperations();
-    }
   }
 
   protected toogleFiltersWindow(): void {
     this.showFilters = !this.showFilters;
-    this.filtersButtonText = this.showFilters ? 'Ukryj filtry' : 'Pokaż filtry';
   }
 
-  private groupOperations(): void {
-    this.operations.map((operation) => {
-      const date = moment(operation.date).format('DD.MM.YYYY');
-      const group = this.groupedOperations.find(x => x.date === date);
-      if (group) {
-        group.operations.push(operation);
-      } else {
-        this.groupedOperations.push({ date, operations: [operation] });
+  protected refetchData(): void {
+    this.operations = [];
+    this.fetchData();
+  }
+
+  protected fetchData(): void {
+    this.viewState = 'loading';
+    this.operationsService.getOperationsByAccount2(
+      this.accountId,
+      {
+        length: 10,
+        startIndex: this.operations.length,
+        sort: this.sortType,
+        type: this.operationsFilters.type,
+        dateFrom: this.operationsFilters.dateFrom,
+        dateTo: this.operationsFilters.dateTo
       }
-    });
-  }
-
-  private sortOperations(a: OperationModel, b: OperationModel): number {
-    switch (this.sortSelectValue) {
-      default:
-      case 'newest':
-        this.showGrouped = true;
-        return ((a.date > b.date) ? -1 : ((a.date < b.date) ? 1 : 0));
-      case 'oldest':
-        this.showGrouped = true;
-        return ((a.date < b.date) ? -1 : ((a.date > b.date) ? 1 : 0));
-      case 'highestValue':
-        this.showGrouped = false;
-        return ((a.value * a.type > b.value * b.type) ? -1 : ((a.value * a.type > b.value * b.type) ? 1 : 0));
-      case 'lowestValue':
-        this.showGrouped = false;
-        return ((a.value * a.type < b.value * b.type) ? -1 : ((a.value * a.type < b.value * b.type) ? 1 : 0));
-    }
-  }
-
-  private filtrOperations(operation: OperationModel): boolean {
-    return (
-      operation.date >= this.filters.dateFrom
-      && operation.date <= this.filters.dateTo
+    ).subscribe(
+      result => {
+        this.operations.push(...result);
+        this.viewState = result.length === 0 ? 'no-more' : 'ready';
+      },
+      error => {
+        console.log(error);
+        this.errorInfo = 'Wystąpił błąd';
+        this.viewState = 'error';
+      }
     );
   }
+
+  protected reSortOperations(): void {
+    this.refetchData();
+  }
+
+  protected applyFilters(filters: OperationFilters): void {
+    this.operationsFilters = filters;
+    this.refetchData();
+  }
+
 }

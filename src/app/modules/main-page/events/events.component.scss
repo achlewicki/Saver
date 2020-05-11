@@ -1,0 +1,61 @@
+@import 'app-boxes', 'mixins';
+
+.events-container {
+  max-width: 1450px;
+  margin: 20px auto;
+}
+
+.calendar {
+  padding: 30px;
+  margin: 10px;
+  max-width: 900px;
+}
+
+.details-container {
+  position: relative;
+  max-width: 900px;
+  margin: 10px;
+}
+
+.default-details {
+  height: 100%;
+  width: 100%;
+  @include flex-center();
+  font-size: 80px;
+  color: rgba(0, 0, 0, 0.05);
+}
+
+.loading-overlay {
+  @extend .app-box;
+  @include flex-center();
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: none;
+}
+
+// @media (max-width: 1666px) {
+//   .details-container {
+//     max-width: 900px;
+//   }
+// }
+
+full-calendar {
+  ::ng-deep td.fc-today {
+    background-color: #e5f0ff;
+  }
+
+  ::ng-deep td.fc-day:hover,
+  ::ng-deep td.fc-day-top:hover {
+    &.fc-day {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  ::ng-deep .fc-content {
+    cursor: pointer;
+  }
+}

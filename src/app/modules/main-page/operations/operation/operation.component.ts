@@ -1,7 +1,7 @@
 import { OperationModel } from '#models/operations.model';
 import { Component, Input } from '@angular/core';
 
-import * as moment from 'moment';
+import { faFile, faCertificate, faChevronDown, faAlignLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'svr-operation',
@@ -14,7 +14,11 @@ export class OperationComponent {
   protected operation: OperationModel;
 
   protected descriptionBoxVisible: boolean;
-  protected moment = moment;
+
+  protected fileIcon = faFile;
+  protected guaranteeIcon = faCertificate;
+  protected dropIcon = faChevronDown;
+  protected descriptionIcon = faAlignLeft;
 
   constructor() {
     this.descriptionBoxVisible = false;
@@ -22,6 +26,12 @@ export class OperationComponent {
 
   protected descriptionClick(): void {
     this.descriptionBoxVisible = !this.descriptionBoxVisible;
+  }
+
+  protected expectedDate(dateFrom: Date, months: number): Date {
+    const expected = new Date(dateFrom);
+    expected.setMonth(expected.getMonth() + months);
+    return expected;
   }
 
 }

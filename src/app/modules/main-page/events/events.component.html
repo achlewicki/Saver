@@ -1,0 +1,35 @@
+<div class="events-container" fxLayout="row wrap" fxLayoutAlign="center srtetch">
+  <div class="calendar app-box">
+    <full-calendar [plugins]="calendarPlugins" [events]="calendarEvents" defaultView="dayGridMonth" [firstDay]="1"
+      (dateClick)="dateClick($event)" (eventClick)="eventClick($event)" [locale]="plLocale">
+    </full-calendar>
+  </div>
+  <div class="details-container app-box" fxFlex="auto">
+    <ng-container [ngSwitch]="detailsBoxState">
+      <ng-container *ngSwitchCase="'show-event'">
+        <svr-event-details [event]="selectedEvent" (editTriggered)="setEditState()"
+          (deleteTriggered)="eventDeleteHandler()"></svr-event-details>
+      </ng-container>
+      <ng-container *ngSwitchCase="'add-event'">
+        <svr-add-edit-event [mode]="'add'" [accountId]="accountId" [date]="selectedDate"
+          (eventAdded)="eventAddedHandler($event)" (cancelAndReturn)="cancelEditing()">
+        </svr-add-edit-event>
+      </ng-container>
+      <ng-container *ngSwitchCase="'edit-event'">
+        <svr-add-edit-event [mode]="'edit'" [accountId]="accountId" [event]="selectedEvent"
+          (cancelAndReturn)="cancelEditing()" (eventModified)="eventEditedHandler($event)">
+        </svr-add-edit-event>
+      </ng-container>
+      <ng-container *ngSwitchCase="'default'">
+        <div class="default-details">
+          <fa-icon [icon]="calendarIcon"></fa-icon>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-container *ngIf="operationPending">
+      <div class="loading-overlay">
+        <mat-progress-spinner [mode]="'indeterminate'" [diameter]="30"></mat-progress-spinner>
+      </div>
+    </ng-container>
+  </div>
+</div>

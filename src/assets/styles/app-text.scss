@@ -43,6 +43,7 @@
   Avalible classes: 
     .t-<font-size>    - normal text
     .t-<font-size>-b  - bolder text
+    .t-<font-size>-l  - lighter text
 
 */
 
@@ -64,6 +65,11 @@
     @extend .t-#{$size};
     font-weight: 500;
   }
+
+  .t-#{$size}-l {
+    @extend .t-#{$size};
+    font-weight: 300;
+  }
 }
 
 @include text(16);
@@ -83,7 +89,7 @@
 
 .app-a::after {
   position: absolute;
-  top: .22em;
+  top: .3em;
   margin-left: .5em;
 
   content: "";

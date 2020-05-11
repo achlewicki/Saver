@@ -32,6 +32,9 @@ $projekt-theme: mat-light-theme($projekt-primary, $projekt-accent, $projekt-warn
 // that you are using.
 @include angular-material-theme($projekt-theme);
 
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+
 * {
   margin: 0;
   padding: 0;
@@ -46,10 +49,6 @@ $projekt-theme: mat-light-theme($projekt-primary, $projekt-accent, $projekt-warn
 body {
   //margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.mat-dialog-container {
-  overflow: visible !important;
 }
 
 .custom-dialog-container .mat-dialog-container {

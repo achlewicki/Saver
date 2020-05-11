@@ -7,11 +7,12 @@
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
         <mat-form-field>
-          <input matInput formControlName="email" placeholder="Email" class="login-input">
+          <input matInput id="login-emial" formControlName="email" placeholder="Email" class="login-input">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput [type]="'password'" formControlName="password" placeholder="Password" class="password-input">
+          <input matInput id="login-password" [type]="'password'" formControlName="password" placeholder="Password"
+            class="password-input">
         </mat-form-field>
 
         <button type="submit" mat-flat-button [disabled]="!this.loginForm.valid || this.loginChceckPending">

@@ -1,0 +1,59 @@
+<div class="event-details-box" fxLayout="column" fxLayoutGap="20px" *ngIf="event; else loading">
+  <div class="action-icons" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="10px">
+    <!-- *ngIf="!event.predefined" -->
+    <button mat-icon-button (click)="deleteTriggered.emit()">
+      <fa-icon [icon]="deleteIcon"></fa-icon>
+    </button>
+    <button mat-icon-button (click)="editTriggered.emit()">
+      <fa-icon [icon]="editIcon"></fa-icon>
+    </button>
+  </div>
+  <div class="event-box-line">
+    <div class="line-prefix">
+      <div class="event-color-element" [style.background]="event.color || '#01ca94' "></div>
+    </div>
+    <div class="line-content">
+      <p class="h-22-b primary">
+        {{ event.title }}
+      </p>
+      <p class="event-dates t-14 secondary ">
+        <ng-container *ngIf="event.dateFrom.getTime() === event.dateTo.getTime(); else twoDates">
+          {{ event.dateFrom | date:'d.MM.yyyy' }}
+        </ng-container>
+        <ng-template #twoDates>
+          {{ event.dateFrom | date:'d.MM.yyyy' }} - {{ event.dateTo | date:'d.MM.yyyy' }}
+        </ng-template>
+        <ng-container *ngIf="event.isRepeating">
+          &middot; Wydarzenie co roczne
+        </ng-container>
+      </p>
+    </div>
+  </div>
+  <div class="event-box-line" *ngIf=" event.description !== '' && event.description !== undefined ">
+    <div class="line-prefix">
+      <fa-icon class="t-16 secondary" [icon]="descriptionIcon"></fa-icon>
+    </div>
+    <div class="line-content">
+      <p>{{ event.description }}</p>
+    </div>
+  </div>
+  <div class="event-box-line" *ngIf="event.whenNotification">
+    <div class="line-prefix">
+      <fa-icon class="t-16 secondary" [icon]="notificationIcon"></fa-icon>
+    </div>
+    <div class="line-content">
+      <p class="t-14 secondary"> Przypomnienie: </p>
+      <p class="t-16 primary">{{ event.whenNotification | date:'d.MM.yyyy'}}</p>
+    </div>
+  </div>
+  <div class="event-box-line" *ngIf="event.value !== undefined && event.value !== 0">
+    <div class="line-prefix">
+      <fa-icon class="t-16 secondary" [icon]="valueIcon"></fa-icon>
+    </div>
+    <div class="line-content">
+      <p class="t-14 secondary"> Przewidywany wydatek: </p>
+      <p class="t-16 primary">{{ event.value | formatValue }}</p>
+    </div>
+  </div>
+</div>
+<ng-template #loading> WCZYTYWANIE</ng-template>

@@ -8,6 +8,10 @@
   font-weight: 500;
 }
 
+.app-input-label.disabled {
+  color: #aeafb3;
+}
+
 // Material Form Field Style
 
 mat-form-field {
@@ -24,6 +28,7 @@ mat-form-field {
     left: -5px;
   }
 }
+
 
 .mat-ff-no-border-hover {
 
@@ -47,12 +52,24 @@ mat-form-field {
   ::ng-deep .mat-form-field-prefix,
   ::ng-deep .mat-form-field-suffix {
     top: 0;
+
+    mat-datepicker-toggle {
+      position: relative;
+      top: .35em;
+      left: 0;
+    }
   }
 
   mat-select {
     ::ng-deep .mat-select-arrow-wrapper {
       display: block;
     }
+  }
+}
+
+.mat-ff-no-bottom-padding {
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 0;
   }
 }
 
@@ -103,4 +120,3 @@ mat-form-field {
 .app-file-input:focus {
   outline: none;
 }
-

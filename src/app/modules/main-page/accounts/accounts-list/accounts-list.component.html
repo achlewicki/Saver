@@ -30,7 +30,7 @@
       </div>
     </div>
     <ng-template #loadingList>
-      <div fxLayout="row" fxLayoutAlign="center center">
+      <div class="loading-spinner" fxLayout="column" fxLayoutAlign="center center">
         <mat-progress-spinner [mode]="'indeterminate'" [diameter]="40"></mat-progress-spinner>
       </div>
     </ng-template>
@@ -38,7 +38,7 @@
   <div class="available-accounts t-12 secondary">
     <svr-tooltip>
       <span class="t-12 primary">Ilość dostępnych kont zależy od poziomu twojego profilu.</span>
-      <p> <a class="app-a">Więcej o poziomach</a> </p>
+      <a class="app-a t-12">Więcej o poziomach</a>
     </svr-tooltip>
     <span> Możliwa ilość kont: {{ accounts?.length }} / 10 </span>
   </div>

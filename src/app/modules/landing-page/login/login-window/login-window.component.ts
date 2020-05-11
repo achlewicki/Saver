@@ -48,7 +48,6 @@ export class LoginWindowComponent implements OnInit {
         (response) => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('user.id', response.user.id.toString());
-          this.loginChceckPending = false;
           this.errorInfo = '';
           if (this.redirectUrl) {
             this.router.navigateByUrl(this.redirectUrl);

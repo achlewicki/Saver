@@ -31,11 +31,12 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { UserInfoDialogComponent } from './user-info-dialog/user-info-dialog.component';
 import { NotificationDialogComponent } from './notification-dialog/notification-dialog.component';
 import { NotificationItemComponent } from './notification-dialog/notification-item/notification-item.component';
+import { AddEditEventDialogComponent } from './add-edit-event-dialog/add-edit-event-dialog.component';
+import { ProcessDialogComponent } from './process-dialog/process-dialog.component';
+import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 import { accountIconsPack } from './add-account-dialog/account-icons';
-import { ProcessDialogComponent } from './process-dialog/process-dialog.component';
-import {EditCategoryComponent} from './edit-category/edit-category.component';
-import {ColorPickerModule} from 'ngx-color-picker';
+import { ColorPickerModule } from 'ngx-color-picker';
 
 const matModules = [
   MatButtonModule,
@@ -54,13 +55,14 @@ export const dialogs = [
   ProcessDialogComponent,
   UserInfoDialogComponent,
   NotificationDialogComponent,
-  EditCategoryComponent
+  EditCategoryComponent,
+  AddEditEventDialogComponent
 ];
 
 @NgModule({
   declarations: [
     ...dialogs,
-    NotificationItemComponent,
+    NotificationItemComponent
   ],
   imports: [
     CommonModule,
