@@ -26,7 +26,7 @@ export class ReportViewComponent implements OnInit {
     private readonly datePipe: DatePipe,
   ) {
     this.mpService.activeView.next({
-      name: 'raports', //takie samo jak w nav list !!!
+      name: 'reports', //takie samo jak w nav list !!!
       title: 'Raporty',
       icon: 'chart'
     });

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, HostListener} from '@angular/core';
 
 @Component({
   selector: 'svr-landing-page-core',
@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./landing-page-core.component.scss']
 })
 export class LandingPageCoreComponent {
+  private loaded = true;
+
 
   constructor() { }
 
