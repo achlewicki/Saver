@@ -56,15 +56,18 @@ header {
 //  color: #0eb011;
 //}
 
-a {
-  cursor: pointer;
-  cursor: hand;
-  padding: 10px 15px;
-  border-radius: 15px;
-}
 
-a:hover{
-  background-color: rgba(0,0,0,0.1);
+
+.navBarButton{
+  a {
+    cursor: pointer;
+    cursor: hand;
+    padding: 10px 15px;
+    border-radius: 15px;
+  }
+  a:hover{
+    background-color: rgba(0,0,0,0.1);
+  }
 }
 
 //button{
