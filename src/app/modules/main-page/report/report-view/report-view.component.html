@@ -15,27 +15,46 @@
     <button mat-button (click)="setNewDateRange()">Ok</button>
   </div>
 
-  <div class="charts-container" fxLayoutGap="40px" fxLayout="column"  *ngIf="loaded">
+  <div class="charts-container" fxLayoutGap="40px" fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="center" fxLayout.lt-md="column">
-      <svr-raport-main-chart [data]="this.accountHistory"
-                             [ngClass]="this.fullscreenChart === 'mainChart' ? 'fullscreen' : 'default'"
-                             (click)="this.toggleChartOnFullscreen('mainChart')"></svr-raport-main-chart>
-      <svr-raport-category-chart
-                                 [data]="this.accountHistory"
-                                 [ngClass]="this.fullscreenChart === 'category' ? 'fullscreen' : 'default margin-left'"
-                                 (click)="this.toggleChartOnFullscreen('category')"></svr-raport-category-chart>
+
+      <ng-container *ngIf="this.accountHistory; else loading">
+        <svr-raport-main-chart [data]="this.accountHistory"
+          [ngClass]="this.fullscreenChart === 'mainChart' ? 'fullscreen' : 'default'"
+          (click)="this.toggleChartOnFullscreen('mainChart')">
+        </svr-raport-main-chart>
+      </ng-container>
+
+      <ng-container *ngIf="this.accountHistory; else loading">
+        <svr-raport-category-chart [data]="this.accountHistory"
+          [ngClass]="this.fullscreenChart === 'category' ? 'fullscreen' : 'default margin-left'"
+          (click)="this.toggleChartOnFullscreen('category')">
+        </svr-raport-category-chart>
+      </ng-container>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="center" fxLayout.lt-md="column">
-      <svr-raport-category2-chart [data]="this.accountHistory"
-                                  [ngClass]="this.fullscreenChart === 'category2' ? 'fullscreen' : 'default'"
-                                  (click)="this.toggleChartOnFullscreen('category2')"></svr-raport-category2-chart>
-      <svr-raport-account-balance-chart
-                                        *ngIf="this.loaded2"
-                                        [data]="this.balanceHistory"
-                                        [ngClass]="this.fullscreenChart === 'accountBalance' ? 'fullscreen' : 'default margin-left'"
-                                        (click)="this.toggleChartOnFullscreen('accountBalance')"></svr-raport-account-balance-chart>
+
+      <ng-container *ngIf="this.accountHistory; else loading">
+        <svr-raport-category2-chart [data]="this.accountHistory"
+          [ngClass]="this.fullscreenChart === 'category2' ? 'fullscreen' : 'default'"
+          (click)="this.toggleChartOnFullscreen('category2')">
+        </svr-raport-category2-chart>
+      </ng-container>
+
+      <ng-container *ngIf="(balanceHistory$ | async) as balanceHistory; else loading">
+        <svr-raport-account-balance-chart [data]="balanceHistory"
+          [ngClass]="this.fullscreenChart === 'accountBalance' ? 'fullscreen' : 'default margin-left'"
+          (click)="this.toggleChartOnFullscreen('accountBalance')">
+        </svr-raport-account-balance-chart>
+      </ng-container>
     </div>
   </div>
 </div>
 
+<ng-template #loading>
+  <div class="loading-box">
+    <mat-progress-spinner [mode]="'indeterminate'" [diameter]="40">
+    </mat-progress-spinner>
+  </div>
+</ng-template>

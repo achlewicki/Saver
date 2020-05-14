@@ -1,15 +1,15 @@
-@import 'app-boxes';
+@import 'app-boxes', 'mixins';
 
-.charts-container{
-//  width: 94%;
-//  margin: 5px 3%;
+.charts-container {
+  //  width: 94%;
+  //  margin: 5px 3%;
 }
 
-.margin-left{
+.margin-left {
   margin-left: 40px;
 }
 
-.default{
+.default {
   @extend .app-box;
   width: 45%;
   height: 45%;
@@ -20,7 +20,7 @@
   z-index: 1;
 }
 
-.fullscreen{
+.fullscreen {
   @extend .app-box;
   transition: width 1.3s, height 1.3s;
   width: 95%;
@@ -30,6 +30,18 @@
   top: 60px;
   position: absolute;
   z-index: 2;
+}
+
+.loading-box {
+  @include flex-center();
+  @extend .app-box;
+  width: 45%;
+  height: 45%;
+  //animation-name: fromFullscreen;
+  //animation-duration: 0.7s;
+  position: relative;
+  transition: width 1.3s, height 1.3s;
+  z-index: 1;
 }
 
 //@keyframes toFullscreen {

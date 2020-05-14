@@ -1,14 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
-import {Label} from 'ng2-charts';
-import {AccountHistoryModel} from '#models/account-history.model';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
+import { Label } from 'ng2-charts';
+import { AccountHistoryModel } from '#models/account-history.model';
 
 @Component({
   selector: 'svr-raport-category-chart',
   templateUrl: './report-category-chart.component.html',
   styleUrls: ['./report-category-chart.component.scss']
 })
-export class ReportCategoryChartComponent implements OnInit {
+export class ReportCategoryChartComponent implements OnInit, OnChanges {
   @Input() data: AccountHistoryModel[];
   private noData = false;
 
@@ -38,10 +38,15 @@ export class ReportCategoryChartComponent implements OnInit {
   private chartType: ChartType = 'bar';
   private chartData: ChartDataSets[] = [];
 
-  constructor() {}
+  constructor() { }
+
+  ngOnChanges() {
+    this.ngOnInit();
+  }
 
   ngOnInit() {
-    console.log(this.data);
+    this.chartData = [];
+    this.chartLabel = [];
     const sumy: number[] = [];
     this.data.forEach((value, index) => {
       this.chartLabel.push(value.date.toString());
@@ -75,10 +80,13 @@ export class ReportCategoryChartComponent implements OnInit {
 
       this.chartData.forEach((value1, index3) => {
         value1.data[index] = sumy[index3];
-        if (value1.data[index] === undefined) {value1.data[index] = 0; }
+        if (value1.data[index] === undefined) { value1.data[index] = 0; }
       });
       sumy.splice(0, sumy.length);
     });
+
+    console.log(this.chartData);
+    console.log(this.data);
 
     if (this.chartData.length === 0) {
       this.noData = true;
@@ -86,6 +94,8 @@ export class ReportCategoryChartComponent implements OnInit {
         data: []
       };
       this.chartData.push(setForNoData);
+    } else {
+      this.noData = false;
     }
   }
 }
