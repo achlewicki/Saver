@@ -32,6 +32,7 @@ export class ReportMainChartComponent implements OnInit {
     {
       data: [],
       backgroundColor: [],
+      hoverBackgroundColor: []
       // borderColor: 'blue',
       // fill: 'start',
       // lineTension: 0,
@@ -40,25 +41,23 @@ export class ReportMainChartComponent implements OnInit {
       // pointRadius: 5
     }
   ];
-  private chartColors: any = {
-      backgroundColor: []
-  };
 
   constructor() {}
 
   ngOnInit() {
     this.data.forEach(value => {
-      this.chartLabel.push(value.data.toString());
+      this.chartLabel.push(value.date.toString());
       // if (value.report[0] !== undefined) {this.chartData[0].data.push(value.report[0].balance); } else {this.chartData[0].data.push(0); }
       let outcomesSumarry = 0;
       let incomesSumarry = 0;
-      value.przychody.forEach(value1 => incomesSumarry += value1);
-      value.wydatki.forEach(value1 => outcomesSumarry += value1.value);
+      value.incomes.forEach(value1 => incomesSumarry += value1);
+      value.outcomes.forEach(value1 => outcomesSumarry += value1.value);
       this.chartData[0].data.push(incomesSumarry - outcomesSumarry);
     });
 
     this.chartData[0].data.forEach((value, index) => {
-      value > 0 ? this.chartData[0].backgroundColor[index] = 'green' : this.chartData[0].backgroundColor[index] = 'red';
+      value > 0 ? this.chartData[0].backgroundColor[index] = this.chartData[0].hoverBackgroundColor[index] = 'green' :
+        this.chartData[0].backgroundColor[index] = this.chartData[0].hoverBackgroundColor[index] = 'red';
     });
   }
 

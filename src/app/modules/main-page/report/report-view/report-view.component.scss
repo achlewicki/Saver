@@ -1,9 +1,59 @@
-svr-raport-account-balance-chart, svr-raport-category-chart, svr-raport-category2-chart, svr-raport-main-chart{
-  width: 45%;
-  height: 45%;
+@import 'app-boxes';
+
+.charts-container{
+//  width: 94%;
+//  margin: 5px 3%;
 }
 
-//svr-raport-main-chart:hover{
-//  width: 90%;
-//  height: 90%;
+.margin-left{
+  margin-left: 40px;
+}
+
+.default{
+  @extend .app-box;
+  width: 45%;
+  height: 45%;
+  //animation-name: fromFullscreen;
+  //animation-duration: 0.7s;
+  position: relative;
+  transition: width 1.3s, height 1.3s;
+  z-index: 1;
+}
+
+.fullscreen{
+  @extend .app-box;
+  transition: width 1.3s, height 1.3s;
+  width: 95%;
+  height: 95%;
+  //animation-name: toFullscreen;
+  //animation-duration: 0.7s;
+  top: 60px;
+  position: absolute;
+  z-index: 2;
+}
+
+//@keyframes toFullscreen {
+//  from {
+//    right: 0;
+//    width: 45%;
+//    height: 45%;
+//  }
+//
+//  to {
+//    left: 0;
+//    width: 100%;
+//    height: 100%;
+//  }
+//}
+//
+//@keyframes fromFullscreen {
+//  from {
+//    width: 100%;
+//    height: 100%;
+//  }
+//
+//  to {
+//    width: 45%;
+//    height: 45%;
+//  }
 //}

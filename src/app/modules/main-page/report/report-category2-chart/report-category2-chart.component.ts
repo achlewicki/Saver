@@ -23,21 +23,44 @@ export class ReportCategory2ChartComponent implements OnInit {
       easing: 'linear',
       duration: 2000
     },
+
+    // scale: {
+    //   ticks: {
+    //     display: false
+    //   }
+    // },
     scales: {
       xAxes: [
         {
+          gridLines: {
+            color: 'rgba(0, 0, 0, 0)',
+          },
+          display: false,
           ticks: {
             beginAtZero: true
           }
         }
+      ],
+      yAxes: [
+        {
+          gridLines: {
+            color: 'rgba(0, 0, 0, 0)',
+          },
+          display: false
+        },
+
       ]
     }
   };
 
   private chartLabel: Label[] = [];
   private chartLegend = true;
-  private chartType: ChartType = 'horizontalBar';
-  private chartData: ChartDataSets[] = [];
+  private chartType: ChartType = 'doughnut';
+  private chartData: ChartDataSets[] = [
+    {
+      data: [],
+      backgroundColor: [],
+  }];
 
   constructor() {
   }
@@ -46,16 +69,12 @@ export class ReportCategory2ChartComponent implements OnInit {
     const sumy: number[] = [];
 
     this.data.forEach(value => {
-      value.wydatki.forEach(value1 => {
+      value.outcomes.forEach(value1 => {
         if (value1 !== undefined) {
           if (!this.chartLabel.find(value2 => value2 === value1.subcategory.category.title) && value1.subcategory !== undefined) {
           this.chartLabel.push(value1.subcategory.category.title);
-          const newSet: ChartDataSets = {
-            data: [value1.value],
-            backgroundColor: value1.subcategory.category.color,
-            label: value1.subcategory.category.title
-          };
-          this.chartData.push(newSet);
+          this.chartData[0].data.push(value1.value);
+          this.chartData[0].backgroundColor[this.chartData[0].data.length-1] = value1.subcategory.category.color;
           sumy.push(value1.value);
           } else if (value1.subcategory !== undefined) {
           const index = this.chartLabel.findIndex(value2 => value2 === value1.subcategory.category.title);
@@ -65,13 +84,13 @@ export class ReportCategory2ChartComponent implements OnInit {
       });
     });
 
-    sumy.forEach((value, index) => this.chartData[index].data[0] = value);
-    if (this.chartData.length === 0) {
+    sumy.forEach((value, index) => this.chartData[0].data[index] = value);
+    if (this.chartData[0].data.length === 0) {
       this.noData = true;
       const setForNoData: ChartDataSets = {
         data: []
       };
-      this.chartData.push(setForNoData);
+      this.chartData[0] = setForNoData;
     }
   }
 

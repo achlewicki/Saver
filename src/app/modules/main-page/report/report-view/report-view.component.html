@@ -15,15 +15,26 @@
     <button mat-button (click)="setNewDateRange()">Ok</button>
   </div>
 
-  <div fxLayout="column" fxFlex="100%" *ngIf="loaded">
-    <div fxLayout="row" fxLayout.lt-md="column">
-      <svr-raport-main-chart [data]="this.accountHistory"></svr-raport-main-chart>
-      <svr-raport-category-chart [data]="this.accountHistory"></svr-raport-category-chart>
+  <div class="charts-container" fxLayoutGap="40px" fxLayout="column"  *ngIf="loaded">
+    <div fxLayout="row" fxLayoutAlign="center" fxLayout.lt-md="column">
+      <svr-raport-main-chart [data]="this.accountHistory"
+                             [ngClass]="this.fullscreenChart === 'mainChart' ? 'fullscreen' : 'default'"
+                             (click)="this.toggleChartOnFullscreen('mainChart')"></svr-raport-main-chart>
+      <svr-raport-category-chart
+                                 [data]="this.accountHistory"
+                                 [ngClass]="this.fullscreenChart === 'category' ? 'fullscreen' : 'default margin-left'"
+                                 (click)="this.toggleChartOnFullscreen('category')"></svr-raport-category-chart>
     </div>
 
-    <div fxLayout="row" fxLayout.lt-md="column">
-      <svr-raport-category2-chart [data]="this.accountHistory"></svr-raport-category2-chart>
-      <svr-raport-account-balance-chart [data]="this.accountHistory"></svr-raport-account-balance-chart>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayout.lt-md="column">
+      <svr-raport-category2-chart [data]="this.accountHistory"
+                                  [ngClass]="this.fullscreenChart === 'category2' ? 'fullscreen' : 'default'"
+                                  (click)="this.toggleChartOnFullscreen('category2')"></svr-raport-category2-chart>
+      <svr-raport-account-balance-chart
+                                        *ngIf="this.loaded2"
+                                        [data]="this.balanceHistory"
+                                        [ngClass]="this.fullscreenChart === 'accountBalance' ? 'fullscreen' : 'default margin-left'"
+                                        (click)="this.toggleChartOnFullscreen('accountBalance')"></svr-raport-account-balance-chart>
     </div>
   </div>
 </div>

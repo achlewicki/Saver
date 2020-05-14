@@ -16,7 +16,7 @@ export class AccountHistoryService {
   constructor(
     private readonly http: HttpClient
   ) {
-    this.accountHistoryURL = config.backendUrl + '/account-history/test/';
+    this.accountHistoryURL = config.backendUrl + '/account-history/';
   }
 
   public getInfo(accountId: number, dateFrom: string, dateTo: string): Observable<AccountHistoryModel[]> {

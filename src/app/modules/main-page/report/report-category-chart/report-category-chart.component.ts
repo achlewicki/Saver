@@ -44,8 +44,8 @@ export class ReportCategoryChartComponent implements OnInit {
     console.log(this.data);
     const sumy: number[] = [];
     this.data.forEach((value, index) => {
-      this.chartLabel.push(value.data.toString());
-      value.wydatki.forEach(value1 => {
+      this.chartLabel.push(value.date.toString());
+      value.outcomes.forEach(value1 => {
         if (!this.chartData.find(value2 => value2.label === value1.subcategory.category.title) && value1.subcategory !== undefined) {
           const setArray: number[] = [];
           if (index > 0) {
