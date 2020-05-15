@@ -1,4 +1,4 @@
-@import 'app-boxes';
+@import 'material-restyle', 'app-text', 'app-colors', 'app-boxes';
 
 .charts-container{
 //  width: 94%;
@@ -30,6 +30,13 @@
   top: 60px;
   position: absolute;
   z-index: 2;
+}
+
+.dates {
+  mat-form-field {
+    width: 190px;
+  }
+  margin-bottom: 15px;
 }
 
 //@keyframes toFullscreen {

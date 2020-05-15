@@ -1,18 +1,26 @@
 <div fxLayout="column">
   <div [formGroup]="dateForm">
-    <mat-form-field>
-      <mat-label>Choose a date</mat-label>
-      <input matInput formControlName="dateFrom" [matDatepicker]="dateFromPicker">
-      <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
-      <mat-datepicker #dateFromPicker></mat-datepicker>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Choose a date</mat-label>
-      <input matInput formControlName="dateTo" [matDatepicker]="dateToPicker">
-      <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
-      <mat-datepicker #dateToPicker></mat-datepicker>
-    </mat-form-field>
-    <button mat-button (click)="setNewDateRange()">Ok</button>
+    <div class="dates" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
+      <mat-form-field appearance="outline"
+                      class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="200px">
+        <label class="app-input-label">Raport od</label>
+        <input matInput formControlName="dateFrom" [matDatepicker]="dateFromPicker"
+               (dateChange)="dateFrom = $event.value" (dateInput)="dateFrom = $event.value" [max]="dateTo || null">
+        <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateFromPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline"
+                      class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="200px">
+        <label class="app-input-label">Raport do</label>
+        <input matInput formControlName="dateTo" [matDatepicker]="dateToPicker"
+               (dateChange)="dateTo = $event.value" (dateInput)="dateTo = $event.value" [min]="dateFrom || null">
+        <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
+        <mat-datepicker #dateToPicker></mat-datepicker>
+      </mat-form-field>
+
+      <button mat-button (click)="setNewDateRange()">Ok</button>
+    </div>
   </div>
 
   <div class="charts-container" fxLayoutGap="40px" fxLayout="column"  *ngIf="loaded">
