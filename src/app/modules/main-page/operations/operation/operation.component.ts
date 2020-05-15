@@ -1,3 +1,4 @@
+import { CurrencyModel } from '#models/currency.model';
 import { OperationModel } from '#models/operations.model';
 import { Component, Input } from '@angular/core';
 
@@ -9,6 +10,9 @@ import { faFile, faCertificate, faChevronDown, faAlignLeft } from '@fortawesome/
   styleUrls: ['./operation.component.scss']
 })
 export class OperationComponent {
+
+  @Input()
+  protected currency: CurrencyModel;
 
   @Input()
   protected operation: OperationModel;

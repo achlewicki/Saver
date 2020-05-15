@@ -1,13 +1,13 @@
 import { Router } from '@angular/router';
 import { AuthorisationService } from '#services/auth-service/authorisation.service';
-import { MainPageService } from '#services/main-page-service/main-page.service';
-import {Component, Input, OnInit} from '@angular/core';
+import { MainPageService, ViewDetails } from '#services/main-page-service/main-page.service';
+import { Component, OnInit } from '@angular/core';
 
-import { faEnvelope, faBell, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faBell, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-import {MatDialog} from '@angular/material';
-import {UserInfoDialogComponent} from '#modules/main-page/_dialogs/user-info-dialog/user-info-dialog.component';
-import {NotificationDialogComponent} from '#modules/main-page/_dialogs/notification-dialog/notification-dialog.component'
+import { MatDialog } from '@angular/material';
+import { UserInfoDialogComponent } from '#modules/main-page/_dialogs/user-info-dialog/user-info-dialog.component';
+import { NotificationDialogComponent } from '#modules/main-page/_dialogs/notification-dialog/notification-dialog.component'
 
 
 @Component({
@@ -17,21 +17,20 @@ import {NotificationDialogComponent} from '#modules/main-page/_dialogs/notificat
 })
 export class HeaderComponent implements OnInit {
 
-  protected title: string;
+  protected activeView: ViewDetails;
   faEnvelope = faEnvelope;
   faBell = faBell;
   faSignOutAlt = faSignOutAlt;
 
   constructor(
-    private mpservice: MainPageService,
+    private mpService: MainPageService,
     private readonly authService: AuthorisationService,
     private router: Router,
     private readonly dialogs: MatDialog
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
-    this.mpservice.activeView.subscribe((view) => this.title = view.title);
+    this.mpService.activeView.subscribe(view => this.activeView = view);
   }
 
   protected logout(): void {

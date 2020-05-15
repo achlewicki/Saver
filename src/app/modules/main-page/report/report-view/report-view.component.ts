@@ -5,9 +5,10 @@ import { AccountHistoryModel } from '#models/account-history.model';
 import { AccountHistoryService } from '#services/account-history-service/account-history.service';
 import { DatePipe } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AccountService } from '#services/account-service/account.service';
 import { AccountAndAccountHistoryModel } from '#models/account-and-account-history.model';
 import { AccountModel } from '#models/account.model';
+import { faChartBar } from '@fortawesome/free-solid-svg-icons';
+import { AccountService } from '#services/account-service/account.service';
 
 @Component({
   selector: 'svr-raport-view',
@@ -15,7 +16,6 @@ import { AccountModel } from '#models/account.model';
   styleUrls: ['./report-view.component.scss']
 })
 export class ReportViewComponent implements OnInit {
-  // TODO accountList !!!!
   protected accountHistory: AccountHistoryModel[];
   protected balanceHistory$: Observable<AccountAndAccountHistoryModel[]>;
   protected dateTo: Date;
@@ -23,6 +23,8 @@ export class ReportViewComponent implements OnInit {
   protected dateForm: FormGroup;
   protected activeAccount: AccountModel;
   protected fullscreenChart = 'none';
+  protected todayDate = new Date();
+  protected sevenDaysEarlier = new Date(this.todayDate.getTime() - 1000 * 60 * 60 * 24 * 7);
 
 
   // private test: AccountAndAccountHistoryModel[] = [];
@@ -42,12 +44,12 @@ export class ReportViewComponent implements OnInit {
     this.mpService.activeView.next({
       name: 'reports',
       title: 'Raporty',
-      icon: 'chart'
+      icon: faChartBar
     });
 
     this.dateForm = this.fb.group({
-      dateFrom: [new Date('2020/04/13'), [Validators.required]],
-      dateTo: [new Date('2020/04/17'), [Validators.required]],
+      dateFrom: [this.sevenDaysEarlier, [Validators.required]],
+      dateTo: [this.todayDate, [Validators.required]],
     });
   }
 

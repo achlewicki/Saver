@@ -1,23 +1,30 @@
+import { ActivatedRoute } from '@angular/router';
 import { AppMessageDialogComponent, AppMessageDialogData } from '#dialogs/app-message-dialog/app-message-dialog.component';
 import { ConfirmDialogComponent, ConfirmDialogData } from '#dialogs/confirm-dialog/confirm-dialog.component';
 import { MatDialog } from '@angular/material';
 import { EventModel } from '#models/event.model';
 import { MainPageService } from '#services/main-page-service/main-page.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewChecked } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import plLocale from '@fullcalendar/core/locales/pl';
-import { EventInput } from '@fullcalendar/core';
+import { EventInput, Calendar } from '@fullcalendar/core';
 import { EventService } from '#services/event-service/event.service';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { setFontColorWithContrast } from '#utilities/color-functions';
+import { FullCalendarComponent } from '@fullcalendar/angular';
 
 @Component({
   selector: 'svr-events',
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']
 })
-export class EventsComponent implements OnInit {
+export class EventsComponent implements OnInit, AfterViewChecked {
+
+  @ViewChild('calendar', { static: false })
+  private calendarComponent: FullCalendarComponent;
+
+  private calendarApi: Calendar;
 
   protected accountId: number;
 
@@ -31,20 +38,27 @@ export class EventsComponent implements OnInit {
   protected operationPending = false;
 
   protected calendarIcon = faCalendarAlt;
+  private eventIdParam: number;
 
   constructor(
     private readonly mpService: MainPageService,
     private readonly eventsService: EventService,
-    private readonly dialogs: MatDialog
+    private readonly dialogs: MatDialog,
+    private readonly route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
     this.mpService.activeView.next({
       name: 'calendar',
       title: 'Kalendarz',
-      icon: 'calendar-alt'
+      icon: faCalendarAlt
     });
+    this.eventIdParam = parseInt(this.route.snapshot.queryParamMap.get('eventId'), 10);
     this.getEvents();
+  }
+
+  ngAfterViewChecked(): void {
+    this.calendarApi = this.calendarComponent.getApi();
   }
 
   protected dateClick(eventArg): void {
@@ -53,14 +67,7 @@ export class EventsComponent implements OnInit {
   }
 
   protected eventClick(eventArg): void {
-    this.operationPending = true;
-    this.eventsService.getEventDetails(eventArg.event.id).subscribe(
-      event => {
-        this.selectedEvent = event;
-        this.operationPending = false;
-        this.detailsBoxState = 'show-event';
-      }
-    );
+    this.getEventDetails(eventArg.event.id);
   }
 
   protected setEditState(): void {
@@ -144,10 +151,29 @@ export class EventsComponent implements OnInit {
               };
             }
           );
+          if (this.eventIdParam) {
+            const eventId = this.calendarEvents.find((element) => element.id === this.eventIdParam);
+            if (eventId) {
+              this.getEventDetails(this.eventIdParam);
+              this.calendarApi.gotoDate(eventId.start);
+              this.eventIdParam = null;
+            }
+          }
         }
       );
       this.detailsBoxState = 'default';
     });
+  }
+
+  private getEventDetails(eventId: number): void {
+    this.operationPending = true;
+    this.eventsService.getEventDetails(eventId).subscribe(
+      event => {
+        this.selectedEvent = event;
+        this.operationPending = false;
+        this.detailsBoxState = 'show-event';
+      }
+    );
   }
 
 }

@@ -76,4 +76,5 @@ interface LoginResponse {
     id: number
   };
   token: string;
+  firstLogin: boolean;
 }

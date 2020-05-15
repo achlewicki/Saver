@@ -1,10 +1,10 @@
+import { AccountModel } from '#models/account.model';
 import { OperationModel, GroupedOperations } from '#models/operations.model';
 import { OperationsService } from '#services/operations-service/operations.service';
 import { Component, OnInit } from '@angular/core';
 import { OperationFilters } from '#models/operations-filters.model';
-import * as moment from 'moment';
 import { MainPageService } from '#services/main-page-service/main-page.service';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -14,12 +14,10 @@ import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 })
 export class OperationsViewComponent implements OnInit {
 
-  private accountId: number;
   private operationsFilters: OperationFilters = {};
 
+  protected account: AccountModel;
   protected operations: OperationModel[];
-
-  protected showGrouped: boolean;
 
   protected errorInfo: string;
 
@@ -34,7 +32,6 @@ export class OperationsViewComponent implements OnInit {
     private readonly mainPageService: MainPageService,
     private readonly operationsService: OperationsService
   ) {
-    this.showGrouped = true;
     this.showFilters = false;
   }
 
@@ -42,11 +39,11 @@ export class OperationsViewComponent implements OnInit {
     this.mainPageService.activeView.next({
       name: 'operations',
       title: 'Operacje',
-      icon: 'clipboard'
+      icon: faExchangeAlt
     });
     this.mainPageService.activeAccount.subscribe(
       result => {
-        this.accountId = result.id;
+        this.account = result;
         this.refetchData();
       }
     );
@@ -64,7 +61,7 @@ export class OperationsViewComponent implements OnInit {
   protected fetchData(): void {
     this.viewState = 'loading';
     this.operationsService.getOperationsByAccount2(
-      this.accountId,
+      this.account.id,
       {
         length: 10,
         startIndex: this.operations.length,

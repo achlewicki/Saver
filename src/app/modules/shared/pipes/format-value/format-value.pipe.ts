@@ -17,7 +17,8 @@ export class FormatValuePipe implements PipeTransform {
     );
   }
 
-  transform(value: string | number, type?: number, currency?: CurrencyModel | string, ): string {
+  transform(value: string | number, currency?: CurrencyModel | string, ): string {
+    if (value === undefined || value === null) { return ''; }
     value = value.toString();
     const splited = value.split('.') || '0.00';
     let formated: string;
@@ -27,10 +28,6 @@ export class FormatValuePipe implements PipeTransform {
       formated = splited[0] + '.' + splited[1] + '0';
     } else if (splited[1].length > 1) {
       formated = splited[0] + '.' + splited[1].slice(0, 2);
-    }
-
-    if (type === -1) {
-      formated = '- ' + formated;
     }
 
     if (currency) {

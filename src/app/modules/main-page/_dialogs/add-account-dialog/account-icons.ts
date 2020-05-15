@@ -2,13 +2,71 @@ import { IconPack, IconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 import {
     faHome,
-    faWallet
+    faWallet,
+    faAward,
+    faBalanceScale,
+    faBriefcase,
+    faCamera,
+    faClipboardList,
+    faCloud,
+    faCoins,
+    faGlobe,
+    faGift,
+    faPhotoVideo,
+    faPalette,
+    faPaperPlane,
+    faMoneyBillWave,
+    faMicroscope,
+    faMapMarkedAlt,
+    faLandmark,
+    faLaptop,
+    faIndustry,
+    faHeart,
+    faScroll,
+    faShoppingCart,
+    faStar,
+    faStore,
+    faThumbsUp,
+    faTree,
+    faTrophy,
+    faUser,
+    faUtensils,
+    faWrench
 } from '@fortawesome/free-solid-svg-icons';
 
 
 export const accountIconsPack: IconPack = {
     faHome,
-    faWallet
+    faWallet,
+    faAward,
+    faBalanceScale,
+    faBriefcase,
+    faCamera,
+    faClipboardList,
+    faCloud,
+    faCoins,
+    faGlobe,
+    faGift,
+    faPhotoVideo,
+    faPalette,
+    faPaperPlane,
+    faMoneyBillWave,
+    faMicroscope,
+    faMapMarkedAlt,
+    faLandmark,
+    faLaptop,
+    faIndustry,
+    faHeart,
+    faScroll,
+    faShoppingCart,
+    faStar,
+    faStore,
+    faThumbsUp,
+    faTree,
+    faTrophy,
+    faUser,
+    faUtensils,
+    faWrench
 };
 
 export const accountIconsArray: IconDefinition[] = Object.values(accountIconsPack);

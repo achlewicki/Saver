@@ -1,8 +1,9 @@
-import { CurrencyModel } from './../../models/currency.model';
+import { map } from 'rxjs/operators';
+import { AccountStatistics } from '#models/account.model';
+import { CurrencyModel } from '#models/currency.model';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, forkJoin, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
 import { config } from '#config/config';
 import { AccountModel } from '#models/account.model';
 
@@ -43,8 +44,14 @@ export class AccountService {
   }
 
   public createAccount(account: AccountModel): Observable<AccountModel> {
-    const url = config.backendUrl + '/account/add/' + localStorage.getItem('user.id') + '/81';  // TEMP CURRENCY ID
-    return this.http.post<AccountModel>(this.createAccountURL, account, this.authHeader);
+    const url = config.backendUrl + '/account/add/' + localStorage.getItem('user.id') + '/' + account.currency.id;
+    return this.http.post<AccountModel>(url, account, this.authHeader);
+  }
+
+  public editAccount(account: AccountModel): Observable<AccountModel> {
+    const url = config.backendUrl + '/account/update/' + account.id;
+    console.log({ ...account, currId: 81 });
+    return this.http.post<AccountModel>(url, { ...account, currId: 81 }); // account.currency.id
   }
 
   public getAllCurrencies(): Observable<CurrencyModel[]> {
@@ -55,6 +62,48 @@ export class AccountService {
   public deleteAccount(accountId: number): Observable<any> {
     const url = config.backendUrl + '/account/delete/' + accountId;
     return this.http.delete(url);
+  }
+
+  public accountsToCreate(): Observable<number> {
+    const url = config.backendUrl + '/account/possibleAccs/' + localStorage.getItem('user.id');
+    return this.http.get<number>(url);
+  }
+
+  public getIncomeOfAccount(accountId: number): Observable<number> {
+    const url = config.backendUrl + '/account/income/' + accountId;
+    return this.http.get<number>(url);
+  }
+
+  public getExpenseOfAccount(accountId: number): Observable<number> {
+    const url = config.backendUrl + '/account/expense/' + accountId;
+    return this.http.get<number>(url);
+  }
+
+  public getEstimatedIncomeOfAccount(accountId: number): Observable<number> {
+    const url = config.backendUrl + '/account/estincome/' + accountId;
+    return this.http.get<number>(url);
+  }
+
+  public getEstimatedExpenseOfAccount(accountId: number): Observable<number> {
+    const url = config.backendUrl + '/account/estexpense/' + accountId;
+    return this.http.get<number>(url);
+  }
+
+  public getAccountStatistics(accountId: number): Observable<AccountStatistics> {
+    const cyclicUrl = config.backendUrl + '/account/totalCyclics/' + accountId;
+    const billsUrl = config.backendUrl + '/account/totalCyclicsBill/' + accountId;
+
+    return forkJoin(
+      this.http.get<number>(cyclicUrl),
+      this.http.get<number>(billsUrl),
+    ).pipe(
+      map(([cyclic, bills]) => {
+        return {
+          totalCyclics: cyclic,
+          totalCyclicsBill: bills
+        } as AccountStatistics;
+      })
+    );
   }
 
   private handleError() {

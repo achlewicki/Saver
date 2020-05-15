@@ -1,0 +1,19 @@
+<div class="billing-period-container">
+  <form [formGroup]="fGroup" (ngSubmit)="submit()">
+    <p class="h-18 primary">Wybierz dzień rozpoczynający miesiąc byśmy mogli przygotować dla Ciebie raporty</p>
+    <mat-form-field appearance="outline" class="fl-month-day-input mat-ff-no-border-hover mat-ff-fixed-padding">
+      <input matInput id="billing-period-input" type="number" min="1" max="29" #monthInput formControlName="monthDay">
+      <mat-hint>Dzień miesiąca od {{monthInput.min}} do {{monthInput.max}}</mat-hint>
+    </mat-form-field>
+    <div class="fl-info">
+      <fa-icon icon="info-circle"></fa-icon>
+      <p>Wybierz dzień który będzie rozpoczynał naliczanie operacji na następny miesiąc.
+        Najwygodniej, jeśli będzie to dzień, w którym otrzymujesz wynagrodzienie aby równomiernie rozłożyć swoje
+        wydatki. Każde konto może mieć różne okresy rozliczeniowe.</p>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <button mat-stroked-button disableRipple="true" type="submit">Dalej</button>
+    </div>
+  </form>
+</div>

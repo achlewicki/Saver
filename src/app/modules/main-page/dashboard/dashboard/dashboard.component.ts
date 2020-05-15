@@ -1,5 +1,6 @@
 import { MainPageService } from '#services/main-page-service/main-page.service';
 import { Component, OnInit } from '@angular/core';
+import { faClipboard } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'svr-dashboard',
@@ -16,7 +17,7 @@ export class DashboardComponent implements OnInit {
     this.mpservice.activeView.next({
       name: 'dashboard',
       title: 'Tablica',
-      icon: 'clipboard'
+      icon: faClipboard
     });
   }
 
