@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ReportViewComponent} from '#modules/main-page/report/report-view/report-view.component';
+import { ReportViewComponent } from '#modules/main-page/report/report-view/report-view.component';
 import { ReportMainChartComponent } from './report-main-chart/report-main-chart.component';
 import { ReportCategoryChartComponent } from './report-category-chart/report-category-chart.component';
-import {ChartsModule} from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts';
 import { ReportAccountBalanceChartComponent } from './report-account-balance-chart/report-account-balance-chart.component';
 import { ReportCategory2ChartComponent } from './report-category2-chart/report-category2-chart.component';
-import {MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatInputModule} from '@angular/material';
-import {ReactiveFormsModule} from '@angular/forms';
-import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
+import { MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
+import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {faCaretUp, faCompressArrowsAlt, faExpandArrowsAlt, faHome, faPen, faPlus, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -28,8 +30,14 @@ import {FlexLayoutModule, FlexModule} from '@angular/flex-layout';
     MatDatepickerModule,
     ReactiveFormsModule,
     MatButtonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatProgressSpinnerModule,
+    FontAwesomeModule
   ]
 })
 
-export class ReportModule { }
+export class ReportModule {
+  constructor(faLibrary: FaIconLibrary) {
+    faLibrary.addIcons(faExpandArrowsAlt, faCompressArrowsAlt);
+  }
+}

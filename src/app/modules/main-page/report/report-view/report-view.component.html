@@ -4,7 +4,7 @@
       <mat-form-field appearance="outline"
                       class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="200px">
         <label class="app-input-label">Raport od</label>
-        <input matInput formControlName="dateFrom" [matDatepicker]="dateFromPicker"
+        <input matInput readonly formControlName="dateFrom" [matDatepicker]="dateFromPicker"
                (dateChange)="dateFrom = $event.value" (dateInput)="dateFrom = $event.value" [max]="dateTo || null">
         <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
         <mat-datepicker #dateFromPicker></mat-datepicker>
@@ -13,37 +13,76 @@
       <mat-form-field appearance="outline"
                       class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="200px">
         <label class="app-input-label">Raport do</label>
-        <input matInput formControlName="dateTo" [matDatepicker]="dateToPicker"
+        <input matInput readonly formControlName="dateTo" [matDatepicker]="dateToPicker"
                (dateChange)="dateTo = $event.value" (dateInput)="dateTo = $event.value" [min]="dateFrom || null">
         <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
         <mat-datepicker #dateToPicker></mat-datepicker>
       </mat-form-field>
 
-      <button mat-button (click)="setNewDateRange()">Ok</button>
+      <button mat-button class="confirm-button" (click)="setNewDateRange()">Ok</button>
     </div>
   </div>
 
-  <div class="charts-container" fxLayoutGap="40px" fxLayout="column"  *ngIf="loaded">
+  <div class="charts-container" fxLayoutGap="40px" fxLayout="column">
     <div fxLayout="row" fxLayoutAlign="center" fxLayout.lt-md="column">
-      <svr-raport-main-chart [data]="this.accountHistory"
-                             [ngClass]="this.fullscreenChart === 'mainChart' ? 'fullscreen' : 'default'"
-                             (click)="this.toggleChartOnFullscreen('mainChart')"></svr-raport-main-chart>
-      <svr-raport-category-chart
-                                 [data]="this.accountHistory"
-                                 [ngClass]="this.fullscreenChart === 'category' ? 'fullscreen' : 'default margin-left'"
-                                 (click)="this.toggleChartOnFullscreen('category')"></svr-raport-category-chart>
+
+      <ng-container *ngIf="this.accountHistory; else loading">
+        <svr-raport-main-chart [data]="this.accountHistory"
+          [ngClass]="this.fullscreenChart === 'mainChart' ? 'fullscreen' : 'default'">
+        </svr-raport-main-chart>
+        <fa-icon icon="expand-arrows-alt" size="2x" class="relative-position"
+                 *ngIf="this.fullscreenChart === 'none'"
+                 (click)="this.toggleChartOnFullscreen('mainChart')"></fa-icon>
+        <fa-icon icon="compress-arrows-alt" size="2x" class="absolute-position"
+                 *ngIf="this.fullscreenChart === 'mainChart'"
+                 (click)="this.toggleChartOnFullscreen('')"></fa-icon>
+      </ng-container>
+
+      <ng-container *ngIf="this.accountHistory; else loading">
+        <svr-raport-category-chart [data]="this.accountHistory"
+          [ngClass]="this.fullscreenChart === 'category' ? 'fullscreen' : 'default margin-left'">
+        </svr-raport-category-chart>
+        <fa-icon icon="expand-arrows-alt" size="2x" class="relative-position"
+                 *ngIf="this.fullscreenChart === 'none'"
+                 (click)="this.toggleChartOnFullscreen('category')"></fa-icon>
+        <fa-icon icon="compress-arrows-alt" size="2x" class="absolute-position"
+                 *ngIf="this.fullscreenChart === 'category'"
+                 (click)="this.toggleChartOnFullscreen('')"></fa-icon>
+      </ng-container>
     </div>
 
     <div fxLayout="row" fxLayoutAlign="center" fxLayout.lt-md="column">
-      <svr-raport-category2-chart [data]="this.accountHistory"
-                                  [ngClass]="this.fullscreenChart === 'category2' ? 'fullscreen' : 'default'"
-                                  (click)="this.toggleChartOnFullscreen('category2')"></svr-raport-category2-chart>
-      <svr-raport-account-balance-chart
-                                        *ngIf="this.loaded2"
-                                        [data]="this.balanceHistory"
-                                        [ngClass]="this.fullscreenChart === 'accountBalance' ? 'fullscreen' : 'default margin-left'"
-                                        (click)="this.toggleChartOnFullscreen('accountBalance')"></svr-raport-account-balance-chart>
+
+      <ng-container *ngIf="this.accountHistory; else loading">
+        <svr-raport-category2-chart [data]="this.accountHistory"
+          [ngClass]="this.fullscreenChart === 'category2' ? 'fullscreen' : 'default'">
+        </svr-raport-category2-chart>
+        <fa-icon icon="expand-arrows-alt" size="2x" class="relative-position"
+                 *ngIf="this.fullscreenChart === 'none'"
+                 (click)="this.toggleChartOnFullscreen('category2')"></fa-icon>
+        <fa-icon icon="compress-arrows-alt" size="2x" class="absolute-position"
+                 *ngIf="this.fullscreenChart === 'category2'"
+                 (click)="this.toggleChartOnFullscreen('')"></fa-icon>
+      </ng-container>
+
+      <ng-container *ngIf="(balanceHistory$ | async) as balanceHistory; else loading">
+        <svr-raport-account-balance-chart [data]="balanceHistory"
+          [ngClass]="this.fullscreenChart === 'accountBalance' ? 'fullscreen' : 'default margin-left'">
+        </svr-raport-account-balance-chart>
+        <fa-icon icon="expand-arrows-alt" size="2x" class="relative-position"
+                 *ngIf="this.fullscreenChart === 'none'"
+                 (click)="this.toggleChartOnFullscreen('accountBalance')"></fa-icon>
+        <fa-icon icon="compress-arrows-alt" size="2x" class="absolute-position"
+                 *ngIf="this.fullscreenChart === 'accountBalance'"
+                 (click)="this.toggleChartOnFullscreen('')"></fa-icon>
+      </ng-container>
     </div>
   </div>
 </div>
 
+<ng-template #loading>
+  <div class="loading-box">
+    <mat-progress-spinner [mode]="'indeterminate'" [diameter]="40">
+    </mat-progress-spinner>
+  </div>
+</ng-template>
