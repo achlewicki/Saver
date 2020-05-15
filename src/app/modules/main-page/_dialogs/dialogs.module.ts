@@ -1,3 +1,4 @@
+import { AppPipesModule } from '#shared/pipes/app-pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -70,6 +71,7 @@ export const dialogs = [
     FlexLayoutModule,
     FontAwesomeModule,
     ColorPickerModule,
+    AppPipesModule,
     ...matModules
   ],
   exports: [

@@ -1,4 +1,4 @@
-@import '../first-login-core/first-login-core.component.scss';
+@import 'app-text', 'material-restyle';
 
 .user-data-form {
   margin: 60px 10px;
@@ -11,11 +11,6 @@
   width: 300px;
 }
 
-label {
-  margin: .2em 0 .2em 5px;
-  font-size: 12px;
-  font-weight: 500;
-}
 
 .inputs-box {
   align-items: normal;

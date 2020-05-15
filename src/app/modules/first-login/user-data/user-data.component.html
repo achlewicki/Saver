@@ -1,4 +1,4 @@
-<form [formGroup]='fGroup'>
+<form [formGroup]='fGroup' (ngSubmit)="completeStep()" fxLayout="column" fxLayoutGap="40px">
   <div class="user-data-form" fxLayout="row" fxFlexAlign="flex-start">
     <div class="user-data-box avatar-box">
       <div class="avatar">
@@ -7,32 +7,39 @@
     </div>
     <div class="user-data-box inputs-box">
 
-      <label>Twoje imię</label>
-      <mat-form-field appearance="outline" class="mat-form-field-fixed-padding">
-        <input matInput formControlName="firstname">
+      <mat-form-field appearance="outline" class="mat-ff-no-border-hover mat-ff-fixed-padding">
+        <label class="app-input-label">Twoje imię</label>
+        <input matInput id="user-first-name-input" formControlName="firstname">
       </mat-form-field>
 
-      <label>Twoje nazwisko</label>
-      <mat-form-field appearance="outline" class="mat-form-field-no-border-hover mat-form-field-fixed-padding">
-        <input matInput formControlName="secondname">
+      <mat-form-field appearance="outline" class="mat-ff-no-border-hover mat-ff-fixed-padding">
+        <label class="app-input-label">Twoje nazwisko</label>
+        <input matInput id="user-second-name-input" formControlName="secondname">
       </mat-form-field>
 
-      <label>Twoja data urodzenia</label>
-      <mat-form-field appearance="outline" class="mat-form-field-no-border-hover mat-form-field-fixed-padding">
-        <input matInput formControlName="birthday" [matDatepicker]="birthdaypicker">
+      <mat-form-field appearance="outline" class="mat-ff-no-border-hover mat-ff-fixed-padding">
+        <label class="app-input-label">Twoja data urodzenia</label>
+        <input matInput readonly id="user-birthday-input" formControlName="birthday" [matDatepicker]="birthdaypicker">
         <mat-datepicker-toggle matSuffix [for]="birthdaypicker"></mat-datepicker-toggle>
         <mat-datepicker #birthdaypicker></mat-datepicker>
       </mat-form-field>
 
       <mat-radio-group class="radio-group" formControlName="sex">
-        <mat-radio-button value="K">Kobieta</mat-radio-button>
-        <mat-radio-button value="M">Mężczyzna</mat-radio-button>
+        <mat-radio-button value="1">Kobieta</mat-radio-button>
+        <mat-radio-button value="0">Mężczyzna</mat-radio-button>
       </mat-radio-group>
     </div>
   </div>
+  <div class="t-12 secondary" fxLayout="row" fxLayoutGap="10px">
+    <fa-icon icon="info-circle"></fa-icon>
+    <span>Dane te będą wykorzystywane jedynie do personalizacji aplikacji oraz w celach statystycznych aby jak najlepiej
+      optymalizować jej działanie</span>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <button mat-stroked-button disableRipple="true" class="fl-button-previous" matStepperPrevious>Wróć</button>
+    <div>
+      <button mat-flat-button type="button" (click)="skipStep()">Pomiń</button>
+      <button mat-stroked-button disableRipple="true" type="submit">Dalej</button>
+    </div>
+  </div>
 </form>
-<div class="fl-info">
-  <fa-icon icon="info-circle"></fa-icon>
-  <p>Dane te będą wykorzystywane jedynie do personalizacji aplikacji oraz w celach statystycznych aby jak najlepiej
-    optymalizować jej działanie</p>
-</div>

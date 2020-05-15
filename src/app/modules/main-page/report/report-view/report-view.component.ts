@@ -5,6 +5,7 @@ import {AccountHistoryService} from '#services/account-history-service/account-h
 import {DatePipe} from '@angular/common';
 import {MatDatepicker} from '@angular/material';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { faChartBar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'svr-raport-view',
@@ -28,7 +29,7 @@ export class ReportViewComponent implements OnInit {
     this.mpService.activeView.next({
       name: 'raports', //takie samo jak w nav list !!!
       title: 'Raporty',
-      icon: 'chart'
+      icon: faChartBar
     });
 
     this.dateForm = this.fb.group({

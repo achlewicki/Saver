@@ -28,8 +28,9 @@ export class ProcessDialogComponent {
     this.processResult = null;
   }
 
-  closeDialog(): void {
-    this.dialogRef.close(this.processResult);
+  closeDialog(forceResult?: boolean): void {
+    const dialogResult = forceResult || this.processResult ? this.processResult || forceResult : false;
+    this.dialogRef.close(dialogResult);
   }
 
   protected async startProcess(): Promise<void> {

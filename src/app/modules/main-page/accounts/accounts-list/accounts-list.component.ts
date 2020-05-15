@@ -1,7 +1,8 @@
+import { MainPageService } from '#services/main-page-service/main-page.service';
 import { MatDialog } from '@angular/material';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AccountModel } from '#models/account.model';
-import { AddAccountDialogComponent } from '#dialogs/add-account-dialog/add-account-dialog.component';
+import { AddAccountDialogComponent, AddAccountDialogType } from '#dialogs/add-account-dialog/add-account-dialog.component';
 
 @Component({
   selector: 'svr-accounts-list',
@@ -13,13 +14,15 @@ export class AccountsListComponent {
   @Input()
   protected accounts: AccountModel[];
 
-  @Output()
-  accountSelected = new EventEmitter<AccountModel>();
+  @Input()
+  protected possibleAccounts = 0;
 
-  protected addAccountDisabled = false;
+  @Output()
+  public accountSelected = new EventEmitter<AccountModel>();
 
   constructor(
-    private readonly dialogs: MatDialog
+    private readonly dialogs: MatDialog,
+    private readonly mainPageService: MainPageService
   ) { }
 
   protected selectAccount(account: AccountModel) {
@@ -27,9 +30,13 @@ export class AccountsListComponent {
   }
 
   protected addAccount() {
-    if (!this.addAccountDisabled) {
-      this.dialogs.open(AddAccountDialogComponent, {
-        minWidth: '560px'
+    if (this.possibleAccounts > 0) {
+      this.dialogs.open<AddAccountDialogComponent, AddAccountDialogType, boolean>(AddAccountDialogComponent, {
+        minWidth: '560px',
+        disableClose: true,
+        data: {
+          type: 'add'
+        }
       });
     }
   }

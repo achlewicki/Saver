@@ -6,18 +6,18 @@
         <div fxLayout="row" class="accounts-list-element" fxLayoutAlign="start center" (click)="selectAccount(account)">
           <div class="icon-box">
             <div class="icon" [style.color]="account.color">
-              <fa-icon icon="home"></fa-icon>
+              <fa-icon [icon]="account.iconName"></fa-icon>
             </div>
             <div class="icon-background" [style.background-color]="account.color"></div>
           </div>
           <div fxLayout="column" fxFlex="auto" fxLayoutGap="5px">
             <p class="account-name t-15-b primary">{{ account.name }}</p>
-            <p class="account-balance t-13 secondary">{{ account.balance }} PLN</p>
+            <p class="account-balance t-13 secondary">{{ account.balance | formatValue:account.currency }}</p>
           </div>
         </div>
       </ng-container>
       <div fxLayout="row" class="accounts-list-element add-element" fxLayoutAlign="start center"
-        [ngClass]="addAccountDisabled ? 'disabled' : '' " (click)="addAccount()">
+        [ngClass]="possibleAccounts < 1 ? 'disabled' : '' " (click)="addAccount()">
         <div class=" icon-box">
           <div class="icon">
             <fa-icon icon="plus"></fa-icon>
@@ -35,11 +35,11 @@
       </div>
     </ng-template>
   </div>
-  <div class="available-accounts t-12 secondary">
+  <div class="available-accounts t-12 secondary" *ngIf="possibleAccounts !== undefined && accounts">
     <svr-tooltip>
       <span class="t-12 primary">Ilość dostępnych kont zależy od poziomu twojego profilu.</span>
       <a class="app-a t-12">Więcej o poziomach</a>
     </svr-tooltip>
-    <span> Możliwa ilość kont: {{ accounts?.length }} / 10 </span>
+    <span> Możliwa ilość kont: {{ accounts.length }} / {{ possibleAccounts + accounts.length }} </span>
   </div>
 </div>

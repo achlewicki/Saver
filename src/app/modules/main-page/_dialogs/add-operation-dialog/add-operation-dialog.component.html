@@ -13,7 +13,7 @@
   <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start stretch" fxLayoutGap="50px">
 
     <div class="operation-form" fxLayout="column" fxLayoutGap="30px">
-      <form [formGroup]='fGroup' id="add-operation-form" (ngSubmit)="submit()">
+      <form [formGroup]='fGroup' id="add-operation-form" (ngSubmit)="submit($event)" #operationForm>
 
         <!-- Title / Value -->
         <div gdColumns="auto 27%" gdGap="10px">
@@ -49,7 +49,7 @@
             <label class="app-input-label">Kategoria*</label>
             <mat-select formControlName="subCategory">
               <mat-option value="emptySubcategory" selected>{{ emptySubcategory.title }}</mat-option>
-              <mat-optgroup *ngFor="let category of categories | async" [label]="category.title"
+              <mat-optgroup *ngFor="let category of categories$ | async" [label]="category.title"
                 [style.color]="category.color">
                 <mat-option *ngFor="let subcategory of category.subcategories" [value]="subcategory">
                   <div class="subcategory-color" [style.background-color]="subcategory.color"></div>
@@ -63,7 +63,8 @@
         <!-- File / Guarranty -->
         <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="10px">
           <input type="file" class="app-file-input"
-            title="Plik przypięty do pliku (opcjonalnie). Maksymalny rozmiar pliku 5MB." formControlName="file">
+            title="Plik przypięty do pliku (opcjonalnie). Maksymalny rozmiar pliku 5MB.">
+          <!-- formControlName="file" -->
           <mat-form-field appearance="outline" class="guarranty-input mat-ff-fixed-padding mat-ff-no-border-hover"
             title="Okres gwarancyjny do transakcji (opcjonalnie)">
             <label class="app-input-label">Gwarancja</label>
@@ -75,12 +76,39 @@
       </form>
     </div>
 
-    <div class="helping-box main-color" fxLayout="column" fxLayoutGap="20px">
-      <div class="sketch-box">
-        TODO Schematy
+    <div class="helping-box" fxLayout="column" fxLayoutGap="20px">
+      <!-- Template -->
+      <div class="template-box box">
+        <label>Schematy operacji</label>
+        <ng-container *ngFor="let template of templates$ | async">
+          <div class="template-element t-14 secondary" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px"
+            (click)="setOperationWithTempalte(template)">
+            <div fxFlex="auto" fxLayoutAlign="start center">
+              {{ template.title }}
+            </div>
+            <div fxFlex="80px" fxLayoutAlign="end center">
+              {{ template.value * template.type | formatValue:account.currency }}
+            </div>
+            <div fxFlex="15px" fxLayoutAlign="end center">
+              <fa-icon [icon]="crossIcon"></fa-icon>
+            </div>
+          </div>
+        </ng-container>
       </div>
-      <div class="last-operations-box">
-        TODO Ostatanie transakcje
+      <!-- Last operations -->
+      <div class="last-operations-box box">
+        <label>Ostatnie operacje</label>
+        <ng-container *ngFor="let operation of lastOperations$ | async">
+          <div class="operation t-14 secondary" fxLayout="row" fxLayoutAlign="center" fxLayoutGap="10px"
+            (click)="setOperationWithLastOperation(operation)">
+            <div fxFlex="auto" fxLayoutAlign="start center">
+              {{ operation.title }}
+            </div>
+            <div fxFlex="80px" fxLayoutAlign="end center">
+              {{ operation.value * operation.type | formatValue:account.currency }}
+            </div>
+          </div>
+        </ng-container>
       </div>
     </div>
 
@@ -90,8 +118,10 @@
     <a class="app-a t-13"> Transakcje cykliczne</a>
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
       <mat-progress-spinner *ngIf="pendingAddOperation" [mode]="'indeterminate'" [diameter]="22"></mat-progress-spinner>
+      <button mat-stroked-button class="create-template-button" type="submit" form="add-operation-form"
+        [disabled]="pendingAddOperation" id="create-template-button">Utwórz schemat</button>
       <button mat-flat-button color="accent" class="submit-button" type="submit" form="add-operation-form"
-        [disabled]="pendingAddOperation">Dodaj</button>
+        [disabled]="pendingAddOperation" id="create-operation-button">Dodaj</button>
     </div>
   </div>
 

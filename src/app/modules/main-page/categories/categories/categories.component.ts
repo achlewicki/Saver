@@ -5,9 +5,10 @@ import { CategoryService } from '#services/category-service/category.service';
 import { CategoryModel } from '#models/category.model';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
-import {MatDialog} from '@angular/material';
-import {EditCategoryComponent} from '#dialogs/edit-category/edit-category.component';
+import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material';
+import { EditCategoryComponent } from '#dialogs/edit-category/edit-category.component';
+import { faChartPie, faList } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'svr-categories',
@@ -44,7 +45,7 @@ export class CategoriesComponent implements OnInit {
     this.mpService.activeView.next({
       name: 'categories',
       title: 'Kategorie',
-      icon: 'clipboard'
+      icon: faList
     });
     //
     // this.route.data
@@ -52,10 +53,10 @@ export class CategoriesComponent implements OnInit {
     //   .subscribe((x) => this.hservice.viewTitle.next(x));
 
     this.filteredOptions = this.categoriesControl.valueChanges
-        .pipe(
-          startWith(''),
-          map(value => this._filter(value))
-        );
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
 
     this.filteredOptions.subscribe(response => {
       this.visibleCategory = response;
@@ -68,11 +69,11 @@ export class CategoriesComponent implements OnInit {
   }
 
   private isContaing(title: string): boolean {
-    return !!this.visibleCategory.find(value => value === title) ;
+    return !!this.visibleCategory.find(value => value === title);
   }
 
   private openEditCategoryDialog(id: number): void {
-    const categoriesTitle: string [] = [];
+    const categoriesTitle: string[] = [];
     this.categoriesList.forEach(value => categoriesTitle.push(value.title));
     categoriesTitle.splice(categoriesTitle.findIndex(value => value === this.categoriesList[id].title), 1);
     const editDialog = this.dialogs.open(EditCategoryComponent, {
@@ -106,8 +107,8 @@ export class CategoriesComponent implements OnInit {
 
   private addCategory(): void {
     if (this.categoriesList.length <= 8) {
-      const newCategory: CategoryModel = {title: 'Nowa kategoria', color: 'blue', limit: 1000, subcategories: [] = []};
-      const categoriesTitle: string [] = [];
+      const newCategory: CategoryModel = { title: 'Nowa kategoria', color: 'blue', limit: 1000, subcategories: [] = [] };
+      const categoriesTitle: string[] = [];
       this.categoriesList.forEach(value => categoriesTitle.push(value.title));
       const addDialog = this.dialogs.open(EditCategoryComponent, {
         data: {
@@ -121,7 +122,7 @@ export class CategoriesComponent implements OnInit {
       });
 
       addDialog.afterClosed().subscribe(value => {
-        if (value.operation === 'close') {this.categoriesList.push(value.category); }
+        if (value.operation === 'close') { this.categoriesList.push(value.category); }
         console.log(this.categoriesList);
         this.ngOnInit();
       });

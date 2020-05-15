@@ -1,9 +1,10 @@
+import { UserModel } from '#models/user.model';
 import { config } from '#config/config';
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
-import {EmailModel, InfoModel, PasswordModel} from '#models/setting.model';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { EmailModel, InfoModel, PasswordModel } from '#models/setting.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class SettingService {
   private changePasswordURL: string;
   private changeInfoURL: string;
   private httpHeader = {
-    headers: new HttpHeaders( { 'Content-Type': 'application/json' })
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(
@@ -40,11 +41,8 @@ export class SettingService {
       );
   }
 
-  public changeInfo(userInfo: InfoModel): Observable<UserResponse> {
-    return this.http.post<any>(this.changeInfoURL, userInfo, this.httpHeader)
-      .pipe(
-        catchError(this.errorHandling)
-      );
+  public changeInfo(userInfo: InfoModel): Observable<UserModel> {
+    return this.http.post<UserModel>(this.changeInfoURL, userInfo, this.httpHeader);
   }
 
   protected errorHandling(error: HttpErrorResponse) {
@@ -79,5 +77,5 @@ interface UserResponse {
     experience: number,
     isActive: boolean,
     isPremium: boolean
-};
+  };
 }

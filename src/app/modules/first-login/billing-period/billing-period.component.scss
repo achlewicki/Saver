@@ -1,0 +1,12 @@
+@import 'app-text', 'material-restyle';
+
+.fl-info {
+  display: flex;
+  margin: 35px 0;
+  color: #999999;
+  font-size: 12px;
+
+  fa-icon {
+    margin: 0 10px;
+  }
+}

@@ -18,7 +18,10 @@
   <ng-container *ngSwitchCase="'failure'">
     <fa-icon [icon]="failureIcon" class="failure circle-icon"></fa-icon>
     <p class="h-18-b failure">{{ data.failureMessage }}</p>
-    <button mat-stroked-button (click)="closeDialog(false)">OK</button>
+    <div fxLayout="row" fxLayoutAlign="center" fxLayoutGap="20px">
+      <button mat-stroked-button (click)="startProcess()">Ponów</button>
+      <button mat-stroked-button (click)="closeDialog()">OK</button>
+    </div>
   </ng-container>
 
   <ng-container *ngSwitchCase="'success'">

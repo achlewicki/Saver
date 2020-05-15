@@ -1,7 +1,4 @@
 <div class="container">
-  <h1 class="view-title">
-    TRANSAKCJE
-  </h1>
   <div class="view-content" *ngIf="this.operations">
     <button mat-button class="filter-button" (click)="this.toogleFiltersWindow()">
       {{ showFilters ? 'Ukryj filtry' : 'Pokaż filtry' }}
@@ -50,7 +47,7 @@
       <div fxFlex="60px"></div>
     </div>
 
-    <svr-operation *ngFor="let operation of operations" [operation]="operation">
+    <svr-operation *ngFor="let operation of operations" [operation]="operation" [currency]="account.currency">
     </svr-operation>
 
     <div [ngSwitch]="viewState">

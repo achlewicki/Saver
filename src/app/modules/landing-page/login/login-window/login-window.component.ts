@@ -45,11 +45,13 @@ export class LoginWindowComponent implements OnInit {
     this.loginChceckPending = true;
     this.loginService.login(user)
       .subscribe(
-        (response) => {
+        response => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('user.id', response.user.id.toString());
           this.errorInfo = '';
-          if (this.redirectUrl) {
+          if (response.firstLogin) {
+            this.router.navigateByUrl('/first-login');
+          } else if (this.redirectUrl) {
             this.router.navigateByUrl(this.redirectUrl);
           } else {
             this.router.navigateByUrl('/main');

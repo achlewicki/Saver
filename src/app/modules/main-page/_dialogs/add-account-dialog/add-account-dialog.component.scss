@@ -3,6 +3,7 @@
 .container {
   padding: 10px;
   width: 500px;
+  //min-height: 340px;
   overflow: hidden;
 }
 
@@ -45,7 +46,7 @@ $color-after-hover: #eeeeee;
   position: relative;
   top: -1px;
 
-  min-height: 180px;
+  height: 180px;
   border-radius: 0 5px 5px 5px;
   border: 1px solid $inputs-basic-border-color;
 
@@ -64,6 +65,7 @@ $color-after-hover: #eeeeee;
 
   .icons-box {
     margin: 10px;
+    overflow: scroll;
   }
 
   .color-box {
@@ -71,12 +73,20 @@ $color-after-hover: #eeeeee;
     padding-left: 10px;
     border-left: 1px solid $inputs-basic-border-color;
 
+    .color-picker-wrapper {
+      width: 30px;
+      height: 30px;
+      //margin: 15px 0;
+    }
+
     .color-picker {
       width: 30px;
       height: 30px;
       border: 2px solid #d3d3d3;
       border-radius: 100%;
-      background-color: green;
+      cursor: pointer;
+      outline: none;
+      //background-color: green;
     }
 
     .color-value {
@@ -84,4 +94,44 @@ $color-after-hover: #eeeeee;
       font-weight: 500;
     }
   }
+}
+
+.full-dialog {
+  width: 100%;
+  min-height: 300px;
+  @include flex-center();
+  flex-direction: column;
+
+  fa-icon {
+    font-size: 40px;
+  }
+
+  p {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  button {
+    margin-top: 30px;
+  }
+}
+
+.circle-icon {
+  @include center-icon();
+  border: 2px solid;
+  border-radius: 100%;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+.success {
+  color: $success-color;
+  border-color: $success-color;
+}
+
+.failure {
+  color: $failure-color;
+  border-color: $failure-color;
 }

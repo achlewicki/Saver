@@ -16,8 +16,7 @@
 
 
 .left-side,
-.right-side,
-.account-view-title {
+.right-side {
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -43,19 +42,18 @@
 }
 
 .left-side {
-
   grid-area: left;
+  // padding-left: 20px;
+  justify-content: center;
+  color: rgb(150, 150, 150);
 
-  .menu-button {
-    margin: auto 20px;
-    //font-size: 12px;
-    color: #616161;
-    text-align: center;
-    align-items: center;
+  fa-icon {
+    margin: 0 10px;
+    font-size: 20px;
   }
 
-  .menu-button:hover {
-    //font-size: 16px;
+  span {
+    font-size: 16px;
   }
 }
 

@@ -1,39 +1,84 @@
 <div class="container" fxLayout="column" fxLayoutGap="30px">
-  <h1 class="h-30">Dodaj konto</h1>
-  <form [formGroup]="fGroup" (ngSubmit)="submit()">
-    <div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="start center">
-      <div class="selected-icon" (click)="activateDropdown()" [ngClass]="dropdownActivated ? 'activated' : '' ">
-        <fa-icon [icon]="selectedIcon" fxFill></fa-icon>
+
+  <ng-container [ngSwitch]="dialogState">
+
+    <ng-container *ngSwitchCase="'active'">
+      <h1 class="h-30">
+        {{ data.type === 'add' ? 'Dodaj konto' : 'Edytuj konto' }}
+      </h1>
+      <form [formGroup]="fGroup" (ngSubmit)="submit()">
+        <div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="start center">
+          <div class="selected-icon" (click)="activateDropdown()" [ngClass]="dropdownActivated ? 'activated' : '' ">
+            <fa-icon [icon]="selectedIcon" fxFill [style.color]="color"></fa-icon>
+          </div>
+          <mat-form-field fxFlex="auto" appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover">
+            <label class="app-input-label">Nazwa konta:</label>
+            <input matInput id="account-name-input" #name maxlength="200" formControlName="name">
+            <mat-hint align="end">{{ name.value?.length || 0 }}/200</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="icon-dropdown" *ngIf="dropdownActivated" fxLayout="row">
+          <div class="icons-box" fxFlex="auto" fxLayout="row wrap">
+            <ng-container *ngFor="let icon of iconslist">
+              <fa-icon [icon]="icon" (click)="selectIcon(icon)"></fa-icon>
+            </ng-container>
+          </div>
+          <div class="color-box" fxFlex="100px" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+            <p class="t-14">Kolor</p>
+            <div class="color-picker-wrapper">
+              <input class="color-picker" readonly [(colorPicker)]="color" [style.background]="color"
+                [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'hex'">
+            </div>
+            <p class="color-value">{{ color | uppercase }}</p>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="space-between center" *ngIf="data.type === 'add'">
+          <mat-form-field appearance="outline" class="currency-input mat-ff-fixed-padding mat-ff-no-border-hover">
+            <label class="app-input-label">Waluta konta:</label>
+            <mat-select formControlName="currency">
+              <mat-option *ngFor="let currency of currencies$ | async" [value]="currency">
+                {{ currency.name + ' (' + currency.code + ')'}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="currency-input mat-ff-fixed-padding mat-ff-no-border-hover">
+            <label class="app-input-label">Początek okresu rozliczeniowego:</label>
+            <input matInput formControlName="billingPeriod" min="1" max="29" type="number">
+          </mat-form-field>
+        </div>
+        <div class="buttons" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
+          <button mat-button (click)="closeDialog(false)" type="reset">Anuluj</button>
+          <button mat-flat-button type="submit" color="accent">Potwierdź</button>
+        </div>
+      </form>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'processing'">
+      <div class="full-dialog">
+        <mat-progress-spinner [mode]="'indeterminate'" [diameter]="40"></mat-progress-spinner>
       </div>
-      <mat-form-field fxFlex="auto" appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover">
-        <label class="app-input-label">Nazwa konta:</label>
-        <input matInput #name maxlength="200" formControlName="name">
-        <mat-hint align="end">{{ name.value?.length || 0 }}/200</mat-hint>
-      </mat-form-field>
-    </div>
-    <div class="icon-dropdown" *ngIf="dropdownActivated" fxLayout="row">
-      <div class="icons-box" fxFlex="auto" fxLayout="row wrap">
-        <ng-container *ngFor="let icon of iconslist">
-          <fa-icon [icon]="icon" (click)="selectIcon(icon)"></fa-icon>
-        </ng-container>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'success'">
+      <div class="full-dialog">
+        <fa-icon [icon]="successIcon" class="success circle-icon"></fa-icon>
+        <p class="h-18-b success">
+          {{ data.type === 'add' ? 'Utworzono konto' : 'Pomyślnie edytowano konto' }}
+        </p>
+        <button mat-stroked-button (click)="closeDialog(true)">OK</button>
       </div>
-      <div class="color-box" fxFlex="100px" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
-        <p class="t-14">Kolor</p>
-        <div class="color-picker"></div>
-        <p class="color-value">{{ "#abc123" | uppercase  }}</p>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'error'">
+      <div class="full-dialog">
+        <fa-icon [icon]="failureIcon" class="failure circle-icon"></fa-icon>
+        <p class="h-18-b failure">
+          {{ data.type === 'add' ? 'Nie udało się utworzyć konta' : 'Nie udało się edytować konta' }}
+        </p>
+        <button mat-stroked-button (click)="dialogState = 'active'">Wróć</button>
       </div>
-    </div>
-    <mat-form-field fxFill appearance="outline" class="currency-input mat-ff-fixed-padding mat-ff-no-border-hover">
-      <label class="app-input-label">Waluta konta:</label>
-      <mat-select formControlName="currency">
-        <mat-option *ngFor="let currency of currencies$ | async" [value]="currency">
-          {{ currency.name + ' (' + currency.code + ')'}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
-      <button mat-button (click)="closeDialog()" type="reset">Anuluj</button>
-      <button mat-flat-button type="submit" color="accent">Dodaj</button>
-    </div>
-  </form>
+    </ng-container>
+
+  </ng-container>
+
 </div>

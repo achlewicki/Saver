@@ -68,17 +68,42 @@ mat-option {
 
 
 .helping-box {
-  .sketch-box {
-    border: 1px solid #aaaaaa;
+  .box {
+    position: relative;
+    box-shadow: inset 0px 0px 3px 2px #ececec;
+    padding: 10px 5px;
     border-radius: 5px;
+    margin-top: 20px;
+
+    label {
+      @extend .t-12-b;
+      position: absolute;
+      top: -20px;
+      left: 0;
+    }
+  }
+
+  .template-box {
     min-width: 250px;
     height: 250px;
+
+    .template-element {
+      padding: 7px 10px;
+    }
   }
 
   .last-operations-box {
-    border: 1px solid #aaaaaa;
-    border-radius: 5px;
     min-width: 250px;
-    height: 150px;
+    min-height: 100px;
+
+    .operation {
+      margin: 3px 0;
+      padding: 7px 10px;
+    }
+
+    .operation:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
   }
 }

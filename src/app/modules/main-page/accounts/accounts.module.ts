@@ -1,3 +1,4 @@
+import { AppPipesModule } from '#shared/pipes/app-pipes.module';
 import { MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
 import { CarouselModule } from '#modules/shared/carousel/carousel.module';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
@@ -14,7 +15,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { AccountBalanceDetailsComponent } from './account-details/account-balance-details/account-balance-details.component';
 import { AccountDetailsSummaryComponent } from './account-details/account-details-summary/account-details-summary.component';
-
+import { accountIconsPack } from '#dialogs/add-account-dialog/account-icons';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AccountDetailsSummaryComponent } from './account-details/account-detail
     CarouselModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    AppTooltipModule
+    AppTooltipModule,
+    AppPipesModule
   ],
   exports: [
     AccountsViewComponent
@@ -39,6 +41,7 @@ import { AccountDetailsSummaryComponent } from './account-details/account-detail
 })
 export class AccountsModule {
   constructor(faLibrary: FaIconLibrary) {
+    faLibrary.addIconPacks(accountIconsPack);
     faLibrary.addIcons(faHome, faTrashAlt, faPen, faPlus, faCaretUp);
   }
 }

@@ -1,8 +1,9 @@
-import {Component, OnInit } from '@angular/core';
-import {MainPageService} from '#services/main-page-service/main-page.service';
-import {FormControl, Validators} from '@angular/forms';
-import {SettingService} from '#services/setting-service/setting.service';
-import {EmailModel, InfoModel, PasswordModel} from '#models/setting.model';
+import { Component, OnInit } from '@angular/core';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+import { FormControl, Validators } from '@angular/forms';
+import { SettingService } from '#services/setting-service/setting.service';
+import { EmailModel, InfoModel, PasswordModel } from '#models/setting.model';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'svr-user-settings',
@@ -46,7 +47,7 @@ export class UserSettingsComponent implements OnInit {
     this.mainPageService.activeView.next({
       name: 'user-settings',
       title: 'Ustawienia',
-      icon: 'null'
+      icon: faCog
     });
   }
 

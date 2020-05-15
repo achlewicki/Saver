@@ -1,0 +1,66 @@
+<div class="create-account-container">
+
+  <div class="introduction-box" *ngIf="initialize">
+    <h1 class="h-18 primary">
+      Do korzystania z aplikacji wymagane jest posiadanie konta
+    </h1>
+    <p class="t-14 secondary">
+      Każdy użytkownik może posiadać kilka kont. Każde konto posiada odzielny system raportowania, inne kategorie oraz
+      walutę.
+    </p>
+    <!-- <div class="t-12 secondary" fxLayout="row" fxLayoutGap="10px">
+      <fa-icon icon="info-circle"></fa-icon>
+      <span>Możesz zarządzać swoimi kontami po wybraniu "zarządzaj kontami" na pasku kont.</span>
+    </div> -->
+    <button mat-stroked-button (click)="initialize = false">Dodaj pierwsze konto</button>
+  </div>
+
+  <div class="create-account-box" *ngIf="!initialize">
+    <form [formGroup]="fGroup" (ngSubmit)="completeStep()">
+      <h1 class="h-22 primary">
+        Dodaj pierwsze konto
+      </h1>
+      <p class="t-14 secondary">
+        Podaj nazwę konta, walutę oraz rozpoznawalną ikonę.
+      </p>
+      <div class="inputs" fxLayout="column" fxLayoutGap="20px">
+        <div fxLayout="row" fxLayoutGap="25px" fxLayoutAlign="start center">
+          <div class="selected-icon">
+            <fa-icon [icon]="selectedIcon" fxFill [style.color]="color"></fa-icon>
+          </div>
+          <mat-form-field fxFlex="auto" appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover">
+            <label class="app-input-label">Nazwa konta:</label>
+            <input matInput id="account-name-input" #name maxlength="200" formControlName="accountName">
+            <mat-hint align="end">{{ name.value?.length || 0 }}/200</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="icon-color-box" fxLayout="row">
+          <div class="icons-box" fxFlex="auto" fxLayout="row wrap">
+            <ng-container *ngFor="let icon of iconslist">
+              <fa-icon [icon]="icon" (click)="selectIcon(icon)"></fa-icon>
+            </ng-container>
+          </div>
+          <div class="color-box" fxFlex="100px" fxLayout="column" fxLayoutAlign="center center">
+            <div class="t-14">Kolor</div>
+            <div class="color-picker-wrapper">
+              <input class="color-picker" readonly [(colorPicker)]="color" [style.background]="color"
+                [cpAlphaChannel]="'disabled'" [cpOutputFormat]="'hex'">
+            </div>
+            <div class="color-value">{{ this.color | uppercase  }}</div>
+          </div>
+        </div>
+        <mat-form-field fxFill appearance="outline" class="currency-input mat-ff-fixed-padding mat-ff-no-border-hover">
+          <label class="app-input-label">Waluta konta:</label>
+          <mat-select formControlName="currency">
+            <mat-option *ngFor="let currency of currencies$ | async" [value]="currency">
+              {{ currency.name + ' (' + currency.code + ')'}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <button mat-stroked-button disableRipple="true" type="submit">Dalej</button>
+      </div>
+    </form>
+  </div>
+</div>

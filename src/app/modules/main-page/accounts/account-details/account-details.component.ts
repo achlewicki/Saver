@@ -3,8 +3,9 @@ import { AccountService } from '#services/account-service/account.service';
 import { ProcessDialogComponent, ProcessDialogData } from '#dialogs/process-dialog/process-dialog.component';
 import { MatDialog } from '@angular/material';
 import { AccountModel } from '#models/account.model';
-import { Component, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { AddAccountDialogComponent, AddAccountDialogType } from '#dialogs/add-account-dialog/add-account-dialog.component';
+
 
 @Component({
   selector: 'svr-account-details',
@@ -14,10 +15,13 @@ import { Observable } from 'rxjs';
 export class AccountDetailsComponent {
 
   @Input()
-  protected account: AccountModel;
+  public account: AccountModel;
 
   @Input()
-  private canDelete: boolean;
+  public canDelete: boolean;
+
+  @Output()
+  public accountDeleted = new EventEmitter<AccountModel>();
 
   constructor(
     private readonly dialogs: MatDialog,
@@ -52,13 +56,29 @@ export class AccountDetailsComponent {
     processDialog.afterClosed().subscribe(
       result => {
         if (result) {
-          alert('Konto zostanie usunięte');
-        } else {
-          alert('Konto NIE zostanie usunięte');
+          this.accountDeleted.emit(this.account);
         }
       }
     );
+  }
 
+  protected editAccount(): void {
+    const editDialog = this.dialogs.open<AddAccountDialogComponent, AddAccountDialogType, boolean>(
+      AddAccountDialogComponent,
+      {
+        data: {
+          type: 'edit',
+          account: this.account
+        }
+      }
+    );
+    editDialog.afterClosed().subscribe(
+      closeResult => {
+        if (closeResult) {
+
+        }
+      }
+    );
   }
 
 }

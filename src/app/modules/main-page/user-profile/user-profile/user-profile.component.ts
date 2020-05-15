@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MainPageService } from '#services/main-page-service/main-page.service';
+import { faUserAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'svr-user-profile',
@@ -16,7 +17,7 @@ export class UserProfileComponent implements OnInit {
     this.mpservice.activeView.next({
       name: 'user-profile',
       title: 'Profil',
-      icon: 'null'
+      icon: faUserAlt
     });
   }
 

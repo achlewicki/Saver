@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {MainPageService} from '#services/main-page-service/main-page.service';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+import { faAward } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'svr-achievements-view',
@@ -14,7 +15,7 @@ export class AchievementsViewComponent implements OnInit {
     this.mpService.activeView.next({
       name: 'achievements', //takie samo jak w nav list !!!
       title: 'Osiągnięcia',
-      icon: 'clipboard'
+      icon: faAward
     });
   }
 

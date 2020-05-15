@@ -1,7 +1,7 @@
 <div class="events-container" fxLayout="row wrap" fxLayoutAlign="center srtetch">
   <div class="calendar app-box">
-    <full-calendar [plugins]="calendarPlugins" [events]="calendarEvents" defaultView="dayGridMonth" [firstDay]="1"
-      (dateClick)="dateClick($event)" (eventClick)="eventClick($event)" [locale]="plLocale">
+    <full-calendar #calendar [plugins]="calendarPlugins" [events]="calendarEvents" defaultView="dayGridMonth"
+      [firstDay]="1" (dateClick)="dateClick($event)" (eventClick)="eventClick($event)" [locale]="plLocale">
     </full-calendar>
   </div>
   <div class="details-container app-box" fxFlex="auto">
