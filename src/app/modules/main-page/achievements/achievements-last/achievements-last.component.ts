@@ -19,7 +19,8 @@ export class AchievementsLastComponent implements OnInit {
       (response: UserAchievementModel[]) => {
         this.achievements = response;
         this.achievements.forEach(value => value.achievement.src = '/assets/achievements/' + value.achievement.id.toString() + '_got.svg');
-        // console.log(this.achievements);
+        console.log(this.achievements[0].date);
+        // this.achievements.splice(2, 1);
       }
     );
   }

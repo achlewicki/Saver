@@ -1,17 +1,29 @@
-<p class="label"
-   fxFlex="100%"
-   fxLayoutAlign="center">
-  Twoje ostatnie osiągnięcia
-</p>
-<div class="achievement-container-last"
-    fxFlex="33%"
-     fxLayoutAlign="center"
-    *ngFor="let achievement of this.achievements">
-  <img class="achievement-img-last" alt="{{achievement.achievement.title}}" src="{{achievement.achievement.src}}">
-  <div class="achievement-info" fxFlex="100%">
-    <p class="achievement-title-last" fxFlex="100%"><strong>Nazwa: </strong>{{achievement.achievement.title}}</p>
-    <p class="achievement-description-last" fxFlex="100%"><strong>Zdobyto za: </strong>{{achievement.achievement.description}}</p>
-    <p class="achievement-date-last" fxFlex="100%"><strong>Data: </strong>{{achievement.date}}</p>
-    <p class="achievement-percentage-last" fxFlex="100%"><strong>Procent: </strong>81.34%</p>
+<div fxLayout="column"
+      fxLayoutAlign="center center"
+      *ngIf="this.achievements">
+  <p class="label"
+     fxFlex="100%"
+     fxLayoutAlign="center">
+    Twoje ostatnie osiągnięcia
+  </p>
+  <div class="all-last-achievements-container"
+  fxLayoutAlign="center center">
+    <div class="achievement-container-last"
+         fxLayout="row"
+         fxLayoutAlign="center center"
+         fxFlex="33%"
+        *ngFor="let achievement of this.achievements">
+      <img class="achievement-img-last" alt="{{achievement.achievement.title}}" src="{{achievement.achievement.src}}">
+      <div class="achievement-info" fxFlex="100%">
+        <p class="achievement-title-last" fxFlex="100%"><strong>{{achievement.achievement.title}}</strong></p>
+        <p class="achievement-description-last" fxFlex="100%">{{achievement.achievement.description}}</p>
+        <p class="achievement-date-last" fxFlex="100%">{{achievement.date | date:  'dd.MM.yyyy'}}</p>
+      </div>
+    </div>
   </div>
+</div>
+<div class="label"
+     fxLayoutAlign="center center"
+     *ngIf="!this.achievements">
+  <p>Brak Ostatnich Osiągnięć</p>
 </div>

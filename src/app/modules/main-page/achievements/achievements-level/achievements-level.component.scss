@@ -25,7 +25,8 @@ $animationTime: var(--animationTime);
   height: 29px;
   line-height: 25px;
   color: black;
-  min-width: 800px;
+  min-width: 200px;
+  width: 900px;
   border-radius: 20px;
   border: solid #373737 2px;
   position: relative;
@@ -66,6 +67,12 @@ $animationTime: var(--animationTime);
   100%{
     width: $myWidth;
   }
+}
+
+.user-title {
+  margin-top: 15px;
+  font-size: 1.5em;
+  font-style: italic;
 }
 
 
