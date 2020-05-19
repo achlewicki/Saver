@@ -20,7 +20,7 @@ export class ReportAccountBalanceChartComponent implements OnInit, OnChanges {
     responsive: true,
     title: {
       display: true,
-      text: 'Stan konta',
+      text: 'Historia stanu konta',
       fontSize: 20
     },
     scales: {

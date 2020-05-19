@@ -16,7 +16,7 @@ export class ReportCategoryChartComponent implements OnInit, OnChanges {
     responsive: true,
     title: {
       display: true,
-      text: 'Wydatki ze względu na kategorie',
+      text: 'Dzienne wydatki ze względu na kategorie',
       fontSize: 20
     },
     animation: {

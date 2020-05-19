@@ -43,7 +43,7 @@
           [ngClass]="this.fullscreenChart === 'category' ? 'fullscreen' : 'default margin-left'">
         </svr-raport-category-chart>
         <fa-icon icon="expand-arrows-alt" size="2x" class="relative-position"
-                 *ngIf="this.fullscreenChart === 'none'"
+                 *ngIf="this.fullscreenChart === 'none' && this.accountHistory[0].outcomes[0]"
                  (click)="this.toggleChartOnFullscreen('category')"></fa-icon>
         <fa-icon icon="compress-arrows-alt" size="2x" class="absolute-position"
                  *ngIf="this.fullscreenChart === 'category'"
@@ -58,7 +58,7 @@
           [ngClass]="this.fullscreenChart === 'category2' ? 'fullscreen' : 'default'">
         </svr-raport-category2-chart>
         <fa-icon icon="expand-arrows-alt" size="2x" class="relative-position"
-                 *ngIf="this.fullscreenChart === 'none'"
+                 *ngIf="this.fullscreenChart === 'none' && this.accountHistory[0].outcomes[0]"
                  (click)="this.toggleChartOnFullscreen('category2')"></fa-icon>
         <fa-icon icon="compress-arrows-alt" size="2x" class="absolute-position"
                  *ngIf="this.fullscreenChart === 'category2'"
