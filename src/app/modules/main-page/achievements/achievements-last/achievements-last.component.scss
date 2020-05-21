@@ -1,16 +1,29 @@
-
+@import "app-boxes";
 
 .achievement-container-last{
   padding-top: 10px;
   padding-bottom: 10px;
+  min-width: 300px;
+  //width: 350px;
+  //border: solid red 2px;
+}
+
+.all-last-achievements-container {
+  //align-items: center;
+  //align-content: center;
+  flex-wrap: wrap;
+  //border: solid red 2px;
 }
 .achievement-info{
   flex-wrap: wrap;
   //border: solid red 2px;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
+p {
+  font-size: 1.3em;
+}
 
 .achievement-img-last{
   height: 180px;

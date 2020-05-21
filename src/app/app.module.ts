@@ -18,8 +18,6 @@ import { JsonDataParserInterceptor } from './services/_helpers/interceptors/json
 
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
-
-
 @NgModule({
   declarations: [
     AppComponent,

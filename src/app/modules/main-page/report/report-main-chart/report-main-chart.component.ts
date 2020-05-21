@@ -1,14 +1,14 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Label, SingleDataSet, SingleOrMultiDataSet} from 'ng2-charts';
-import {ChartColor, ChartData, ChartDataSets, ChartLegendItem, ChartOptions, ChartType} from 'chart.js';
-import {AccountHistoryModel} from '#models/account-history.model';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Label, SingleDataSet, SingleOrMultiDataSet } from 'ng2-charts';
+import { ChartColor, ChartData, ChartDataSets, ChartLegendItem, ChartOptions, ChartType } from 'chart.js';
+import { AccountHistoryModel } from '#models/account-history.model';
 
 @Component({
   selector: 'svr-raport-main-chart',
   templateUrl: './report-main-chart.component.html',
   styleUrls: ['./report-main-chart.component.scss']
 })
-export class ReportMainChartComponent implements OnInit {
+export class ReportMainChartComponent implements OnInit, OnChanges {
   @Input() data: AccountHistoryModel[];
 
   private chartOptions: ChartOptions = {
@@ -20,7 +20,7 @@ export class ReportMainChartComponent implements OnInit {
     },
     animation: {
       easing: 'linear',
-      duration: 2000
+      duration: 1000
     },
     showLines: false
   };
@@ -28,38 +28,46 @@ export class ReportMainChartComponent implements OnInit {
   private chartLabel: Label[] = [];
   private chartLegend = false;
   private chartType: ChartType = 'bar';
-  private chartData: ChartDataSets[] = [
-    {
-      data: [],
-      backgroundColor: [],
-      // borderColor: 'blue',
-      // fill: 'start',
-      // lineTension: 0,
-      // pointBorderColor: 'black',
-      // pointBackgroundColor: 'green',
-      // pointRadius: 5
-    }
-  ];
-  private chartColors: any = {
-      backgroundColor: []
-  };
+  private chartData: ChartDataSets[];
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
-    this.data.forEach(value => {
-      this.chartLabel.push(value.data.toString());
+    this.chartData = [
+      {
+        data: [],
+        backgroundColor: [],
+        hoverBackgroundColor: []
+        // borderColor: 'blue',
+        // fill: 'start',
+        // lineTension: 0,
+        // pointBorderColor: 'black',
+        // pointBackgroundColor: 'green',
+        // pointRadius: 5
+      }
+    ];
+    this.chartLabel = [];
+    this.data.forEach(element => {
+      this.chartLabel.push(element.date.toString());
       // if (value.report[0] !== undefined) {this.chartData[0].data.push(value.report[0].balance); } else {this.chartData[0].data.push(0); }
       let outcomesSumarry = 0;
       let incomesSumarry = 0;
-      value.przychody.forEach(value1 => incomesSumarry += value1);
-      value.wydatki.forEach(value1 => outcomesSumarry += value1.value);
+      element.incomes.forEach(value => incomesSumarry += value);
+      element.outcomes.forEach(value => outcomesSumarry += value.value);
       this.chartData[0].data.push(incomesSumarry - outcomesSumarry);
     });
 
-    this.chartData[0].data.forEach((value, index) => {
-      value > 0 ? this.chartData[0].backgroundColor[index] = 'green' : this.chartData[0].backgroundColor[index] = 'red';
-    });
+    if (this.chartData[0]) {
+      this.chartData[0].data.forEach((value, index) => {
+        value > 0 ?
+          this.chartData[0].backgroundColor[index] = this.chartData[0].hoverBackgroundColor[index] = 'green' :
+          this.chartData[0].backgroundColor[index] = this.chartData[0].hoverBackgroundColor[index] = 'red';
+      });
+    }
+  }
+
+  ngOnChanges() {
+    this.ngOnInit();
   }
 
 }

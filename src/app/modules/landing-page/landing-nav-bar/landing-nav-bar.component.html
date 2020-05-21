@@ -1,10 +1,10 @@
-<header>
+<header [ngStyle]="{'background-color': this.navColor, 'animation-duration': '0.7s', 'animation-name': this.inOrOut}">
   <a routerLink="/home"><img alt="SaveIt" src="assets/images/logo.png" class="logo"></a>
   <nav>
     <ul class="buttons">
-      <li class="navBarButton"><a routerLink="/home" routerLinkActive="active">Home</a></li>
-      <li class="navBarButton"><a routerLink="/login">Log In</a></li>
-      <li class="navBarButton"><a routerLink="/register" routerLinkActive="active">Sign Up</a></li>
+      <li class="navBarButton"><a [ngStyle]="{'color': this.fontColor}" routerLink="/home" routerLinkActive="active">Strona domowa</a></li>
+      <li class="navBarButton"><a [ngStyle]="{'color': this.fontColor}" routerLink="/login">Zaloguj się</a></li>
+      <li class="navBarButton"><a [ngStyle]="{'color': this.fontColor}" routerLink="/register" routerLinkActive="active">Załóż konto</a></li>
     </ul>
   </nav>
 </header>

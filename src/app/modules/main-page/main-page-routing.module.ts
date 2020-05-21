@@ -50,7 +50,7 @@ const routes: Routes = [
         component: AchievementsViewComponent
       },
       {
-        path: 'raports',
+        path: 'reports',
         component: ReportViewComponent
       },
       {

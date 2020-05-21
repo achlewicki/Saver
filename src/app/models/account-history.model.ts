@@ -1,8 +1,8 @@
 import {SubcategoryModel} from '#models/subcategory.model';
 
 export interface AccountHistoryModel {
-  data: Date;
-  wydatki: [
+  date: Date;
+  outcomes: [
     {
       value: number;
       subcategory: SubcategoryModel
@@ -10,7 +10,7 @@ export interface AccountHistoryModel {
       type: number;
     }
   ];
-  przychody: number[];
+  incomes: number[];
   report: [
     {
       balance: number;

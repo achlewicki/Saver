@@ -1,21 +1,19 @@
-.container, .app-container{
-  margin: 150px 10% 0 10%;
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  //border: solid 3px black;
-  //width: 1200px;
+.container{
+  margin-top: 100px;
 }
 .main-logo{
   margin-right: 100px;
+}
+
+.light{
+  border: solid 2px red;
 }
 
 .main-content{
   margin-left: 20px;
   width: 500px;
   font-family: 'Lato', sans-serif;
+  margin-top: 100px;
 }
 
 .title-content{
@@ -27,6 +25,7 @@
   margin-bottom: 20px;
   font-size: 18px;
   line-height: 1.6;
+  width: 400px;
 }
 
 .register-button{
@@ -54,33 +53,51 @@
   //z-index: 1;
 }
 
-.header{
-  background-color: #4568d0;
-  margin-top: 15%;
-  height: 700px;
-  transform: rotate(-5deg);
-  transform-origin: bottom left;
-  width: 130%;
+.header, .achievements-header{
+  background-color: #0681ff;
+  min-height: 700px;
+  margin-top: 130px;
+  //transform-origin: bottom left;
+  width: 160%;
   margin-left: -20%;
+  align-items: center;
+}
+
+.header{
+  transform: rotate(-5deg);
+}
+
+.achievements-header{
+  transform: rotate(5deg);
+}
+
+.app-container, .achievements-container{
+  margin-top: 70px;
+  margin-bottom: 70px;
+  margin-left: -10%;
 }
 
 .app-container{
   transform: rotate(5deg);
-  margin-left: 20%;
-  width: auto;
-  //border: solid 3px black
 }
+
+.achievements-container{
+  transform: rotate(-5deg);
+}
+
 .app-content{
-  margin-top: 200px;
-  margin-left: 150px;
-  //transform: rotate(5deg);
+  font-size: 18px;
+  line-height: 1.6;
   width: 400px;
+  text-align: center;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .app-screenshots{
   //transform: rotate(5deg);
-  margin-top: 200px;
-  margin-left: 150px;
+  //margin-top: 200px;
+  //margin-left: 150px;
 }
 
 .ss{
@@ -89,7 +106,7 @@
 
 footer {
   height: 10em;
-  background-color: #4568d0;
+  background-color: rgba(0,0,0,0.1);
   color: #c7d1f1;
   text-align: center;
 
@@ -98,3 +115,30 @@ footer {
   }
 
 }
+
+.canvas{
+  width: 800px;
+}
+
+.canvas-container{
+  margin-top: 100px;
+  //padding-left: 30%;
+}
+
+.canvas-text{
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.canvas-canvas{
+  align-items: center;
+}
+
+a{
+  text-decoration: none;
+}
+//footer{
+//  position: absolute;
+//  bottom: 0;
+//}

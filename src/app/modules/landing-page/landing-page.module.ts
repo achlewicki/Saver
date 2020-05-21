@@ -11,6 +11,8 @@ import { RegisterModule } from './register/register.module';
 import { LoginModule } from './login/login.module';
 import { ContentComponent } from './content/content.component';
 import { MatButtonModule } from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {ChartsModule} from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { MatButtonModule } from '@angular/material';
     CommonModule,
     RouterModule,
     LandingPageRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    FlexLayoutModule,
+    ChartsModule
   ]
 })
 export class LandingPageModule { }
