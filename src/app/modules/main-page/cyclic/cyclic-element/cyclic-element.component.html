@@ -1,0 +1,74 @@
+<div class="app-box" fxLayout="column">
+  <div class="main-box" (click)="descriptionBoxVisible = !descriptionBoxVisible" fxLayout="row" fxLayoutGap="20px">
+    <div class="cyclic-title" fxLayout="column" fxFlex="auto">
+      <p class="title t-16 primary">Pierwsza Cykliczna</p>
+      <div class="date t-12-l">
+        08-08-1202
+      </div>
+    </div>
+    <div class="cyclic-category" fxLayoutAlign="center center">
+      <div class="category-chip">
+        <div class="chip-background" [style.background-color]="'red'"></div>
+        <div class="chip-text t-14">JEDZENIE</div>
+      </div>
+    </div>
+    <div class="h-18-b" fxLayoutAlign="center center" [ngClass]=" true ? 'income' : 'outcome' ">
+      {{ 12000 | formatValue }}
+    </div>
+  </div>
+
+
+  <div class="details-box" [ngClass]="descriptionBoxVisible ? 'opened' : 'closed' ">
+    <div fxLayout="column" fxLayoutGap="30px">
+      <div class="description-tree" fxLayoutAlign="space-between" fxLayout="row">
+        <div fxLayout="row">
+          <div class="description-icon">
+            <fa-icon [icon]="descriptionIcon"><!--*ngIf="operation.description"--> </fa-icon>
+          </div>
+          <div class="description">Opis transakcji wywołanej przez testy wykonywane przez Daniela Bińkowskiego oraz Krzysztofa Rakowskiego</div>
+        </div>
+        <div class="tree">
+          <div class="category-wrapper" fxFlex="200px">
+            <div class="dotts-block" *ngIf=true>
+              <div class="category">
+                <div class="category-chip">
+                  <div class="chip-background" [style.background-color]="'green'"></div>
+                  <div class="chip-text t-14">DużeJedzonki</div>
+                </div>
+              </div>
+              <div class="subcategory">
+                <div class="category-chip">
+                  <div class="chip-background" [style.background-color]="'blue'"></div>
+                  <div class="chip-text t-14">MałeJedzonki</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="next-sum" fxLayoutAlign="space-between" fxLayout="row">
+
+        <div fxLayout="column">
+          <div class="next-cyclic" fxLayout="row">
+            <div class="next-cyclic-icon">
+              <fa-icon [icon]="nextCyclicIcon"></fa-icon>
+            </div>
+            <div class="next-cyclic-text">Następna rata:</div>
+          </div>
+          <div class="next-cyclic-date t-14-l">10-12-2020</div>
+        </div>
+
+        <div fxLayout="column">
+          <div fxLayout="row">
+            <div class="next-cyclic-icon">
+              <fa-icon [icon]="nextCyclicIcon"></fa-icon>
+            </div>
+            <div class="sum-text">Łączna suma:</div>
+          </div>
+          <div class="all-cyclic-sum t-14">{{ 24240 | formatValue }}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -9,9 +9,10 @@
       <fa-icon icon="chevron-down" *ngIf="expanded"></fa-icon>
     </span>
   </div>
-  <div class="account-selection-list" *ngIf="accountSelectionClicked && expanded">
+  <div fxLayoutAlign="center"
+       fxLayout="row wrap" class="account-selection-list" *ngIf="accountSelectionClicked && expanded">
     <svr-nav-account-item *ngFor="let account of accounts" [account]="account"></svr-nav-account-item>
-    <p class="manageAccounts">Zarządzaj kontami</p>
+    <p class="manageAccounts" (click)="openAccountView()">Zarządzaj kontami</p>
 
     <!--<div class="error-info">
       {{ this.errorInfo }}

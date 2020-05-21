@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, Output} from '@angular/core';
-import {faCog, faUser} from '@fortawesome/free-solid-svg-icons';
+import {faBell, faCog, faUser} from '@fortawesome/free-solid-svg-icons';
 import {MatDialogRef} from '@angular/material';
 import {NotificationModel} from '#models/notification.model';
 import {NotificationService} from '#services/notification-service/notification.service';
@@ -14,8 +14,10 @@ export class NotificationDialogComponent implements OnInit {
   @Output()
   protected userIcon = faUser;
   protected errorInfo = '';
+  protected counter = 0;
   notifications: NotificationModel[];
   notification: NotificationModel;
+  bellIcon = faBell;
 
   constructor(
     private readonly dialogRef: MatDialogRef<NotificationDialogComponent>,
@@ -27,10 +29,21 @@ export class NotificationDialogComponent implements OnInit {
       .subscribe(
         (response) => {
           this.notifications = response;
+          this.notifications.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+          this.notificationCounter();
         },
         (error) => {
           this.errorInfo = error;
         });
+  }
+
+  public notificationCounter() {
+    this.counter = 0;
+    this.notifications.forEach( (object, index) => {
+      if (object.seen === false) {
+        this.counter++;
+      }
+    });
   }
 
   protected closeDialog() {

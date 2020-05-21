@@ -29,6 +29,8 @@ import {
   MatButtonModule
 } from '@angular/material';
 
+import {CyclicModule} from '#modules/main-page/cyclic/cyclic.module';
+
 const matModules = [
   MatButtonModule,
   MatIconModule,
@@ -46,7 +48,8 @@ const appModules = [
   DialogsModule,
   AchievementsModule,
   ReportModule,
-  EventsModule
+  EventsModule,
+  CyclicModule
 ];
 
 

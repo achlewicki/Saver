@@ -1,7 +1,9 @@
 <div class="dialog-container" fxLayout="column">
 
-  <div class="top-div" fxLayoutAlign="center center" fxLayout="row">
-    <p class="notification-header">Powiadomienia</p>
+  <div class="top-div" fxLayoutAlign="space-between center" fxLayout="row">
+    <div><fa-icon class="icon" [icon]="bellIcon" size="lg" fxLayoutAlign="center center"></fa-icon></div>
+    <div><p class="notification-header">Powiadomienia</p></div>
+    <div fxLayoutAlign="center center" class="counter">{{ this.counter }}</div>
   </div>
 
   <div class="bottom-div" fxLayoutAlign="stretch stretch" fxLayout="column">

@@ -1,6 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NotificationModel} from '#models/notification.model';
 import {NotificationService} from '#services/notification-service/notification.service';
+import {NotificationDialogComponent} from '#dialogs/notification-dialog/notification-dialog.component';
+import {AccountModel} from '#models/account.model';
+import {MainPageService} from '#services/main-page-service/main-page.service';
+import {OperationModel} from '#models/operations.model';
+import {OperationsService} from '#services/operations-service/operations.service';
 
 @Component({
   selector: 'svr-notification-item',
@@ -14,9 +19,14 @@ export class NotificationItemComponent implements OnInit {
   protected errorInfo = '';
   protected iconName = '';
   protected iconColor = '';
+  protected expanded = false;
+  protected account: AccountModel;
 
   constructor(
     private readonly notificationService: NotificationService,
+    private readonly notificationDialogComponent: NotificationDialogComponent,
+    private readonly mainPageService: MainPageService,
+    private readonly operationService: OperationsService,
   ) {}
 
   ngOnInit() {
@@ -37,18 +47,64 @@ export class NotificationItemComponent implements OnInit {
         this.iconName = 'coins';
         this.iconColor = 'red';
         break;
+      case 'event_reminder':
+        this.iconName = 'calendar-alt';
+        this.iconColor = 'darkorange';
+        break;
     }
+    this.mainPageService.activeAccount.subscribe(
+      result => this.account = result
+    );
   }
 
   markNotificationAsRead() {
+    this.expanded = !this.expanded;
     this.notification.seen = true;
+    this.notificationDialogComponent.notificationCounter();
     this.notificationService.markNotification(this.notification)
       .subscribe(
         (response) => {
-          // this.notification.seen = response.notification.seen;
         },
         (error) => {
           this.errorInfo = error;
         });
   }
+
+  addTransaction() {
+    this.expanded = !this.expanded;
+    const value = parseInt(this.notification.event.value.valueOf().toString(), 10);
+    const operation: OperationModel = {
+      title: this.notification.event.title.valueOf(),
+      description: this.notification.event.description.valueOf(),
+      type: value < 0 ? -1 : 1,
+      value: value * (value < 0 ? -1 : 1),
+      date: new Date(),
+      intoAccount: 'YES',
+      subcategory: null,
+      distinction: 'regular',
+      event: this.notification.event.id.valueOf()
+    };
+    this.operationService.saveEventOperation(this.account.id, operation).subscribe(
+      res => {
+        // TODO - Completed Dialog
+        console.log(res);
+        alert('Pomyślnie dodano operacje: ' + operation.title);
+        this.mainPageService.operationAdded.next(res);
+      },
+      err => {
+        // TODO - Error Dialog
+        console.error(err);
+        alert('Wystąpił błąd podczas dodawania oepracji: ' + err.error);
+      }
+    );
+  }
+
+  rescheduleEvent() {
+    this.expanded = !this.expanded;
+  }
+
+  denyEvent() {
+    this.expanded = !this.expanded;
+  }
 }
+

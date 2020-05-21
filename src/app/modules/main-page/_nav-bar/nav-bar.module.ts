@@ -18,7 +18,7 @@ import {
   faAward,
   faChevronRight,
   faChevronDown,
-  faHome
+  faHome, faHourglassHalf, faSearchDollar
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -41,6 +41,6 @@ import {
 })
 export class NavBarModule {
   constructor(faLibrary: FaIconLibrary) {
-    faLibrary.addIcons(faClipboard, faExchangeAlt, faList, faCalendarAlt, faChartBar, faAward, faChevronRight, faChevronDown, faHome);
+    faLibrary.addIcons(faClipboard, faExchangeAlt, faList, faCalendarAlt, faChartBar, faAward, faChevronRight, faChevronDown, faHome, faHourglassHalf, faSearchDollar);
   }
 }

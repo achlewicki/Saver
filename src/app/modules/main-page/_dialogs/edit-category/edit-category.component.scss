@@ -15,9 +15,36 @@
 .submit-button-subcategory {
   width: auto;
   height: 40px;
+  margin-left: 5px;
 }
 
 .subcategory-buttons{
-  padding-top: 15px;
+  //padding-top: 15px;
+}
+
+.category-color {
+  outline: none;
+  border: 1px solid $inputs-basic-border-color;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+}
+
+.category-color:not([disabled]) {
+  cursor: pointer;
+}
+
+.subcategory-color {
+  outline: none;
+  border: 1px solid $inputs-basic-border-color;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.subcategory-color:not([disabled]) {
+  cursor: pointer;
 }
 
