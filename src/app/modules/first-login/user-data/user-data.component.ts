@@ -32,7 +32,8 @@ export class UserDataComponent {
       firstName: this.fGroup.get('firstname').value,
       lastName: this.fGroup.get('secondname').value,
       birthDate: this.fGroup.get('birthday').value,
-      sex: parseInt(this.fGroup.get('sex').value, 10)
+      sex: parseInt(this.fGroup.get('sex').value, 10),
+      nickname: '',
     };
     this.next.emit(userInfo);
   }

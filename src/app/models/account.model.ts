@@ -1,3 +1,5 @@
+import {CurrencyModel} from '#models/currency.model';
+
 export interface AccountModel {
   id?: number;
   name: string;
