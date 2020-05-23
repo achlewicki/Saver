@@ -54,4 +54,21 @@ export class OperationsService {
     const url = config.backendUrl + '/operation/add/' + accountId + '/' + operation.subcategory.id;
     return this.http.post<OperationModel>(url, operation);
   }
+
+  public saveEventOperation(accountId: number, operation: OperationModel): Observable<OperationModel> {
+    const url = config.backendUrl + '/operation/add/' + localStorage.getItem('user.id') + '/' + '0';
+    return this.http.post<OperationModel>(url, operation);
+  }
+}
+
+export interface OperationResult {
+  title: string;
+  description: string;
+  type: number;
+  value: number;
+  date: string;
+  intoAccount: string;
+  guarantyDays: number;
+  distinction: string;
+  subcategory: SubcategoryModel;
 }

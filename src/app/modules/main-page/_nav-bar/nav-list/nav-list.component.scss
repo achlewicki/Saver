@@ -27,7 +27,8 @@ a {
 }
 
 .list-element-name {
-  overflow: hidden;
+  text-overflow: ellipsis;
+  //overflow: hidden;
   margin-left: 10px;
   font-weight: 500;
   color: $font-color;

@@ -15,7 +15,7 @@ import {
 } from '@angular/material';
 
 import {
-  faAward,
+  faAward, faBell,
   faCalendarAlt,
   faChartBar,
   faChevronDown,
@@ -81,6 +81,6 @@ export const dialogs = [
 export class DialogsModule {
   constructor(faLibrary: FaIconLibrary) {
     faLibrary.addIconPacks(accountIconsPack);
-    faLibrary.addIcons(faClipboard, faExchangeAlt, faList, faCalendarAlt, faChartBar, faAward, faChevronRight, faChevronDown, faHome, faExclamation, faLevelUpAlt, faCoins);
+    faLibrary.addIcons(faClipboard, faExchangeAlt, faList, faCalendarAlt, faChartBar, faAward, faChevronRight, faChevronDown, faHome, faExclamation, faLevelUpAlt, faCoins, faBell);
   }
 }

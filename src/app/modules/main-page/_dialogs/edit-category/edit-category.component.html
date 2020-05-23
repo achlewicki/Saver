@@ -12,8 +12,8 @@
          fxLayoutAlign="center"
          *ngIf="this.category">
 
-      <header fxLayout="row" fxLayoutGap="10px">
-        <h1 class="h-30">Edycja Kategorii</h1>
+      <header fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center">
+        <h1 class="h-18-b">Edycja Kategorii</h1>
       </header>
 
       <!-- Category Edit/Add Form -->
@@ -21,7 +21,7 @@
            fxLayout="row wrap"
            fxLayout.lt-md="column"
            fxLayoutGap="10px"
-           fxLayoutAlign="center"
+           fxLayoutAlign="center center"
            fxFlex="100%">
 
         <!-- Title -->
@@ -42,13 +42,14 @@
         </mat-form-field>
 
         <!-- Color -->
-        <mat-form-field
-          fxLayoutAlign="center"
-          appearance="outline"
+
+        <!--<mat-form-field
+          fxLayoutAlign="center center"
           class="mat-ff-fixed-padding mat-ff-no-border-hover"
-          title="Kolor kategorii">
+          title="Kolor kategorii">-->
+
             <input matInput
-              class="category-input"
+              class="category-color"
               readonly
               [(colorPicker)]="this.categoryColor"
               (colorPickerChange)="this.editingForm.controls['categoryColor'].setValue(this.categoryColor)"
@@ -57,7 +58,7 @@
                        *ngIf="this.editingForm.get('categoryColor').hasError('required')">
               Kolor Kategorii nie może być pusty.
             </mat-error>
-        </mat-form-field>
+        <!--</mat-form-field>-->
 
         <!-- Limit -->
         <mat-form-field
@@ -126,8 +127,9 @@
           *ngIf="!this.addingOperation">
 
       <header fxLayout="row"
-              fxLayoutGap="10px">
-        <h1 class="h-30">Edycja Subkategorii dla kategorii {{this.category.title}}</h1>
+              fxLayoutGap="10px"
+              fxLayoutAlign="center">
+        <h1 class="h-18-b">Edycja Subkategorii dla kategorii {{this.category.title}}</h1>
       </header>
 
       <!-- Subcategory Edit Part -->
@@ -144,7 +146,7 @@
         <div [formGroupName]="i"
              fxLayoutGap="5px"
              fxLayout="row"
-            fxLayoutAlign="center">
+            fxLayoutAlign="center center">
 
           <!-- Title -->
           <mat-form-field
@@ -161,12 +163,11 @@
           </mat-form-field>
 
           <!-- Color -->
-          <mat-form-field
-            appearance="outline"
+          <!--<mat-form-field
             class="mat-ff-fixed-padding mat-ff-no-border-hover"
-            title="Color Subkategorii">
+            title="Color Subkategorii">-->
               <input matInput
-                     class="subcategory-input"
+                     class="subcategory-color"
                      readonly
                      [(colorPicker)]="subcategory.value.color"
                      [style.background]="subcategory.value.color"
@@ -174,14 +175,13 @@
               <mat-error class="font-12" *ngIf="this.editingForm.get('subcategories').controls[i].controls.color.hasError('required')">
                 Kolor Subkategorii nie może być pusty
               </mat-error>
-            </mat-form-field>
+            <!--</mat-form-field>-->
         </div>
 
         <!-- Buttons for Subcategory -->
         <div fxLayout="row"
              class="subcategory-buttons"
-             fxLayoutGap="5px"
-            fxLayoutAlign="center">
+            fxLayoutAlign="center center">
 
           <!-- Update Subcategory Button -->
           <button mat-flat-button
@@ -205,7 +205,7 @@
     </div>
   </div>
 
-  <div fxLayoutAlign="center"
+  <div fxLayoutAlign="center center"
        fxLayoutGap="5px"
        fxLayout="row wrap"
        *ngIf="!this.addingOperation && this.category.subcategories.length < 8"
@@ -220,18 +220,19 @@
                [errorStateMatcher]="matcher">
     </mat-form-field>
 
-    <mat-form-field
+    <!--<mat-form-field
       fxLayoutAlign="center"
       appearance="outline"
       class="mat-ff-fixed-padding mat-ff-no-border-hover"
-      title="Tytuł Subkategorii">
+      title="Tytuł Subkategorii">-->
         <input matInput
                readonly
+               class="subcategory-color"
                [errorStateMatcher]="matcher"
                [(colorPicker)]="this.subcategoryColor"
                (colorPickerChange)="this.addingForm.controls['newSubcategoryColor'].setValue(this.subcategoryColor)"
                [style.background]="this.addingForm.get('newSubcategoryColor').value">
-    </mat-form-field>
+    <!--</mat-form-field>-->
 
     <button mat-flat-button
             color="accent"

@@ -1,5 +1,6 @@
 import { AccountModel } from './account.model';
 import { SubcategoryModel } from './subcategory.model';
+import {EventModel} from '#models/event.model';
 
 export interface OperationModel {
     title: string;
@@ -13,6 +14,7 @@ export interface OperationModel {
     file?: File;
     subcategory?: SubcategoryModel;
     account?: AccountModel;
+    event?: number;
 }
 
 export interface GroupedOperations {

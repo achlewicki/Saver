@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AccountModel} from '#models/account.model';
 import {AccountService} from '#services/account-service/account.service';
 import {MainPageService} from '#services/main-page-service/main-page.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'svr-nav-account-list',
@@ -19,6 +20,7 @@ export class NavAccountListComponent implements OnInit {
   protected account: AccountModel;
 
   constructor(
+    private router: Router,
     private mpservice: MainPageService,
     private readonly accountService: AccountService,
   ) { }
@@ -39,5 +41,9 @@ export class NavAccountListComponent implements OnInit {
 
   onAccountSelectionClick(): void {
     this.accountSelectionClicked = !this.accountSelectionClicked;
+  }
+
+  protected openAccountView() {
+    this.router.navigateByUrl('/main/accounts');
   }
 }

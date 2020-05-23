@@ -1,3 +1,5 @@
+@import "app-boxes";
+
 .container {
   //display: flex;
 }
@@ -15,6 +17,14 @@
 
   border-radius: 15px;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+
+}
+
+.app-box {
+  height: auto;
+  margin: 30px 20px 40px 40px;
+  overflow: hidden;
+}
 
   .title {
     font-size: 32px;
@@ -114,6 +124,11 @@
     color: black;
   }
 
+  .password-button:disabled {
+    border-color: #FFFFFF;
+    cursor: default;
+  }
+
   .old-password-div {
     float: left;
     width: 28%;
@@ -184,6 +199,6 @@
   .new-password-input:focus, .confirm-password-input:focus {
     border: 2px solid #373737;
   }
-}
+
 
 

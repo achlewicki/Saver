@@ -5,9 +5,11 @@ import { Component, OnInit } from '@angular/core';
 
 import { faEnvelope, faBell, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { MatDialog } from '@angular/material';
-import { UserInfoDialogComponent } from '#modules/main-page/_dialogs/user-info-dialog/user-info-dialog.component';
-import { NotificationDialogComponent } from '#modules/main-page/_dialogs/notification-dialog/notification-dialog.component'
+import {MatDialog} from '@angular/material';
+import {UserInfoDialogComponent} from '#modules/main-page/_dialogs/user-info-dialog/user-info-dialog.component';
+import {NotificationDialogComponent} from '#modules/main-page/_dialogs/notification-dialog/notification-dialog.component'
+import {UserInfoService} from '#services/user-info-service/user-info.service';
+import {UserModel} from '#models/user.model';
 
 
 @Component({
@@ -17,20 +19,35 @@ import { NotificationDialogComponent } from '#modules/main-page/_dialogs/notific
 })
 export class HeaderComponent implements OnInit {
 
+  protected title: string;
   protected activeView: ViewDetails;
   faEnvelope = faEnvelope;
   faBell = faBell;
   faSignOutAlt = faSignOutAlt;
+  protected user: UserModel;
+  protected userName: string;
+  protected error: string;
 
   constructor(
     private mpService: MainPageService,
     private readonly authService: AuthorisationService,
     private router: Router,
-    private readonly dialogs: MatDialog
-  ) { }
+    private readonly dialogs: MatDialog,
+    private readonly userInfoService: UserInfoService,
+  ) {}
 
   ngOnInit() {
     this.mpService.activeView.subscribe(view => this.activeView = view);
+    this.mpService.activeView.subscribe((view) => this.title = view.title);
+    this.userInfoService.getUserInfo(parseInt(localStorage.getItem('user.id'), 10))
+      .subscribe(
+      (response) => {
+        this.user = response;
+        this.userName = this.user.nickname;
+      },
+      (error) => {
+        this.error = error;
+      });
   }
 
   protected logout(): void {

@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material';
+import {MatDatepickerModule, MatRadioModule} from '@angular/material';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 
 
@@ -16,15 +16,16 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
   declarations: [
     UserSettingsComponent
   ],
-  imports: [
-    CommonModule,
-    MatInputModule,
-    MatButtonModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatDatepickerModule,
-    MatMomentDateModule
-  ],
+    imports: [
+        CommonModule,
+        MatInputModule,
+        MatButtonModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatDatepickerModule,
+        MatMomentDateModule,
+        MatRadioModule
+    ],
   exports: [
     UserSettingsComponent
   ]

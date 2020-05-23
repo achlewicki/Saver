@@ -1,7 +1,16 @@
-<div class="notification" fxLayout="row" (click)="markNotificationAsRead()">
-  <fa-icon class="icon" [ngStyle]="{'background-color': ' ' + this.iconColor }" [icon]='iconName' size="2x" fxLayoutAlign="center center"></fa-icon>
-  <div fxLayout="column">
-    <p [ngClass]="notification.seen ? 'title-seen' : 'title-not-seen'">{{ notification.title }}</p>
-    <p [ngClass]="notification.seen ? 'description-seen' : 'description-not-seen'">{{ notification.description }}</p>
+<div class="notification" fxLayout="column" (click)="markNotificationAsRead()">
+  <div fxLayout="row">
+    <div><fa-icon class="icon" [ngStyle]="{'background-color': ' ' + this.iconColor }" [icon]='iconName' size="2x" fxLayoutAlign="center center"></fa-icon></div>
+    <div style="flex-grow: 4;" fxLayout="column">
+      <p [ngClass]="notification.seen ? 'title-seen' : 'title-not-seen'">{{ notification.title }}</p>
+      <p [ngClass]="notification.seen ? 'description-seen' : 'description-not-seen'">{{ notification.description }}</p>
+    </div>
+    <div class="date" fxLayoutAlign="end end" [ngClass]="notification.seen ? 'date-seen' : 'date-not-seen'">{{ notification.date | date: 'd/MM/y' }}</div>
+  </div>
+
+  <div class="event-reminder-decider" *ngIf="this.notification.type === 'event_reminder' && expanded" fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayoutAlign="center center" class="accept-button" (click)="addTransaction()">Dodaj</div>
+    <div fxLayoutAlign="center center" class="reschedule-button" (click)="rescheduleEvent()">Zmień</div>
+    <div fxLayoutAlign="center center" class="deny-button" (click)="denyEvent()">Usuń</div>
   </div>
 </div>

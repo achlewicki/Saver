@@ -1,5 +1,5 @@
 .notification {
-  height: 50px;
+  min-height: 50px;
   border-bottom: 1px solid #ecf0f7;
   cursor: pointer;
 }
@@ -10,13 +10,13 @@
 
 .title-not-seen {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  height: 50px;
   text-align: left;
   justify-content: left;
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   font-weight: bold;
   font-size: 14px;
+  margin-top: 5px;
 }
 
 .description-not-seen {
@@ -26,17 +26,18 @@
   text-align: left;
   justify-content: left;
   align-items: center;
+  width: 100%;
 }
 
 .title-seen {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  height: 50px;
   text-align: left;
   justify-content: left;
-  align-items: center;
+  align-items: flex-start;
   display: flex;
   font-weight: 300;
   font-size: 14px;
+  margin-top: 5px;
 }
 
 .description-seen {
@@ -46,6 +47,7 @@
   text-align: left;
   justify-content: left;
   align-items: center;
+  width: 100%;
 }
 
 
@@ -54,7 +56,7 @@
   font-size: 10px;
   height: 40px;
   width: 40px !important;
-  margin: auto 10px auto 10px;
+  margin: 5px 10px auto 10px;
   border-radius: 100px;
   background-color: #0681f8;
   text-align: center;
@@ -62,6 +64,73 @@
   align-items: center;
   align-content: center;
   color: #ecf0f7;
+}
+
+.date-seen {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  display: flex;
+  text-align: right;
+  justify-content: right;
+  align-items: end;
+}
+
+.date-not-seen {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  display: flex;
+  text-align: right;
+  justify-content: right;
+  align-items: end;
+  font-weight: bold;
+}
+
+.event-reminder-decider {
+  width: 100%;
+  height: 30px;
+  position: relative;
+}
+
+@mixin button {
+  width: 60px;
+  height: 20px;
+  border-radius: 15px;
+  font-size: 10px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  text-align: center;
+  margin: 5px 10px;
+  font-weight: bold;
+}
+
+@mixin button-hover {
+  color: white;
+}
+
+.accept-button {
+  @include button;
+  background-color: #00ab65;
+}
+
+.accept-button:hover {
+  @include button-hover;
+}
+
+.reschedule-button {
+  @include button;
+  background-color: darkorange;
+}
+
+.reschedule-button:hover {
+  @include button-hover;
+}
+
+.deny-button {
+  @include button;
+  background-color: red;
+}
+
+.deny-button:hover {
+  @include button-hover;
 }
 
 

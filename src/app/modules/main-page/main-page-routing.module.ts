@@ -11,6 +11,7 @@ import { UserSettingsComponent } from '#modules/main-page/user-settings/user-set
 import { AchievementsViewComponent } from '#modules/main-page/achievements/achievements-view/achievements-view.component';
 import { ReportViewComponent } from '#modules/main-page/report/report-view/report-view.component';
 import { EventsComponent } from './events/events.component';
+import {CyclicComponent} from '#modules/main-page/cyclic/cyclic/cyclic.component';
 
 
 const routes: Routes = [
@@ -56,6 +57,10 @@ const routes: Routes = [
       {
         path: 'events',
         component: EventsComponent
+      },
+      {
+        path: 'cyclic',
+        component: CyclicComponent
       }
     ]
   }

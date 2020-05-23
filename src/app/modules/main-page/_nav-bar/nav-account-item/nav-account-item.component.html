@@ -1,3 +1,6 @@
 <div class="account">
-  <p class="text" [ngStyle]="{'background-color': account.color}" (click)="onAccountClicked()">{{ account.name }}</p>
+   <!-- {{ account.name }}-->
+    <div (click)="onAccountClicked()">
+      <fa-icon class="icon" [ngStyle]="{'background-color': ' ' + this.account.color }" [icon]='this.account.iconName' fxLayoutAlign="center center"></fa-icon>
+    </div>
 </div>

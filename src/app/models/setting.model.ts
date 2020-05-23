@@ -11,6 +11,7 @@ export interface InfoModel {
   lastName: string;
   birthDate: Date;
   sex: number;
+  nickname: string;
 }
 
 export enum Sex {

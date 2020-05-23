@@ -22,8 +22,8 @@ $account-selection-width: 175px;
   color: white;
   padding: 10px 30px;
   font-family: Roboto, monospace;
-  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.30);
-  border-radius: 2px;
+  //box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.30);
+  border-radius: 25px;
   height: 40px;
   transition-duration: 0.4s;
 }
@@ -37,12 +37,15 @@ $account-selection-width: 175px;
   margin-top: 20px;
   cursor: pointer;
   color: white;
-  box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.30);
+  //box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.30);
   border-radius: 2px;
   align-items: center;
   align-content: center;
   text-align: center;
-  transition-duration: 0.4s;
+}
+
+.selection-button-active:hover {
+  box-shadow: 0 0px 16px 0 rgba(0,0,0,0.24), 0 17px 25px 0 rgba(0,0,0,0.19);
 }
 
 .account-selection-list {
@@ -52,15 +55,14 @@ $account-selection-width: 175px;
   align-content: center;
   width: $account-selection-width + 60px;
   padding-top: 10px;
-  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.10);
-  //border-radius: 2px 0 15px 15px;
+  border-radius: 15px;
+  transition-duration: 0.4s;
 }
 
 .manageAccounts {
   cursor: pointer;
   text-align: right;
   padding-top: 8px;
-  padding-right: 15px;
   padding-bottom: 5px;
   font-size: 12px;
   color: white;

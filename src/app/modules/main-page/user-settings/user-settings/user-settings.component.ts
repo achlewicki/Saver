@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { MainPageService } from '#services/main-page-service/main-page.service';
-import { FormControl, Validators } from '@angular/forms';
-import { SettingService } from '#services/setting-service/setting.service';
-import { EmailModel, InfoModel, PasswordModel } from '#models/setting.model';
+import {Component, OnInit } from '@angular/core';
+import {MainPageService} from '#services/main-page-service/main-page.service';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {SettingService} from '#services/setting-service/setting.service';
+import {EmailModel, InfoModel, PasswordModel} from '#models/setting.model';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -17,6 +17,7 @@ export class UserSettingsComponent implements OnInit {
   protected userNewPassword: FormControl;
   protected userConfirmPassword: FormControl;
 
+  public fGroup: FormGroup;
   protected userFirstName: FormControl;
   protected userLastName: FormControl;
   protected userBirthDate: FormControl;
@@ -29,6 +30,7 @@ export class UserSettingsComponent implements OnInit {
   constructor(
     private readonly mainPageService: MainPageService,
     private readonly settingService: SettingService,
+    private readonly fb: FormBuilder
   ) {
     this.userEmail = new FormControl('', [Validators.required, Validators.email]);
     this.userNewPassword = new FormControl('',
@@ -39,8 +41,13 @@ export class UserSettingsComponent implements OnInit {
     this.userFirstName = new FormControl('');
     this.userLastName = new FormControl('');
     this.userBirthDate = new FormControl('');
+    this.userNickname = new FormControl('');
     this.error = false;
     this.errorInfo = '';
+
+    this.fGroup = this.fb.group({
+      sex: ['']
+    });
   }
 
   ngOnInit(): void {
@@ -73,6 +80,7 @@ export class UserSettingsComponent implements OnInit {
       lastName: this.userLastName.value,
       birthDate: this.userBirthDate.value,
       sex: this.userSex,
+      nickname: this.userNickname.value,
     };
     this.settingService.changeInfo(userInfo)
       .subscribe(

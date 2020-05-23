@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="first-box">
+  <div class="app-box">
     <p class="title">Ustawienia użytkownika</p>
     <p class="subtitle">Tutaj możesz zmienić adres e-mail, zaktualizować hasło lub zdeaktywować konto.</p>
 
@@ -8,7 +8,10 @@
      <p class="input-title">ZMIANA ADRESU E-MAIL</p>
      <input [formControl]="userEmail" class="email-input" type="email" placeholder="Adres E-mail">
       <div class="email-button-div">
-        <button class="email-button" type="submit">ZMIEŃ</button>
+        <button mat-raised-button disableRipple="true" class="email-button" color="primary" type="submit">
+          ZMIEŃ
+        </button>
+        <!--<button class="email-button" type="submit">ZMIEŃ</button>-->
       </div>
     </div>
     </form>
@@ -29,56 +32,69 @@
       <input [formControl]="userConfirmPassword" class="confirm-password-input" type="password" placeholder="">
     </div>
     <div class="password-button-div">
-      <button class="password-button" [disabled]="!userNewPassword.valid && !userConfirmPassword.valid" type="submit">ZMIEŃ</button>
+      <!--<button class="password-button" [disabled]="!userNewPassword.valid && !userConfirmPassword.valid" type="submit">ZMIEŃ</button>-->
+      <button mat-raised-button disableRipple="true" class="password-button" [disabled]="!userNewPassword.valid && !userConfirmPassword.valid" color="primary" type="submit">
+        ZMIEŃ
+      </button>
     </div>
     </form>
   </div>
 
 
   <form (ngSubmit)="SubmitInfoChange()">
-  <div class="second-box">
+  <div class="app-box">
     <p class="title">Ustawienia profilu</p>
     <p class="subtitle">Tutaj możesz zmienić lub uzupełnić szczegółowe informacje o sobie oraz zmienić avatar.</p>
 
     <div class="change-avatar-div">
       <p class="avatar-change-title">ZMIANA AVATARU</p>
-      <img class="avatar-image" src="./assets/images/profile_image.jpg" height="200" width="200">
-      <button class="avatar-button">DODAJ</button>
+      <img class="avatar-image" src="./assets/images/account.svg" height="200" width="200">
+      <!--<button class="avatar-button">DODAJ</button>-->
+      <button mat-raised-button disableRipple="true" class="avatar-button" color="primary">
+        DODAJ
+      </button>
     </div>
 
 
-    <div class="optional-info-div">
+    <div class="optional-info-div" [formGroup]='fGroup'>
       <p class="input-title">TWOJE IMIĘ</p>
       <input [formControl]="userFirstName" class="first-name-input" type="text">
       <p class="input-title">TWOJE NAZWISKO</p>
       <input [formControl]="userLastName" class="last-name-input" type="text">
       <p class="input-title">TWOJA PŁEĆ</p>
-      <label class="sex-label">
+      <mat-radio-group class="radio-group" formControlName="sex">
+        <mat-radio-button class="sex-button" (click)="onFemaleSexClick()" value="K">Kobieta</mat-radio-button>
+        <mat-radio-button class="sex-button" (click)="onMaleSexClick()" value="M">Mężczyzna</mat-radio-button>
+      </mat-radio-group>
+      <!--<label class="sex-label">
         <input (click)="onFemaleSexClick()" class="sex-button" type="radio" name="gender" value="female">Kobieta
       </label>
       <label class="sex-label">
         <input (click)="onMaleSexClick()" class="sex-button" type="radio" name="gender" value="male">Mężczyzna
-      </label>
+      </label>-->
     </div>
 
 
     <div class="optional-info-div-second">
       <p class="input-title">DATA URODZENIA</p>
       <mat-form-field class="date-picker">
-        <input [formControl]="userBirthDate" matInput [matDatepicker]="picker1">
+        <input [formControl]="userBirthDate" readonly matInput [matDatepicker]="picker1">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
       <p class="input-title">TWÓJ NICKNAME</p>
       <input [formControl]="userNickname" class="last-name-input" type="text">
-      <button type="submit" [disabled]="!userFirstName.valid" class="save-button">ZAPISZ</button>
+      <!--<button type="submit" [disabled]="!userFirstName.valid" class="save-button">ZAPISZ</button>-->
+      <button mat-raised-button disableRipple="true" class="save-button" [disabled]="!userFirstName.valid" color="primary">
+        ZAPISZ
+      </button>
     </div>
   </div>
   </form>
 
-  <div class="third-box">
+ <!-- <div class="third-box">
     <p class="title">Ustawienia okres rozliczeniowego</p>
     <p class="subtitle">Tutaj możesz zmienić daty graniczne dla okresu rozliczeniowego w którym chcesz się rozliczać.</p>
-  </div>
+  </div>-->
 </div>
