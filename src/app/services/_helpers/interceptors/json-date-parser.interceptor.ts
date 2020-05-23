@@ -8,19 +8,14 @@ import {
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-export class JsonDataParserInterceptor implements HttpInterceptor {
+export class JsonDateParserInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const newBody = request.body;
-    this.convertBodyToBackend(newBody);
-    request.clone({
-      body: newBody
-    });
-
     return next.handle(request).pipe(
       tap((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
-          this.convertBodyFromBackend(event.body);
+          const body = event.body;
+          this.convertBodyFromBackend(body);
         }
       }),
     );
@@ -36,33 +31,11 @@ export class JsonDataParserInterceptor implements HttpInterceptor {
     }
 
     for (const key of Object.keys(body)) {
-      let value = body[key];
+      const value = body[key];
       if (this.isIso8601(value)) {
         body[key] = new Date(value);
-      } else if (key === 'value') {
-        value = parseFloat(value.toFixed(2));
-        body[key] = value / 100;
       } else if (typeof value === 'object') {
         this.convertBodyFromBackend(value);
-      }
-    }
-  }
-
-  private convertBodyToBackend(body: any): void {
-    if (body === null || body === undefined) {
-      return body;
-    }
-
-    if (typeof body !== 'object') {
-      return body;
-    }
-
-    for (const key of Object.keys(body)) {
-      const value = body[key];
-      if (key === 'value') {
-        body[key] = value * 100;
-      } else if (typeof value === 'object') {
-        this.convertBodyToBackend(value);
       }
     }
   }

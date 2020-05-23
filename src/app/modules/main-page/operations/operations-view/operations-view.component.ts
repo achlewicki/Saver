@@ -1,5 +1,5 @@
 import { AccountModel } from '#models/account.model';
-import { OperationModel, GroupedOperations } from '#models/operations.model';
+import { OperationModel } from '#models/operations.model';
 import { OperationsService } from '#services/operations-service/operations.service';
 import { Component, OnInit } from '@angular/core';
 import { OperationFilters } from '#models/operations-filters.model';
