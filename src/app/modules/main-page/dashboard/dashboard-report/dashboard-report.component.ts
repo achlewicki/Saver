@@ -11,15 +11,14 @@ import {AccountHistoryService} from '#services/account-history-service/account-h
 })
 export class DashboardReportComponent implements OnChanges {
   @Input() account: AccountModel;
-  protected todayDate2 = new Date();
-  protected todayDate = new Date(this.todayDate2.getTime() - 1000 * 60 * 60 * 24 * 37);
-  protected sevenDaysEarlier = new Date(this.todayDate2.getTime() - 1000 * 60 * 60 * 24 * 41);
+  protected todayDate = new Date();
+  protected sevenDaysEarlier = new Date(this.todayDate.getTime() - 1000 * 60 * 60 * 24);
 
   private chartOptions: ChartOptions = {
     responsive: true,
     title: {
       display: true,
-      text: 'Bilans dzienny wydatków i przychodów',
+      text: 'Dzienny bilans z 7 dni',
       fontSize: 20
     },
     animation: {
