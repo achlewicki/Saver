@@ -39,9 +39,7 @@ export class ReportAccountBalanceChartComponent implements OnInit, OnChanges {
   private chartType: ChartType = 'line';
   private chartData: ChartDataSets[];
 
-  constructor(
-    private readonly accountService: AccountService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
     this.chartData = [];

@@ -1,3 +1,21 @@
-<p>To jest dashboard</p>
-
-<div class="long-div"></div>
+<div class="container"
+      fxLayoutAlign="center"
+     fxLayout="column">
+  <div fxLayoutAlign="center">
+    <svr-dashboard-balance [account]="this.activeAccount" fxFlex="80%"></svr-dashboard-balance>
+  </div>
+  <div fxLayout="row"
+       fxLayout.lt-md="column"
+       fxLayoutAlign="center center">
+    <svr-dashboard-report [account]="this.activeAccount" fxFlex="45%"></svr-dashboard-report>
+    <svr-dashboard-operations [account]="this.activeAccount" fxFlex="50%"></svr-dashboard-operations>
+  </div>
+  <div class="last-row"
+       fxLayout="row"
+       fxLayout.lt-md="column"
+       fxLayoutAlign="center center">
+    <svr-dashboard-event fxFlex="31%" [account]="this.activeAccount"></svr-dashboard-event>
+    <svr-dashboard-cyclic fxFlex="31%"></svr-dashboard-cyclic>
+    <svr-dashboard-achievements fxFlex="31%"></svr-dashboard-achievements>
+  </div>
+</div>

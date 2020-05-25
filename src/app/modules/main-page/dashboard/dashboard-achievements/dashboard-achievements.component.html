@@ -1,0 +1,25 @@
+<div fxLayout="column"
+     fxLayoutAlign="center center"
+     *ngIf="this.achievements[0]">
+  <div class="all-achievements-container"
+       fxLayoutAlign="center center"
+       fxLayout="row"
+       fxLayout.lt-lg="column"
+       >
+    <div class="achievement-container"
+         fxLayout="column"
+         fxLayoutAlign="center center"
+         fxFlex="33%"
+         *ngFor="let achievement of this.achievements">
+      <img class="achievement-img" alt="{{achievement.achievement.title}}" src="{{achievement.achievement.src}}">
+      <p class="achievement-title"><strong>{{achievement.achievement.title}}</strong></p>
+    </div>
+  </div>
+</div>
+<div class="label"
+     fxLayoutAlign="center center"
+     *ngIf="!this.achievements">
+  <p>Brak Ostatnich Osiągnięć</p>
+</div>
+<p class="no-data" *ngIf="!this.achievements[0]">Nie zdobyto jeszce żadnego osiągnięcia</p>
+

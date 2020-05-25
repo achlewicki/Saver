@@ -21,7 +21,7 @@ export class AchievementsService {
     return this.http.get<UserModel>(config.backendUrl + userId + '/info', this.httpHeader);
   }
 
-  public getRecentAchievements(userId: number): Observable<UserAchievementModel[]> {
+  public getRecentAchievements(): Observable<UserAchievementModel[]> {
     return this.http.get<UserAchievementModel[]>(config.backendUrl + '/achievement/recent/' + localStorage.getItem('user.id'), this.httpHeader);
   }
 
