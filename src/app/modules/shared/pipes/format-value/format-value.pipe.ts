@@ -13,7 +13,7 @@ export class FormatValuePipe implements PipeTransform {
     private readonly mpService: MainPageService
   ) {
     this.mpService.activeAccount.subscribe(
-      account => console.log(account.name)
+      account => this.currency = account.currency
     );
   }
 
@@ -37,7 +37,7 @@ export class FormatValuePipe implements PipeTransform {
         return formated + ' ' + currency.code;
       }
     } else {
-      return formated + ' zł';
+      return formated + ' ' + this.currency.code;
     }
   }
 

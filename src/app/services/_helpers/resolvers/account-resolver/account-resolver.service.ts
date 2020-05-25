@@ -1,4 +1,4 @@
-import { AccountService } from './../../account-service/account.service';
+import { AccountService } from '#services/account-service/account.service';
 import { Injectable } from '@angular/core';
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
