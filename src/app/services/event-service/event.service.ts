@@ -37,4 +37,9 @@ export class EventService {
     const url = config.backendUrl + '/event/delete/' + eventId;
     return this.http.delete<void>(url);
   }
+
+  public getUpcomingEvent(accountId: number): Observable<EventModel> {
+    const url = config.backendUrl + '/event/last/' + accountId;
+    return this.http.get<EventModel>(url);
+  }
 }

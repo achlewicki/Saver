@@ -1,0 +1,6 @@
+@import 'app-boxes';
+
+.canvas {
+  @extend .app-box;
+  display: block;
+}

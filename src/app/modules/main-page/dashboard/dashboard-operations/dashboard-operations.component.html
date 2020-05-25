@@ -1,0 +1,21 @@
+<ng-container *ngIf="this.operations[0]">
+  <div *ngFor="let operation of operations, let i = index">
+    <div class="container">
+      <hr *ngIf="i !== 0">
+      <div class="main-box" fxLayout="row">
+        <div class="operation-date" fxFlex="140px">
+          <p class="date t-12-l">{{ operation.date | date:'dd MMM HH:mm' }}</p>
+        </div>
+        <div class="operation-title" fxFlex="auto">
+          <p class="title t-16 primary">{{ operation.title }}</p>
+        </div>
+        <div class="operation-value">
+          <p class="value t-16-b" [ngClass]=" operation.type === 1 ? 'income' : 'outcome' ">
+            {{ operation.value | formatValue }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<p class="no-data" *ngIf="!this.operations[0]">Brak danych do wyświetlenia</p>

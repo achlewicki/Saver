@@ -1,0 +1,32 @@
+<div class="account-balance-details-container" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="10%">
+  <div fxLayout="column">
+    <div class="balance">
+      <p class="t-12 secondary">Aktualne saldo</p>
+      <span class="h-32-b primary">{{ account.balance | formatValue:account.currency }}</span>
+    </div>
+  </div>
+  <div class="details" fxLayout="column" fxLayoutGap="15px">
+
+    <div class="income details-element">
+      <fa-icon icon="caret-up"></fa-icon>
+      <p class="title t-15 secondary">Przychód</p>
+      <div class="details-content">
+        <span class="value t-15-b">
+          {{ (income$ | async) || 0 | formatValue:account.currency}}
+        </span>
+      </div>
+    </div>
+
+    <div class="outcome details-element">
+      <fa-icon icon="caret-up"></fa-icon>
+      <p class="title t-15 secondary">Wydatki</p>
+      <div class="details-content">
+        <span class="value t-15-b">
+          {{ (expense$ | async) || 0 | formatValue:account.currency}}
+        </span>
+        <p class="t-12 secondary">Wyznaczony limit: {{ account.budget | formatValue:account.currency }} </p>
+      </div>
+    </div>
+  </div>
+</div>
+

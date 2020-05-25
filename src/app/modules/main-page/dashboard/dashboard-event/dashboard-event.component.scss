@@ -1,0 +1,65 @@
+@import 'mixins', 'app-text';
+
+.event-details-box {
+margin-top: 5px;
+}
+
+.action-icons {
+  margin: 10px;
+}
+
+.no-data {
+  font-style: italic;
+}
+
+.no-data2 {
+  font-size: 16px;
+  font-style: italic;
+  text-align: center;
+  color: #AAAAAA;
+  margin-top: 15%;
+}
+
+.event-box-line {
+  display: flex;
+  flex-direction: row;
+  //margin: 5px;
+
+  .line-prefix {
+    flex: 0 20%;
+    @include flex-center();
+  }
+
+  .line-content {
+    flex: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  p {
+    margin: 2px 0;
+  }
+}
+
+//.event-box-line:last-child {
+//  margin-bottom: 40px;
+//}
+
+.event-color-element {
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+}
+
+.secondary {
+  font-size: 14px;
+}
+
+.primary {
+  font-size: 16px;
+}
+
+.primary-title {
+  @extend .primary;
+  font-size: 20px;
+}

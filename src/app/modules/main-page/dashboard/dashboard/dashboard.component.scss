@@ -1,14 +1,26 @@
-h1 {
-  margin-top: 20px;
-  text-align: center;
+@import "app-boxes";
+svr-dashboard-report {
+  margin-right: 2%;
 }
 
-p {
-  margin-top: 20px;
-  text-align: center;
+ svr-dashboard-operations {
+   height: 382px;
+   padding-top: 10px;
 }
 
-.long-div {
-  height: 1200px;
+
+svr-dashboard-report, svr-dashboard-operations, svr-dashboard-event, svr-dashboard-achievements, svr-dashboard-cyclic {
+  @extend .app-box,
 }
 
+svr-dashboard-event, svr-dashboard-achievements, svr-dashboard-cyclic {
+  min-height: 196px;
+}
+
+svr-dashboard-event, svr-dashboard-cyclic {
+  margin-right: 30px;
+}
+
+.last-row {
+  margin-top: 30px;
+}

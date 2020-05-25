@@ -1,0 +1,33 @@
+@import "app-boxes";
+
+.achievement-container{
+  padding: 10px 10px;
+  width: 400px;
+}
+
+.all-achievements-container {
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+p {
+  font-size: 1.3em;
+}
+
+.achievement-title {
+  text-align: center;
+  font-size: 14px;
+}
+
+.achievement-img{
+  height: 120px;
+  width: 120px;
+}
+
+.no-data {
+  font-size: 16px;
+  font-style: italic;
+  text-align: center;
+  color: #AAAAAA;
+  margin-top: 15%;
+}

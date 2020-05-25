@@ -1,0 +1,67 @@
+@import 'app-colors', 'mixins', 'app-text';
+
+.account-balance-details-container {
+  //border: solid red 2px;
+  width: 80%;
+  margin: 50px 0;
+}
+
+
+.primary {
+  font-size: 48px;
+}
+
+.details {
+  .details-element {
+    display: grid;
+    grid-template:
+      "icon title"25px "none content"auto / max-content auto;
+
+    fa-icon {
+      grid-area: icon;
+      place-self: center;
+
+      @include center-icon();
+
+      font-size: 20px;
+      margin: 10px;
+      background-color: rgba(0, 0, 0, 0.05);
+      border-radius: 100%;
+      padding-bottom: .1em;
+
+    }
+
+    &.income {
+      fa-icon {
+        color: $income-color;
+      }
+    }
+
+    &.outcome {
+      fa-icon {
+        color: $outcome-color;
+        transform: rotate(180deg);
+      }
+    }
+
+    .title {
+      grid-area: title;
+      align-self: center;
+
+    }
+
+    .details-content {
+      grid-area: content;
+
+      .value {
+        display: inline-block;
+        font-size: 18px;
+      }
+
+      p {
+        margin: 4px 0;
+      }
+    }
+  }
+}
+

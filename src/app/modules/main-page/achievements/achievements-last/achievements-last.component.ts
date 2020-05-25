@@ -15,7 +15,7 @@ export class AchievementsLastComponent implements OnInit {
     private readonly achievementsService: AchievementsService
   )
   {
-    this.achievementsService.getRecentAchievements(parseInt(localStorage.getItem('user.id'), 10)).subscribe(
+    this.achievementsService.getRecentAchievements().subscribe(
       (response: UserAchievementModel[]) => {
         this.achievements = response;
         this.achievements.forEach(value => value.achievement.src = '/assets/achievements/' + value.achievement.id.toString() + '_got.svg');

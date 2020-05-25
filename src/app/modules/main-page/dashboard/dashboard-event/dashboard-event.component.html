@@ -1,0 +1,80 @@
+<div class="event-details-box" fxLayout="column" fxLayoutGap="10px" *ngIf="event;">
+  <div class="event-box-line">
+    <div class="line-prefix">
+      <div class="event-color-element" [style.background]="event.color || '#01ca94' "></div>
+    </div>
+    <div class="line-content">
+      <p class="h-22-b primary-title">
+        {{ event.title }}
+      </p>
+      <p class="event-dates t-14 secondary ">
+        <ng-container *ngIf="event.dateFrom.getTime() === event.dateTo.getTime(); else twoDates">
+          {{ event.dateFrom | date:'d.MM.yyyy' }}
+        </ng-container>
+        <ng-template #twoDates>
+          {{ event.dateFrom | date:'d.MM.yyyy' }} - {{ event.dateTo | date:'d.MM.yyyy' }}
+        </ng-template>
+        <ng-container *ngIf="event.isRepeating">
+          &middot; Wydarzenie co roczne
+        </ng-container>
+      </p>
+    </div>
+  </div>
+  <div class="event-box-line" *ngIf=" event.description !== '' && event.description !== undefined; else noDescription">
+    <div class="line-prefix">
+      <fa-icon class="t-16 secondary" [icon]="descriptionIcon"></fa-icon>
+    </div>
+    <div class="line-content">
+      <p>{{ event.description }}</p>
+    </div>
+  </div>
+  <ng-template #noDescription>
+    <div class="event-box-line">
+      <div class="line-prefix">
+        <fa-icon class="t-16 secondary" [icon]="descriptionIcon"></fa-icon>
+      </div>
+      <div class="line-content">
+        <p class="t-14 no-data secondary">Brak opisu</p>
+      </div>
+    </div>
+  </ng-template>
+  <div class="event-box-line" *ngIf="event.whenNotification; else noNotification">
+    <div class="line-prefix">
+      <fa-icon class="t-16 secondary" [icon]="notificationIcon"></fa-icon>
+    </div>
+    <div class="line-content">
+      <p class="t-14 secondary"> Przypomnienie: </p>
+      <p class="t-16 primary">{{ event.whenNotification | date:'d.MM.yyyy'}}</p>
+    </div>
+  </div>
+  <ng-template #noNotification>
+    <div class="event-box-line">
+      <div class="line-prefix">
+        <fa-icon class="t-16 secondary" [icon]="notificationIcon"></fa-icon>
+      </div>
+      <div class="line-content">
+        <p class="t-14 secondary no-data"> Brak przypomnienia </p>
+      </div>
+    </div>
+  </ng-template>
+  <div class="event-box-line" *ngIf="event.value !== undefined && event.value !== 0; else noValue">
+    <div class="line-prefix">
+      <fa-icon class="t-16 secondary" [icon]="valueIcon"></fa-icon>
+    </div>
+    <div class="line-content">
+      <p class="t-14 secondary"> Przewidywany wydatek: </p>
+      <p class="t-16 primary">{{ event.value | formatValue }}</p>
+    </div>
+  </div>
+  <ng-template #noValue>
+    <div class="event-box-line">
+      <div class="line-prefix">
+        <fa-icon class="t-16 secondary" [icon]="valueIcon"></fa-icon>
+      </div>
+      <div class="line-content">
+        <p class="t-14 no-data secondary"> Brak przewidywanego wydatku</p>
+      </div>
+    </div>
+  </ng-template>
+</div>
+<p class="no-data2" *ngIf="!event"> Brak danych do wyświetlenia</p>
