@@ -23,12 +23,12 @@ export class DashboardEventComponent implements OnChanges {
   ) { }
 
   ngOnChanges() {
-    // this.eventService.getUpcomingEvent(this.account.id).subscribe(returnedEvent => {
-    //   this.event = returnedEvent;
-    //   if (this.event.description.length > 64) {
-    //     this.event.description = this.event.description.substr(0, 64) +  '...';
-    //   }
-    // });
+    this.eventService.getUpcomingEvent(this.account.id).subscribe(returnedEvent => {
+      this.event = returnedEvent;
+      if (this.event.description.length > 64) {
+        this.event.description = this.event.description.substr(0, 64) +  '...';
+      }
+    });
   }
 
 }
