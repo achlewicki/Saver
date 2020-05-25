@@ -67,7 +67,7 @@ export class AddOperationDialogComponent implements OnInit {
       result => {
         this.account = result;
         this.getLastOperations(this.account.id);
-        this.getTemplates(this.account.id);
+        this.getTemplates();
       }
     );
     this.mpService.operationAdded.subscribe(
@@ -76,7 +76,6 @@ export class AddOperationDialogComponent implements OnInit {
   }
 
   protected closeDialog() {
-    // TODO Prevent from closing when form is dirty - Dialog
     this.dialogRef.close();
   }
 
@@ -98,6 +97,12 @@ export class AddOperationDialogComponent implements OnInit {
       subCategory: operation.subcategory,
       guarranty: operation.guarantyDays
     });
+  }
+
+  protected deleteTemplate(template: TemplateModel): void {
+    this.templateService.deleteTemplate(template).subscribe(
+      () => this.getTemplates()
+    );
   }
 
   protected submit(event): void {
@@ -126,7 +131,7 @@ export class AddOperationDialogComponent implements OnInit {
           intoAccount: 'YES',
           subcategory: this.fGroup.get('subCategory').value,
           distinction: 'regular',
-          guarantyDays: parseInt(this.fGroup.get('guarranty').value, 10)
+          guarantyDays: parseInt(this.fGroup.get('guarranty').value, 10) || 0
         };
         this.operationsService.addOperation(this.account.id, operation).subscribe(
           result => {
@@ -151,12 +156,13 @@ export class AddOperationDialogComponent implements OnInit {
           description: this.fGroup.get('description').value,
           type: value < 0 ? -1 : 1,
           value: value * (value < 0 ? -1 : 1),
-          intoAccount: 'YES'
+          intoAccount: 'YES',
+          subcategory: this.fGroup.get('subCategory').value
         };
 
         this.templateService.createTemplate(template).subscribe(
           result => {
-            this.getTemplates(this.account.id);
+            this.getTemplates();
             operationEnd();
           },
           error => {
@@ -168,16 +174,13 @@ export class AddOperationDialogComponent implements OnInit {
 
   }
 
-  private getTemplates(accountId: number): void {
-    this.templateService.getTemplatesForAccount(accountId).subscribe(
-      res => {
-        console.log(res);
-      }
-    );
+
+  private getTemplates(): void {
+    this.templates$ = this.templateService.getTemplatesForUser(parseInt(localStorage.getItem('user.id'), 10));
   }
 
   private getLastOperations(accountId: number): void {
-    this.lastOperations$ = this.operationsService.getOperationsByAccount2(
+    this.lastOperations$ = this.operationsService.getOperationsByAccount(
       accountId,
       {
         length: 3,

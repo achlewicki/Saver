@@ -3,7 +3,7 @@
     <ng-container *ngIf="(statistics$ | async) as statistics">
       <div fxLayout="row">
         <div class="summary-element-box">
-          <span class="value">0</span>
+          <span class="value">{{ statistics.totalOperations }}</span>
           <p class="description">Operacje</p>
         </div>
         <div class="summary-element-box">

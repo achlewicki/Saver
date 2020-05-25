@@ -13,13 +13,18 @@ export class TemplateService {
     private readonly http: HttpClient
   ) { }
 
-  public getTemplatesForAccount(accountId: number): Observable<TemplateModel[]> {
-    const url = '';
+  public getTemplatesForUser(userId: number): Observable<TemplateModel[]> {
+    const url = config.backendUrl + '/template/' + userId;
     return this.http.get<TemplateModel[]>(url);
   }
 
   public createTemplate(template: TemplateModel): Observable<TemplateModel> {
     const url = config.backendUrl + '/template/add/' + localStorage.getItem('user.id') + '/' + template.subcategory.id;
     return this.http.post<TemplateModel>(url, template);
+  }
+
+  public deleteTemplate(template: TemplateModel): Observable<TemplateModel> {
+    const url = config.backendUrl + '/template/remove/' + template.id;
+    return this.http.delete<TemplateModel>(url);
   }
 }

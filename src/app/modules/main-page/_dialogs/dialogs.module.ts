@@ -1,3 +1,4 @@
+import { AccountIconModule } from '#shared/account-icon/account-icon.module';
 import { AppPipesModule } from '#shared/pipes/app-pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,14 +16,19 @@ import {
 } from '@angular/material';
 
 import {
-  faAward, faBell,
+  faAward,
+  faBell,
   faCalendarAlt,
   faChartBar,
   faChevronDown,
   faChevronRight,
-  faClipboard, faCoins,
-  faExchangeAlt, faExclamation, faHome, faLevelUpAlt,
-  faList, faMoneyBillWave
+  faClipboard,
+  faCoins,
+  faExchangeAlt,
+  faExclamation,
+  faHome,
+  faLevelUpAlt,
+  faList,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { AppMessageDialogComponent } from './app-message-dialog/app-message-dialog.component';
@@ -72,6 +78,7 @@ export const dialogs = [
     FontAwesomeModule,
     ColorPickerModule,
     AppPipesModule,
+    AccountIconModule,
     ...matModules
   ],
   exports: [
@@ -81,6 +88,20 @@ export const dialogs = [
 export class DialogsModule {
   constructor(faLibrary: FaIconLibrary) {
     faLibrary.addIconPacks(accountIconsPack);
-    faLibrary.addIcons(faClipboard, faExchangeAlt, faList, faCalendarAlt, faChartBar, faAward, faChevronRight, faChevronDown, faHome, faExclamation, faLevelUpAlt, faCoins, faBell);
+    faLibrary.addIcons(
+      faClipboard,
+      faExchangeAlt,
+      faList,
+      faCalendarAlt,
+      faChartBar,
+      faAward,
+      faChevronRight,
+      faChevronDown,
+      faHome,
+      faExclamation,
+      faLevelUpAlt,
+      faCoins,
+      faBell
+    );
   }
 }

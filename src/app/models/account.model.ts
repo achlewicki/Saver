@@ -1,4 +1,4 @@
-import {CurrencyModel} from '#models/currency.model';
+import { CurrencyModel } from '#models/currency.model';
 
 export interface AccountModel {
   id?: number;
@@ -12,6 +12,7 @@ export interface AccountModel {
 }
 
 export interface AccountStatistics {
+  totalOperations: number;
   totalCyclics: number;
   totalCyclicsBill: number;
 }

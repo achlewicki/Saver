@@ -1,4 +1,4 @@
-<div style="display: block">
+<div [ngStyle]="width ? {width : width + 'px'} : null">
   <canvas baseChart
           [datasets]="chartData"
           [labels]="chartLabel"

@@ -1,3 +1,5 @@
+import { AccountIconModule } from '#shared/account-icon/account-icon.module';
+import { ReportModule } from '#modules/main-page/report/report.module';
 import { AppPipesModule } from '#shared/pipes/app-pipes.module';
 import { MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
 import { CarouselModule } from '#modules/shared/carousel/carousel.module';
@@ -33,7 +35,9 @@ import { accountIconsPack } from '#dialogs/add-account-dialog/account-icons';
     MatButtonModule,
     MatProgressSpinnerModule,
     AppTooltipModule,
-    AppPipesModule
+    AppPipesModule,
+    ReportModule,
+    AccountIconModule
   ],
   exports: [
     AccountsViewComponent

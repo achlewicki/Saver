@@ -21,12 +21,12 @@
     </div>
     <div class="operation-value" fxFlex="11%">
       <p class="value t-16-b" [ngClass]=" operation.type === 1 ? 'income' : 'outcome' ">
-        {{ operation.value | formatValue }}
+        {{ operation.value * operation.type | formatValue }}
       </p>
     </div>
     <div class="details-button" fxFlex="60px">
-      <div class="icon-box">
-        <fa-icon [icon]="dropIcon" (click)="descriptionClick()"></fa-icon>
+      <div class="icon-box" (click)="descriptionClick()">
+        <fa-icon [icon]="dropIcon"></fa-icon>
       </div>
     </div>
   </div>

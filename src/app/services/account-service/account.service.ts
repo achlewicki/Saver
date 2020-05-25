@@ -43,6 +43,11 @@ export class AccountService {
       );
   }
 
+  public getAccountInfo(accountId: number): Observable<AccountModel> {
+    const url = config.backendUrl + '/account/' + accountId;
+    return this.http.get<AccountModel>(url);
+  }
+
   public createAccount(account: AccountModel): Observable<AccountModel> {
     const url = config.backendUrl + '/account/add/' + localStorage.getItem('user.id') + '/' + account.currency.id;
     return this.http.post<AccountModel>(url, account, this.authHeader);
@@ -90,15 +95,18 @@ export class AccountService {
   }
 
   public getAccountStatistics(accountId: number): Observable<AccountStatistics> {
+    const totalOperationsUrl = config.backendUrl + '/account/totalOperations/' + accountId;
     const cyclicUrl = config.backendUrl + '/account/totalCyclics/' + accountId;
     const billsUrl = config.backendUrl + '/account/totalCyclicsBill/' + accountId;
 
     return forkJoin(
+      this.http.get<number>(totalOperationsUrl),
       this.http.get<number>(cyclicUrl),
       this.http.get<number>(billsUrl),
     ).pipe(
-      map(([cyclic, bills]) => {
+      map(([operations, cyclic, bills]) => {
         return {
+          totalOperations: operations,
           totalCyclics: cyclic,
           totalCyclicsBill: bills
         } as AccountStatistics;
@@ -106,9 +114,4 @@ export class AccountService {
     );
   }
 
-  private handleError() {
-    let message: string;
-    message = 'blad';
-    return throwError(message);
-  }
 }

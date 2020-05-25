@@ -7,4 +7,5 @@ export interface OperationFilters {
     categories?: number[];
     incomes?: boolean;
     outcomes?: boolean;
+    operationType?: 'all' | 'in' | 'out';
 }

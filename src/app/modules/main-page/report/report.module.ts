@@ -8,9 +8,9 @@ import { ReportAccountBalanceChartComponent } from './report-account-balance-cha
 import { ReportCategory2ChartComponent } from './report-category2-chart/report-category2-chart.component';
 import { MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FlexLayoutModule, FlexModule } from '@angular/flex-layout';
-import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import {faCaretUp, faCompressArrowsAlt, faExpandArrowsAlt, faHome, faPen, faPlus, faTrashAlt} from '@fortawesome/free-solid-svg-icons';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCompressArrowsAlt, faExpandArrowsAlt } from '@fortawesome/free-solid-svg-icons';
 
 
 
@@ -33,6 +33,13 @@ import {faCaretUp, faCompressArrowsAlt, faExpandArrowsAlt, faHome, faPen, faPlus
     FlexLayoutModule,
     MatProgressSpinnerModule,
     FontAwesomeModule
+  ],
+  exports: [
+    ReportViewComponent,
+    ReportMainChartComponent,
+    ReportCategoryChartComponent,
+    ReportAccountBalanceChartComponent,
+    ReportCategory2ChartComponent
   ]
 })
 

@@ -56,10 +56,10 @@ export class AuthorisationService {
     let message: string;
     if (error.error instanceof ErrorEvent) {
       message = 'Błąd połączenia z serwerem';
-      console.error('Client error: ' + error.error.message);
+      // console.error('Client error: ' + error.error.message);
     } else {
-      console.error('Server error response');
-      console.error(error);
+      // console.error('Server error response');
+      // console.error(error);
 
       if (error.status === 400 || error.status === 401) {
         message = 'Nieprawidłowy login lub hasło';

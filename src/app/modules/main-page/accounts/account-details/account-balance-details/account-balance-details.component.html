@@ -1,7 +1,7 @@
 <div class="account-balance-details-container" fxLayout="row wrap" fxLayoutAlign="space-around center">
   <div class="balance">
     <p class="t-12 secondary">Aktualne saldo</p>
-    <span class="h-32-b primary">{{ account.balance | formatValue:account.currency }}</span>
+    <span class="h-32-b primary">{{ account.balance | formatValue }}</span>
   </div>
   <div class="details" fxLayout="column" fxLayoutGap="15px">
 
@@ -10,11 +10,11 @@
       <p class="title t-15 primary">Przychód</p>
       <div class="details-content">
         <span class="value t-15-b primary">
-          {{ (income$ | async) || 0 | formatValue:account.currency}}
+          {{ (income$ | async) || 0 | formatValue}}
         </span>
         <p class="t-12 secondary">
           Przewidywany przychód w tym miesiącu:
-          {{ (estimatedIncome$ | async) || 0 | formatValue:account.currency}}
+          {{ (estimatedIncome$ | async) || 0 | formatValue}}
         </p>
       </div>
     </div>
@@ -24,12 +24,12 @@
       <p class="title t-15 primary">Wydatki</p>
       <div class="details-content">
         <span class="value t-15-b primary">
-          {{ (expense$ | async) || 0 | formatValue:account.currency}}
+          {{ (expense$ | async) || 0 | formatValue}}
         </span>
         <p class="t-12 secondary">Przewidywane wydatki w tym miesiącu:
-          {{ (estimatedExpense$ | async) || 0 | formatValue:account.currency}}
+          {{ (estimatedExpense$ | async) || 0 | formatValue}}
         </p>
-        <p class="t-12 secondary">Wyznaczony limit: {{ account.budget | formatValue:account.currency }} </p>
+        <p class="t-12 secondary">Wyznaczony limit: {{ account.budget | formatValue }} </p>
       </div>
     </div>
   </div>

@@ -4,15 +4,10 @@
     <div class="accounts-list" *ngIf="accounts; else loadingList">
       <ng-container *ngFor="let account of accounts">
         <div fxLayout="row" class="accounts-list-element" fxLayoutAlign="start center" (click)="selectAccount(account)">
-          <div class="icon-box">
-            <div class="icon" [style.color]="account.color">
-              <fa-icon [icon]="account.iconName"></fa-icon>
-            </div>
-            <div class="icon-background" [style.background-color]="account.color"></div>
-          </div>
+          <svr-account-icon [color]="account.color" [iconName]="account.iconName" [size]="23"></svr-account-icon>
           <div fxLayout="column" fxFlex="auto" fxLayoutGap="5px">
             <p class="account-name t-15-b primary">{{ account.name }}</p>
-            <p class="account-balance t-13 secondary">{{ account.balance | formatValue:account.currency }}</p>
+            <p class="account-balance t-13 secondary">{{ account.balance | formatValue }}</p>
           </div>
         </div>
       </ng-container>

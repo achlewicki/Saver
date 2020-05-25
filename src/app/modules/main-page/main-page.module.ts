@@ -30,6 +30,8 @@ import {
 } from '@angular/material';
 
 import {CyclicModule} from '#modules/main-page/cyclic/cyclic.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { UnauthorisedInterceptor } from '#services/_helpers/interceptors/unauth.interceptor';
 
 const matModules = [
   MatButtonModule,
@@ -70,6 +72,13 @@ const appModules = [
   ],
   entryComponents: [
     ...dialogs
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UnauthorisedInterceptor,
+      multi: true
+    }
   ]
 })
 export class MainPageModule { }

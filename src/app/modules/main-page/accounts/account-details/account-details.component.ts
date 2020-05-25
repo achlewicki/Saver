@@ -1,9 +1,12 @@
+import { AccountAndAccountHistoryModel } from '#models/account-and-account-history.model';
+import { AccountHistoryService } from '#services/account-history-service/account-history.service';
+import { AccountHistoryModel } from '#models/account-history.model';
 import { AppMessageDialogComponent, AppMessageDialogData } from '#dialogs/app-message-dialog/app-message-dialog.component';
 import { AccountService } from '#services/account-service/account.service';
 import { ProcessDialogComponent, ProcessDialogData } from '#dialogs/process-dialog/process-dialog.component';
 import { MatDialog } from '@angular/material';
 import { AccountModel } from '#models/account.model';
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { AddAccountDialogComponent, AddAccountDialogType } from '#dialogs/add-account-dialog/add-account-dialog.component';
 
 
@@ -12,7 +15,7 @@ import { AddAccountDialogComponent, AddAccountDialogType } from '#dialogs/add-ac
   templateUrl: './account-details.component.html',
   styleUrls: ['./account-details.component.scss']
 })
-export class AccountDetailsComponent {
+export class AccountDetailsComponent implements OnChanges {
 
   @Input()
   public account: AccountModel;
@@ -23,10 +26,33 @@ export class AccountDetailsComponent {
   @Output()
   public accountDeleted = new EventEmitter<AccountModel>();
 
+  protected accountHistoryData: AccountHistoryModel[];
+  protected accountHistoryDataWithAccount: AccountAndAccountHistoryModel[];
+
   constructor(
     private readonly dialogs: MatDialog,
-    private readonly accService: AccountService
+    private readonly accountService: AccountService,
+    private readonly accountHistoryService: AccountHistoryService
   ) { }
+
+  ngOnChanges(): void {
+    this.accountHistoryData = null;
+    this.accountHistoryDataWithAccount = null;
+    const today = new Date();
+    const weekAgo = new Date();
+    weekAgo.setDate(weekAgo.getDate() - 6);
+    this.accountHistoryService.getInfo(this.account.id, weekAgo, today).subscribe(
+      data => {
+        this.accountHistoryData = data;
+        this.accountHistoryDataWithAccount = [
+          {
+            account: this.account,
+            accountHistory: this.accountHistoryData
+          }
+        ];
+      }
+    );
+  }
 
   protected deleteAccountProcess(account: AccountModel): void {
 
@@ -41,14 +67,12 @@ export class AccountDetailsComponent {
       });
       return;
     }
-    // const obs = new Observable(sub => { setTimeout(() => { sub.error(false); sub.complete(); }, 3000); });
-
     const processDialogData: ProcessDialogData = {
       title: 'Czy na pewno chcesz usunąć konto?',
       initializeMessage: 'Wraz z kontem usunięte zostaną wszystkie powiązane z nim dane takie jak transakcje czy raporty!',
       successMessage: 'Konto zostało usunięte',
       failureMessage: 'Wystąpił błąd podczas usuwania konta',
-      process: this.accService.deleteAccount(account.id)
+      process: this.accountService.deleteAccount(account.id)
     };
     const processDialog = this.dialogs.open<ProcessDialogComponent, ProcessDialogData, any | null>(ProcessDialogComponent, {
       data: processDialogData

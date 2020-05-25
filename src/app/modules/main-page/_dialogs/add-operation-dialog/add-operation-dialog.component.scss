@@ -68,11 +68,15 @@ mat-option {
 
 
 .helping-box {
+  padding-left: 10px;
+  border-left: 1px solid $inputs-basic-border-color;
+
+
   .box {
     position: relative;
-    box-shadow: inset 0px 0px 3px 2px #ececec;
+    // border-radius: 5px;
+    // box-shadow: inset 0px 0px 3px 2px #ececec;
     padding: 10px 5px;
-    border-radius: 5px;
     margin-top: 20px;
 
     label {
@@ -86,9 +90,23 @@ mat-option {
   .template-box {
     min-width: 250px;
     height: 250px;
+    border-bottom: 1px solid $inputs-basic-border-color;
 
     .template-element {
       padding: 7px 10px;
+    }
+
+    .template-element:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+
+      .template-delete-icon {
+        visibility: visible;
+      }
+    }
+
+    .template-delete-icon {
+      visibility: hidden;
     }
   }
 
