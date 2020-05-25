@@ -12,7 +12,7 @@ import {AccountHistoryService} from '#services/account-history-service/account-h
 export class DashboardReportComponent implements OnChanges {
   @Input() account: AccountModel;
   protected todayDate = new Date();
-  protected sevenDaysEarlier = new Date(this.todayDate.getTime() - 1000 * 60 * 60 * 24);
+  protected sevenDaysEarlier = new Date(this.todayDate.getTime() - 1000 * 60 * 60 * 24 * 7);
 
   private chartOptions: ChartOptions = {
     responsive: true,
