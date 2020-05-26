@@ -1,9 +1,8 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {AccountModel} from '#models/account.model';
-import {OperationService} from '../../../../../../../backend/src/operation/operation.service';
-import {OperationModel} from '#models/operations.model';
-import {OperationsService} from '#services/operations-service/operations.service';
-import {OperationFilters} from '#models/operations-filters.model';
+import { Component, Input, OnChanges  } from '@angular/core';
+import { AccountModel } from '#models/account.model';
+import { OperationModel } from '#models/operations.model';
+import { OperationsService } from '#services/operations-service/operations.service';
+import { OperationFilters } from '#models/operations-filters.model';
 
 @Component({
   selector: 'svr-dashboard-operations',
