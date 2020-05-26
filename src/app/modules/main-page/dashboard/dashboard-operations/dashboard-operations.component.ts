@@ -23,7 +23,7 @@ export class DashboardOperationsComponent implements OnChanges {
 
   ngOnChanges() {
     this.operations = [];
-    this.operationsService.getOperationsByAccount2(
+    this.operationsService.getOperationsByAccount(
       this.account.id,
       {
         length: 7,
