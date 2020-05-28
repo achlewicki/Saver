@@ -23,11 +23,6 @@ export class DashboardComponent implements OnInit {
       icon: faClipboard
     });
 
-    // TODO czy zadziałą?
-    this.mpService.operationAdded.subscribe(value => {
-      this.activeAccount = this.activeAccount;
-    });
-
     this.mpService.activeAccount.subscribe(account => {
       this.activeAccount = account;
     });
