@@ -20,6 +20,7 @@ export class OperationFiltersComponent implements OnInit {
   protected opeartionTypes: OperationTypesFilter;
   protected dateTo: Date;
   protected dateFrom: Date;
+  protected operationType: 'all' | 'in' | 'out' = 'all';
 
   constructor(
     private readonly categoryService: CategoryService
@@ -45,7 +46,8 @@ export class OperationFiltersComponent implements OnInit {
     const filters: OperationFilters = {
       dateFrom: this.dateFrom,
       dateTo: this.dateTo,
-      type: []
+      type: [],
+      operationType: this.operationType
     };
     if (this.opeartionTypes.regular) { filters.type.push('regular'); }
     if (this.opeartionTypes.cyclic) { filters.type.push('cyclic'); }

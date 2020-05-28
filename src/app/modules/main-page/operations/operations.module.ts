@@ -10,7 +10,13 @@ import { OperationComponent } from './operation/operation.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { OperationFiltersComponent } from './operation-filters/operation-filters.component';
-import { MatTreeModule, MatDatepickerModule, MatInputModule, MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatTreeModule,
+  MatDatepickerModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MatButtonToggleModule
+} from '@angular/material';
 import { CategoryTreeComponent } from './operation-filters/category-tree/category-tree.component';
 import { FormsModule } from '@angular/forms';
 
@@ -35,7 +41,8 @@ import { FormsModule } from '@angular/forms';
     FontAwesomeModule,
     AppPipesModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    MatButtonToggleModule
   ],
   exports: [
     OperationsViewComponent

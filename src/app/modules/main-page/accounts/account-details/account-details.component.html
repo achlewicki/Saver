@@ -1,5 +1,5 @@
 <div class="account-details-container app-box">
-  <div fxLayout="column" fxLayoutGap="50px">
+  <div fxLayout="column" fxLayoutGap="80px">
 
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <div class="account-title" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
@@ -17,6 +17,14 @@
     </div>
 
     <svr-account-balance-details [account]="account"></svr-account-balance-details>
+
+    <div fxLayout="row wrap" fxLayoutAlign="center" fxLayoutGap="40px">
+      <ng-container *ngIf="accountHistoryData">
+        <svr-raport-main-chart [data]="accountHistoryData" [width]="400"></svr-raport-main-chart>
+        <svr-raport-account-balance-chart [data]="accountHistoryDataWithAccount" [width]="400">
+        </svr-raport-account-balance-chart>
+      </ng-container>
+    </div>
 
     <svr-account-details-summary [account]="account"></svr-account-details-summary>
   </div>

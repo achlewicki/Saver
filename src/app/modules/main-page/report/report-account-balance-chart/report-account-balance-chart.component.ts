@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { AccountHistoryModel } from '#models/account-history.model';
@@ -10,8 +10,9 @@ import { AccountAndAccountHistoryModel } from '#models/account-and-account-histo
   templateUrl: './report-account-balance-chart.component.html',
   styleUrls: ['./report-account-balance-chart.component.scss']
 })
-export class ReportAccountBalanceChartComponent implements OnInit, OnChanges {
-  @Input() data: AccountAndAccountHistoryModel[] = [];
+export class ReportAccountBalanceChartComponent implements OnChanges {
+  @Input() data: AccountAndAccountHistoryModel[];
+  @Input() width: number;
   private noData = false;
   // private accountsNames: string [] = [];
   // private accountsColors: string [] = [];
@@ -41,7 +42,7 @@ export class ReportAccountBalanceChartComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.chartData = [];
     this.chartLabel = [];
     this.noData = true;
@@ -67,10 +68,6 @@ export class ReportAccountBalanceChartComponent implements OnInit, OnChanges {
       });
       this.noData = false;
     });
-  }
-
-  ngOnChanges() {
-    this.ngOnInit();
   }
 
 }

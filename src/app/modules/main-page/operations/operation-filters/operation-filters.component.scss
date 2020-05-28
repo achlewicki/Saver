@@ -4,4 +4,15 @@
   //height: 200px;
   width: 100%;
   border: 1px solid rgb(230, 230, 230);
+  padding: 20px;
+  padding-left: 5%;
+  padding-top: 40px;
+  background-color: white;
+  border-radius: 5px;
+}
+
+mat-button-toggle-group {
+  .mat-button-toggle-checked {
+    background-color: rgba(1, 202, 148, 0.5);
+  }
 }

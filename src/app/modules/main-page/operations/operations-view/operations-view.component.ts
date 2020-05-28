@@ -60,15 +60,16 @@ export class OperationsViewComponent implements OnInit {
 
   protected fetchData(): void {
     this.viewState = 'loading';
-    this.operationsService.getOperationsByAccount2(
+    this.operationsService.getOperationsByAccount(
       this.account.id,
       {
-        length: 10,
+        length: 15,
         startIndex: this.operations.length,
         sort: this.sortType,
         type: this.operationsFilters.type,
         dateFrom: this.operationsFilters.dateFrom,
-        dateTo: this.operationsFilters.dateTo
+        dateTo: this.operationsFilters.dateTo,
+        operationType: this.operationsFilters.operationType
       }
     ).subscribe(
       result => {

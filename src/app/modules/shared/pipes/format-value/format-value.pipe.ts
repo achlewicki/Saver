@@ -7,13 +7,25 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FormatValuePipe implements PipeTransform {
 
-  private currency: CurrencyModel;
+  private currencySymbol: string;
 
   constructor(
     private readonly mpService: MainPageService
   ) {
     this.mpService.activeAccount.subscribe(
-      account => this.currency = account.currency
+      account => {
+        let resultSymbol = '';
+        account.currency.symbol.split(',').map(
+          element => {
+            return parseInt(element, 10);
+          }
+        ).forEach(
+          element => {
+            resultSymbol += String.fromCharCode(element);
+          }
+        );
+        this.currencySymbol = resultSymbol;
+      }
     );
   }
 
@@ -37,7 +49,7 @@ export class FormatValuePipe implements PipeTransform {
         return formated + ' ' + currency.code;
       }
     } else {
-      return formated + ' ' + this.currency.code;
+      return formated + ' ' + this.currencySymbol;
     }
   }
 

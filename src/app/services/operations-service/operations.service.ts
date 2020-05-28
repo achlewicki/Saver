@@ -1,11 +1,9 @@
-import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { config } from '#config/config';
 import { OperationModel } from '#models/operations.model';
-import { SubcategoryModel } from '#models/subcategory.model';
 
 @Injectable({
   providedIn: 'root'
@@ -16,11 +14,7 @@ export class OperationsService {
     private readonly http: HttpClient
   ) { }
 
-  public getOperationsByAccount(accountId: number): Observable<OperationModel[]> {
-    return this.http.get<OperationModel[]>(config.backendUrl + '/operation/get-by-acc/' + accountId);
-  }
-
-  public getOperationsByAccount2(
+  public getOperationsByAccount(
     accountId: number,
     options?: {
       length?: number | string,
@@ -29,7 +23,8 @@ export class OperationsService {
       type?: string[],
       dateTo?: Date,
       dateFrom?: Date,
-      categoriesId?: number[]
+      categoriesId?: number[],
+      operationType?: 'all' | 'in' | 'out'
     }
   ): Observable<OperationModel[]> {
 
@@ -46,6 +41,7 @@ export class OperationsService {
     Object.assign(params, options.dateTo ? { dateTo: dateFormatter(options.dateTo) } : null);
     Object.assign(params, options.dateFrom ? { dateFrom: dateFormatter(options.dateFrom) } : null);
     Object.assign(params, options.categoriesId ? { categoriesId: options.categoriesId.join(',') } : null);
+    Object.assign(params, options.operationType ? { type: options.operationType } : null);
 
     return this.http.get<OperationModel[]>(url, { params });
   }
@@ -59,16 +55,4 @@ export class OperationsService {
     const url = config.backendUrl + '/operation/add/' + localStorage.getItem('user.id') + '/' + '0';
     return this.http.post<OperationModel>(url, operation);
   }
-}
-
-export interface OperationResult {
-  title: string;
-  description: string;
-  type: number;
-  value: number;
-  date: string;
-  intoAccount: string;
-  guarantyDays: number;
-  distinction: string;
-  subcategory: SubcategoryModel;
 }

@@ -13,7 +13,6 @@ import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from '#shared/page-not-found/page-not-found.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthInterceptor } from './services/_helpers/interceptors/auth.interceptor';
-import { UnauthorisedInterceptor } from './services/_helpers/interceptors/unauth.interceptor';
 import { JsonDateParserInterceptor } from './services/_helpers/interceptors/json-date-parser.interceptor';
 
 import { registerLocaleData } from '@angular/common';
@@ -38,11 +37,6 @@ import localePl from '@angular/common/locales/pl';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: UnauthorisedInterceptor,
       multi: true
     },
     {

@@ -134,6 +134,7 @@ export class EventsComponent implements OnInit, AfterViewChecked {
 
   private getEvents(): void {
     this.mpService.activeAccount.subscribe(account => {
+      this.calendarEvents = [];
       this.accountId = account.id;
       this.eventsService.getEvents(this.accountId).subscribe(
         result => {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { Label, SingleDataSet, SingleOrMultiDataSet } from 'ng2-charts';
 import { ChartColor, ChartData, ChartDataSets, ChartLegendItem, ChartOptions, ChartType } from 'chart.js';
 import { AccountHistoryModel } from '#models/account-history.model';
@@ -8,8 +8,9 @@ import { AccountHistoryModel } from '#models/account-history.model';
   templateUrl: './report-main-chart.component.html',
   styleUrls: ['./report-main-chart.component.scss']
 })
-export class ReportMainChartComponent implements OnInit, OnChanges {
-  @Input() data: AccountHistoryModel[];
+export class ReportMainChartComponent implements OnChanges {
+  @Input() data: AccountHistoryModel[] = [];
+  @Input() width: number;
 
   private chartOptions: ChartOptions = {
     responsive: true,
@@ -32,7 +33,7 @@ export class ReportMainChartComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.chartData = [
       {
         data: [],
@@ -64,10 +65,6 @@ export class ReportMainChartComponent implements OnInit, OnChanges {
           this.chartData[0].backgroundColor[index] = this.chartData[0].hoverBackgroundColor[index] = 'red';
       });
     }
-  }
-
-  ngOnChanges() {
-    this.ngOnInit();
   }
 
 }

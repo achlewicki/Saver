@@ -31,7 +31,8 @@ import {
     faTrophy,
     faUser,
     faUtensils,
-    faWrench
+    faWrench,
+    faBell
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -66,7 +67,8 @@ export const accountIconsPack: IconPack = {
     faTrophy,
     faUser,
     faUtensils,
-    faWrench
+    faWrench,
+    faBell
 };
 
 export const accountIconsArray: IconDefinition[] = Object.values(accountIconsPack);

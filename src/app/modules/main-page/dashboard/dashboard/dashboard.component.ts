@@ -1,8 +1,6 @@
 import { MainPageService } from '#services/main-page-service/main-page.service';
 import { Component, OnInit } from '@angular/core';
 import { faClipboard } from '@fortawesome/free-solid-svg-icons';
-import {forkJoin, Observable} from 'rxjs';
-
 import {AccountModel} from '#models/account.model';
 
 @Component({
@@ -21,11 +19,6 @@ export class DashboardComponent implements OnInit {
       name: 'dashboard',
       title: 'Tablica',
       icon: faClipboard
-    });
-
-    // TODO czy zadziałą?
-    this.mpService.operationAdded.subscribe(value => {
-      this.activeAccount = this.activeAccount;
     });
 
     this.mpService.activeAccount.subscribe(account => {

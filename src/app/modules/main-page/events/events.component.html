@@ -3,6 +3,7 @@
     <full-calendar #calendar [plugins]="calendarPlugins" [events]="calendarEvents" defaultView="dayGridMonth"
       [firstDay]="1" (dateClick)="dateClick($event)" (eventClick)="eventClick($event)" [locale]="plLocale">
     </full-calendar>
+    <div class="loading-overlay" *ngIf="calendarEvents.length === 0"></div>
   </div>
   <div class="details-container app-box" fxFlex="auto">
     <ng-container [ngSwitch]="detailsBoxState">
