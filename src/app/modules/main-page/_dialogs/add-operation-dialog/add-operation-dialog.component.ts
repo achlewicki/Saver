@@ -140,6 +140,7 @@ export class AddOperationDialogComponent implements OnInit {
             alert('Pomyślnie dodano operacje: ' + operation.title);
             operationEnd();
             this.mpService.operationAdded.next(result);
+            this.mpService.refreshActiveAccount();
           },
           error => {
             // TODO - Error Dialog
