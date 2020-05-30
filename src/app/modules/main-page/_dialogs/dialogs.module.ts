@@ -12,7 +12,7 @@ import {
   MatButtonModule,
   MatTooltipModule,
   MatSelectModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule, MatDatepickerModule
 } from '@angular/material';
 
 import {
@@ -44,6 +44,7 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 import { accountIconsPack } from './add-account-dialog/account-icons';
 import { ColorPickerModule } from 'ngx-color-picker';
+import {AddCyclicDialogComponent} from '#dialogs/add-cyclic-dialog/add-cyclic-dialog.component';
 
 const matModules = [
   MatButtonModule,
@@ -63,7 +64,8 @@ export const dialogs = [
   UserInfoDialogComponent,
   NotificationDialogComponent,
   EditCategoryComponent,
-  AddEditEventDialogComponent
+  AddEditEventDialogComponent,
+  AddCyclicDialogComponent
 ];
 
 @NgModule({
@@ -79,7 +81,8 @@ export const dialogs = [
     ColorPickerModule,
     AppPipesModule,
     AccountIconModule,
-    ...matModules
+    ...matModules,
+    MatDatepickerModule
   ],
   exports: [
     ...dialogs

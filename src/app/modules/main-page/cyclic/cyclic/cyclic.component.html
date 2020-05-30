@@ -1,14 +1,14 @@
 <div class="container" fxLayout="column">
-  <div>
+  <div fxLayout="row">
     <mat-button-toggle-group #group="matButtonToggleGroup" value="cyclic">
       <mat-button-toggle value="cyclic">Cykliczne</mat-button-toggle>
       <mat-button-toggle value="instalment">Ratalne</mat-button-toggle>
     </mat-button-toggle-group>
+    <button mat-flat-button (click)="openAddCyclicDialog()">Dodaj Cykilczne</button>
   </div>
   <ng-container *ngIf="group.value==='cyclic'">
-    <div class="element-wrapper">
-    <svr-cyclic-element></svr-cyclic-element>
-      <svr-cyclic-element></svr-cyclic-element>
+    <div class="element-wrapper" *ngFor="let cyclic of this.cyclics">
+    <svr-cyclic-element [cyclic]="cyclic"></svr-cyclic-element>
     </div>
   </ng-container>
 </div>
