@@ -1,0 +1,16 @@
+@import 'app-text';
+
+.statistics-element {
+  margin: 0 10px;
+  min-width: 160px;
+
+  .label {
+    @extend .t-12,
+    .secondary;
+  }
+
+  .value {
+    @extend .h-22;
+    margin: 10px;
+  }
+}

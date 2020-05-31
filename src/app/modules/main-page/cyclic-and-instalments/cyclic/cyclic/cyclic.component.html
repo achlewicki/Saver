@@ -1,0 +1,6 @@
+<div fxLayout="row" fxLayoutAlign="end">
+  <button mat-flat-button (click)="openAddCyclicDialog()">Dodaj Cykilczne</button>
+</div>
+<div class="element-wrapper" *ngFor="let cyclic of cyclics">
+  <svr-cyclic-element [cyclic]="cyclic"></svr-cyclic-element>
+</div>

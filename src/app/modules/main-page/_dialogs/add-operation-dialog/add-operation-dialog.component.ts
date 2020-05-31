@@ -53,7 +53,7 @@ export class AddOperationDialogComponent implements OnInit {
       title: ['', Validators.required],
       value: ['', Validators.required],
       description: [''],
-      subCategory: ['', Validators.required],
+      subCategory: [this.emptySubcategory, Validators.required],
       // file: [''],
       guarranty: ['']
     });

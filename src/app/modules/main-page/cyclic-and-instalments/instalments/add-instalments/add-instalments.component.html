@@ -1,0 +1,81 @@
+<div class="add-instalment-container" fxLayout="row" fxLayoutGap="30px" fxFlexAlign="center">
+
+  <form [formGroup]="fGroup" (ngSubmit)="submit()">
+    <div class="form-container app-box" fxLayout="column" fxLayoutGap="30px">
+      <mat-form-field appearance="outline" class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding">
+        <label class="app-input-label">Tytuł *</label>
+        <input matInput placeholder="Tytuł" formControlName="title">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding">
+        <label class="app-input-label">Opis</label>
+        <textarea matInput placeholder="Opis" formControlName="description"></textarea>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding">
+        <label class="app-input-label">Całkowita wartość kredytu *</label>
+        <input matInput placeholder="Wartość" formControlName="totalValue" (change)="calculateDates()">
+        <span matSuffix>{{ account.currency.code }}</span>
+      </mat-form-field>
+
+      <div fxLayout="row" fxLayoutGap="20px">
+        <mat-form-field appearance="outline"
+          class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="1 1 auto">
+          <label class="app-input-label">Data rozpoczęcia *</label>
+          <input matInput readonly formControlName="dateFrom" [matDatepicker]="dateFromPicker"
+            (dateChange)="calculateDates()" [min]="today">
+          <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+          <mat-datepicker #dateFromPicker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline"
+          class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding">
+          <label class="app-input-label">Liczba rat *</label>
+          <input matInput type="number" min="1" formControlName="instalmentDates" (change)="calculateDates()">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field fxFill appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover">
+        <label class="app-input-label">Kategoria</label>
+        <mat-select formControlName="subcategory">
+          <mat-option [value]="emptySubcategory" selected>{{ emptySubcategory.title }}</mat-option>
+          <mat-optgroup *ngFor="let category of categories$ | async" [label]="category.title"
+            [style.color]="category.color">
+            <mat-option *ngFor="let subcategory of category.subcategories" [value]="subcategory">
+              <div class="subcategory-color" [style.background-color]="subcategory.color"></div>
+              <p>{{ subcategory.title }}</p>
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="buttons">
+        <button mat-flat-button color="accent" type="submit">Dodaj</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="instalment-dates-preview">
+    <ng-container *ngIf="previewDates.length !== 0; else noElements">
+      <ng-container *ngFor="let instalment of previewDates; let i = index">
+        <div class="instalment-date-box" fxLayout="row">
+          <div class="index" fxFlex="30px">
+            {{ i+1  + '.'}}
+          </div>
+          <div class="date" fxFlex="80px">
+            {{ instalment.date | date: 'dd.MM.yyyy'}}
+          </div>
+          <div class="value" fxFlex="auto">
+            {{ instalment.value | formatValue }}
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+    <ng-template #noElements>
+      <div class="no-elements-box">
+        <p>Uzupełnij formularz, aby zobaczyć podgląd rat</p>
+      </div>
+    </ng-template>
+  </div>
+
+</div>

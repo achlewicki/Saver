@@ -1,0 +1,94 @@
+<div class="dialog-container" fxLayout="column" fxLayoutGap="20px">
+
+  <header fxLayout="row" fxLayoutGap="10px">
+    <fa-icon [icon]="plusIcon" class="plus-icon"></fa-icon>
+    <h1 class="h-30">Dodaj cykliczne</h1>
+  </header>
+
+
+  <div fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign.lt-md="start stretch" fxLayoutGap="40px">
+
+    <div class="operation-form" fxLayout="column" fxLayoutGap="30px">
+      <form [formGroup]='fGroup' id="add-operation-form" (ngSubmit)="submit($event)" #operationForm>
+
+        <!-- Title / Value -->
+        <div gdColumns="auto 27%" gdGap="10px">
+          <mat-form-field appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover"
+            title="Tytuł transakcji">
+            <label class="app-input-label">Tytuł*</label>
+            <input matInput #title maxlength="150" formControlName="title" [errorStateMatcher]="errorMatcher">
+            <mat-hint align="end">{{title.value?.length || 0}}/150</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover"
+            title="Wartość transakcji">
+            <label class="app-input-label">Kwota*</label>
+            <input matInput formControlName="value" [errorStateMatcher]="errorMatcher">
+            <span matSuffix>{{ account.currency.code }}</span>
+          </mat-form-field>
+        </div>
+
+        <!-- Description -->
+        <div fxLayout="row">
+          <mat-form-field fxFill appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover"
+            title="Opis transakcji (opcjonalnie)">
+            <label class="app-input-label">Opis</label>
+            <textarea matInput class="description-textarea" #description formControlName="description"
+              [errorStateMatcher]="errorMatcher" maxlength="300"></textarea>
+            <mat-hint align="end">{{description.value?.length || 0}}/300</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- Category -->
+        <div fxLayout="row">
+          <mat-form-field fxFill appearance="outline" class="mat-ff-fixed-padding mat-ff-no-border-hover"
+            title="Kategoria transakcji">
+            <label class="app-input-label">Kategoria*</label>
+            <mat-select formControlName="subCategory">
+              <mat-option value="emptySubcategory" selected>{{ emptySubcategory.title }}</mat-option>
+              <mat-optgroup *ngFor="let category of categories$ | async" [label]="category.title"
+                [style.color]="category.color">
+                <mat-option *ngFor="let subcategory of category.subcategories" [value]="subcategory">
+                  <div class="subcategory-color" [style.background-color]="subcategory.color"></div>
+                  <p>{{ subcategory.title }}</p>
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Dates -->
+        <div class="dates" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
+          <mat-form-field appearance="outline"
+                          class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="200px">
+            <label class="app-input-label">Najbliższy termin płatności</label>
+            <input matInput readonly formControlName="nextDate" [matDatepicker]="dateFromPicker"
+                   (dateChange)="nextDate = $event.value" (dateInput)="nextDate = $event.value" [max]="endDate || null">
+            <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dateFromPicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline"
+                          class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="200px">
+            <label class="app-input-label">Termin zakończenia</label>
+            <input matInput readonly formControlName="endDate" [matDatepicker]="dateToPicker"
+                   (dateChange)="endDate = $event.value" (dateInput)="endDate = $event.value" [min]="nextDate || null">
+            <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dateToPicker></mat-datepicker>
+          </mat-form-field>
+          <label class="app-input-label">Co jaki czas?</label>
+          <input matInput type="number" formControlName="howOften">
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
+      <mat-progress-spinner *ngIf="pendingAddOperation" [mode]="'indeterminate'" [diameter]="22"></mat-progress-spinner>
+      <button mat-flat-button color="accent" class="submit-button" type="submit" form="add-operation-form"
+        [disabled]="pendingAddOperation" id="create-operation-button">Dodaj</button>
+    </div>
+  </div>
+
+  <fa-icon [icon]="closeIcon" class="close-button" (click)="closeDialog(false)"></fa-icon>
+</div>

@@ -1,19 +1,19 @@
 <div class="app-box" fxLayout="column">
   <div class="main-box" (click)="descriptionBoxVisible = !descriptionBoxVisible" fxLayout="row" fxLayoutGap="20px">
     <div class="cyclic-title" fxLayout="column" fxFlex="auto">
-      <p class="title t-16 primary">Pierwsza Cykliczna</p>
+      <p class="title t-16 primary">{{this.cyclic.title}}</p>
       <div class="date t-12-l">
-        08-08-1202
+        {{this.cyclic.endDate | date: 'dd-MM-yyyy' }}
       </div>
     </div>
     <div class="cyclic-category" fxLayoutAlign="center center">
       <div class="category-chip">
-        <div class="chip-background" [style.background-color]="'red'"></div>
-        <div class="chip-text t-14">JEDZENIE</div>
+<!--        <div class="chip-background" [style.background-color]="this.cyclic.subcategory.category.color"></div>-->
+<!--        <div class="chip-text t-14">{{this.cyclic.subcategory.category.title}}</div>-->
       </div>
     </div>
-    <div class="h-18-b" fxLayoutAlign="center center" [ngClass]=" true ? 'income' : 'outcome' ">
-      {{ 12000 | formatValue }}
+    <div class="h-18-b" fxLayoutAlign="center center" [ngClass]=" cyclic.type === 1 ? 'income' : 'outcome' ">
+      {{ this.cyclic.value * cyclic.type | formatValue}}
     </div>
   </div>
 
@@ -25,21 +25,21 @@
           <div class="description-icon">
             <fa-icon [icon]="descriptionIcon"><!--*ngIf="operation.description"--> </fa-icon>
           </div>
-          <div class="description">Opis transakcji wywołanej przez testy wykonywane przez Daniela Bińkowskiego oraz Krzysztofa Rakowskiego</div>
+          <div class="description">{{this.cyclic.description}}</div>
         </div>
         <div class="tree">
           <div class="category-wrapper" fxFlex="200px">
             <div class="dotts-block" *ngIf=true>
               <div class="category">
                 <div class="category-chip">
-                  <div class="chip-background" [style.background-color]="'green'"></div>
-                  <div class="chip-text t-14">DużeJedzonki</div>
+<!--                  <div class="chip-background" [style.background-color]="this.cyclic.subcategory.category.color"></div>-->
+<!--                  <div class="chip-text t-14">{{this.cyclic.subcategory.category.title}}</div>-->
                 </div>
               </div>
               <div class="subcategory">
                 <div class="category-chip">
-                  <div class="chip-background" [style.background-color]="'blue'"></div>
-                  <div class="chip-text t-14">MałeJedzonki</div>
+                  <div class="chip-background" [style.background-color]="this.cyclic.subcategory.color"></div>
+                  <div class="chip-text t-14">{{this.cyclic.subcategory.title}}</div>
                 </div>
               </div>
             </div>
@@ -53,9 +53,9 @@
             <div class="next-cyclic-icon">
               <fa-icon [icon]="nextCyclicIcon"></fa-icon>
             </div>
-            <div class="next-cyclic-text">Następna rata:</div>
+            <div class="next-cyclic-text">Następny termin opłaty cyklicznej:</div>
           </div>
-          <div class="next-cyclic-date t-14-l">10-12-2020</div>
+          <div class="next-cyclic-date t-14-l">{{this.cyclic.nextDate | date: 'dd-MM-yyyy'}}</div>
         </div>
 
         <div fxLayout="column">
@@ -65,7 +65,7 @@
             </div>
             <div class="sum-text">Łączna suma:</div>
           </div>
-          <div class="all-cyclic-sum t-14">{{ 24240 | formatValue }}</div>
+          <div class="all-cyclic-sum t-14">{{ this.cyclic.summaryValue || 0 | formatValue}}</div>
         </div>
       </div>
 
