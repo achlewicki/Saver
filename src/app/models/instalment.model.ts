@@ -28,7 +28,6 @@ export interface InstalmentElementModel {
 export interface InstalmentDTO {
     title: string;
     dateFrom: Date;
-    dateTo: Date;
     description: string;
     value: number;
     numOfInstalment: number;

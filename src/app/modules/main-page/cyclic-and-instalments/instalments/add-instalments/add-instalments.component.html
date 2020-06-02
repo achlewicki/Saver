@@ -49,8 +49,10 @@
         </mat-select>
       </mat-form-field>
 
-      <div class="buttons">
-        <button mat-flat-button color="accent" type="submit">Dodaj</button>
+      <div class="buttons" fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="30px">
+        <mat-progress-spinner *ngIf="pendingOperation" [mode]="'indeterminate'" [diameter]="22">
+        </mat-progress-spinner>
+        <button mat-flat-button color="accent" type="submit" [disabled]="pendingOperation">Dodaj</button>
       </div>
     </div>
   </form>

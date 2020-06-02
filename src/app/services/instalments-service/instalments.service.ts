@@ -26,4 +26,9 @@ export class InstalmentsService {
     const url = config.backendUrl + '/instalment/add/' + accountId + '/' + subcategoryId;
     return this.http.post<InstalmentBasicModel>(url, instalment);
   }
+
+  public removeInstalment(instalment: InstalmentBasicModel): Observable<void> {
+    const url = config.backendUrl + '/instalment/delete/' + instalment.id;
+    return this.http.delete<void>(url);
+  }
 }

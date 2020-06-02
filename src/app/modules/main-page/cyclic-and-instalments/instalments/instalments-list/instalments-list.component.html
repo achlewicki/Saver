@@ -22,7 +22,10 @@
         </ng-container>
       </div>
       <div class="list-details-box" fxFlex="35%">
-        <svr-instalments-list-details [instalmentId]="selectedInstalment?.id || null"></svr-instalments-list-details>
+        <svr-instalments-list-details
+          (instalmentDeleted)="getInstalmentList(this.account.id); selectedInstalment = null"
+          [instalmentId]="selectedInstalment?.id || null">
+        </svr-instalments-list-details>
       </div>
     </div>
   </div>

@@ -2,7 +2,7 @@ import { CategoryService } from '#services/category-service/category.service';
 import { SubcategoryModel } from '#models/subcategory.model';
 import { AccountModel } from '#models/account.model';
 import { MainPageService } from '#services/main-page-service/main-page.service';
-import { InstalmentElementModel, InstalmentExtendedModel, InstalmentDTO } from '#models/instalment.model';
+import { InstalmentElementModel, InstalmentDTO } from '#models/instalment.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { InstalmentsService } from '#services/instalments-service/instalments.service';
@@ -22,6 +22,8 @@ export class AddInstalmentsComponent implements OnInit {
   protected account: AccountModel;
   protected categories$: Observable<CategoryModel[]>;
   protected today = new Date();
+
+  protected pendingOperation: boolean;
 
   protected emptySubcategory: SubcategoryModel = {
     id: 0,
@@ -47,6 +49,7 @@ export class AddInstalmentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.previewDates = [];
+    this.pendingOperation = false;
     this.mainPageService.activeAccount.subscribe(
       account => this.account = account
     );
@@ -55,16 +58,13 @@ export class AddInstalmentsComponent implements OnInit {
 
   protected submit(): void {
     if (this.fGroup.valid) {
-      const dateTo = new Date(this.fGroup.get('dateFrom').value);
-      dateTo.setMonth(dateTo.getMonth() + parseInt(this.fGroup.get('instalmentDates').value, 10));
-
+      this.pendingOperation = true;
       const subcategory = this.fGroup.get('subcategory').value as SubcategoryModel;
 
       const newInstalment: InstalmentDTO = {
         title: this.fGroup.get('title').value,
         description: this.fGroup.get('description').value,
         dateFrom: this.fGroup.get('dateFrom').value,
-        dateTo,
         value: parseFloat(this.fGroup.get('totalValue').value),
         numOfInstalment: this.fGroup.get('instalmentDates').value,
         intoAccount: 1
