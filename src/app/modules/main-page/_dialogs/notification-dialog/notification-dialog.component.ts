@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
-import {faBell, faCog, faUser} from '@fortawesome/free-solid-svg-icons';
+import {Component, OnInit, Output} from '@angular/core';
+import {faBell, faUser} from '@fortawesome/free-solid-svg-icons';
 import {MatDialogRef} from '@angular/material';
 import {NotificationModel} from '#models/notification.model';
 import {NotificationService} from '#services/notification-service/notification.service';

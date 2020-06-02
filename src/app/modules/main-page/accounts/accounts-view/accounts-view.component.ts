@@ -3,6 +3,7 @@ import { AccountService } from '#services/account-service/account.service';
 import { MainPageService } from '#services/main-page-service/main-page.service';
 import { Component, OnInit } from '@angular/core';
 import { faWallet } from '@fortawesome/free-solid-svg-icons';
+import {NavAccountListComponent} from '#modules/main-page/_nav-bar/nav-account-list/nav-account-list.component';
 
 @Component({
   selector: 'svr-accounts-view',
@@ -18,7 +19,8 @@ export class AccountsViewComponent implements OnInit {
 
   constructor(
     private readonly mpService: MainPageService,
-    private readonly accountService: AccountService
+    private readonly accountService: AccountService,
+    private readonly navAccountListComponent: NavAccountListComponent,
   ) { }
 
   ngOnInit(): void {

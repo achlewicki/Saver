@@ -2,18 +2,26 @@
   <div [ngClass]="expanded ? 'selection-button-active' : 'selection-button-no-active'" (click)="onAccountSelectionClick()">
     <!--[ngStyle]="{'background-color': this.account.color }"-->
     <span class="account-icon" [ngClass]="expanded ? 'account-icon-expanded' : 'account-icon-short'">
-        <fa-icon icon="home"></fa-icon>
+        <fa-icon [icon]="this.account.iconName"></fa-icon>
     </span>
     <p class="account-name" *ngIf="expanded">{{ this.account.name }}</p>
     <span class="dropdown-icon">
       <fa-icon icon="chevron-down" *ngIf="expanded"></fa-icon>
     </span>
   </div>
-  <div fxLayoutAlign="center"
-       fxLayout="row wrap" class="account-selection-list" *ngIf="accountSelectionClicked && expanded">
-    <svr-nav-account-item *ngFor="let account of accounts" [account]="account"></svr-nav-account-item>
-    <p class="manageAccounts" (click)="openAccountView()">Zarządzaj kontami</p>
 
+
+
+  <div fxLayout="column" fxLayoutAlign="center center" *ngIf="accountSelectionClicked && expanded">
+  <div fxLayoutAlign="center"
+       fxLayout="row wrap" class="account-selection-list">
+    <svr-nav-account-item *ngFor="let account of accounts" [account]="account"></svr-nav-account-item>
+
+
+  </div>
+    <div>
+      <p class="manageAccounts" (click)="openAccountView()">Zarządzaj kontami</p>
+    </div>
     <!--<div class="error-info">
       {{ this.errorInfo }}
     </div>-->

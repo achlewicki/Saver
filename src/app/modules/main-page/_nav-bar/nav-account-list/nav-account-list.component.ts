@@ -26,6 +26,20 @@ export class NavAccountListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.mpservice.accountAdded.subscribe(
+      () => {
+        this.accountService.listAccounts(localStorage.getItem('user.id')).subscribe(
+          (response) => {
+            this.accounts = response;
+          }
+        );
+      }
+    );
+    this.mpservice.accountDeleted.subscribe(
+      account => {
+        this.accounts.splice(this.accounts.indexOf( account), 1);
+      }
+    );
     this.accountService.listAccounts(localStorage.getItem('user.id'))
       .subscribe(
         (response) => {
@@ -40,7 +54,9 @@ export class NavAccountListComponent implements OnInit {
     );
 
     this.mpservice.activeAccount.subscribe(
-      (result) => this.account = result
+      (result) => {
+          this.account = result;
+        }
     );
   }
 

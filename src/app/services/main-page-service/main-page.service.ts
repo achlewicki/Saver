@@ -15,7 +15,12 @@ export class MainPageService {
 
   constructor(
     private readonly accountService: AccountService
-  ) { }
+  ) {
+    this.accountDeleted.subscribe( () => {
+        console.log('sexy');
+      }
+    );
+  }
 
   public activeView: ReplaySubject<ViewDetails> = new ReplaySubject<ViewDetails>(1);
   public activeAccount: ReplaySubject<AccountModel> = new ReplaySubject<AccountModel>(1);

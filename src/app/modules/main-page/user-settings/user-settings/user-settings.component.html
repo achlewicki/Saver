@@ -58,9 +58,9 @@
 
     <div class="optional-info-div" [formGroup]='fGroup'>
       <p class="input-title">TWOJE IMIĘ</p>
-      <input [formControl]="userFirstName" class="first-name-input" type="text">
+      <input [formControl]="userFirstName" class="first-name-input" type="text" [value]=userInfo.firstName>
       <p class="input-title">TWOJE NAZWISKO</p>
-      <input [formControl]="userLastName" class="last-name-input" type="text">
+      <input [formControl]="userLastName" class="last-name-input" type="text" [value]="userInfo.lastName">
       <p class="input-title">TWOJA PŁEĆ</p>
       <mat-radio-group class="radio-group" formControlName="sex">
         <mat-radio-button class="sex-button" (click)="onFemaleSexClick()" value="K">Kobieta</mat-radio-button>
@@ -78,13 +78,13 @@
     <div class="optional-info-div-second">
       <p class="input-title">DATA URODZENIA</p>
       <mat-form-field class="date-picker">
-        <input [formControl]="userBirthDate" readonly matInput [matDatepicker]="picker1">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <input [formControl]="userBirthDate" readonly matInput [matDatepicker]="picker1" [value]="userInfo.birthDate">
+        <mat-datepicker-toggle matSuffix #picker1 [for]="picker1"></mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
       </mat-form-field>
 
       <p class="input-title">TWÓJ NICKNAME</p>
-      <input [formControl]="userNickname" class="last-name-input" type="text">
+      <input [formControl]="userNickname" class="last-name-input" type="text" [value]="userInfo.nickname">
       <!--<button type="submit" [disabled]="!userFirstName.valid" class="save-button">ZAPISZ</button>-->
       <button mat-raised-button disableRipple="true" class="save-button" [disabled]="!userFirstName.valid" color="primary">
         ZAPISZ

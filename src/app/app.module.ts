@@ -17,6 +17,7 @@ import { JsonDateParserInterceptor } from './services/_helpers/interceptors/json
 
 import { registerLocaleData } from '@angular/common';
 import localePl from '@angular/common/locales/pl';
+import {NavAccountListComponent} from '#modules/main-page/_nav-bar/nav-account-list/nav-account-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +34,7 @@ import localePl from '@angular/common/locales/pl';
     ColorPickerModule
   ],
   providers: [
+    NavAccountListComponent,
     DatePipe,
     {
       provide: HTTP_INTERCEPTORS,

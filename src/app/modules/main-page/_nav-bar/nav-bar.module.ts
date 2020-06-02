@@ -36,7 +36,7 @@ import {
     FlexLayoutModule
   ],
   exports: [
-    NavBarComponent
+    NavBarComponent,
   ]
 })
 export class NavBarModule {
