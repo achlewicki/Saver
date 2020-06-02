@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { CyclicElementComponent } from './cyclic-element/cyclic-element.component';
 import { AppPipesModule } from '#shared/pipes/app-pipes.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatButtonModule} from '@angular/material';
 
 
 
@@ -17,7 +18,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     FlexLayoutModule,
     AppPipesModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatButtonModule
   ],
   exports: [
     CyclicComponent

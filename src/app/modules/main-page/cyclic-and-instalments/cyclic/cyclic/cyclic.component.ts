@@ -47,4 +47,8 @@ export class CyclicComponent implements OnInit {
       if (result) { this.ngOnInit(); }
     });
   }
+
+  protected deleteCyclic(cyclic: CyclicModel): void {
+    this.cyclics.splice(this.cyclics.findIndex(value => value === cyclic), 1);
+  }
 }

@@ -2,7 +2,7 @@
 
   <header fxLayout="row" fxLayoutGap="10px">
     <fa-icon [icon]="plusIcon" class="plus-icon"></fa-icon>
-    <h1 class="h-30">Dodaj cykliczne</h1>
+    <h1 class="h-30">Nowa operacja cykliczna</h1>
   </header>
 
 
@@ -60,23 +60,13 @@
         <div class="dates" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
           <mat-form-field appearance="outline"
                           class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="200px">
-            <label class="app-input-label">Najbliższy termin płatności</label>
-            <input matInput readonly formControlName="nextDate" [matDatepicker]="dateFromPicker"
-                   (dateChange)="nextDate = $event.value" (dateInput)="nextDate = $event.value" [max]="endDate || null">
-            <mat-datepicker-toggle matSuffix [for]="dateFromPicker"></mat-datepicker-toggle>
-            <mat-datepicker #dateFromPicker></mat-datepicker>
+            <label class="app-input-label">Co jaki czas?*</label>
+            <mat-select formControlName="howOften">
+              <mat-option *ngFor="let howOftenOption of howOftenOptions" [value]="howOftenOption">
+                <p>{{ howOftenOption.name }}</p>
+              </mat-option>
+            </mat-select>
           </mat-form-field>
-
-          <mat-form-field appearance="outline"
-                          class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="200px">
-            <label class="app-input-label">Termin zakończenia</label>
-            <input matInput readonly formControlName="endDate" [matDatepicker]="dateToPicker"
-                   (dateChange)="endDate = $event.value" (dateInput)="endDate = $event.value" [min]="nextDate || null">
-            <mat-datepicker-toggle matSuffix [for]="dateToPicker"></mat-datepicker-toggle>
-            <mat-datepicker #dateToPicker></mat-datepicker>
-          </mat-form-field>
-          <label class="app-input-label">Co jaki czas?</label>
-          <input matInput type="number" formControlName="howOften">
         </div>
       </form>
     </div>
@@ -84,9 +74,9 @@
 
   <div fxLayout="row" fxLayoutAlign="center center">
     <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="20px">
-      <mat-progress-spinner *ngIf="pendingAddOperation" [mode]="'indeterminate'" [diameter]="22"></mat-progress-spinner>
+      <mat-progress-spinner *ngIf="pendingAddCyclic" [mode]="'indeterminate'" [diameter]="22"></mat-progress-spinner>
       <button mat-flat-button color="accent" class="submit-button" type="submit" form="add-operation-form"
-        [disabled]="pendingAddOperation" id="create-operation-button">Dodaj</button>
+              [disabled]="pendingAddCyclic" id="create-operation-button">Dodaj</button>
     </div>
   </div>
 

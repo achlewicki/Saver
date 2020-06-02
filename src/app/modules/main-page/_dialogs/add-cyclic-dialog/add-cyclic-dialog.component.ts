@@ -29,16 +29,20 @@ export class AddCyclicDialogComponent implements OnInit {
   protected plusIcon = faPlus;
   protected homeIcon = faHome;
   protected crossIcon = faTimes;
-  protected nextDate: Date;
-  protected endDate: Date;
+  protected howOftenOptions = [
+    { number: 1, name: 'Codziennie' },
+    { number: 3, name: 'Co 3 dni' },
+    { number: 7, name: 'Co tydzień' },
+    { number: 14, name: 'Co 2 tygodnie'},
+    { number: 30, name: 'Co miesiąc' },
+    { number: 90, name: 'Co 3 miesiące' }
+  ];
 
   protected fGroup: FormGroup;
   protected errorMatcher = new BasicErrorStateMatcher();
   protected categories$: Observable<CategoryModel[]>;
-  protected templates$: Observable<TemplateModel[]>;
-  protected lastOperations$: Observable<OperationModel[]>;
   protected account: AccountModel;
-  protected pendingAddOperation: boolean;
+  protected pendingAddCyclic: boolean;
 
   protected emptySubcategory: SubcategoryModel = {
     id: 0,
@@ -59,12 +63,10 @@ export class AddCyclicDialogComponent implements OnInit {
       value: ['', Validators.required],
       description: [''],
       subCategory: ['', Validators.required],
-      howOften: ['', Validators.required],
-      nextDate: ['', Validators.required],
-      endDate: ['', Validators.required]
+      howOften: ['', Validators.required]
     });
 
-    this.pendingAddOperation = false;
+    this.pendingAddCyclic = false;
 
   }
 
@@ -83,49 +85,36 @@ export class AddCyclicDialogComponent implements OnInit {
 
     if (this.fGroup.valid) {
       const operationEnd = () => {
-        this.pendingAddOperation = false;
+        this.pendingAddCyclic = false;
         this.fGroup.enable();
       };
 
       this.fGroup.disable();
-      this.pendingAddOperation = true;
+      this.pendingAddCyclic = true;
 
       const value = parseFloat(this.fGroup.get('value').value);
-      const nextDateForModel: Date = this.fGroup.get('nextDate').value;
-      const endDateForModel: Date = this.fGroup.get('endDate').value;
+      // const nextDateForModel: Date = this.fGroup.get('nextDate').value;
+      // const endDateForModel: Date = this.fGroup.get('endDate').value;
 
       if (button.id === 'create-operation-button') {
         const subcategory = this.fGroup.get('subCategory').value;
+        const howOftenOption = this.fGroup.get('howOften').value;
         const cyclic: CyclicModel = {
           title: this.fGroup.get('title').value,
           description: this.fGroup.get('description').value,
           type: value < 0 ? -1 : 1,
           value: value * (value < 0 ? -1 : 1),
-          howOften: this.fGroup.get('howOften').value,
-          nextDate: nextDateForModel,
+          howOften: howOftenOption.number,
           intoAccount: 1,
           // subcategory: this.fGroup.get('subCategory').value,
-          endDate: endDateForModel
+          // endDate: endDateForModel
         };
-        console.log()
+        console.log(howOftenOption);
+
         this.cyclicService.addCyclic(this.account.id, subcategory.id, cyclic).subscribe( () => {
           operationEnd();
           this.closeDialog(true);
-          }
-          // result => {
-          //   // TODO - Completed Dialog
-          //   console.log(result);
-          //   alert('Pomyślnie dodano operacje: ' + cyclic.title);
-          //   operationEnd();
-          //   // this.accountService.getAccountInfo(this.account.id).subscribe(account => this.mpService.activeAccount.next(account));
-          // },
-          // error => {
-          //   // TODO - Error Dialog
-          //   console.error(error);
-          //   alert('Wystąpił błąd podczas dodawania oepracji: ' + error.error);
-          //   operationEnd();
-          // }
-        );
+        });
       }
     }
   }
