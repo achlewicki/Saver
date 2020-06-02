@@ -40,7 +40,7 @@ export class RegisterWindowComponent {
       .subscribe(
         () => {
           this.errorInfo = '';
-          this.router.navigateByUrl('');
+          this.router.navigateByUrl('/login');
           console.log('Dodano użytkownika');
         },
         (error) => {

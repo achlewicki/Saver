@@ -27,7 +27,8 @@ import { dialogs, DialogsModule } from './_dialogs/dialogs.module';
 import {
   MatIconModule,
   MatDialogModule,
-  MatButtonModule
+  MatButtonModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -36,7 +37,8 @@ import { UnauthorisedInterceptor } from '#services/_helpers/interceptors/unauth.
 const matModules = [
   MatButtonModule,
   MatIconModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSnackBarModule
 ];
 
 const appModules = [

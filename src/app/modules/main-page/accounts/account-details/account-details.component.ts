@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material';
 import { AccountModel } from '#models/account.model';
 import { Component, Input, Output, EventEmitter, OnChanges } from '@angular/core';
 import { AddAccountDialogComponent, AddAccountDialogType } from '#dialogs/add-account-dialog/add-account-dialog.component';
+import { MainPageService } from '#services/main-page-service/main-page.service';
 
 
 @Component({
@@ -32,7 +33,8 @@ export class AccountDetailsComponent implements OnChanges {
   constructor(
     private readonly dialogs: MatDialog,
     private readonly accountService: AccountService,
-    private readonly accountHistoryService: AccountHistoryService
+    private readonly accountHistoryService: AccountHistoryService,
+    private readonly mainPageService: MainPageService
   ) { }
 
   ngOnChanges(): void {
@@ -81,6 +83,7 @@ export class AccountDetailsComponent implements OnChanges {
       result => {
         if (result) {
           this.accountDeleted.emit(this.account);
+          this.mainPageService.accountDeleted.next(this.account);
         }
       }
     );
@@ -99,7 +102,7 @@ export class AccountDetailsComponent implements OnChanges {
     editDialog.afterClosed().subscribe(
       closeResult => {
         if (closeResult) {
-
+          this.mainPageService.accountChanged.next(this.account);
         }
       }
     );

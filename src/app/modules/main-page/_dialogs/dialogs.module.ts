@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { AccountIconModule } from '#shared/account-icon/account-icon.module';
 import { AppPipesModule } from '#shared/pipes/app-pipes.module';
 import { NgModule } from '@angular/core';
@@ -44,7 +45,7 @@ import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 import { accountIconsPack } from './add-account-dialog/account-icons';
 import { ColorPickerModule } from 'ngx-color-picker';
-import {AddCyclicDialogComponent} from '#dialogs/add-cyclic-dialog/add-cyclic-dialog.component';
+import { AddCyclicDialogComponent } from '#dialogs/add-cyclic-dialog/add-cyclic-dialog.component';
 
 const matModules = [
   MatButtonModule,
@@ -82,7 +83,8 @@ export const dialogs = [
     AppPipesModule,
     AccountIconModule,
     ...matModules,
-    MatDatepickerModule
+    MatDatepickerModule,
+    RouterModule
   ],
   exports: [
     ...dialogs

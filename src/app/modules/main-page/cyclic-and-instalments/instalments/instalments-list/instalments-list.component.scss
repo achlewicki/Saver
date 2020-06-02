@@ -1,4 +1,4 @@
-@import 'app-text';
+@import 'app-text', 'mixins';
 
 .statistics-element {
   margin: 0 10px;
@@ -13,4 +13,9 @@
     @extend .h-22;
     margin: 10px;
   }
+}
+
+.loading-box {
+  @include flex-center();
+  margin-top: 10vh;
 }

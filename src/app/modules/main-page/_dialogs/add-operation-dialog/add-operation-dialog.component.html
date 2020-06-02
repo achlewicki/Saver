@@ -48,7 +48,7 @@
             title="Kategoria transakcji">
             <label class="app-input-label">Kategoria*</label>
             <mat-select formControlName="subCategory">
-              <mat-option value="emptySubcategory" selected>{{ emptySubcategory.title }}</mat-option>
+              <mat-option [value]="emptySubcategory" selected>{{ emptySubcategory.title }}</mat-option>
               <mat-optgroup *ngFor="let category of categories$ | async" [label]="category.title"
                 [style.color]="category.color">
                 <mat-option *ngFor="let subcategory of category.subcategories" [value]="subcategory">
@@ -114,10 +114,11 @@
 
   </div>
 
-  <div fxLayout="row" fxLayoutAlign="space-between end">
-    <a class="app-a t-13"> Transakcje cykliczne</a>
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <a class="app-a t-13" [routerLink]="['/main/cyclic']" (click)="closeDialog(false)"> Transakcje cykliczne</a>
     <div fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="20px">
       <mat-progress-spinner *ngIf="pendingAddOperation" [mode]="'indeterminate'" [diameter]="22"></mat-progress-spinner>
+      <span class="error-info t-14-b" *ngIf="errorInfo !== ''"></span>
       <button mat-stroked-button class="create-template-button" type="submit" form="add-operation-form"
         [disabled]="pendingAddOperation" id="create-template-button">Utwórz schemat</button>
       <button mat-flat-button color="accent" class="submit-button" type="submit" form="add-operation-form"

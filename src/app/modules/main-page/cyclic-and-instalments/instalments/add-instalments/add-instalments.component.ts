@@ -54,14 +54,11 @@ export class AddInstalmentsComponent implements OnInit {
   }
 
   protected submit(): void {
-    console.log('validation');
     if (this.fGroup.valid) {
-      console.log('submit');
       const dateTo = new Date(this.fGroup.get('dateFrom').value);
       dateTo.setMonth(dateTo.getMonth() + parseInt(this.fGroup.get('instalmentDates').value, 10));
 
       const subcategory = this.fGroup.get('subcategory').value as SubcategoryModel;
-      console.log(subcategory);
 
       const newInstalment: InstalmentDTO = {
         title: this.fGroup.get('title').value,
@@ -72,11 +69,9 @@ export class AddInstalmentsComponent implements OnInit {
         numOfInstalment: this.fGroup.get('instalmentDates').value,
         intoAccount: 1
       };
-      console.log(newInstalment.value);
 
       this.instalmentsService.addNewInstalment(newInstalment, this.account.id, subcategory.id).subscribe(
         result => {
-          console.log('git');
           this.operationAdded.emit();
         },
         error => {

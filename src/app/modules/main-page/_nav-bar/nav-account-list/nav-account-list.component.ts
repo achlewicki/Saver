@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AccountModel} from '#models/account.model';
-import {AccountService} from '#services/account-service/account.service';
-import {MainPageService} from '#services/main-page-service/main-page.service';
-import {Router} from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AccountModel } from '#models/account.model';
+import { AccountService } from '#services/account-service/account.service';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'svr-nav-account-list',
@@ -34,6 +34,11 @@ export class NavAccountListComponent implements OnInit {
         (error) => {
           this.errorInfo = error;
         });
+
+    this.mpservice.accountDeleted.subscribe(
+      account => console.log(account)
+    );
+
     this.mpservice.activeAccount.subscribe(
       (result) => this.account = result
     );
