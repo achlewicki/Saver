@@ -10,10 +10,11 @@ import { OperationsModule } from './operations/operations.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { CategoriesModule } from './categories/categories.module';
-import {AchievementsModule} from '#modules/main-page/achievements/achievements.module';
-import {ReportModule} from '#modules/main-page/report/report.module';
-import {UserSettingsModule} from '#modules/main-page/user-settings/user-settings.module';
+import { AchievementsModule } from '#modules/main-page/achievements/achievements.module';
+import { ReportModule } from '#modules/main-page/report/report.module';
+import { UserSettingsModule } from '#modules/main-page/user-settings/user-settings.module';
 import { EventsModule } from './events/events.module';
+import { CyclicAndInstalmentsModule } from '#modules/main-page/cyclic-and-instalments/cyclic-and-instalments.module';
 
 import { HeaderComponent } from './_header/header.component';
 import { AddOperationButtonComponent } from './add-operation-button/add-operation-button.component';
@@ -29,7 +30,6 @@ import {
   MatButtonModule
 } from '@angular/material';
 
-import {CyclicModule} from '#modules/main-page/cyclic/cyclic.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UnauthorisedInterceptor } from '#services/_helpers/interceptors/unauth.interceptor';
 
@@ -51,7 +51,7 @@ const appModules = [
   AchievementsModule,
   ReportModule,
   EventsModule,
-  CyclicModule
+  CyclicAndInstalmentsModule
 ];
 
 

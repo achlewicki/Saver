@@ -1,0 +1,89 @@
+<div class="instalment-details-container">
+  <ng-container *ngIf="instalmentId; else noInstalmentSelected">
+    <ng-container *ngIf="(instalment$ | async) as instalment; else loading">
+
+      <div class="instalment-details-box app-box" fxLayout="column">
+
+        <div class="details-element">
+          <div class="element-icon">
+            <fa-icon [icon]="titleIcon"></fa-icon>
+          </div>
+          <div class="element-content title h-22-b primary">
+            {{ instalment.title }}
+          </div>
+        </div>
+
+        <div class="details-element" *ngIf="instalment.description !== '' ">
+          <div class="element-icon">
+            <fa-icon [icon]="descriptionIcon"></fa-icon>
+          </div>
+          <div class="element-content description">
+            {{ instalment.description }}
+          </div>
+        </div>
+
+        <div class="details-element">
+          <div class="element-icon">
+            <fa-icon [icon]="coinsIcon"></fa-icon>
+          </div>
+          <div class="element-content summary">
+            <div class="element-label t-14 secondary">Wartość kredytu</div>
+            <div>
+              {{ (instalment.paidValue || -1) | formatValue:' ' }}
+              /
+              {{ instalment.totalValue | formatValue }}</div>
+          </div>
+        </div>
+
+        <div class="details-element">
+          <div class="element-icon">
+            <fa-icon [icon]="timeIcon"></fa-icon>
+          </div>
+          <div class="element-content next-payment">
+            <div class="element-label t-14 secondary">Najbliższa płatność</div>
+            {{ ( getNextPayment(instalment)?.date || placeholder ) | date:'dd.MM.yyyy' }}
+          </div>
+        </div>
+
+        <div class="instalment-dates-label t-14-b secondary">Raty</div>
+        <div class="instalments">
+          <ng-container *ngFor="let instalmentDate of instalment.elements; let i = index">
+            <div class="instalment-date-box" fxLayout="row">
+              <div class="index" fxFlex="30px">
+                {{ i+1  + '.'}}
+              </div>
+              <div class="date" fxFlex="80px">
+                {{ instalmentDate.date | date: 'dd.MM.yyyy'}}
+              </div>
+              <div class="value" fxFlex="auto">
+                {{ instalmentDate.value | formatValue }}
+              </div>
+              <div class="paid" fxFlex="120px" [ngClass]="instalmentDate.paid? 'success' : ''">
+                {{ instalmentDate.paid ? 'Zapłacono' : 'Nie zapłacono'}}
+              </div>
+            </div>
+          </ng-container>
+        </div>
+        <div class="cancel-instalment-button">
+          <button mat-stroked-button class="warn">Anuluj kredyt</button>
+        </div>
+      </div>
+
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #noInstalmentSelected>
+  <div class="no-instalment-box">
+    <div class="content-box">
+      <p>Informacje o kredytach i ratach</p>
+      <fa-icon [icon]="coinsIcon"></fa-icon>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #loading>
+  <div class="loading-box">
+    <mat-progress-spinner [mode]="'indeterminate'" [diameter]="30"></mat-progress-spinner>
+  </div>
+</ng-template>

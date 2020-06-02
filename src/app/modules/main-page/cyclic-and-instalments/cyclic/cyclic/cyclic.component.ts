@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {CyclicService} from '#services/cyclic/cyclic.service';
-import {CyclicModel} from '#models/cyclic.model';
-import {MainPageService} from '#services/main-page-service/main-page.service';
-import {faHourglassHalf} from '@fortawesome/free-solid-svg-icons';
-import {MatDialog} from '@angular/material';
-import {AddCyclicDialogComponent} from '#dialogs/add-cyclic-dialog/add-cyclic-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { CyclicService } from '#services/cyclic/cyclic.service';
+import { CyclicModel } from '#models/cyclic.model';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+import { faHourglassHalf } from '@fortawesome/free-solid-svg-icons';
+import { MatDialog } from '@angular/material';
+import { AddCyclicDialogComponent } from '#dialogs/add-cyclic-dialog/add-cyclic-dialog.component';
 
 @Component({
   selector: 'svr-cyclic',
@@ -12,7 +12,7 @@ import {AddCyclicDialogComponent} from '#dialogs/add-cyclic-dialog/add-cyclic-di
   styleUrls: ['./cyclic.component.scss']
 })
 export class CyclicComponent implements OnInit {
-  private cyclics: CyclicModel[];
+  protected cyclics: CyclicModel[];
 
   constructor(
     private readonly cyclicService: CyclicService,
@@ -31,13 +31,12 @@ export class CyclicComponent implements OnInit {
       this.cyclics = [];
       this.cyclicService.getAllCyclics(account.id).subscribe(returnedCyclics => {
         this.cyclics = returnedCyclics;
-        this.cyclics.sort((a, b) => a.nextDate.getTime() - b.nextDate.getTime());
-        // console.log(this.cyclics[0]);
+        // this.cyclics.sort((a, b) => a.nextDate.getTime() - b.nextDate.getTime());
       });
     });
   }
 
-  private openAddCyclicDialog() {
+  protected openAddCyclicDialog() {
     const addDialog = this.dialogs.open(AddCyclicDialogComponent, {
       hasBackdrop: true,
       maxHeight: '850px',
@@ -47,5 +46,9 @@ export class CyclicComponent implements OnInit {
     addDialog.afterClosed().subscribe(result => {
       if (result) { this.ngOnInit(); }
     });
+  }
+
+  protected deleteCyclic(cyclic: CyclicModel): void {
+    this.cyclics.splice(this.cyclics.findIndex(value => value === cyclic), 1);
   }
 }

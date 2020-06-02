@@ -1,0 +1,9 @@
+<div fxLayout="row" fxLayoutAlign="end">
+  <button mat-flat-button
+          color="accent"
+          type="submit"
+          (click)="openAddCyclicDialog()">Dodaj Operację Cykilczną</button>
+</div>
+<div class="element-wrapper" *ngFor="let cyclic of cyclics">
+  <svr-cyclic-element [cyclic]="cyclic" (deletedCyclic)="deleteCyclic(cyclic)"></svr-cyclic-element>
+</div>

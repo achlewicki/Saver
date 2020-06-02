@@ -1,3 +1,6 @@
+import {
+  CyclicAndInstalmentsComponent
+} from '#modules/main-page/cyclic-and-instalments/cyclic-and-instalments/cyclic-and-instalments.component';
 import { AccountResolverService } from '#services/_helpers/resolvers/account-resolver/account-resolver.service';
 import { UserProfileComponent } from './user-profile/user-profile/user-profile.component';
 import { AccountsViewComponent } from '#modules/main-page/accounts/accounts-view/accounts-view.component';
@@ -11,7 +14,6 @@ import { UserSettingsComponent } from '#modules/main-page/user-settings/user-set
 import { AchievementsViewComponent } from '#modules/main-page/achievements/achievements-view/achievements-view.component';
 import { ReportViewComponent } from '#modules/main-page/report/report-view/report-view.component';
 import { EventsComponent } from './events/events.component';
-import { CyclicComponent } from '#modules/main-page/cyclic/cyclic/cyclic.component';
 
 
 const routes: Routes = [
@@ -60,7 +62,7 @@ const routes: Routes = [
       },
       {
         path: 'cyclic',
-        component: CyclicComponent
+        component: CyclicAndInstalmentsComponent
       }
     ]
   }

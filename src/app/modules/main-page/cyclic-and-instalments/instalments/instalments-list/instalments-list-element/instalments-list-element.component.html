@@ -1,0 +1,19 @@
+<div class="instalments-list-element app-box" fxLayout="row" (click)="select()">
+  <div class="dates" fxFlex="130px">
+    <div fxLayout="row">
+      <div class="circle begin"></div>
+      <div class="date t-14"> {{ instalment.dateFrom | date: 'dd.MM.yyyy' }} </div>
+    </div>
+    <div fxLayout="row">
+      <div class="circle end"></div>
+      <div class="date t-14"> {{ instalment.dateTo | date: 'dd.MM.yyyy' }} </div>
+    </div>
+    <div class="date-line"></div>
+  </div>
+  <div class="title" fxFlex="auto">
+    {{ instalment.title }}
+  </div>
+  <div class="values" fxFlex="20%">
+    {{ (instalment.paidValue || -1) | formatValue:' ' }} / {{ instalment.totalValue | formatValue }}
+  </div>
+</div>

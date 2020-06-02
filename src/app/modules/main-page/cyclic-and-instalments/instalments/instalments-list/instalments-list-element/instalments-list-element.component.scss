@@ -1,0 +1,55 @@
+@import 'app-boxes', 'app-text';
+
+.instalments-list-element {
+  padding: 10px;
+  margin: 5px 0;
+}
+
+.instalments-list-element:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.dates {
+  position: relative;
+
+  .circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+    margin: 10px;
+
+    &.begin {
+      background-color: #969696;
+    }
+
+    &.end {
+      border: 1px solid #969696;
+    }
+  }
+
+  .date {
+    display: flex;
+    align-items: center;
+  }
+
+  .date-line {
+    border-left: 1px solid #bebebe;
+    border-right: 1px solid #bebebe;
+    height: 16px;
+    position: absolute;
+    top: 24px;
+    left: 15px;
+  }
+}
+
+.title,
+.values {
+  display: flex;
+  align-items: center;
+}
+
+.values {
+  margin-right: 15px;
+  justify-content: flex-end;
+}

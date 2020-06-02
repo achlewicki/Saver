@@ -1,0 +1,33 @@
+<ng-container *ngIf="(instalmentList$ | async) as instalmentList; else loading">
+  <div fxLayout="column" fxLayoutGap="20px">
+    <div class="instalments-statistics" fxLayout="row">
+      <div class="statistics-element">
+        <p class="label">Aktywne kredyty:</p>
+        <p class="value">{{ instalmentList.length }}</p>
+      </div>
+      <div class="statistics-element">
+        <p class="label">Kwota do zapłacenia:</p>
+        <p class="value">{{ instalmentsRemainingValueToPaid(instalmentList) | formatValue }}</p>
+      </div>
+      <div class="statistics-element">
+        <p class="label">Całkowita kwota:</p>
+        <p class="value">{{ instalmentsTotalValue(instalmentList) | formatValue }}</p>
+      </div>
+    </div>
+    <div class="list-container" fxLayout="row" fxLayoutGap="15px">
+      <div class="list-elements-box" fxLayout="column" fxFlex="65%">
+        <ng-container *ngFor="let element of instalmentList">
+          <svr-instalments-list-element [instalment]="element" (selected)="selectedInstalment = $event">
+          </svr-instalments-list-element>
+        </ng-container>
+      </div>
+      <div class="list-details-box" fxFlex="35%">
+        <svr-instalments-list-details [instalmentId]="selectedInstalment?.id || null"></svr-instalments-list-details>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #loading>
+
+</ng-template>

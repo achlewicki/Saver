@@ -1,0 +1,18 @@
+<div class="instalment-container" fxLayout="column">
+  <div class="add-instalment-button" fxLayout="row" fxFlexAlign="end">
+    <ng-container *ngIf="!addMode; else returnButton">
+      <button mat-flat-button color="accent" (click)="addMode = !addMode">Dodaj operację ratalną</button>
+    </ng-container>
+    <ng-template #returnButton>
+      <button mat-stroked-button (click)="addMode = !addMode">Anuluj</button>
+    </ng-template>
+  </div>
+
+  <ng-container *ngIf="!addMode">
+    <svr-instalments-list></svr-instalments-list>
+  </ng-container>
+  <ng-container *ngIf="addMode">
+    <svr-add-instalments (operationAdded)="true"></svr-add-instalments>
+  </ng-container>
+
+</div>

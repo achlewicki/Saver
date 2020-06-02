@@ -14,7 +14,6 @@ import { CategoryService } from '#services/category-service/category.service';
 import { MainPageService } from '#services/main-page-service/main-page.service';
 import { TemplateModel } from '#models/template.model';
 import { TemplateService } from '#services/template-service/template.service';
-import {AccountService} from '#services/account-service/account.service';
 
 @Component({
   selector: 'svr-add-operation-dialog',
@@ -48,14 +47,13 @@ export class AddOperationDialogComponent implements OnInit {
     private readonly categoryService: CategoryService,
     private readonly mpService: MainPageService,
     private readonly operationsService: OperationsService,
-    private readonly templateService: TemplateService,
-    private readonly accountService: AccountService
+    private readonly templateService: TemplateService
   ) {
     this.fGroup = this.fb.group({
       title: ['', Validators.required],
       value: ['', Validators.required],
       description: [''],
-      subCategory: ['', Validators.required],
+      subCategory: [this.emptySubcategory, Validators.required],
       // file: [''],
       guarranty: ['']
     });
@@ -142,7 +140,7 @@ export class AddOperationDialogComponent implements OnInit {
             alert('Pomyślnie dodano operacje: ' + operation.title);
             operationEnd();
             this.mpService.operationAdded.next(result);
-            // this.accountService.getAccountInfo(this.account.id).subscribe(account => this.mpService.activeAccount.next(account));
+            this.mpService.refreshActiveAccount();
           },
           error => {
             // TODO - Error Dialog

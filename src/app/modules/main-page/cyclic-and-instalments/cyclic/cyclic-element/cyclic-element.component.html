@@ -1,20 +1,34 @@
 <div class="app-box" fxLayout="column">
-  <div class="main-box" (click)="descriptionBoxVisible = !descriptionBoxVisible" fxLayout="row" fxLayoutGap="20px">
-    <div class="cyclic-title" fxLayout="column" fxFlex="auto">
+  <div class="main-box"  fxLayout="row" fxLayoutGap="20px">
+    <div class="cyclic-title" fxLayout="column" fxLayoutGap="20px" fxFlex="auto">
       <p class="title t-16 primary">{{this.cyclic.title}}</p>
-      <div class="date t-12-l">
-        {{this.cyclic.endDate | date: 'dd-MM-yyyy' }}
+      <div fxLayout="column">
+        <div class="next-cyclic" fxLayout="row">
+          <div class="next-cyclic-icon">
+            <fa-icon [icon]="nextCyclicIcon"></fa-icon>
+          </div>
+          <div class="next-cyclic-text">Następny termin opłaty cyklicznej:</div>
+        </div>
+        <div class="next-cyclic-date t-14-l">{{this.cyclic.nextDate | date: 'dd-MM-yyyy'}}</div>
       </div>
     </div>
     <div class="cyclic-category" fxLayoutAlign="center center">
       <div class="category-chip">
-<!--        <div class="chip-background" [style.background-color]="this.cyclic.subcategory.category.color"></div>-->
-<!--        <div class="chip-text t-14">{{this.cyclic.subcategory.category.title}}</div>-->
+        <div class="chip-background" [style.background-color]="this.cyclic.subcategory.category.color"></div>
+        <div class="chip-text t-14">{{this.cyclic.subcategory.category.title}}</div>
       </div>
     </div>
     <div class="h-18-b" fxLayoutAlign="center center" [ngClass]=" cyclic.type === 1 ? 'income' : 'outcome' ">
       {{ this.cyclic.value * cyclic.type | formatValue}}
     </div>
+    <div class="details-button" fxFlex="34px">
+      <div class="icon-box" (click)="descriptionClick()">
+        <fa-icon [icon]="dropIcon"></fa-icon>
+      </div>
+    </div>
+  <div  fxLayoutAlign="center center" fxFlex="42px">
+    <fa-icon class="delete" [icon]="trashIcon" (click)="this.deleteCyclic()"></fa-icon>
+  </div>
   </div>
 
 
@@ -23,17 +37,17 @@
       <div class="description-tree" fxLayoutAlign="space-between" fxLayout="row">
         <div fxLayout="row">
           <div class="description-icon">
-            <fa-icon [icon]="descriptionIcon"><!--*ngIf="operation.description"--> </fa-icon>
+            <fa-icon [icon]="descriptionIcon" *ngIf="cyclic.description"> </fa-icon>
           </div>
           <div class="description">{{this.cyclic.description}}</div>
         </div>
         <div class="tree">
           <div class="category-wrapper" fxFlex="200px">
-            <div class="dotts-block" *ngIf=true>
+            <div class="dotts-block" *ngIf="cyclic.subcategory.category.title !== 'Brak kategorii'">
               <div class="category">
                 <div class="category-chip">
-<!--                  <div class="chip-background" [style.background-color]="this.cyclic.subcategory.category.color"></div>-->
-<!--                  <div class="chip-text t-14">{{this.cyclic.subcategory.category.title}}</div>-->
+                  <div class="chip-background" [style.background-color]="this.cyclic.subcategory.category.color"></div>
+                  <div class="chip-text t-14">{{this.cyclic.subcategory.category.title}}</div>
                 </div>
               </div>
               <div class="subcategory">
@@ -46,29 +60,17 @@
           </div>
         </div>
       </div>
-      <div class="next-sum" fxLayoutAlign="space-between" fxLayout="row">
-
-        <div fxLayout="column">
-          <div class="next-cyclic" fxLayout="row">
-            <div class="next-cyclic-icon">
-              <fa-icon [icon]="nextCyclicIcon"></fa-icon>
-            </div>
-            <div class="next-cyclic-text">Następny termin opłaty cyklicznej:</div>
-          </div>
-          <div class="next-cyclic-date t-14-l">{{this.cyclic.nextDate | date: 'dd-MM-yyyy'}}</div>
-        </div>
-
+<!--      <div class="next-sum" fxLayoutAlign="space-between" fxLayout="row">-->
         <div fxLayout="column">
           <div fxLayout="row">
             <div class="next-cyclic-icon">
-              <fa-icon [icon]="nextCyclicIcon"></fa-icon>
+              <fa-icon [icon]="coinsIcon"></fa-icon>
             </div>
             <div class="sum-text">Łączna suma:</div>
           </div>
           <div class="all-cyclic-sum t-14">{{ this.cyclic.summaryValue || 0 | formatValue}}</div>
         </div>
       </div>
-
     </div>
-  </div>
+<!--  </div>-->
 </div>

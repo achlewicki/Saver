@@ -7,11 +7,11 @@ export interface CyclicModel {
   description: string;
   value: number;
   howOften: number;
-  nextDate: Date;
+  nextDate?: Date;
   subcategory?: SubcategoryModel;
   type?: number;
   intoAccount?: number;
-  endDate: Date;
+  // endDate: Date;
   summaryValue?: number; // suma kwot wszystkich operacji składających się na tą cykliczną opłatę
 }
 
