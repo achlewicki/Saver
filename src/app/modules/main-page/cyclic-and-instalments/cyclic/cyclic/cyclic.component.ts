@@ -31,7 +31,7 @@ export class CyclicComponent implements OnInit {
       this.cyclics = [];
       this.cyclicService.getAllCyclics(account.id).subscribe(returnedCyclics => {
         this.cyclics = returnedCyclics;
-        // this.cyclics.sort((a, b) => a.nextDate.getTime() - b.nextDate.getTime());
+        this.cyclics.sort((a, b) => a.nextDate.getTime() - b.nextDate.getTime());
       });
     });
   }
