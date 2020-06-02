@@ -7,7 +7,7 @@ export interface TemplateModel {
     description: string;
     type: number;
     value: number;
-    intoAccount: string;
+    intoAccount: number;
     subcategory?: SubcategoryModel;
     user?: UserModel;
 }

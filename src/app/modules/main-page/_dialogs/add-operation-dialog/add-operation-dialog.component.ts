@@ -128,7 +128,7 @@ export class AddOperationDialogComponent implements OnInit {
           type: value < 0 ? -1 : 1,
           value: value * (value < 0 ? -1 : 1),
           date: new Date(),
-          intoAccount: 'YES',
+          intoAccount: 1,
           subcategory: this.fGroup.get('subCategory').value,
           distinction: 'regular',
           guarantyDays: parseInt(this.fGroup.get('guarranty').value, 10) || 0
@@ -156,7 +156,7 @@ export class AddOperationDialogComponent implements OnInit {
           description: this.fGroup.get('description').value,
           type: value < 0 ? -1 : 1,
           value: value * (value < 0 ? -1 : 1),
-          intoAccount: 'YES',
+          intoAccount: 1,
           subcategory: this.fGroup.get('subCategory').value
         };
 
