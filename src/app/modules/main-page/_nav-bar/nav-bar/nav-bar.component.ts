@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { MainPageService } from '#services/main-page-service/main-page.service';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -7,22 +6,13 @@ import { MainPageService } from '#services/main-page-service/main-page.service';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent implements OnInit {
+export class NavBarComponent {
 
-  // protected accountName: string;
   protected isWide = true;
 
   protected toggleNavWidth(): void {
     this.isWide = !this.isWide;
   }
 
-  constructor(private mpservice: MainPageService) {
-  }
-
-  ngOnInit(): void {
-    // this.mpservice.activeAccount.subscribe(
-    //   (result) => this.accountName = result.name
-    // );
-  }
 }
 

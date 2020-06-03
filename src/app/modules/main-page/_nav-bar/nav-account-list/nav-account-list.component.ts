@@ -49,10 +49,6 @@ export class NavAccountListComponent implements OnInit {
           this.errorInfo = error;
         });
 
-    this.mpservice.accountDeleted.subscribe(
-      account => console.log(account)
-    );
-
     this.mpservice.activeAccount.subscribe(
       (result) => {
           this.account = result;

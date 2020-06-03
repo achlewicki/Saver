@@ -4,8 +4,6 @@ import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { CategoryModel} from '#models/category.model';
-import {LoginModel} from '#models/login.model';
-import {SubcategoryModel} from '#models/subcategory.model';
 import {CategoryAddModel} from '#models/categoryAdd.model';
 
 

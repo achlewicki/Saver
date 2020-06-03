@@ -107,7 +107,6 @@ export class AddOperationDialogComponent implements OnInit {
 
   protected submit(event): void {
     const button = event.submitter as HTMLElement;
-    console.log(button.id);
 
     if (this.fGroup.valid) {
       const operationEnd = () => {
@@ -141,9 +140,7 @@ export class AddOperationDialogComponent implements OnInit {
             this.closeDialog(true);
           },
           error => {
-            // TODO - Error Dialog
             // console.error(error);
-            // alert('Wystąpił błąd podczas dodawania oepracji: ' + error.error);
             this.errorInfo = 'Wystąpił błąd. Spróbuj ponownie';
             operationEnd();
           }

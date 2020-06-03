@@ -1,7 +1,7 @@
 import { EventService } from '#services/event-service/event.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventModel } from '#models/event.model';
-import { Component, Input, OnInit, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import { faChevronLeft, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -9,28 +9,16 @@ import { faChevronLeft, faCheck, faTimes } from '@fortawesome/free-solid-svg-ico
   templateUrl: './add-edit-event.component.html',
   styleUrls: ['./add-edit-event.component.scss']
 })
-export class AddEditEventComponent implements OnInit, OnChanges {
+export class AddEditEventComponent implements OnChanges {
 
-  @Input()
-  protected mode: 'add' | 'edit';
+  @Input() public mode: 'add' | 'edit';
+  @Input() public event: EventModel;
+  @Input() public date: Date;
+  @Input() public accountId: number;
 
-  @Input()
-  protected event: EventModel;
-
-  @Input()
-  protected date: Date;
-
-  @Input()
-  protected accountId: number;
-
-  @Output()
-  protected eventAdded = new EventEmitter<EventModel>();
-
-  @Output()
-  protected eventModified = new EventEmitter<EventModel>();
-
-  @Output()
-  protected cancelAndReturn = new EventEmitter<void>();
+  @Output() public eventAdded = new EventEmitter<EventModel>();
+  @Output() public eventModified = new EventEmitter<EventModel>();
+  @Output() public cancelAndReturn = new EventEmitter<void>();
 
   protected dateTo: Date;
   protected dateFrom: Date;
@@ -51,7 +39,7 @@ export class AddEditEventComponent implements OnInit, OnChanges {
     private readonly eventService: EventService
   ) { }
 
-  ngOnInit(): void {
+  ngOnChanges(): void {
     this.dateTo = this.date || new Date();
     this.dateFrom = this.date || new Date();
     this.color = '#0681f8';
@@ -129,10 +117,6 @@ export class AddEditEventComponent implements OnInit, OnChanges {
       }
     }
 
-  }
-
-  ngOnChanges(): void {
-    this.ngOnInit();
   }
 
   protected submit(): void {

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {config} from '#config/config';
-import {Observable, throwError} from 'rxjs';
-import {UserModel} from '#models/user.model';
-import {catchError} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { config } from '#config/config';
+import { Observable, throwError } from 'rxjs';
+import { UserModel } from '#models/user.model';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

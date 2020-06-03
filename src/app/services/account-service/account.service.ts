@@ -2,8 +2,8 @@ import { map } from 'rxjs/operators';
 import { AccountStatistics } from '#models/account.model';
 import { CurrencyModel } from '#models/currency.model';
 import { Injectable } from '@angular/core';
-import { Observable, throwError, forkJoin, of } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, forkJoin } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { config } from '#config/config';
 import { AccountModel } from '#models/account.model';
 
@@ -14,18 +14,12 @@ export class AccountService {
 
   private listAccountURL: string;
   private getFirstAccountURL: string;
-  private getAccountNameURL: string;
-  private createAccountURL: string;
-  private authHeader = {
-    headers: new HttpHeaders({ Authorization: 'Bearer' + localStorage.getItem('token') })
-  };
 
   constructor(
     private readonly http: HttpClient
   ) {
     this.listAccountURL = config.backendUrl + '/user/';
     this.getFirstAccountURL = config.backendUrl + '/user/';
-    this.getAccountNameURL = config.backendUrl + '/account/info/' + localStorage.getItem('user.id');
   }
 
   public listAccounts(userId: string): Observable<AccountModel[]> {
@@ -50,7 +44,7 @@ export class AccountService {
 
   public createAccount(account: AccountModel): Observable<AccountModel> {
     const url = config.backendUrl + '/account/add/' + localStorage.getItem('user.id') + '/' + account.currency.id;
-    return this.http.post<AccountModel>(url, account, this.authHeader);
+    return this.http.post<AccountModel>(url, account);
   }
 
   public editAccount(account: AccountModel): Observable<AccountModel> {

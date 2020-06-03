@@ -1,4 +1,4 @@
-import { AddOperationDialogComponent } from './../_dialogs/add-operation-dialog/add-operation-dialog.component';
+import { AddOperationDialogComponent } from '#dialogs/add-operation-dialog/add-operation-dialog.component';
 import { Component } from '@angular/core';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { MatDialog, MatSnackBar } from '@angular/material';

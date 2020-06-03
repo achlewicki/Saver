@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { AccountModel } from '#models/account.model';
 import { MainPageService } from '#services/main-page-service/main-page.service';
 
@@ -7,7 +7,7 @@ import { MainPageService } from '#services/main-page-service/main-page.service';
   templateUrl: './nav-account-item.component.html',
   styleUrls: ['./nav-account-item.component.scss']
 })
-export class NavAccountItemComponent implements OnInit {
+export class NavAccountItemComponent {
 
   @Input()
   account: AccountModel;
@@ -15,9 +15,6 @@ export class NavAccountItemComponent implements OnInit {
   constructor(
     private mpservice: MainPageService,
   ) { }
-
-  ngOnInit() {
-  }
 
   onAccountClicked() {
     this.mpservice.activeAccount.next(this.account);

@@ -13,11 +13,9 @@ import { SelectionModel } from '@angular/cdk/collections';
 })
 export class CategoryTreeComponent implements OnInit {
 
-  @Input()
-  protected categories: CategoryModel[];
+  @Input() public categories: CategoryModel[];
 
-  @Output()
-  public markedSubcategoriesChange = new EventEmitter<number[]>();
+  @Output() public markedSubcategoriesChange = new EventEmitter<number[]>();
 
   private markedSubcategories: number[] = [];
 

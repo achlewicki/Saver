@@ -1,9 +1,7 @@
-import { MainPageService } from '#services/main-page-service/main-page.service';
 import { MatDialog } from '@angular/material';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AccountModel } from '#models/account.model';
 import { AddAccountDialogComponent, AddAccountDialogType } from '#dialogs/add-account-dialog/add-account-dialog.component';
-import {NavAccountListComponent} from '#modules/main-page/_nav-bar/nav-account-list/nav-account-list.component';
 
 @Component({
   selector: 'svr-accounts-list',
@@ -23,8 +21,6 @@ export class AccountsListComponent {
 
   constructor(
     private readonly dialogs: MatDialog,
-    private readonly mainPageService: MainPageService,
-    private readonly navAccountListComponent: NavAccountListComponent,
   ) { }
 
   protected selectAccount(account: AccountModel) {

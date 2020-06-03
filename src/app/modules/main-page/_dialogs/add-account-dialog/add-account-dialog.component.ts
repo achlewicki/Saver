@@ -8,7 +8,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CurrencyModel } from '#models/currency.model';
-import {NavAccountListComponent} from '#modules/main-page/_nav-bar/nav-account-list/nav-account-list.component';
 
 
 @Component({
@@ -36,7 +35,6 @@ export class AddAccountDialogComponent implements OnInit {
     private readonly dialogRef: MatDialogRef<AddAccountDialogComponent, boolean>,
     private readonly accountService: AccountService,
     private readonly mainPageService: MainPageService,
-    private readonly navAccountListComponent: NavAccountListComponent,
   ) {
     this.fGroup = this.fb.group({
       name: ['', Validators.required],

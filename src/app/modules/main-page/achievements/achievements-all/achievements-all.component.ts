@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {UserAchievementModel} from '#models/userAchievement.model';
-import {AchievementsService} from '#services/achievements-service/achievements.service';
-import * as moment from 'moment';
-import {AchievementModel} from '#models/achievement.model';
+import { Component } from '@angular/core';
+import { UserAchievementModel } from '#models/userAchievement.model';
+import { AchievementsService } from '#services/achievements-service/achievements.service';
+import { AchievementModel } from '#models/achievement.model';
 
 @Component({
   selector: 'svr-achievements-all',
@@ -10,7 +9,7 @@ import {AchievementModel} from '#models/achievement.model';
   styleUrls: ['./achievements-all.component.scss', '../achievements-view/achievements-view.component.scss']
 })
 
-export class AchievementsAllComponent implements OnInit {
+export class AchievementsAllComponent {
   private activeIndex: number;
   private achievements: AchievementModel[];
 
@@ -46,6 +45,4 @@ export class AchievementsAllComponent implements OnInit {
       }
     );
   }
-
-   ngOnInit() {}
 }

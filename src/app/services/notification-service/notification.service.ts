@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {config} from '#config/config';
-import {NotificationModel} from '#models/notification.model';
-import {Observable, throwError} from 'rxjs';
-import {catchError} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { config } from '#config/config';
+import { NotificationModel } from '#models/notification.model';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

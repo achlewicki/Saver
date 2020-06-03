@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { config } from '#config/config';
 import { LoginModel } from '#models/login.model';
@@ -17,9 +17,6 @@ export class AuthorisationService {
   private loginURL: string;
   private registerURL: string;
   private tokenAuthorisationURL: string;
-  private httpHeader = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
 
   constructor(
     private readonly http: HttpClient
@@ -30,14 +27,14 @@ export class AuthorisationService {
   }
 
   public login(user: LoginModel): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(this.loginURL, user, this.httpHeader)
+    return this.http.post<LoginResponse>(this.loginURL, user)
       .pipe(
         catchError(this.handleLoginError)
       );
   }
 
   public register(newUser: RegisterModel): Observable<any> {
-    return this.http.post<any>(this.registerURL, newUser, this.httpHeader)
+    return this.http.post<any>(this.registerURL, newUser)
       .pipe(
         catchError(this.handleLoginError)
       );

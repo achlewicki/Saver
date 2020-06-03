@@ -1,5 +1,4 @@
 import { CategoryModel } from '#models/category.model';
-import { Observable } from 'rxjs';
 import { CategoryService } from '#services/category-service/category.service';
 import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { OperationFilters } from '#models/operations-filters.model';
@@ -38,9 +37,9 @@ export class OperationFiltersComponent implements OnInit {
     };
   }
 
-  updateSubcategoryArray(array: number[]) {
-    console.log(array);
-  }
+  // updateSubcategoryArray(array: number[]) {
+  //   console.log(array);
+  // }
 
   protected saveFilters(): void {
     const filters: OperationFilters = {
@@ -52,7 +51,6 @@ export class OperationFiltersComponent implements OnInit {
     if (this.opeartionTypes.regular) { filters.type.push('regular'); }
     if (this.opeartionTypes.cyclic) { filters.type.push('cyclic'); }
     if (this.opeartionTypes.instalment) { filters.type.push('instalment'); }
-    console.log(filters);
     this.filtersConfirmed.emit(filters);
   }
 }
