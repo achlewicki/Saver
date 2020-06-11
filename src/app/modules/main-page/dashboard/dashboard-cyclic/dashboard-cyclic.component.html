@@ -1,5 +1,5 @@
 <div fxLayout="column" fxLayoutGap="3px">
-  <div class="main-box"  fxLayout="row" fxLayoutGap="20px" *ngIf="cyclic">
+  <div class="main-box"  fxLayout="row" fxLayoutGap="20px" *ngIf="cyclic else noCyclic">
     <div class="cyclic-title" fxLayout="column" fxLayoutGap="5px" fxFlex="auto">
       <p class="mini-title">Najbliższa opłata operacji cyklicznej dla:</p>
       <p class="title t-16 primary">{{this.cyclic.title}}</p>
@@ -24,9 +24,9 @@
     </div>
   </div>
 
-  <hr>
+  <hr *ngIf="cyclic && selectedInstalment">
 
-  <div class="instalments-list-element" fxLayout="row" *ngIf="selectedInstalment">
+  <div class="instalments-list-element" fxLayout="row" *ngIf="selectedInstalment else noInstalment">
     <div fxFlex="auto" fxLayout="column" fxLayoutGap="5px">
       <p class="mini-title">Najbliższa spłata raty dla kredytu:</p>
       <p class="title t-16 primary">{{ selectedInstalment.title }}</p>
@@ -47,3 +47,10 @@
   </div>
 </div>
 
+<ng-template #noCyclic>
+  <p class="no-data"> Brak operacji cyklicznej do wyświetlenia </p>
+</ng-template>
+
+<ng-template #noInstalment>
+  <p class="no-data"> Brak kredytu do wyświetlenia </p>
+</ng-template>
