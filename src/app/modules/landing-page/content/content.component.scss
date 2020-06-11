@@ -3,6 +3,8 @@
 }
 .main-logo{
   margin-right: 100px;
+  height: 350px;
+  width: 350px;
 }
 
 .light{
@@ -19,6 +21,7 @@
 .title-content{
   font-size: 32px;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .text-content{
@@ -26,6 +29,20 @@
   font-size: 18px;
   line-height: 1.6;
   width: 400px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.margin-right-100 {
+  margin-right: 100px;
+}
+
+.margin-top-50 {
+  margin-top: 50px;
+}
+
+.margin-top-30 {
+  margin-top: 30px;
 }
 
 .register-button{
@@ -89,7 +106,7 @@
   font-size: 18px;
   line-height: 1.6;
   width: 400px;
-  text-align: center;
+  text-align: justify;
   margin-left: 10px;
   margin-right: 10px;
 }
@@ -104,17 +121,7 @@
   margin-right: 10px;
 }
 
-footer {
-  height: 10em;
-  background-color: rgba(0,0,0,0.1);
-  color: #c7d1f1;
-  text-align: center;
 
-  p {
-    padding: 10px;
-  }
-
-}
 
 .canvas{
   width: 800px;
@@ -138,7 +145,24 @@ footer {
 a{
   text-decoration: none;
 }
-//footer{
-//  position: absolute;
-//  bottom: 0;
-//}
+
+.mobile {
+  width: 320px;
+  height: 320px;
+}
+
+.achievement {
+  height: 130px;
+  width: 130px;
+}
+
+.trophy {
+  height: 320px;
+  width: 320px;
+}
+
+.image-info {
+  height: 200px;
+  width: 360px;
+}
+
