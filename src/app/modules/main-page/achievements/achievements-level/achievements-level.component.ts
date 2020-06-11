@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AchievementsService} from '#services/achievements-service/achievements.service';
-import {UserModel} from '#models/user.model';
+import { AchievementsService } from '#services/achievements-service/achievements.service';
+import { UserModel } from '#models/user.model';
 
 @Component({
   selector: 'svr-achievements-level',

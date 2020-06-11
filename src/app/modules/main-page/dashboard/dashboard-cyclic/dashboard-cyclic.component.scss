@@ -1,0 +1,77 @@
+@import 'app-boxes', 'app-text', 'app-colors', 'mixins';
+
+.main-box {
+  padding: 5px 5px;
+}
+
+.title {
+  font-size: 18px;
+}
+
+.category-chip {
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+
+  .chip-background {
+    opacity: 0.2;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .chip-text {
+    padding: 8px 12px;
+  }
+}
+
+.income {
+  color: $income-color;
+}
+
+.outcome {
+  color: $outcome-color;
+}
+
+.next-cyclic-text {
+  margin-left: 15px;
+}
+
+.next-cyclic-date {
+  //margin-top: 5px;
+  margin-left: 25px;
+}
+
+.mini-title {
+  font-size: 12px;
+  font-style: italic;
+}
+
+.instalments-list-element {
+  margin-top: 5px;
+  margin-left: 5px;
+  padding: 0;
+}
+
+.date-title {
+  font-size: 12px;
+}
+
+.values {
+  font-size: 16px;
+  color: #ff0000;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  justify-content: flex-end;
+  font-weight: bold;
+}
+
+hr {
+  width: 95%;
+  color: #AAAAAA;
+  padding: 0;
+  margin: 0 2%;
+}

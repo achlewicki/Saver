@@ -34,6 +34,7 @@ export class AddOperationDialogComponent implements OnInit {
   protected lastOperations$: Observable<OperationModel[]>;
   protected account: AccountModel;
   protected pendingAddOperation: boolean;
+  protected errorInfo = '';
 
   protected emptySubcategory: SubcategoryModel = {
     id: 0,
@@ -59,7 +60,6 @@ export class AddOperationDialogComponent implements OnInit {
     });
 
     this.pendingAddOperation = false;
-
   }
 
   ngOnInit(): void {
@@ -75,8 +75,8 @@ export class AddOperationDialogComponent implements OnInit {
     this.categories$ = this.categoryService.getAllCategories();
   }
 
-  protected closeDialog() {
-    this.dialogRef.close();
+  protected closeDialog(result = false) {
+    this.dialogRef.close(result);
   }
 
   protected setOperationWithTempalte(template: TemplateModel): void {
@@ -107,7 +107,6 @@ export class AddOperationDialogComponent implements OnInit {
 
   protected submit(event): void {
     const button = event.submitter as HTMLElement;
-    console.log(button.id);
 
     if (this.fGroup.valid) {
       const operationEnd = () => {
@@ -128,24 +127,21 @@ export class AddOperationDialogComponent implements OnInit {
           type: value < 0 ? -1 : 1,
           value: value * (value < 0 ? -1 : 1),
           date: new Date(),
-          intoAccount: 'YES',
+          intoAccount: 1,
           subcategory: this.fGroup.get('subCategory').value,
           distinction: 'regular',
           guarantyDays: parseInt(this.fGroup.get('guarranty').value, 10) || 0
         };
         this.operationsService.addOperation(this.account.id, operation).subscribe(
           result => {
-            // TODO - Completed Dialog
-            console.log(result);
-            alert('Pomyślnie dodano operacje: ' + operation.title);
             operationEnd();
             this.mpService.operationAdded.next(result);
             this.mpService.refreshActiveAccount();
+            this.closeDialog(true);
           },
           error => {
-            // TODO - Error Dialog
-            console.error(error);
-            alert('Wystąpił błąd podczas dodawania oepracji: ' + error.error);
+            // console.error(error);
+            this.errorInfo = 'Wystąpił błąd. Spróbuj ponownie';
             operationEnd();
           }
         );
@@ -157,7 +153,7 @@ export class AddOperationDialogComponent implements OnInit {
           description: this.fGroup.get('description').value,
           type: value < 0 ? -1 : 1,
           value: value * (value < 0 ? -1 : 1),
-          intoAccount: 'YES',
+          intoAccount: 1,
           subcategory: this.fGroup.get('subCategory').value
         };
 

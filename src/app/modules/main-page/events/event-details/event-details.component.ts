@@ -24,6 +24,4 @@ export class EventDetailsComponent {
   protected deleteIcon = faTrashAlt;
   protected editIcon = faPen;
 
-  constructor() { }
-
 }

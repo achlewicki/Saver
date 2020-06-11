@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {config} from '#config/config';
-import {Observable, throwError} from 'rxjs';
-import {CategoryModel} from '#models/category.model';
-import {catchError} from 'rxjs/operators';
-import {SubcategoryModel} from '#models/subcategory.model';
-import {SubcategoryAddModel} from '#models/subcategoryAdd.model';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { config } from '#config/config';
+import { Observable, throwError } from 'rxjs';
+import { CategoryModel } from '#models/category.model';
+import { catchError } from 'rxjs/operators';
+import { SubcategoryModel } from '#models/subcategory.model';
+import { SubcategoryAddModel } from '#models/subcategoryAdd.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,7 +19,7 @@ export class SubcategoryService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  constructor( private readonly http: HttpClient) {
+  constructor(private readonly http: HttpClient) {
     // this.allSubcategoryURL = config.backendUrl + '/category/all/' + localStorage.getItem('user.id');
     this.addSubcategoryURL = config.backendUrl + '/subcategory/add/';
     // this.tokenAuthorisationURL = config.backendUrl + '/auth/verify-token';
@@ -31,7 +31,7 @@ export class SubcategoryService {
   }
 
   public addSubcategory(subcategoryAdd: SubcategoryAddModel, category: CategoryModel): Observable<SubcategoryModel> {
-    this.addSubcategoryURL =  config.backendUrl + '/subcategory/add/' + category.id;
+    this.addSubcategoryURL = config.backendUrl + '/subcategory/add/' + category.id;
     return this.http.post<SubcategoryModel>(this.addSubcategoryURL, subcategoryAdd, this.httpHeader);
   }
 
@@ -42,7 +42,7 @@ export class SubcategoryService {
   }
 
 
-// TODO
+  // TODO
   private handleError(error: HttpErrorResponse) {
     let message: string;
     if (error.error instanceof ErrorEvent) {

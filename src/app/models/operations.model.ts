@@ -7,7 +7,7 @@ export interface OperationModel {
     type: number;
     value: number;
     date: Date;
-    intoAccount: string;
+    intoAccount: number;
     guarantyDays?: number;
     distinction: string;
     file?: File;

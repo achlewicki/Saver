@@ -12,7 +12,7 @@
     <svr-instalments-list></svr-instalments-list>
   </ng-container>
   <ng-container *ngIf="addMode">
-    <svr-add-instalments (operationAdded)="true"></svr-add-instalments>
+    <svr-add-instalments (operationAdded)="addMode = false"></svr-add-instalments>
   </ng-container>
 
 </div>

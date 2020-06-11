@@ -6,7 +6,7 @@ import {Component, HostListener, Input, OnInit} from '@angular/core';
   styleUrls: ['./landing-nav-bar.component.scss']
 })
 export class LandingNavBarComponent implements OnInit {
-  private navColor = '#e8ebe9';
+  private navColor = '#FFFFFF';
   private inOrOut: string;
   private fontColor = '#000000';
 
@@ -19,7 +19,7 @@ export class LandingNavBarComponent implements OnInit {
       this.inOrOut = 'in';
       this.fontColor = '#FFFFFF';
     } else if (yPosition < 100) {
-      this.navColor = '#e8ebe9';
+      this.navColor = '#FFFFFF';
       this.inOrOut = 'out';
       this.fontColor = '#000000';
     }

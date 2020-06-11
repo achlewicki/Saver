@@ -1,42 +1,10 @@
 .container{
   width: 100%;
   overflow: hidden;
-  background-image: url("/assets/images/background-image-4.png");
-  background-size: 100% 100%;
 }
 
 
 svr-landing-nav-bar{
   background-color: #0681f8;
   border: 2px solid red;
-}
-
-footer {
-  bottom: 0;
-  height: 10em;
-  background-color: rgba(0,0,0,0.5);
-  color: #c7d1f1;
-  text-align: center;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-
-  p {
-    color: #d3d3d3;
-    font-size: 14px;
-    padding: 10px;
-  }
-
-  a, a:hover, a:active {
-    text-decoration: none;
-    color: whitesmoke;
-  }
-
-  button:hover {
-    cursor: pointer;
-    background-color: rgba(0,0,0,0.7);
-    color: whitesmoke;
-  }
-
-
 }

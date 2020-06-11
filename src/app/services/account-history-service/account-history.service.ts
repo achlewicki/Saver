@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { AccountHistoryModel } from '#models/account-history.model';
 import { Observable } from 'rxjs';
 import { config } from '#config/config';
@@ -8,16 +8,8 @@ import { config } from '#config/config';
   providedIn: 'root'
 })
 export class AccountHistoryService {
-  private accountHistoryURL: string;
-  private authHeader = {
-    headers: new HttpHeaders({ Authorization: 'Bearer' + localStorage.getItem('token') })
-  };
 
-  constructor(
-    private readonly http: HttpClient
-  ) {
-    this.accountHistoryURL = config.backendUrl + '/account-history/';
-  }
+  constructor(private readonly http: HttpClient) { }
 
   public getInfo(accountId: number, dateFrom: Date, dateTo: Date): Observable<AccountHistoryModel[]> {
     const dateFormatter = (date: Date): string => {

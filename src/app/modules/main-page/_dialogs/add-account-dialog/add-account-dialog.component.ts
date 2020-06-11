@@ -34,7 +34,7 @@ export class AddAccountDialogComponent implements OnInit {
     private readonly fb: FormBuilder,
     private readonly dialogRef: MatDialogRef<AddAccountDialogComponent, boolean>,
     private readonly accountService: AccountService,
-    private readonly mainPageService: MainPageService
+    private readonly mainPageService: MainPageService,
   ) {
     this.fGroup = this.fb.group({
       name: ['', Validators.required],

@@ -12,6 +12,7 @@ export class UserModel {
   experience: number;
   isActive: boolean;
   isPremium: boolean;
+  totalOperations: number;
 }
 
 export enum Sex {

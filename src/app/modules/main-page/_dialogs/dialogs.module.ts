@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { AccountIconModule } from '#shared/account-icon/account-icon.module';
 import { AppPipesModule } from '#shared/pipes/app-pipes.module';
 import { NgModule } from '@angular/core';
@@ -38,13 +39,12 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
 import { UserInfoDialogComponent } from './user-info-dialog/user-info-dialog.component';
 import { NotificationDialogComponent } from './notification-dialog/notification-dialog.component';
 import { NotificationItemComponent } from './notification-dialog/notification-item/notification-item.component';
-import { AddEditEventDialogComponent } from './add-edit-event-dialog/add-edit-event-dialog.component';
 import { ProcessDialogComponent } from './process-dialog/process-dialog.component';
 import { EditCategoryComponent } from './edit-category/edit-category.component';
 
 import { accountIconsPack } from './add-account-dialog/account-icons';
 import { ColorPickerModule } from 'ngx-color-picker';
-import {AddCyclicDialogComponent} from '#dialogs/add-cyclic-dialog/add-cyclic-dialog.component';
+import { AddCyclicDialogComponent } from '#dialogs/add-cyclic-dialog/add-cyclic-dialog.component';
 
 const matModules = [
   MatButtonModule,
@@ -64,7 +64,6 @@ export const dialogs = [
   UserInfoDialogComponent,
   NotificationDialogComponent,
   EditCategoryComponent,
-  AddEditEventDialogComponent,
   AddCyclicDialogComponent
 ];
 
@@ -82,7 +81,8 @@ export const dialogs = [
     AppPipesModule,
     AccountIconModule,
     ...matModules,
-    MatDatepickerModule
+    MatDatepickerModule,
+    RouterModule
   ],
   exports: [
     ...dialogs

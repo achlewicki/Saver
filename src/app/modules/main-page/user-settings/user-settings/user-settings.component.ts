@@ -4,6 +4,8 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {SettingService} from '#services/setting-service/setting.service';
 import {EmailModel, InfoModel, PasswordModel} from '#models/setting.model';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import {UserInfoService} from '#services/user-info-service/user-info.service';
+import { UserModel} from '#models/user.model';
 
 @Component({
   selector: 'svr-user-settings',
@@ -11,6 +13,23 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./user-settings.component.scss', './user-settings-stylesheet.component.scss']
 })
 export class UserSettingsComponent implements OnInit {
+
+  protected userInfo: UserModel = {
+    id: 0,
+    email: 'email',
+    nickname: 'nickname',
+    title: 'tytuł',
+    firstName: 'imię',
+    lastName: 'nazwisko',
+    birthDate: null,
+    sex: 0,
+    registerDate: null,
+    level: 1,
+    experience: 100,
+    isActive: true,
+    isPremium: true,
+    totalOperations: 0,
+  };
 
   protected userEmail: FormControl;
 
@@ -22,6 +41,7 @@ export class UserSettingsComponent implements OnInit {
   protected userLastName: FormControl;
   protected userBirthDate: FormControl;
   protected userNickname: FormControl;
+  protected sex: FormControl;
   protected userSex: number;
 
   protected error: boolean;
@@ -30,7 +50,8 @@ export class UserSettingsComponent implements OnInit {
   constructor(
     private readonly mainPageService: MainPageService,
     private readonly settingService: SettingService,
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly userInfoService: UserInfoService,
   ) {
     this.userEmail = new FormControl('', [Validators.required, Validators.email]);
     this.userNewPassword = new FormControl('',
@@ -38,15 +59,15 @@ export class UserSettingsComponent implements OnInit {
     this.userConfirmPassword = new FormControl('', [Validators.required]);
 
     this.userBirthDate = new FormControl(new Date());
-    this.userFirstName = new FormControl('');
-    this.userLastName = new FormControl('');
-    this.userBirthDate = new FormControl('');
-    this.userNickname = new FormControl('');
+    this.userFirstName = new FormControl('', [Validators.required]);
+    this.userLastName = new FormControl('', [Validators.required]);
+    this.userBirthDate = new FormControl('', [Validators.required]);
+    this.userNickname = new FormControl('', [Validators.required]);
     this.error = false;
     this.errorInfo = '';
 
     this.fGroup = this.fb.group({
-      sex: ['']
+      sex: ['M', [Validators.required]]
     });
   }
 
@@ -56,6 +77,14 @@ export class UserSettingsComponent implements OnInit {
       title: 'Ustawienia',
       icon: faCog
     });
+    this.userInfoService.getUserInfo(parseInt(localStorage.getItem('user.id'), 10))
+      .subscribe(
+        (response) => {
+          this.userInfo = response;
+        },
+        (error) => {
+          this.errorInfo = error;
+        });
   }
 
   SubmitEmailChange(): void {
@@ -65,16 +94,19 @@ export class UserSettingsComponent implements OnInit {
     this.settingService.changeEmail(email)
       .subscribe(
         (response) => {
-          console.log(response);
         },
         (error) => {
           this.error = true;
           this.errorInfo = error;
-          console.log(this.errorInfo);
         });
   }
 
   SubmitInfoChange(): void {
+    if (this.userFirstName.value === '') { this.userFirstName.setValue(this.userInfo.firstName); }
+    if (this.userLastName.value === '') { this.userLastName.setValue(this.userInfo.lastName); }
+    if (this.userBirthDate.value === '') { this.userBirthDate.setValue(this.userInfo.birthDate); }
+    if (this.userNickname.value === '') { this.userNickname.setValue(this.userInfo.nickname); }
+
     const userInfo: InfoModel = {
       firstName: this.userFirstName.value,
       lastName: this.userLastName.value,

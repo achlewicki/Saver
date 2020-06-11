@@ -8,10 +8,10 @@ import { DashboardOperationsComponent } from './dashboard-operations/dashboard-o
 import { DashboardEventComponent } from './dashboard-event/dashboard-event.component';
 import { DashboardCyclicComponent } from './dashboard-cyclic/dashboard-cyclic.component';
 import { DashboardAchievementsComponent } from './dashboard-achievements/dashboard-achievements.component';
-import {FlexLayoutModule} from '@angular/flex-layout';
-import {ChartsModule} from 'ng2-charts';
-import {AppPipesModule} from '#shared/pipes/app-pipes.module';
-import {FaIconLibrary, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ChartsModule } from 'ng2-charts';
+import { AppPipesModule } from '#shared/pipes/app-pipes.module';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
 

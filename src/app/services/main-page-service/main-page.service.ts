@@ -4,6 +4,8 @@ import { OperationModel } from '#models/operations.model';
 import { Injectable } from '@angular/core';
 import { ReplaySubject, Subject } from 'rxjs';
 import { AccountModel } from '#models/account.model';
+import { take } from 'rxjs/operators';
+
 
 
 @Injectable({
@@ -20,9 +22,10 @@ export class MainPageService {
   public operationAdded: Subject<OperationModel> = new Subject<OperationModel>();
   public accountAdded: Subject<AccountModel> = new Subject<AccountModel>();
   public accountChanged: Subject<AccountModel> = new Subject<AccountModel>();
+  public accountDeleted: Subject<AccountModel> = new Subject<AccountModel>();
 
   public refreshActiveAccount(): void {
-    this.activeAccount.subscribe(
+    this.activeAccount.pipe(take(1)).subscribe(
       activeAccount => {
         this.accountService.getAccountInfo(activeAccount.id).subscribe(
           account => this.activeAccount.next(account)

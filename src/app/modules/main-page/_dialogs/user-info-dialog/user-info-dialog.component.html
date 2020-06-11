@@ -6,7 +6,7 @@
     </div>
 
     <div class="user-info" fxLayout="column">
-      <p class="user-name">{{ userInfo?.firstName + ' ' + userInfo?.lastName }}</p>
+      <p class="user-name">{{imie + ' ' + nazwisko}}</p>
       <p class="user-register-date">{{ userInfo?.title }}</p>
     </div>
 
@@ -20,29 +20,29 @@
   <div class="bottom-div" fxLayoutAlign="center" fxLayout="column">
     <div class="box-container" fxLayout="row" fxLayoutAlign="stretch stretch">
       <div class="info-box" fxLayoutAlign="center center" fxLayout="column">
-        <p class="box-value">13</p>
+        <p class="box-value">{{userAchis}}</p>
         <p class="box-label">Achievements</p>
       </div>
       <div class="info-box" fxLayoutAlign="center center" fxLayout="column">
-        <p class="box-value">3</p>
+        <p class="box-value">{{accountsQuantity}}</p>
         <p class="box-label">Accounts</p>
       </div>
       <div class="info-box" fxLayoutAlign="center center" fxLayout="column">
-        <p class="box-value">254</p>
+        <p class="box-value">{{userInfo.totalOperations}}</p>
         <p class="box-label">Operations</p>
       </div>
       <div class="info-box" fxLayoutAlign="center center" fxLayout="column">
-        <p class="box-value">7</p>
+        <p class="box-value">{{userEvents}}</p>
         <p class="box-label">Events</p>
       </div>
     </div>
 
-    <div class="level-container"
+    <!--<div class="level-container"
          fxFlex="100%"
          fxLayoutAlign="center center">
       <p class="level-number">{{ userInfo?.level }}</p>
       <div class="level-bar" fxFlex="70%"></div>
       <p class="level-number">{{ userInfo?.level + 1 }}</p>
-    </div>
+    </div>-->
   </div>
 </div>

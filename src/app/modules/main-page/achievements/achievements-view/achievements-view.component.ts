@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MainPageService } from '#services/main-page-service/main-page.service';
 import { faAward } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,7 +7,7 @@ import { faAward } from '@fortawesome/free-solid-svg-icons';
   templateUrl: './achievements-view.component.html',
   styleUrls: ['./achievements-view.component.scss']
 })
-export class AchievementsViewComponent implements OnInit {
+export class AchievementsViewComponent {
 
   constructor(
     private readonly mpService: MainPageService,
@@ -17,9 +17,6 @@ export class AchievementsViewComponent implements OnInit {
       title: 'Osiągnięcia',
       icon: faAward
     });
-  }
-
-  ngOnInit() {
   }
 
 }

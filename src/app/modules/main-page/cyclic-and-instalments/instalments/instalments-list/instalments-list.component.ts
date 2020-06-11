@@ -12,13 +12,13 @@ import { InstalmentsService } from '#services/instalments-service/instalments.se
 })
 export class InstalmentsListComponent implements OnInit {
 
-  private account: AccountModel;
+  protected account: AccountModel;
   protected instalmentList$: Observable<InstalmentBasicModel[]>;
   protected selectedInstalment: InstalmentBasicModel;
 
   constructor(
     private readonly mainPageService: MainPageService,
-    private readonly instlamentsService: InstalmentsService
+    private readonly instalmentsService: InstalmentsService
   ) { }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class InstalmentsListComponent implements OnInit {
   }
 
   protected getInstalmentList(accountId: number): void {
-    this.instalmentList$ = this.instlamentsService.getInstalmentsByAccount(accountId);
+    this.instalmentList$ = this.instalmentsService.getInstalmentsByAccount(accountId);
   }
 
   protected instalmentsRemainingValueToPaid(instalments: InstalmentBasicModel[]): number {
@@ -39,12 +39,12 @@ export class InstalmentsListComponent implements OnInit {
 
     const paidValue = instalments.map(
       element => {
-        return element.paidValue;
+        return element.paidValue || 0;
       }
     ).reduce(
       (previous, current) => {
         return previous + current;
-      }
+      }, 0
     );
 
     return totalValue - paidValue;
@@ -53,12 +53,12 @@ export class InstalmentsListComponent implements OnInit {
   protected instalmentsTotalValue(instalments: InstalmentBasicModel[]): number {
     return instalments.map(
       element => {
-        return element.totalValue;
+        return element.totalValue || 0;
       }
     ).reduce(
       (previous, current) => {
         return previous + current;
-      }
+      }, 0
     );
   }
 

@@ -6,6 +6,7 @@
   </div>
   <div fxLayout="row"
        fxLayout.lt-md="column"
+       fxLayoutGap.lt-md="30px"
        fxLayoutAlign="center center">
     <svr-dashboard-report [account]="this.activeAccount" fxFlex="45%"></svr-dashboard-report>
     <svr-dashboard-operations [account]="this.activeAccount" fxFlex="50%"></svr-dashboard-operations>
@@ -13,6 +14,7 @@
   <div class="last-row"
        fxLayout="row"
        fxLayout.lt-md="column"
+       fxLayoutGap.lt-md="30px"
        fxLayoutAlign="center center">
     <svr-dashboard-event fxFlex="31%" [account]="this.activeAccount"></svr-dashboard-event>
     <svr-dashboard-cyclic fxFlex="31%"></svr-dashboard-cyclic>

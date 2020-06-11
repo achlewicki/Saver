@@ -1,4 +1,3 @@
-import { MainPageService } from '#services/main-page-service/main-page.service';
 import { MatDialog } from '@angular/material';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AccountModel } from '#models/account.model';
@@ -22,7 +21,6 @@ export class AccountsListComponent {
 
   constructor(
     private readonly dialogs: MatDialog,
-    private readonly mainPageService: MainPageService
   ) { }
 
   protected selectAccount(account: AccountModel) {

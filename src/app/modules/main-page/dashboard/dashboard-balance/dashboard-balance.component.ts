@@ -1,8 +1,8 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
-import {AccountModel} from '#models/account.model';
-import {Observable} from 'rxjs';
-import {AccountService} from '#services/account-service/account.service';
-import {MainPageService} from '#services/main-page-service/main-page.service';
+import { Component, Input, OnChanges } from '@angular/core';
+import { AccountModel } from '#models/account.model';
+import { Observable } from 'rxjs';
+import { AccountService } from '#services/account-service/account.service';
+import { MainPageService } from '#services/main-page-service/main-page.service';
 
 @Component({
   selector: 'svr-dashboard-balance',
@@ -22,7 +22,7 @@ export class DashboardBalanceComponent implements OnChanges {
     this.mpService.operationAdded.subscribe(() => {
       this.income$ = this.accountService.getIncomeOfAccount(this.account.id);
       this.expense$ = this.accountService.getExpenseOfAccount(this.account.id);
-    })
+    });
     this.income$ = this.accountService.getIncomeOfAccount(this.account.id);
     this.expense$ = this.accountService.getExpenseOfAccount(this.account.id);
   }

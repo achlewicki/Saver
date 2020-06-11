@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { config } from '#config/config';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {CyclicModel} from '#models/cyclic.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { CyclicModel } from '#models/cyclic.model';
 
 @Injectable({
   providedIn: 'root'

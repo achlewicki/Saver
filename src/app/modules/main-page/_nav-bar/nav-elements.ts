@@ -36,17 +36,17 @@ export const navElements: NavElement[] = [
         icon: 'award',
         url: '/main/achievements'
     },
+    // {
+    //   name: 'predictions',
+    //   title: 'Prognozy',
+    //   icon: 'search-dollar',
+    //   url: '/main/predictions'
+    // },
     {
-      name: 'predictions',
-      title: 'Prognozy',
-      icon: 'search-dollar',
-      url: '/main/predictions'
-    },
-    {
-      name: 'cyclic',
-      title: 'Raty i Cykliczne',
-      icon: 'hourglass-half',
-      url: '/main/cyclic'
+        name: 'cyclic',
+        title: 'Raty i Cykliczne',
+        icon: 'hourglass-half',
+        url: '/main/cyclic'
     }
 ];
 

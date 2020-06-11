@@ -1,11 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NotificationModel} from '#models/notification.model';
-import {NotificationService} from '#services/notification-service/notification.service';
-import {NotificationDialogComponent} from '#dialogs/notification-dialog/notification-dialog.component';
-import {AccountModel} from '#models/account.model';
-import {MainPageService} from '#services/main-page-service/main-page.service';
-import {OperationModel} from '#models/operations.model';
-import {OperationsService} from '#services/operations-service/operations.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { NotificationModel } from '#models/notification.model';
+import { NotificationService } from '#services/notification-service/notification.service';
+import { NotificationDialogComponent } from '#dialogs/notification-dialog/notification-dialog.component';
+import { AccountModel } from '#models/account.model';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+import { OperationModel } from '#models/operations.model';
+import { OperationsService } from '#services/operations-service/operations.service';
 
 @Component({
   selector: 'svr-notification-item',
@@ -27,7 +27,7 @@ export class NotificationItemComponent implements OnInit {
     private readonly notificationDialogComponent: NotificationDialogComponent,
     private readonly mainPageService: MainPageService,
     private readonly operationService: OperationsService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     switch (this.notification.type) {
@@ -79,7 +79,7 @@ export class NotificationItemComponent implements OnInit {
       type: value < 0 ? -1 : 1,
       value: value * (value < 0 ? -1 : 1),
       date: new Date(),
-      intoAccount: 'YES',
+      intoAccount: 1,
       subcategory: null,
       distinction: 'regular',
       event: this.notification.event.id.valueOf()

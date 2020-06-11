@@ -1,10 +1,5 @@
 @import 'mixins', 'material-restyle', 'app-text', 'app-colors', 'app-boxes';
 
-.charts-container{
-//  width: 94%;
-//  margin: 5px 3%;
-}
-
 .margin-left {
   margin-left: 40px;
 }
@@ -90,28 +85,18 @@
 }
 
 
-//@keyframes toFullscreen {
-//  from {
-//    right: 0;
-//    width: 45%;
-//    height: 45%;
-//  }
-//
-//  to {
-//    left: 0;
-//    width: 100%;
-//    height: 100%;
-//  }
-//}
-//
-//@keyframes fromFullscreen {
-//  from {
-//    width: 100%;
-//    height: 100%;
-//  }
-//
-//  to {
-//    width: 45%;
-//    height: 45%;
-//  }
-//}
+.info {
+  font-style: italic;
+  color: #AAAAAA;
+  font-size: 10px;
+  text-align: center;
+}
+
+.margins {
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.dates-form {
+  height: 70px;
+}

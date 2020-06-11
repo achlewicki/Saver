@@ -1,6 +1,4 @@
 import { SubcategoryModel } from '#models/subcategory.model';
-import { OperationModel } from '#models/operations.model';
-import { OperationsService } from '#services/operations-service/operations.service';
 import { AccountModel } from '#models/account.model';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -12,11 +10,8 @@ import { BasicErrorStateMatcher } from '#modules/shared/error-matchers/basic.err
 import { CategoryModel } from '#models/category.model';
 import { CategoryService } from '#services/category-service/category.service';
 import { MainPageService } from '#services/main-page-service/main-page.service';
-import { TemplateModel } from '#models/template.model';
-import { TemplateService } from '#services/template-service/template.service';
-import {AccountService} from '#services/account-service/account.service';
-import {CyclicModel} from '#models/cyclic.model';
-import {CyclicService} from '#services/cyclic/cyclic.service';
+import { CyclicModel } from '#models/cyclic.model';
+import { CyclicService } from '#services/cyclic/cyclic.service';
 
 @Component({
   selector: 'svr-add-operation-dialog',
@@ -56,7 +51,6 @@ export class AddCyclicDialogComponent implements OnInit {
     private readonly categoryService: CategoryService,
     private readonly mpService: MainPageService,
     private readonly cyclicService: CyclicService,
-    private readonly accountService: AccountService
   ) {
     this.fGroup = this.fb.group({
       title: ['', Validators.required],

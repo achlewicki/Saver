@@ -18,7 +18,7 @@ export class AccountsViewComponent implements OnInit {
 
   constructor(
     private readonly mpService: MainPageService,
-    private readonly accountService: AccountService
+    private readonly accountService: AccountService,
   ) { }
 
   ngOnInit(): void {

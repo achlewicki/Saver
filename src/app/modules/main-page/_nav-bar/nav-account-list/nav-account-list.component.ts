@@ -1,8 +1,8 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {AccountModel} from '#models/account.model';
-import {AccountService} from '#services/account-service/account.service';
-import {MainPageService} from '#services/main-page-service/main-page.service';
-import {Router} from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AccountModel } from '#models/account.model';
+import { AccountService } from '#services/account-service/account.service';
+import { MainPageService } from '#services/main-page-service/main-page.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'svr-nav-account-list',
@@ -26,6 +26,20 @@ export class NavAccountListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.mpservice.accountAdded.subscribe(
+      () => {
+        this.accountService.listAccounts(localStorage.getItem('user.id')).subscribe(
+          (response) => {
+            this.accounts = response;
+          }
+        );
+      }
+    );
+    this.mpservice.accountDeleted.subscribe(
+      account => {
+        this.accounts.splice(this.accounts.indexOf( account), 1);
+      }
+    );
     this.accountService.listAccounts(localStorage.getItem('user.id'))
       .subscribe(
         (response) => {
@@ -34,8 +48,11 @@ export class NavAccountListComponent implements OnInit {
         (error) => {
           this.errorInfo = error;
         });
+
     this.mpservice.activeAccount.subscribe(
-      (result) => this.account = result
+      (result) => {
+          this.account = result;
+        }
     );
   }
 

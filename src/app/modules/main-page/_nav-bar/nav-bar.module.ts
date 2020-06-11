@@ -36,11 +36,22 @@ import {
     FlexLayoutModule
   ],
   exports: [
-    NavBarComponent
+    NavBarComponent,
   ]
 })
 export class NavBarModule {
   constructor(faLibrary: FaIconLibrary) {
-    faLibrary.addIcons(faClipboard, faExchangeAlt, faList, faCalendarAlt, faChartBar, faAward, faChevronRight, faChevronDown, faHome, faHourglassHalf, faSearchDollar);
+    faLibrary.addIcons(
+      faClipboard,
+      faExchangeAlt,
+      faList,
+      faCalendarAlt,
+      faChartBar,
+      faAward,
+      faChevronRight,
+      faChevronDown,
+      faHome,
+      faHourglassHalf,
+      faSearchDollar);
   }
 }

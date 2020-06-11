@@ -27,23 +27,37 @@
             <fa-icon [icon]="coinsIcon"></fa-icon>
           </div>
           <div class="element-content summary">
-            <div class="element-label t-14 secondary">Wartość kredytu</div>
-            <div>
-              {{ (instalment.paidValue || -1) | formatValue:' ' }}
-              /
-              {{ instalment.totalValue | formatValue }}</div>
+            <div fxLayout="row" fxLayoutAlign="space-between">
+              <div fxLayout="column">
+                <div class="element-label t-14 secondary">Wartość kredytu</div>
+                <div>
+                  {{ (instalment.paidValue || 0) | formatValue:' ' }}
+                  /
+                  {{ instalment.totalValue | formatValue }}</div>
+              </div>
+              <div fxLayout="row" fxLayoutAlign="center center">
+                <div class="category-chip">
+                  <ng-container *ngIf="instalment.subcategory.id !== 0">
+                    <div class="chip-background" [style.background-color]="instalment.subcategory.color"></div>
+                    <div class="chip-text t-14">{{ instalment.subcategory.title }}</div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div class="details-element">
-          <div class="element-icon">
-            <fa-icon [icon]="timeIcon"></fa-icon>
+        <ng-container *ngIf="getNextPayment(instalment)?.date as nextDate">
+          <div class="details-element">
+            <div class="element-icon">
+              <fa-icon [icon]="timeIcon"></fa-icon>
+            </div>
+            <div class="element-content next-payment">
+              <div class="element-label t-14 secondary">Najbliższa płatność</div>
+              {{ nextDate | date:'dd.MM.yyyy' }}
+            </div>
           </div>
-          <div class="element-content next-payment">
-            <div class="element-label t-14 secondary">Najbliższa płatność</div>
-            {{ ( getNextPayment(instalment)?.date || placeholder ) | date:'dd.MM.yyyy' }}
-          </div>
-        </div>
+        </ng-container>
 
         <div class="instalment-dates-label t-14-b secondary">Raty</div>
         <div class="instalments">
@@ -65,7 +79,7 @@
           </ng-container>
         </div>
         <div class="cancel-instalment-button">
-          <button mat-stroked-button class="warn">Anuluj kredyt</button>
+          <button mat-stroked-button class="warn" (click)="removeInstalment(instalment)">Anuluj kredyt</button>
         </div>
       </div>
 
