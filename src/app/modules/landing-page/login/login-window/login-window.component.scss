@@ -43,7 +43,7 @@ $secondary-color: #01ca94;
   height: 0;
   border-style: solid;
   border-width: 180px 230px 0 0;
-  border-color: #6980fe transparent transparent transparent;
+  border-color: #2082e4 transparent transparent transparent;
 }
 
 .triangle-second {
@@ -55,7 +55,7 @@ $secondary-color: #01ca94;
   height: 0;
   border-style: solid;
   border-width: 130px 0 240px 140px;
-  border-color: transparent transparent transparent #90a1fd;
+  border-color: transparent transparent transparent #58a3ee;
 }
 
 
@@ -124,12 +124,15 @@ $secondary-color: #01ca94;
     }
 
     .forgot-password-label {
-      color: rgba(0, 0, 0, 0.6);
-      font-size: 14px;
-
       a {
+        font-size: 14px;
         display: inline;
         text-decoration: none;
+        color: #adbdda;
+      }
+
+      a:hover {
+        color: #5a83cf;
       }
 
       p {

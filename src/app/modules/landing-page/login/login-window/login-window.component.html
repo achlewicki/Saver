@@ -3,7 +3,7 @@
     <span class="triangle"></span>
     <span class="triangle-second"></span>
     <div class="login-form">
-      <h1> LOGIN </h1>
+      <h1> Logowanie </h1>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
         <mat-form-field>
@@ -11,14 +11,14 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput id="login-password" [type]="'password'" formControlName="password" placeholder="Password"
+          <input matInput id="login-password" [type]="'password'" formControlName="password" placeholder="Hasło"
             class="password-input">
         </mat-form-field>
 
         <button type="submit" mat-flat-button [disabled]="!this.loginForm.valid || this.loginChceckPending">
           <mat-progress-spinner *ngIf="this.loginChceckPending" [mode]="'indeterminate'" [diameter]="20"
             class="spinner"></mat-progress-spinner>
-          <p *ngIf="!this.loginChceckPending">Log in</p>
+          <p *ngIf="!this.loginChceckPending">Zaloguj</p>
         </button>
 
         <div class="error-info">
@@ -26,7 +26,7 @@
         </div>
 
         <div class="forgot-password-label">
-          <p> Forgot password?<a href="#"> Click here</a></p>
+          <p> <a href="#" class="forgot-password-link">Nie pamiętam hasła</a></p>
         </div>
       </form>
     </div>
