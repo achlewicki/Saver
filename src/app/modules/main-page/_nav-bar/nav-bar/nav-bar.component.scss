@@ -22,7 +22,7 @@ $nav-main-color: #0681f8;
 
 .logo-container {
   margin: 7px;
-  border-bottom: 1px solid $font-color;
+  border-bottom: 1px solid #50a8ff;
   height: 60px;
 
   display: flex;
@@ -67,7 +67,8 @@ $nav-main-color: #0681f8;
 
 
     //background-color: #248cf3;
-    background-color: #0681f8;;
+    background-color: #0681f8;
+    ;
     box-shadow: 6px 0px 10px 0 rgba(0, 0, 0, 0.15);
     color: $font-color;
     font-size: 30px;

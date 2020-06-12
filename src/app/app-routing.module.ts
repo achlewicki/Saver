@@ -12,6 +12,10 @@ const routes: Routes = [
   },
   {
     path: 'main',
+    redirectTo: 'app'
+  },
+  {
+    path: 'app',
     loadChildren: () => import('#modules/main-page/main-page.module').then(module => module.MainPageModule),
     canActivate: [AuthGuard],
     canActivateChild: [AuthGuard],

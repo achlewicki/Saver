@@ -47,6 +47,9 @@ export class OperationsViewComponent implements OnInit {
         this.refetchData();
       }
     );
+    this.mainPageService.operationAdded.subscribe(
+      () => this.refetchData()
+    );
   }
 
   protected toogleFiltersWindow(): void {

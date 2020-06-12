@@ -22,7 +22,7 @@ export class AccountDetailsComponent implements OnChanges {
   public account: AccountModel;
 
   @Input()
-  public canDelete: boolean;
+  public canDelete = false;
 
   @Output()
   public accountDeleted = new EventEmitter<AccountModel>();

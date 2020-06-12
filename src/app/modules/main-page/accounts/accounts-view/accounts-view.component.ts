@@ -33,9 +33,10 @@ export class AccountsViewComponent implements OnInit {
         this.selectedAccount = account;
       }
     );
-    this.getAccounts();
 
+    this.getAccounts();
     this.getNumberOfAccountsToCreate();
+
     this.mpService.accountAdded.subscribe(
       () => {
         this.getAccounts();
@@ -54,6 +55,9 @@ export class AccountsViewComponent implements OnInit {
 
   protected accountDeletedHandler(account: AccountModel): void {
     this.accounts = this.accounts.slice(this.accounts.indexOf(account), 1);
+    if (this.selectedAccount.id === account.id) {
+      this.mpService.activeAccount.next(this.accounts[0]);
+    }
     this.getAccounts();
     this.getNumberOfAccountsToCreate();
   }

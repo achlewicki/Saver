@@ -45,15 +45,15 @@ $account-selection-width: 175px;
 }
 
 .selection-button-active:hover {
-  box-shadow: 0 0px 16px 0 rgba(0,0,0,0.24), 0 17px 25px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 0px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 25px 0 rgba(0, 0, 0, 0.19);
 }
 
 .account-selection-list {
-  background: #0681f8;
+  // background: #0681f8;
   display: inline-block;
   align-items: center;
   align-content: center;
-  width: $account-selection-width + 60px;
+  // width: $account-selection-width + 60px;
   padding-top: 10px;
   border-radius: 15px;
   transition-duration: 0.4s;
@@ -62,7 +62,7 @@ $account-selection-width: 175px;
 .manageAccounts {
   cursor: pointer;
   text-align: right;
-  padding-top: 8px;
+  padding-top: 10px;
   padding-bottom: 5px;
   font-size: 12px;
   color: white;
@@ -78,8 +78,7 @@ $account-selection-width: 175px;
   transition-duration: 0.4s;
 }
 
-.dropdown-icon {
-}
+.dropdown-icon {}
 
 .account-icon-expanded {
   //margin-right: 35px;
@@ -89,4 +88,3 @@ $account-selection-width: 175px;
 .account-icon-short {
   transition-duration: 0.4s;
 }
-
