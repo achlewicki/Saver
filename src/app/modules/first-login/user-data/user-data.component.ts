@@ -31,10 +31,10 @@ export class UserDataComponent {
     const userInfo: InfoModel = {
       firstName: this.fGroup.get('firstname').value,
       lastName: this.fGroup.get('secondname').value,
-      birthDate: this.fGroup.get('birthday').value,
-      sex: parseInt(this.fGroup.get('sex').value, 10),
-      nickname: '',
+      birthDate: this.fGroup.get('birthday').value || null,
+      sex: parseInt(this.fGroup.get('sex').value, 10) || null
     };
+    console.log(userInfo);
     this.next.emit(userInfo);
   }
 

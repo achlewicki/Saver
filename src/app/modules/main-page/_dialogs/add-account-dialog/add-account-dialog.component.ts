@@ -70,42 +70,44 @@ export class AddAccountDialogComponent implements OnInit {
   }
 
   protected submit(): void {
-    this.dialogState = 'processing';
-    if (this.data.type === 'add') {
-      const account: AccountModel = {
-        name: this.fGroup.get('name').value,
-        color: this.color,
-        iconName: this.selectedIcon.iconName,
-        currency: this.fGroup.get('currency').value,
-        billingPeriodStart: parseInt(this.fGroup.get('billingPeriod').value, 10),
-      };
+    if (this.fGroup.valid) {
+      this.dialogState = 'processing';
+      if (this.data.type === 'add') {
+        const account: AccountModel = {
+          name: this.fGroup.get('name').value,
+          color: this.color,
+          iconName: this.selectedIcon.iconName,
+          currency: this.fGroup.get('currency').value,
+          billingPeriodStart: parseInt(this.fGroup.get('billingPeriod').value, 10),
+        };
 
-      this.accountService.createAccount(account).subscribe(
-        result => {
-          this.dialogState = 'success';
-          this.mainPageService.accountAdded.next(result);
-        },
-        err => {
-          this.dialogState = 'error';
-          console.log(err);
-        }
-      );
-    } else {
-      const account = this.data.account;
-      account.name = this.fGroup.get('name').value;
-      account.color = this.color;
-      account.iconName = this.selectedIcon.iconName;
+        this.accountService.createAccount(account).subscribe(
+          result => {
+            this.dialogState = 'success';
+            this.mainPageService.accountAdded.next(result);
+          },
+          err => {
+            this.dialogState = 'error';
+            console.log(err);
+          }
+        );
+      } else {
+        const account = this.data.account;
+        account.name = this.fGroup.get('name').value;
+        account.color = this.color;
+        account.iconName = this.selectedIcon.iconName;
 
-      this.accountService.editAccount(account).subscribe(
-        result => {
-          this.dialogState = 'success';
-          this.mainPageService.accountChanged.next(result);
-        },
-        err => {
-          this.dialogState = 'error';
-          console.log(err);
-        }
-      );
+        this.accountService.editAccount(account).subscribe(
+          result => {
+            this.dialogState = 'success';
+            this.mainPageService.accountChanged.next(result);
+          },
+          err => {
+            this.dialogState = 'error';
+            console.log(err);
+          }
+        );
+      }
     }
   }
 }

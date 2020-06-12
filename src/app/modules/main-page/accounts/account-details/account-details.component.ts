@@ -77,6 +77,7 @@ export class AccountDetailsComponent implements OnChanges {
       process: this.accountService.deleteAccount(account.id)
     };
     const processDialog = this.dialogs.open<ProcessDialogComponent, ProcessDialogData, any | null>(ProcessDialogComponent, {
+      disableClose: true,
       data: processDialogData
     });
     processDialog.afterClosed().subscribe(
