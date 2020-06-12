@@ -11,26 +11,28 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import {AppPipesModule} from '#shared/pipes/app-pipes.module';
 
 @NgModule({
   declarations: [
     CategoriesComponent
   ],
-  imports: [
-    CommonModule,
-    FlexLayoutModule,
-    RouterModule,
-    MatFormFieldModule,
-    MatAutocompleteModule,
-    ReactiveFormsModule,
-    MatAutocompleteModule,
-    MatInputModule,
-    FormsModule,
-    MatDividerModule,
-    MatButtonModule,
-    FontAwesomeModule,
-    MatIconModule
-  ],
+    imports: [
+        CommonModule,
+        FlexLayoutModule,
+        RouterModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule,
+        MatAutocompleteModule,
+        MatInputModule,
+        FormsModule,
+        MatDividerModule,
+        MatButtonModule,
+        FontAwesomeModule,
+        MatIconModule,
+        AppPipesModule
+    ],
   exports: [
     CategoriesComponent,
     FlexLayoutModule

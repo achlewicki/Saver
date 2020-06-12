@@ -12,5 +12,5 @@ export interface CyclicModel {
   type?: number;
   intoAccount?: number;
   // endDate: Date;
-  summaryValue?: number;
+  summaryValue?: number; // suma kwot wszystkich operacji składających się na tą cykliczną opłatę
 }

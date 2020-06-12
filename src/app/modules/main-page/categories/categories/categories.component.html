@@ -66,12 +66,8 @@
            *ngIf="isContaing(category.title)">
         <p class="category-name" fxLayoutAlign="center">{{category.title.toUpperCase()}}
           <fa-icon icon="cog" class="option-button" fxLayout size="1x" (click)="openEditCategoryDialog(i)"></fa-icon>
-          <!--<input alt="options"
-            class="option-button"
-            type="image"
-            (click)="openEditCategoryDialog(i)"
-            src="assets/images/option_icon.png" alt="options">-->
-          </p>
+        </p>
+        <p class="limit">Limit: {{category.limit | formatValue}}</p>
 
         <div class="subcategories-container"
              fxLayout="row wrap"
@@ -79,7 +75,6 @@
           <div class="subcategory"
                *ngFor="let subcategory of category.subcategories"
                [ngStyle]="{'border': '1px double ' + subcategory.color}"
-               fxFlex="21%"
                fxLayoutAlign="center">
             {{ subcategory.title }}
           </div>

@@ -1,5 +1,5 @@
 <div fxLayout="column">
-  <div [formGroup]="dateForm">
+  <div [formGroup]="dateForm" class="dates-form">
     <div class="dates" fxLayout="row" fxLayoutGap="20px" fxLayoutAlign="center">
       <mat-form-field appearance="outline"
                       class="mat-ff-no-border-hover mat-ff-fixed-padding mat-ff-no-bottom-padding" fxFlex="200px">
@@ -23,9 +23,9 @@
     </div>
   </div>
 
-  <div class="charts-container" fxLayoutGap="40px" fxLayout="column">
-    <div fxLayout="row" fxLayoutAlign="center" fxLayout.lt-md="column">
-
+  <div class="charts-container" fxLayout="column">
+    <p class="info">Dane na temat kategorii oraz stanu konta są aktulizowane codziennie po północy następnego dnia.</p>
+    <div fxLayout="row" class="margins" fxLayoutAlign="center" fxLayout.lt-md="column">
       <ng-container *ngIf="this.accountHistory; else loading">
         <svr-raport-main-chart [data]="this.accountHistory"
           [ngClass]="this.fullscreenChart === 'mainChart' ? 'fullscreen' : 'default'">
@@ -43,7 +43,7 @@
           [ngClass]="this.fullscreenChart === 'category' ? 'fullscreen' : 'default margin-left'">
         </svr-raport-category-chart>
         <fa-icon icon="expand-arrows-alt" size="2x" class="relative-position"
-                 *ngIf="this.fullscreenChart === 'none' && this.accountHistory[0].outcomes[0]"
+                 *ngIf="this.fullscreenChart === 'none' && this.accountHistory[0].outcomes.length > 0"
                  (click)="this.toggleChartOnFullscreen('category')"></fa-icon>
         <fa-icon icon="compress-arrows-alt" size="2x" class="absolute-position"
                  *ngIf="this.fullscreenChart === 'category'"
@@ -58,7 +58,7 @@
           [ngClass]="this.fullscreenChart === 'category2' ? 'fullscreen' : 'default'">
         </svr-raport-category2-chart>
         <fa-icon icon="expand-arrows-alt" size="2x" class="relative-position"
-                 *ngIf="this.fullscreenChart === 'none' && this.accountHistory[0].outcomes[0]"
+                 *ngIf="this.fullscreenChart === 'none' && this.accountHistory[0].outcomes.length > 0"
                  (click)="this.toggleChartOnFullscreen('category2')"></fa-icon>
         <fa-icon icon="compress-arrows-alt" size="2x" class="absolute-position"
                  *ngIf="this.fullscreenChart === 'category2'"

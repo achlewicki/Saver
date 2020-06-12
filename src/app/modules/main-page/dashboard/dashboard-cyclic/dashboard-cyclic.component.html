@@ -1,1 +1,56 @@
-<p>dashboard-cyclic works!</p>
+<div fxLayout="column" fxLayoutGap="3px">
+  <div class="main-box"  fxLayout="row" fxLayoutGap="20px" *ngIf="cyclic else noCyclic">
+    <div class="cyclic-title" fxLayout="column" fxLayoutGap="5px" fxFlex="auto">
+      <p class="mini-title">Najbliższa opłata operacji cyklicznej dla:</p>
+      <p class="title t-16 primary">{{this.cyclic.title}}</p>
+      <div fxLayout="column">
+        <div class="next-cyclic" fxLayout="row">
+          <div class="next-cyclic-icon">
+            <fa-icon [icon]="nextCyclicIcon"></fa-icon>
+          </div>
+          <div class="next-cyclic-text">Następny termin opłaty cyklicznej:</div>
+        </div>
+        <div class="next-cyclic-date t-14-l">{{this.cyclic.nextDate | date: 'dd-MM-yyyy'}}</div>
+      </div>
+    </div>
+    <div class="cyclic-category" fxLayoutAlign="center center">
+      <div class="category-chip">
+        <div class="chip-background" [style.background-color]="this.cyclic.subcategory.category.color"></div>
+        <div class="chip-text t-14">{{this.cyclic.subcategory.category.title}}</div>
+      </div>
+    </div>
+    <div class="h-18-b" fxLayoutAlign="center center" [ngClass]=" cyclic.type === 1 ? 'income' : 'outcome' ">
+      {{ this.cyclic.value * cyclic.type | formatValue}}
+    </div>
+  </div>
+
+  <hr *ngIf="cyclic && selectedInstalment">
+
+  <div class="instalments-list-element" fxLayout="row" *ngIf="selectedInstalment else noInstalment">
+    <div fxFlex="auto" fxLayout="column" fxLayoutGap="5px">
+      <p class="mini-title">Najbliższa spłata raty dla kredytu:</p>
+      <p class="title t-16 primary">{{ selectedInstalment.title }}</p>
+<!--      <div fxLayout="column">-->
+        <div class="next-cyclic" fxLayout="row">
+          <div class="next-cyclic-icon">
+            <fa-icon [icon]="nextCyclicIcon"></fa-icon>
+          </div>
+          <div class="next-cyclic-text">Następny termin spłaty raty:</div>
+        </div>
+        <div class="next-cyclic-date t-14-l">{{closestDate | date: 'dd-MM-yyyy'}}</div>
+<!--      </div>-->
+    </div>
+
+    <div class="h-18-b outcome" fxLayoutAlign="center center">
+      -{{element.value | formatValue}}
+    </div>
+  </div>
+</div>
+
+<ng-template #noCyclic>
+  <p class="no-data"> Brak operacji cyklicznej do wyświetlenia </p>
+</ng-template>
+
+<ng-template #noInstalment>
+  <p class="no-data"> Brak kredytu do wyświetlenia </p>
+</ng-template>

@@ -18,7 +18,7 @@ export class InstalmentsListComponent implements OnInit {
 
   constructor(
     private readonly mainPageService: MainPageService,
-    private readonly instlamentsService: InstalmentsService
+    private readonly instalmentsService: InstalmentsService
   ) { }
 
   ngOnInit() {
@@ -31,7 +31,7 @@ export class InstalmentsListComponent implements OnInit {
   }
 
   protected getInstalmentList(accountId: number): void {
-    this.instalmentList$ = this.instlamentsService.getInstalmentsByAccount(accountId);
+    this.instalmentList$ = this.instalmentsService.getInstalmentsByAccount(accountId);
   }
 
   protected instalmentsRemainingValueToPaid(instalments: InstalmentBasicModel[]): number {

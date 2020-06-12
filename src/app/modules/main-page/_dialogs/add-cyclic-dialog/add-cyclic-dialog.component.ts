@@ -28,7 +28,7 @@ export class AddCyclicDialogComponent implements OnInit {
     { number: 1, name: 'Codziennie' },
     { number: 3, name: 'Co 3 dni' },
     { number: 7, name: 'Co tydzień' },
-    { number: 14, name: 'Co 2 tygodnie' },
+    { number: 14, name: 'Co 2 tygodnie'},
     { number: 30, name: 'Co miesiąc' },
     { number: 90, name: 'Co 3 miesiące' }
   ];
@@ -105,7 +105,7 @@ export class AddCyclicDialogComponent implements OnInit {
         };
         console.log(howOftenOption);
 
-        this.cyclicService.addCyclic(this.account.id, subcategory.id, cyclic).subscribe(() => {
+        this.cyclicService.addCyclic(this.account.id, subcategory.id, cyclic).subscribe( () => {
           operationEnd();
           this.closeDialog(true);
         });

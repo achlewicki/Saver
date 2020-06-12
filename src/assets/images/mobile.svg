@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="453" height="330" viewBox="0 0 453 330">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="61" height="13" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect width="20" height="60" fill="none"/>
+    </clipPath>
+    <clipPath id="clip-path-3">
+      <rect width="33" height="86" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Urzadzenia" transform="translate(-622 -3034)">
+    <g id="Rectangle_5" data-name="Rectangle 5" transform="translate(622 3034)" fill="#f7f7f7" stroke="#707070" stroke-width="1">
+      <rect width="350" height="197" stroke="none"/>
+      <rect x="0.5" y="0.5" width="349" height="196" fill="none"/>
+    </g>
+    <g id="Rectangle_6" data-name="Rectangle 6" transform="translate(622 3034)" fill="#73baff" stroke="#707070" stroke-width="1">
+      <rect width="350" height="29" stroke="none"/>
+      <rect x="0.5" y="0.5" width="349" height="28" fill="none"/>
+    </g>
+    <g id="Repeat_Grid_1" data-name="Repeat Grid 1" transform="translate(640 3042)" clip-path="url(#clip-path)">
+      <g transform="translate(-640 -3042)">
+        <g id="Rectangle_7" data-name="Rectangle 7" transform="translate(640 3042)" fill="#00f37a" stroke="#707070" stroke-width="1">
+          <rect width="13" height="13" stroke="none"/>
+          <rect x="0.5" y="0.5" width="12" height="12" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-616 -3042)">
+        <g id="Rectangle_7-2" data-name="Rectangle 7" transform="translate(640 3042)" fill="#00f37a" stroke="#707070" stroke-width="1">
+          <rect width="13" height="13" stroke="none"/>
+          <rect x="0.5" y="0.5" width="12" height="12" fill="none"/>
+        </g>
+      </g>
+      <g transform="translate(-592 -3042)">
+        <g id="Rectangle_7-3" data-name="Rectangle 7" transform="translate(640 3042)" fill="#00f37a" stroke="#707070" stroke-width="1">
+          <rect width="13" height="13" stroke="none"/>
+          <rect x="0.5" y="0.5" width="12" height="12" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <g id="Rectangle_8" data-name="Rectangle 8" transform="translate(938 3121)" fill="#f7f7f7" stroke="#707070" stroke-width="1">
+      <rect width="137" height="243" rx="6" stroke="none"/>
+      <rect x="0.5" y="0.5" width="136" height="242" rx="5.5" fill="none"/>
+    </g>
+    <path id="Rectangle_9" data-name="Rectangle 9" d="M4,0H131a4,4,0,0,1,4,4V7a0,0,0,0,1,0,0H0A0,0,0,0,1,0,7V4A4,4,0,0,1,4,0Z" transform="translate(939 3122)" fill="#0681f8"/>
+    <rect id="Rectangle_10" data-name="Rectangle 10" width="135" height="30" transform="translate(939 3129)" fill="#7cbfff"/>
+    <g id="Rectangle_11" data-name="Rectangle 11" transform="translate(938 3354)" fill="#707070" stroke="#707070" stroke-width="1">
+      <path d="M0,0H137a0,0,0,0,1,0,0V5a5,5,0,0,1-5,5H5A5,5,0,0,1,0,5V0A0,0,0,0,1,0,0Z" stroke="none"/>
+      <path d="M1,.5H136a.5.5,0,0,1,.5.5V5A4.5,4.5,0,0,1,132,9.5H5A4.5,4.5,0,0,1,.5,5V1A.5.5,0,0,1,1,.5Z" fill="none"/>
+    </g>
+    <circle id="Ellipse_4" data-name="Ellipse 4" cx="10.5" cy="10.5" r="10.5" transform="translate(1039 3322)" fill="#32f694"/>
+    <g id="Repeat_Grid_2" data-name="Repeat Grid 2" transform="translate(955 3185)" clip-path="url(#clip-path-2)">
+      <g transform="translate(-955 -3185)">
+        <rect id="Rectangle_12" data-name="Rectangle 12" width="20" height="20" transform="translate(955 3185)" fill="#dadada"/>
+      </g>
+      <g transform="translate(-955 -3145)">
+        <rect id="Rectangle_12-2" data-name="Rectangle 12" width="20" height="20" transform="translate(955 3185)" fill="#dadada"/>
+      </g>
+    </g>
+    <rect id="Rectangle_13" data-name="Rectangle 13" width="60" height="4" transform="translate(984 3185)" fill="#c4c4c4"/>
+    <rect id="Rectangle_13-2" data-name="Rectangle 13" width="32" height="4" transform="translate(984 3193)" fill="#c4c4c4"/>
+    <rect id="Rectangle_14" data-name="Rectangle 14" width="60" height="4" transform="translate(984 3225)" fill="#c4c4c4"/>
+    <rect id="Rectangle_15" data-name="Rectangle 15" width="32" height="4" transform="translate(984 3233)" fill="#c4c4c4"/>
+    <g id="Repeat_Grid_3" data-name="Repeat Grid 3" transform="translate(654 3093)" clip-path="url(#clip-path-3)">
+      <g transform="translate(-654 -3093)">
+        <rect id="Rectangle_16" data-name="Rectangle 16" width="33" height="33" transform="translate(654 3093)" fill="#dadada"/>
+      </g>
+      <g transform="translate(-654 -3040)">
+        <rect id="Rectangle_16-2" data-name="Rectangle 16" width="33" height="33" transform="translate(654 3093)" fill="#dadada"/>
+      </g>
+    </g>
+    <rect id="Rectangle_17" data-name="Rectangle 17" width="96" height="6" transform="translate(700 3093)" fill="#c4c4c4"/>
+    <rect id="Rectangle_18" data-name="Rectangle 18" width="48" height="6" transform="translate(700 3106)" fill="#c4c4c4"/>
+    <rect id="Rectangle_19" data-name="Rectangle 19" width="96" height="6" transform="translate(700 3146)" fill="#c4c4c4"/>
+    <rect id="Rectangle_20" data-name="Rectangle 20" width="48" height="6" transform="translate(700 3159)" fill="#c4c4c4"/>
+  </g>
+</svg>

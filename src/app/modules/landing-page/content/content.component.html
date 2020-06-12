@@ -2,20 +2,21 @@
       fxLayout="column"
       fxLayoutGap="30px">
 <!--  Main content-->
-  <div class=""
+  <div class="main"
       fxLayout="row"
        fxLayoutAlign="center center"
        fxLayout.lt-md="column" >
   <!-- Logo-->
     <img class="main-logo"
-         src="assets/images/main_logo.png" alt="Saver Logo">
+         src="assets/images/man-with-money.svg" alt="Saver Logo">
     <!-- Text -->
     <div class="main-content"
       fxLayout="column">
-      <h1 class="title-content">Oszczędzaj z Saver!</h1>
-      <p class="text-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-      labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-      ex ea commodo consequat.</p>
+      <h1 class="title-content margin-right-100">Oszczędzaj z Saver'em!</h1>
+      <p class="text-content">Ciągle brakuje Ci pieniędzy? Masz już dosyć pożyczania ich? Nie lubisz liczyć swoich wydatków
+      i przychodów? Saver Ci pomoże! Saver to aplikacja, która pozwoli zaoszczedzić czas i pieniądze.
+      Saver liczy, analizuje, dba o limity i przypomina Ci o najważniejszych wydarzeniach! Nie czekaj aż będziesz pod przysłowiową "kreską".
+      Zarejestruj się już dziś i zacznij oszczędzać z Saver'em!</p>
       <button mat-raised-button class="register-button" type="submit">
         <a routerLink="/register" routerLinkActive="active">Załóż konto w Saver</a>
       </button>
@@ -33,37 +34,33 @@
       <!--First info -->
       <div fxLayout="row"
            fxLayout.lt-md="column">
-        <p class="app-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.
+        <p class="app-content margin-top-50">Bez zbędnego szukania i straty czasu. Przejrzysty dashboard pozwoli Ci szybko uzyskać
+          najważniejsze informacje dotyczące twojego konta.
         </p>
-        <img src="assets/images/ss1.png" alt="ss1">
+        <img class="image-info margin-bottom" src="assets/images/dashboard.svg" alt="ss1">
       </div>
       <!--Second info -->
       <div fxLayout="row"
            fxLayout.lt-md="column">
-        <img src="assets/images/ss1.png" alt="ss1">
-        <p class="app-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.
+        <img class="image-info" src="assets/images/new_operation.svg" alt="ss1">
+        <p class="app-content margin-top-50">Dodawaj swoje wydatki szybko i wygodnie. Nie martw się długim uzupełnianiem, Saver zrobi
+          większość za Ciebie. Podaj mu tylko kwotę i tytuł a on zajmnie się resztą.
         </p>
       </div>
       <!--Third info -->
       <div fxLayout="row"
            fxLayout.lt-md="column">
-        <p class="app-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.
+        <p class="app-content margin-top-50">Kategoryzuj swoje wydatki. W ten sposób będziesz wiedział na co idą Twoje pieniądze. Oprócz
+          tego Saver przedstawi Ci ich analizę.
         </p>
-        <img src="assets/images/ss1.png" alt="ss1">
+        <img class="image-info" src="assets/images/categories.svg" alt="ss1">
       </div>
       <!--Fourth info -->
       <div fxLayout="row"
            fxLayout.lt-md="column">
-        <img src="assets/images/ss1.png" alt="ss1">
-        <p class="app-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.
+        <img class="image-info" src="assets/images/calendar.svg" alt="ss1">
+        <p class="app-content margin-top-30">Zbliżają się urodziny bliskiej Ci osoby? Dodaj przypomnienie w aplikacji
+          a nie zapomnisz o dodaniu wydatku. Masz kredyt, płacisz rachunki cykliczne? Nie ma problemu, Saver o wszystkim Ci przypomni!
         </p>
       </div>
     </div>
@@ -87,25 +84,13 @@
           [chartType]="chartType1">
         </canvas>
       </div>
-
-<!--      <div class="canvas">-->
-<!--        <canvas-->
-<!--          baseChart-->
-<!--          [datasets]="chartData2"-->
-<!--          [labels]="chartLabel"-->
-<!--          [options]="chartOptions2"-->
-<!--          legend="true"-->
-<!--          [chartType]="chartType2">-->
-<!--        </canvas>-->
-<!--      </div>-->
     </div>
     <!-- Chart info -->
     <div class="canvas-text"
          fxLayout="column">
       <h1 class="title-content">Analiza twoich wydatków i przychodów!</h1>
-      <p class="text-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat.
+      <p class="text-content">Saver przedstawi twoją historię konta w przejrzysty sposób. Koniec ze stratą czasu na liczenie
+        tych wszystkich cyferek. Ale to nie wszsytko co Saver ma do zaoferowania pod kątem analizy.
       </p>
     </div>
   </div>
@@ -119,18 +104,18 @@
          fxLayout.lt-md="column"
          fxLayoutAlign="center"
          fxLayoutGap="30px">
-      <img src="assets/images/ss1.png" alt="ss1">
+      <img src="assets/images/trophy.svg" class="trophy" alt="ss1">
       <div fxLayout="column"
            fxLayoutGap="30px">
-        <p class="app-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-          ex ea commodo consequat.
+        <h1 class="title-content">Osiągnięcia!</h1>
+        <p class="app-content">Ale jak to osiągnięcia? Dokładnie tak. Baw się dobrze i zdobywaj osiągniecia
+          podczas korzystania z Saver'a. Niektóre z nich są tylko dla elitarnych łowców ;)
         </p>
         <div fxLayout="row"
-             fxLayoutGap="50px">
-          <img src="" alt="ach1">
-          <img src="" alt="ach1">
-          <img src="" alt="ach1">
+             fxLayoutGap="20px">
+          <img src="assets/achievements/13.svg" class="achievement" alt="ach13">
+          <img src="assets/achievements/14.svg" class="achievement" alt="ach14">
+          <img src="assets/achievements/15.svg" class="achievement" alt="ach15">
         </div>
       </div>
     </div>
@@ -144,36 +129,35 @@
        fxLayoutGap="30px">
     <div fxLayout="column"
          fxLayoutGap="30px">
-      <h1 class="title-content">Także na smartfony!</h1>
-      <p class="text-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-        ex ea commodo consequat.
+      <h1 class="title-content">Saver także w wersji mobilnej!</h1>
+      <p class="text-content">Nie ma cię w domu, ale chcesz szybko dodać operację? Bez obaw. Dzięki
+        mobilnej wersji dodasz nie tylko operacje, ale także sprawdzić podstawowe informacje o swoim koncie. <a href="assets/test123.txt" download>CLICK</a>
       </p>
     </div>
-    <img class="light" src="assets/images/ss1.png" alt="ss1">
+    <img class="mobile" src="assets/images/mobile.svg" alt="ss1">
   </div>
 
-<!--  Footer-->
+  <!--  Footer-->
   <footer fxLayout="row"
           fxFlex="100%"
           fxLayout.lt-md="column"
           fxLayoutAlign="center center">
-    <p>Zespoł #1 -<br> Programowanie Zespołowe<br> &copy; 2020</p>
-    <div fxLayout="column">
-      <button mat-button>
-        <a href="https://google.com" target="_blank">FAQ</a>
-      </button>
-    </div>
+    <p>Zespoł #1 - Programowanie Zespołowe<br> &copy; 2020</p>
+    <!--    <div fxLayout="column">-->
+    <!--      <button mat-button>-->
+    <!--        <a href="https://google.com" target="_blank">FAQ</a>-->
+    <!--      </button>-->
+    <!--    </div>-->
     <div fxLayout="column">
       <button mat-button>
         <a href="https://google.com" target="_blank">Kontakt</a>
       </button>
     </div>
-    <div fxLayout="column">
-      <button mat-button>
-        <a href="https://google.com" target="_blank">O projekcie</a>
-      </button>
-    </div>
+    <!--    <div fxLayout="column">-->
+    <!--      <button mat-button>-->
+    <!--        <a href="https://google.com" target="_blank">O projekcie</a>-->
+    <!--      </button>-->
+    <!--    </div>-->
     <div fxLayout="column">
       <button mat-button>
         <a href="https://aleks-2.mat.umk.pl/pz2019/zesp01" target="_blank">Strona zespołu</a>
