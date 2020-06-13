@@ -25,7 +25,8 @@
       </p>
     </div>
     <div class="details-button" fxFlex="60px">
-      <div class="icon-box" (click)="descriptionClick()">
+      <div class="icon-box" (click)="descriptionClick()"
+        *ngIf=" operation.description || operation.subcategory.id !== 0 || operation.file || operation.guarantyDays">
         <fa-icon [icon]="dropIcon"></fa-icon>
       </div>
     </div>

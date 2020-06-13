@@ -3,11 +3,11 @@
     <span class="triangle"></span>
     <span class="triangle-second"></span>
     <div class="login-form">
-      <h1> LOGIN </h1>
+      <h1> Logowanie </h1>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
         <mat-form-field>
-          <input matInput id="login-email" formControlName="email" placeholder="Email" class="login-input">
+          <input matInput id="login-emial" formControlName="email" placeholder="Email" class="login-input">
         </mat-form-field>
 
         <mat-form-field>
@@ -18,7 +18,7 @@
         <button type="submit" mat-flat-button [disabled]="!this.loginForm.valid || this.loginChceckPending">
           <mat-progress-spinner *ngIf="this.loginChceckPending" [mode]="'indeterminate'" [diameter]="20"
             class="spinner"></mat-progress-spinner>
-          <p *ngIf="!this.loginChceckPending">Zaloguj się</p>
+          <p *ngIf="!this.loginChceckPending">Zaloguj</p>
         </button>
 
         <div class="error-info">
@@ -26,7 +26,7 @@
         </div>
 
         <div class="forgot-password-label">
-          <p> Zapomniałeś/łaś hasła?<a href="#"> Kliknij tutaj</a></p>
+          <p> <a href="#" class="forgot-password-link">Nie pamiętam hasła</a></p>
         </div>
       </form>
     </div>

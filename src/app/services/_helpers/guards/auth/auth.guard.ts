@@ -41,11 +41,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   private async checkUser(redirectUrl?: string): Promise<boolean> {
     const redirect = () => this.router.navigate(['/login'], { queryParams: { redirectUrl } });
-    if (config.skipAuth) {
-      localStorage.setItem('token', config.adminAccount.token);
-      localStorage.setItem('user.id', config.adminAccount.user.id);
-      return true;
-    }
 
     if (!localStorage.getItem('token')) {
       redirect();

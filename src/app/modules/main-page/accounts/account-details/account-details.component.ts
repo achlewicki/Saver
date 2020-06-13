@@ -22,7 +22,7 @@ export class AccountDetailsComponent implements OnChanges {
   public account: AccountModel;
 
   @Input()
-  public canDelete: boolean;
+  public canDelete = false;
 
   @Output()
   public accountDeleted = new EventEmitter<AccountModel>();
@@ -77,6 +77,7 @@ export class AccountDetailsComponent implements OnChanges {
       process: this.accountService.deleteAccount(account.id)
     };
     const processDialog = this.dialogs.open<ProcessDialogComponent, ProcessDialogData, any | null>(ProcessDialogComponent, {
+      disableClose: true,
       data: processDialogData
     });
     processDialog.afterClosed().subscribe(

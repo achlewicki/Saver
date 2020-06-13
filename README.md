@@ -1,27 +1,44 @@
-# Projekt
+# Saver
+## Aplikacja web
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+Saver jest aplikacją przeznaczoną dla szerokiego grona osób chcących zapisywać, zarządzać i planować swoje wpływy i wydatki. 
 
-## Development server
+## Wymagania
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### 1. Node.js
 
-## Code scaffolding
+Do działania aplikacji wymagane jest środowisko Node.js.
+Instalator dostępny jest na oficjalnej stronie Node.js - [nodejs.org](https://nodejs.org). 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### 2. Angular CLI
 
-## Build
+Do pracy z aplikacją i wykonywanie operacji takich jak: modyfikacja, uruchomienie w trybie developerskim, utworzenie wersji produkcyjnej - wymagane jest użycie `Angular CLI`.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Aby zainstalować `Angular CLI` globalnie, użyj menadżera paczek `npm` wpisując w terminalu następującą komendę: 
 
-## Running unit tests
+```
+npm install -g @angular/cli
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+> `npm package manager` jest domyślnie instalowany wraz ze środowiskiem Node.js.
 
-## Running end-to-end tests
+## Uruchomienie
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`Angular CLI` umożlia uruchomienie aplikacji jako lokalny serwer.
 
-## Further help
+Aby uruchomić aplikację przejdź do folderu głównego i wpisz w terminalu następującą komendę:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```
+ng serve --open
+```
+
+> Opcja `--open` automatycznie uruchomi przeglądarkę z domyślnym adresem.
+> W przeciwnym wypadku ręcznie uruchom przeglądarkę i przejdź do adresu http://localhost:4200/.
+
+## Konfiguracja
+
+Do poprawnego działania aplikacji wymagane jest połączenie z serwerem API aplikacji Saver.
+
+Domyślnym adresem serwera backend jest `http://localhost:3000`.
+
+Aby to zmienić przejdź do folderu `src/config`, a następnie w pliku [config.ts](/src/config/config.ts) zmień wartość pola `backendUrl` na docelowy adres.

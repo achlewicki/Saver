@@ -1,3 +1,4 @@
+import { EventService } from '#services/event-service/event.service';
 import { Router } from '@angular/router';
 import { SettingService } from '#services/setting-service/setting.service';
 import { AccountService } from '#services/account-service/account.service';
@@ -22,6 +23,7 @@ export class FirstLoginCoreComponent {
   constructor(
     private readonly accoutService: AccountService,
     private readonly userSettingsService: SettingService,
+    private readonly eventService: EventService,
     private readonly router: Router
   ) { }
 
@@ -34,7 +36,15 @@ export class FirstLoginCoreComponent {
     );
     completeRequest$.subscribe(
       () => {
-        this.completeRequestState = 'completed';
+        if (this.userData && this.userData.birthDate) {
+          this.eventService.createBirthdayEvent().subscribe(
+            () => {
+              this.completeRequestState = 'completed';
+            }
+          );
+        } else {
+          this.completeRequestState = 'completed';
+        }
       },
       error => {
         this.completeRequestState = 'error';

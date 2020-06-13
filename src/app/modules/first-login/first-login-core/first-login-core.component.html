@@ -81,7 +81,12 @@
               swój budżet z SAVER.</p>
           </div>
           <div class="step-footer">
-            <button mat-raised-button color="primary" (click)="goToMainApp()">Przejdź do aplikacji</button>
+            <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+              <button mat-raised-button color="primary" #finishButton
+                (click)="goToMainApp(); finishButton.disabled = true;">Przejdź do aplikacji</button>
+              <mat-progress-spinner *ngIf="finishButton.disabled === true" [mode]="'indeterminate'" [diameter]="30">
+              </mat-progress-spinner>
+            </div>
           </div>
         </ng-container>
         <ng-container *ngSwitchCase="'error'">

@@ -42,4 +42,9 @@ export class EventService {
     const url = config.backendUrl + '/event/last/' + accountId;
     return this.http.get<EventModel>(url);
   }
+
+  public createBirthdayEvent(): Observable<void> {
+    const url = config.backendUrl + '/event/create/onregister';
+    return this.http.get<void>(url);
+  }
 }

@@ -33,11 +33,12 @@ export class AccountsViewComponent implements OnInit {
         this.selectedAccount = account;
       }
     );
-    this.getAccounts();
 
+    this.getAccounts();
     this.getNumberOfAccountsToCreate();
+
     this.mpService.accountAdded.subscribe(
-      () => {
+      account => {
         this.getAccounts();
         this.getNumberOfAccountsToCreate();
       }
@@ -53,7 +54,11 @@ export class AccountsViewComponent implements OnInit {
   }
 
   protected accountDeletedHandler(account: AccountModel): void {
-    this.accounts = this.accounts.slice(this.accounts.indexOf(account), 1);
+    this.accounts.splice(this.accounts.findIndex(element => element.id === account.id), 1);
+    if (this.selectedAccount.id === account.id) {
+      const newActiveAccount = this.accounts.find(element => account.id !== element.id);
+      this.mpService.activeAccount.next(newActiveAccount);
+    }
     this.getAccounts();
     this.getNumberOfAccountsToCreate();
   }

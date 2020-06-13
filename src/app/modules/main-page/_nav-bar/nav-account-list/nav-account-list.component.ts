@@ -37,7 +37,7 @@ export class NavAccountListComponent implements OnInit {
     );
     this.mpservice.accountDeleted.subscribe(
       account => {
-        this.accounts.splice(this.accounts.indexOf( account), 1);
+        this.accounts.splice(this.accounts.findIndex(element => element.id === account.id), 1);
       }
     );
     this.accountService.listAccounts(localStorage.getItem('user.id'))
@@ -51,8 +51,8 @@ export class NavAccountListComponent implements OnInit {
 
     this.mpservice.activeAccount.subscribe(
       (result) => {
-          this.account = result;
-        }
+        this.account = result;
+      }
     );
   }
 
