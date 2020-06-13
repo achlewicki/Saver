@@ -1,39 +1,48 @@
+@import 'app-colors';
 $width: 550px;
 $height: 600px;
 
-//* {
-//  margin: 0;
-//  padding: 0;
-//}
+.register-form-window {
+  margin-top: 100px;
+}
 
-.container {
-  //box-shadow: 0px 0px 9px 9px rgba(0, 0, 0, 0.3);
-  background-color: white;
+.first-rectangle {
+  background-color: rgba(84, 176, 240, 0.7);
+  width: 30px;
+  height: 120px;
+  margin-top: -480px;
+  //margin-right: -80px;/
+  z-index: 2;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.second-rectangle {
+   background-color: rgba(0, 255, 128, 0.7);
+   width: 30px;
+   height: 100px;
+   margin-top: -500px;
+   margin-right: -60px;
+   z-index: 2;
+   border-bottom-right-radius: 100px;
+   border-bottom-left-radius: 100px;
+ }
+
+.register-form {
   flex-direction: column;
   justify-content: center;
   display: flex;
   height: $height;
   width: $width;
   align-items: center;
-  margin: 110px auto;
-  border: solid 1px #AAAAAA;
+  //margin-top: -($height/2) - 60px;
+  //margin-left: -($width/2);
+  box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  background-color: #ffffff;
+  position: relative;
 
-  // tymczasowo (routing)
-  //margin-top: 110px;
-
-  //padding-top: 10px;
   padding-bottom: 10px;
-
-  .title{
-    padding: 5px 0px 40px 0px;
-    font-family: 'Lato', sans-serif;
-    font-size: 32px;
-    //background-color: cornflowerblue;
-    width: 450px;
-    //margin-top: 0;
-    text-align: center;
-    //margin-bottom: 100px;
-  }
 
   mat-form-field {
     margin-top: 20px;
@@ -70,7 +79,6 @@ $height: 600px;
     background-color: white;
     color: gray;
     border: solid 2px lightgray;
-    //margin-top: 10px;
   }
 
   @keyframes login-button {

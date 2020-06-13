@@ -23,8 +23,9 @@ export class RegisterWindowComponent {
     private readonly router: Router
   ) {
     this.registerForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[#$@$!%*?&])[A-Za-z0-9\d$#@$!%*?&].{7,}')]],
+      email: ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
+      password: ['', [Validators.required,
+        Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[#$@$!%*?&])[A-Za-z0-9\d$#@$!%*?&].{7,}')]],
       password2: ['', [Validators.required]]
     }, { validator: this.checkPasswords });
     this.registerError = false;
@@ -41,14 +42,12 @@ export class RegisterWindowComponent {
         () => {
           this.errorInfo = '';
           this.router.navigateByUrl('/login');
-          console.log('Dodano użytkownika');
         },
         (error) => {
           this.registerError = true;
           this.errorInfo = error;
-          console.log(this.errorInfo);
+          this.checkMessage()
         });
-    this.checkMessage();
   }
 
   private checkPasswords(group: FormGroup) {
@@ -56,6 +55,6 @@ export class RegisterWindowComponent {
   }
 
   private checkMessage() {
-    if (this.errorInfo === 'Nieprawidłowy login lub hasło') this.errorInfo = 'Podany email jest już zarejestrowany';
+    if (this.errorInfo === 'Nieprawidłowy login lub hasło') { this.errorInfo = 'Podany email jest już zarejestrowany'; }
   }
 }
