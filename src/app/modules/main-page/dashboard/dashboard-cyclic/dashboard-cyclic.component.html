@@ -26,7 +26,7 @@
 
   <hr *ngIf="cyclic && selectedInstalment">
 
-  <div class="instalments-list-element" fxLayout="row" *ngIf="selectedInstalment else noInstalment">
+  <div class="instalments-list-element" fxLayout="row" *ngIf="selectedInstalment && !pendingValue else noInstalment">
     <div fxFlex="auto" fxLayout="column" fxLayoutGap="5px">
       <p class="mini-title">Najbliższa spłata raty dla kredytu:</p>
       <p class="title t-16 primary">{{ selectedInstalment.title }}</p>

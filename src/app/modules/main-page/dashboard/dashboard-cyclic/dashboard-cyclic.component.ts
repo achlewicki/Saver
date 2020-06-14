@@ -22,6 +22,7 @@ export class DashboardCyclicComponent implements OnInit {
   };
   protected nextCyclicIcon = faHourglassHalf;
   protected value = 0;
+  protected pendingValue = false;
 
   constructor(
     private readonly cyclicService: CyclicService,
@@ -30,7 +31,7 @@ export class DashboardCyclicComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.pendingValue = true;
+    this.pendingValue = true;
     this.mainPageService.activeAccount.subscribe(account => {
       this.cyclicService.getAllCyclics(account.id).subscribe(returnedCyclics => {
         returnedCyclics.sort((a, b) => a.nextDate.getTime() - b.nextDate.getTime());
@@ -47,10 +48,10 @@ export class DashboardCyclicComponent implements OnInit {
             if (this.element.date < this.closestDate) {
               this.selectedInstalment = singleInstalment;
               this.closestDate = this.element.date;
-              this.value = this.element.value
+              this.value = this.element.value;
             }
+            if (index === returnedInstalments.length - 1)  { this.pendingValue = false; }
           }));
-        // this.pendingValue = false;
       });
 
     });
