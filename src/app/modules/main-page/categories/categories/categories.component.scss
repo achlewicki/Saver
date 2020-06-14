@@ -1,6 +1,6 @@
 @import 'app-colors', 'app-text', 'material-restyle';
 
-.container {
+.register-form{
   //background: red;
   margin-top: 20px;
   flex-wrap: wrap;
@@ -42,7 +42,7 @@
   margin-right: 200px;
 }
 
-.control-panel {
+.control-panel{
   width: 100%;
   //background: blue;
   text-align: right;
@@ -51,7 +51,7 @@
   justify-content: right;
 }
 
-.category-container {
+.category-container{
   border-radius: 15px;
   //height: 100px;
   width: 400px;
@@ -64,7 +64,7 @@
   box-shadow: 0 2px 10px 5px rgba(0, 0, 0, 0.05);
 }
 
-.subcategories-container {
+.subcategories-container{
   margin-top: 10px;
   height: auto;
   flex-wrap: wrap;
@@ -72,7 +72,7 @@
   padding-right: 0;
 }
 
-.subcategory {
+.subcategory{
   height: auto;
   //padding: 2px 4px 2px 4px;
   margin-bottom: 5px;
@@ -86,7 +86,7 @@
   font-size: 12px;
 }
 
-.category-name {
+.category-name{
   //font-size: 32px;
   text-align: center;
   padding-top: 15px;
@@ -95,7 +95,7 @@
   font-weight: 300;
 }
 
-.option-button {
+.option-button{
   height: 25px;
   width: 25px;
   margin-right: 10px;
@@ -110,7 +110,7 @@
   cursor: pointer;
 }
 
-.add-category-button {
+.add-category-button{
   margin-left: 0;
 }
 
