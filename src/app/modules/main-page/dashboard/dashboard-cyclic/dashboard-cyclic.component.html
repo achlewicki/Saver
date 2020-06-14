@@ -41,8 +41,8 @@
 <!--      </div>-->
     </div>
 
-    <div class="h-18-b outcome" fxLayoutAlign="center center">
-      -{{element.value | formatValue}}
+    <div class="h-18-b outcome" fxLayoutAlign="center center" *ngIf="value">
+      -{{value | formatValue}}
     </div>
   </div>
 </div>
