@@ -34,6 +34,7 @@ export class UserDataComponent {
       birthDate: this.fGroup.get('birthday').value || null,
       sex: parseInt(this.fGroup.get('sex').value, 10) || null
     };
+    console.log(userInfo);
     this.next.emit(userInfo);
   }
 

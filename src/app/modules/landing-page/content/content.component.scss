@@ -1,33 +1,36 @@
-.container {
+.register-form{
   margin-top: 100px;
-  width: auto;
+  //background-image: url("/assets/images/background-image-4.png");
+  //background-size: 100% 100%;
 }
 
-
-.main-logo {
+.main {
+  //margin-top: 100px;
+}
+.main-logo{
   margin-right: 100px;
   height: 350px;
   width: 350px;
 }
 
-.light {
+.light{
   border: solid 2px red;
 }
 
-.main-content {
+.main-content{
   margin-left: 20px;
   width: 500px;
   font-family: 'Lato', sans-serif;
   margin-top: 100px;
 }
 
-.title-content {
+.title-content{
   font-size: 32px;
   margin-bottom: 10px;
   text-align: center;
 }
 
-.text-content {
+.text-content{
   margin-bottom: 20px;
   font-size: 18px;
   line-height: 1.6;
@@ -48,7 +51,7 @@
   margin-top: 30px;
 }
 
-.register-button {
+.register-button{
   background-color: #E8EFFF;
   color: black;
   border: solid 2px lightgray;
@@ -62,24 +65,18 @@
 }
 
 @keyframes register-button {
-  from {
-    border-color: lightgray;
-  }
-
-  to {
-    border-color: #264cff;
-  }
+  from {border-color: lightgray;}
+  to {border-color: #264cff;}
 }
 
-.register-button:hover {
+.register-button:hover{
   animation-name: register-button;
   animation-duration: 0.7s;
   border-color: #264cff;
   //z-index: 1;
 }
 
-.header,
-.achievements-header {
+.header, .achievements-header{
   background-color: #0681ff;
   min-height: 700px;
   margin-top: 130px;
@@ -89,30 +86,29 @@
   align-items: center;
 }
 
-.header {
+.header{
   transform: rotate(-5deg);
 }
 
-.achievements-header {
+.achievements-header{
   transform: rotate(5deg);
 }
 
-.app-container,
-.achievements-container {
+.app-container, .achievements-container{
   margin-top: 70px;
   margin-bottom: 70px;
   margin-left: -10%;
 }
 
-.app-container {
+.app-container{
   transform: rotate(5deg);
 }
 
-.achievements-container {
+.achievements-container{
   transform: rotate(-5deg);
 }
 
-.app-content {
+.app-content{
   font-size: 18px;
   line-height: 1.6;
   width: 400px;
@@ -121,38 +117,38 @@
   margin-right: 10px;
 }
 
-.app-screenshots {
+.app-screenshots{
   //transform: rotate(5deg);
   //margin-top: 200px;
   //margin-left: 150px;
 }
 
-.ss {
+.ss{
   margin-right: 10px;
 }
 
 
 
-.canvas {
+.canvas{
   width: 800px;
 }
 
-.canvas-container {
+.canvas-container{
   margin-top: 100px;
   //padding-left: 30%;
 }
 
-.canvas-text {
+.canvas-text{
   align-items: center;
   justify-content: center;
   margin-left: 10px;
 }
 
-.canvas-canvas {
+.canvas-canvas{
   align-items: center;
 }
 
-a {
+a{
   text-decoration: none;
 }
 
@@ -192,9 +188,7 @@ footer {
     padding: 10px;
   }
 
-  a,
-  a:hover,
-  a:active {
+  a, a:hover, a:active {
     text-decoration: none;
     color: whitesmoke;
   }
