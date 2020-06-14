@@ -1,9 +1,12 @@
 @import 'app-boxes';
-.register-form{
+
+.container {
   flex-wrap: wrap;
 }
 
-svr-achievements-all, svr-achievements-last, svr-achievements-level{
+svr-achievements-all,
+svr-achievements-last,
+svr-achievements-level {
   flex-wrap: wrap;
   overflow: hidden;
   margin: 30px 0 40px 40px;
@@ -11,12 +14,12 @@ svr-achievements-all, svr-achievements-last, svr-achievements-level{
   @extend .app-box
 }
 
-svr-achievements-all{
+svr-achievements-all {
   padding-bottom: 40px;
 }
 
 
-.label{
+.label {
   font-family: 'Lato', sans-serif;
   font-size: 34px;
   font-weight: bold;
