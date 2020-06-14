@@ -1,62 +1,70 @@
 <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-<div class="container">
-  <p class="title">Rejestracja</p>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <mat-form-field>
-      <input matInput class="email-input"  placeholder="Email"
-             formControlName="email"
-             [errorStateMatcher]="matcher" />
+<div class="register-form-window" fxLayout="row" fxLayoutAlign="center center">
+  <div class="first-rectangle"></div>
+  <div class="second-rectangle"></div>
+  <div class="register-form">
+    <h1>Rejestracja</h1>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput class="email-input"  placeholder="Email"
+               formControlName="email"
+               [errorStateMatcher]="matcher" />
 
-<!--      <mat-hint>Podaj email</mat-hint>-->
+        <mat-hint>Podaj email</mat-hint>
 
-      <mat-error *ngIf="this.registerForm.get('email').hasError('email') && !this.registerForm.get('email').hasError('required')">
-        Podaj swój email
-      </mat-error>
+        <mat-error *ngIf="this.registerForm.get('email').hasError('pattern') &&
+        !this.registerForm.get('email').hasError('required')">
+          Nieprawdłowy email. Email musi mieć postać np. jkowalski<strong>@</strong>gmail<strong>.pl</strong>
+        </mat-error>
 
-      <mat-error *ngIf="this.registerForm.get('email').hasError('required')">
-        Email jest <strong>wymagany</strong>
-      </mat-error>
-    </mat-form-field><br>
+        <mat-error *ngIf="this.registerForm.get('email').hasError('required')">
+          Email jest <strong>wymagany</strong>
+        </mat-error>
+      </mat-form-field><br>
 
-    <mat-form-field>
-      <input matInput class="password-input" [type]="'password'" placeholder="Hasło"
-             formControlName="password"
-             [errorStateMatcher]="matcher" />
-<!--      <mat-hint>Podaj hasło</mat-hint>-->
+      <mat-form-field>
+        <input matInput class="password-input" [type]="'password'" placeholder="Hasło"
+               formControlName="password"
+               [errorStateMatcher]="matcher" />
+        <mat-hint>Podaj hasło</mat-hint>
 
-      <mat-error *ngIf="this.registerForm.get('password').hasError('required')">
-        Hasło jest <strong>wymagane</strong>
-      </mat-error>
+        <mat-error *ngIf="this.registerForm.get('password').hasError('required')">
+          Hasło jest <strong>wymagane</strong>
+        </mat-error>
 
-      <mat-error *ngIf="this.registerForm.get('password').hasError('pattern') && !this.registerForm.get('password').hasError('required')">
-        Wymagane jest <strong>silne</strong> hasło (min. 8 znaków, w tym co najmniej jedna litera mała, duża, liczba i znak specjalny)
-      </mat-error>
-    </mat-form-field><br>
+        <mat-error *ngIf="this.registerForm.get('password').hasError('pattern') && !this.registerForm.get('password').hasError('required')">
+          Wymagane jest <strong>silne</strong> hasło (min. 8 znaków, w tym co najmniej jedna litera mała, duża, liczba i znak specjalny)
+        </mat-error>
+      </mat-form-field><br>
 
-    <mat-form-field>
-      <input matInput class="password-input"  [type]="'password'"  placeholder="Ponownie Hasło" formControlName="password2"
-      [errorStateMatcher]="matcher"/>
+      <mat-form-field>
+        <input matInput class="password-input"  [type]="'password'"  placeholder="Powtórz Hasło" formControlName="password2"
+        [errorStateMatcher]="matcher"/>
 
-<!--      <mat-hint>Podaj hasło ponownie</mat-hint>-->
+        <mat-hint>Podaj hasło ponownie</mat-hint>
 
-      <mat-error *ngIf="this.registerForm.get('password2').hasError('required')">
-        Ponowne wpisanie hasła jest <strong>wymagane</strong>
-      </mat-error>
+        <mat-error *ngIf="this.registerForm.get('password2').hasError('required')">
+          Ponowne wpisanie hasła jest <strong>wymagane</strong>
+        </mat-error>
 
-      <mat-error *ngIf="this.registerForm.hasError('notSame')">
-        Hasła <strong>muszą</strong> być <strong>takie same</strong>
-      </mat-error>
-    </mat-form-field><br>
+        <mat-error *ngIf="this.registerForm.hasError('notSame')">
+          Hasła <strong>muszą</strong> być <strong>takie same</strong>
+        </mat-error>
+      </mat-form-field><br>
 
-    <mat-checkbox>Akceptuję <a src="">Regulamin</a></mat-checkbox><br>
+      <mat-checkbox>Akceptuję <a src="">Regulamin</a></mat-checkbox><br>
 
-    <button  mat-raised-button class="register-button" type="submit" [disabled]="!this.registerForm.valid">Zarejestruj</button>
+      <button  mat-flat-button class="register-button" type="submit" [disabled]="!this.registerForm.valid">Zarejestruj</button>
 
-    <div class="error-info">
-      {{ this.errorInfo }}
-    </div><br>
+      <div class="error-info">
+        {{ this.errorInfo }}
+      </div><br>
 
-    <button  mat-raised-button class="login-button" type="submit">Mam już Konto</button>
+      <a routerLink="/login">
+        <button  mat-raised-button class="login-button" type="submit">Mam już Konto</button>
+      </a>
 
-  </form>
+    </form>
+  </div>
+
 </div>
