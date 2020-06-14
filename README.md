@@ -26,8 +26,15 @@ npm install -g @angular/cli
 
 `Angular CLI` umożlia uruchomienie aplikacji jako lokalny serwer.
 
-Aby uruchomić aplikację przejdź do folderu głównego i wpisz w terminalu następującą komendę:
+Aby uruchomić aplikację przejdź do folderu głównego.
 
+Następnie zainstaluj wymagane paczki:
+
+```
+npm install
+```
+
+Po pobraniu i zainstalowaniu wszystkich zależności możesz uruchomić lokalny serwer poleceniem:
 ```
 ng serve --open
 ```
