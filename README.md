@@ -3,6 +3,10 @@
 
 Saver jest aplikacją przeznaczoną dla szerokiego grona osób chcących zapisywać, zarządzać i planować swoje wpływy i wydatki. 
 
+## Prezentacja wideo
+
+https://www.youtube.com/watch?v=I2PBraVfEh0
+
 ## Wymagania
 
 ### 1. Node.js
